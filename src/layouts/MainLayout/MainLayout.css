@@ -1,0 +1,5 @@
+.mainLayout__content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 24px) 16px calc(var(--footer-height) + 24px);
+}

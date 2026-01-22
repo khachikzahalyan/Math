@@ -1,0 +1,121 @@
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 14px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar__title {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.10));
+  border: 1px solid rgba(99, 102, 241, 0.18);
+}
+
+.sidebar__empty {
+  color: var(--text-secondary);
+  padding: 0 8px;
+}
+
+/* Independent scroll area for the nav list */
+.sidebar__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px; /* room for scrollbar */
+}
+
+/* Scrollbar styling */
+.sidebar__scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.55) rgba(0, 0, 0, 0);
+}
+
+.sidebar__scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar__scroll::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.sidebar__scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.55);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.sidebar__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.sidebar__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.35);
+}
+
+.sidebar__linkText {
+  line-height: 1.2;
+}
+
+.sidebar__link:hover {
+  color: var(--text);
+  background: var(--bg-alt);
+  border-color: rgba(99, 102, 241, 0.25);
+  transform: translateY(-1px);
+}
+
+.sidebar__link.is-active {
+  color: var(--text);
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.sidebar__link.is-active .sidebar__dot {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}

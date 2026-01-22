@@ -1,0 +1,26 @@
+.home__title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.home__text {
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+.home__actions {
+  margin-top: 14px;
+}
+
+.home__button {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+.home__button:hover {
+  background: var(--primary-dark);
+  color: white;
+}

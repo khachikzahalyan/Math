@@ -1,0 +1,12 @@
+.contact__title {
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+}
+
+.contact__text {
+  margin-bottom: 8px;
+}
+
+.contact__note {
+  color: var(--text-secondary);
+}

@@ -1,0 +1,19 @@
+.lessonsLayout__body {
+  display: flex;
+  height: 100vh;
+  padding-top: var(--header-height);
+  overflow: hidden; /* prevent whole-page scroll; sidebar/content scroll independently */
+}
+
+.lessonsLayout__content {
+  flex: 1;
+  height: 100%;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .lessonsLayout__content {
+    padding: 16px;
+  }
+}

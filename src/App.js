@@ -1,38 +1,36 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/HomePage';
-import TopicsPage from './pages/TopicsPage';
-import TopicPage from './pages/TopicPage';
-import AllLessonsPage from './pages/AllLessonsPage';
-import LessonPage from './pages/LessonPage';
-import PracticePage from './pages/PracticePage';
-import ReferencePage from './pages/ReferencePage';
-import MyProgressPage from './pages/MyProgressPage';
-import Header from './components/layout/Header';
-import Sidebar from './components/layout/Sidebar';
+
+import MainLayout from './layouts/MainLayout/MainLayout';
+import LessonsLayout from './layouts/LessonsLayout/LessonsLayout';
+
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Contact from './pages/Contact/Contact';
+import Lessons from './pages/Lessons/Lessons';
+import LessonTopic from './pages/LessonTopic/LessonTopic';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Header />
-        <div className="app-container">
-          <Sidebar />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/topics" element={<TopicsPage />} />
-              <Route path="/topic/:topicSlug" element={<TopicPage />} />
-              <Route path="/lessons" element={<AllLessonsPage />} />
-              <Route path="/lesson/:lessonSlug" element={<LessonPage />} />
-              <Route path="/practice" element={<PracticePage />} />
-              <Route path="/reference" element={<ReferencePage />} />
-              <Route path="/progress" element={<MyProgressPage />} />
-            </Routes>
-          </main>
-        </div>
-      </div>
-    </Router>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+
+      <Route path="/lessons" element={<LessonsLayout />}>
+        <Route index element={<Lessons />} />
+        <Route path=":topicId" element={<LessonTopic />} />
+      </Route>
+
+      <Route path="/topics" element={<LessonsLayout />}>
+        <Route index element={<Lessons />} />
+        <Route path=":topicId" element={<LessonTopic />} />
+      </Route>
+    </Routes>
   );
 }
 

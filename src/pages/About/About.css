@@ -1,0 +1,9 @@
+.about__title {
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+}
+
+.about__text {
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
