@@ -1,0 +1,67 @@
+.lesson-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.lesson-objectives {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-left: 4px solid #667eea;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 30px 0;
+}
+
+.lesson-objectives h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.lesson-objectives ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lesson-objectives li {
+  padding: 8px 0;
+  color: #555;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.lesson-objectives li:last-child {
+  border-bottom: none;
+}
+
+.lesson-objectives li:before {
+  content: "✓ ";
+  color: #667eea;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.btn-start-quiz {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-start-quiz:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-start-quiz:active {
+  transform: translateY(0);
+}

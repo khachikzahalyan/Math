@@ -1,0 +1,35 @@
+.question-fill {
+  background: var(--bg-alt);
+  padding: 20px;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--warning);
+}
+
+.question-fill p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.question-fill input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.question-fill input[type="text"]:focus {
+  outline: none;
+  border-color: var(--warning);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  transform: translateY(-2px);
+}
+
+.question-fill input[type="text"]::placeholder {
+  color: var(--text-secondary);
+}
