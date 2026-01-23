@@ -1,65 +1,90 @@
-.about {
-  display: flex;
-  justify-content: center;
+/* ✅ вернуть скролл */
+html,
+body {
+  height: auto !important;
+  overflow-y: auto !important;
 }
 
+
 .about {
-  padding: 20px 20px;
   display: flex;
   justify-content: center;
-  background: linear-gradient(180deg, #f5f7ff 0%, #eef1ff 100%);
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 .about__content {
   max-width: 860px;
   width: 100%;
-
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
-
-  padding: 48px 52px;
+  padding: 30px 52px;
   border-radius: 24px;
-
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.06),
     0 4px 12px rgba(0, 0, 0, 0.04);
-
   border: 1px solid rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
 }
 
-.about__title {
-  font-size: 1.9rem;
-  margin-bottom: 26px;
-  color: #1f2937;
-}
-
-.about__text {
-  margin-bottom: 18px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.about__content:hover {
-  box-shadow:
-    0 26px 60px rgba(0, 0, 0, 0.08),
-    0 6px 18px rgba(0, 0, 0, 0.05);
-}
-
-
+/* ===== ЗАГОЛОВОК ===== */
 .about__title {
   font-size: 1.75rem;
   margin-bottom: 20px;
   color: #1f2937;
 }
 
+/* ===== ТЕКСТ ===== */
 .about__text {
   margin-bottom: 14px;
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: #6b7280;
 }
 
+/* ===== КАРТИНКИ ===== */
+.about__image {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  display: block;
+}
+/* ===== АНИМАЦИЯ КАРТИНОК (как у текста) ===== */
+.about__image {
+  opacity: 0;
+  animation: fadeUp 650ms ease forwards;
+}
+
+/* задержки для картинок */
+.about__image:nth-of-type(1) {
+  animation-delay: 200ms;
+}
+
+.about__image:nth-of-type(2) {
+  animation-delay: 320ms;
+}
+
+.about__image:nth-of-type(3) {
+  animation-delay: 440ms;
+}
+
+.about__image:nth-of-type(4) {
+  animation-delay: 560ms;
+}
+
+.about__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+
+  border-radius: 16px;
+  background: #f7f8ff;
+  border: 1px solid rgba(99, 102, 241, 0.14);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== АНИМАЦИИ ===== */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -81,26 +106,26 @@
   animation: fadeUp 650ms ease forwards;
 }
 
-.animate-delay-1 {
-  animation-delay: 120ms;
-}
-
-.animate-delay-2 {
-  animation-delay: 240ms;
-}
-
-.animate-delay-3 {
-  animation-delay: 360ms;
-}
-
-.animate-delay-4 {
-  animation-delay: 480ms;
-}
+.animate-delay-1 { animation-delay: 120ms; }
+.animate-delay-2 { animation-delay: 240ms; }
+.animate-delay-3 { animation-delay: 360ms; }
+.animate-delay-4 { animation-delay: 480ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-title,
   .animate-text {
     opacity: 1;
     animation: none;
+  }
+}
+
+/* ===== МОБИЛКА ===== */
+@media (max-width: 480px) {
+  .about__content {
+    padding: 20px;
+  }
+
+  .about__image {
+    max-width: 100%;
   }
 }

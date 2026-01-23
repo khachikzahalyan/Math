@@ -24,7 +24,6 @@ body {
   padding: clamp(12px, 2vw, 24px);
   box-sizing: border-box;
 
-  background: linear-gradient(135deg, #f5f7ff, #eef1ff);
 }
 
 .contact__card {

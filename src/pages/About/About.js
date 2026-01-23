@@ -4,9 +4,7 @@ function About() {
   return (
     <div className="about">
       <div className="about__content">
-        <h1 className="about__title animate-title">
-          Մեր մասին
-        </h1>
+        <h1 className="about__title animate-title">Մեր մասին</h1>
 
         <p className="about__text animate-text animate-delay-1">
           Այս կայքը ստեղծվել է այն գաղափարի շուրջ, որ մաթեմատիկան պետք է լինի
@@ -14,6 +12,11 @@ function About() {
           Մենք հավատում ենք, որ ճիշտ մոտեցման դեպքում նույնիսկ ամենաբարդ
           թեմաները կարող են դառնալ պարզ և ընկալելի։
         </p>
+
+        <div className="about__image">
+          <img src="/about-reading.png" alt="Reading book" loading="lazy" />
+
+        </div>
 
         <p className="about__text animate-text animate-delay-2">
           Մաթեմատիկան միայն թվերի և բանաձևերի համախումբ չէ։
@@ -23,6 +26,10 @@ function About() {
           առօրյա կյանքում և մասնագիտական գործունեության մեջ։
         </p>
 
+        <div className="about__image">
+          <img src="/about-education.png" alt="Education" loading="lazy" />
+        </div>
+
         <p className="about__text animate-text animate-delay-3">
           Մեր հիմնական նպատակն է ստեղծել ուսումնական միջավայր, որտեղ սովորողը
           չի վախենա սխալվելուց։ Այստեղ սխալը դիտարկվում է որպես սովորելու
@@ -30,40 +37,21 @@ function About() {
           հնարավորություն։
         </p>
 
+        <div className="about__image">
+          <img src="/about-thinking.png" alt="Creative thinking" loading="lazy" />
+        </div>
+
         <p className="about__text animate-text animate-delay-4">
           Կայքում ներկայացված նյութերը կառուցված են քայլ առ քայլ սկզբունքով։
           Սկզբում տրվում է տեսությունը պարզ լեզվով, ապա՝ օրինակներ,
           և վերջում փոքր առաջադրանքներ, որոնք օգնում են ամրապնդել ստացված
-          գիտելիքները։ Այս մոտեցումը թույլ է տալիս սովորել առանց շտապելու
-          և առանց ավելորդ բարդությունների։
+          գիտելիքները։
         </p>
 
-        <p className="about__text animate-text animate-delay-5">
-          Մենք մեծ ուշադրություն ենք դարձնում ոչ միայն գիտելիքների փոխանցմանը,
-          այլ նաև սովորելու մշակույթի ձևավորմանը։ Մեզ համար կարևոր է, որ
-          սովորողը սովորի մտածել, հարցեր տալ և ինքնուրույն գտնել լուծումներ։
-          Այդ կերպ ուսուցումը դառնում է գիտակցված և արդյունավետ։
-        </p>
+        <div className="about__image">
+          <img src="/about-math.png" alt="Learning math" loading="lazy" />
 
-        <p className="about__text animate-text animate-delay-6">
-          Մեր տեսլականն է ստեղծել մի հարթակ, որը կօգնի սովորողներին բացահայտել
-          մաթեմատիկայի գեղեցկությունը։ Մենք ցանկանում ենք ցույց տալ, որ
-          մաթեմատիկան կարող է լինել հետաքրքիր, տրամաբանական և նույնիսկ հաճելի,
-          երբ այն ներկայացվում է պարզ և հասկանալի ձևով։
-        </p>
-
-        <p className="about__text animate-text animate-delay-7">
-          Այս կայքը նախատեսված է ինչպես դպրոցականների, այնպես էլ բոլոր նրանց
-          համար, ովքեր ցանկանում են վերանայել իրենց գիտելիքները, ամրապնդել
-          հիմքերը կամ պարզապես զարգացնել մտածողությունը։
-          Սովորելը այստեղ մրցույթ չէ, այլ անձնական աճի ճանապարհ։
-        </p>
-
-        <p className="about__text animate-text animate-delay-8">
-          Մենք հավատում ենք, որ շարունակական զարգացումը կարևոր է յուրաքանչյուր
-          մարդու համար։ Մաթեմատիկան այս ճանապարհին հզոր գործիք է, որը օգնում է
-          տեսնել կապերը, հասկանալ գործընթացները և ավելի վստահ քայլել առաջ։
-        </p>
+        </div>
       </div>
     </div>
   );
