@@ -68,3 +68,51 @@
   color: #fff;
   text-decoration: none;
 }
+@media (max-width: 768px) {
+  .lessons__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .lessons__card {
+    padding: 12px;
+    min-height: 165px;
+  }
+
+  .lessons__cardTitle {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .lessons__cardText {
+    font-size: 0.85rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .lessons__cardFooter {
+    margin-top: 8px;
+  }
+
+  .lessons__cardLink {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    border-radius: 9px;
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+  .lessons__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lessons__cardTitle {
+    font-size: 1.05rem;
+  }
+
+  .lessons__cardText {
+    font-size: 0.95rem;
+  }
+}

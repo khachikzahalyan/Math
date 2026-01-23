@@ -119,13 +119,19 @@ body {
   }
 }
 
-/* ===== МОБИЛКА ===== */
-@media (max-width: 480px) {
+@media (max-width: 780px) {
+  .about {
+    padding: 12px;
+  }
+
   .about__content {
-    padding: 20px;
+    padding: 18px 16px;
+    border-radius: 18px;
   }
 
   .about__image {
     max-width: 100%;
   }
 }
+
+

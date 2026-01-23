@@ -26,15 +26,13 @@ function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleSelectTopic = (topicId) => {
-    setSearchQuery('');
-    setIsSearchOpen(false);
-    navigate(`/lessons/${topicId}`);
-  };
-  // Закрыть мобильное меню при клике вне него
   useEffect(() => {
     const handleClickOutsideMenu = (e) => {
-      if (isMobileMenuOpen && !e.target.closest('.header__nav') && !e.target.closest('.header__burger')) {
+      if (
+        isMobileMenuOpen &&
+        !e.target.closest('.header__nav') &&
+        !e.target.closest('.header__burger')
+      ) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -42,7 +40,6 @@ function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutsideMenu);
   }, [isMobileMenuOpen]);
 
-  // Закрыть меню при изменении размера экрана
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -53,44 +50,121 @@ function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const handleSelectTopic = (topicId) => {
+    setSearchQuery('');
+    setIsSearchOpen(false);
+    setIsMobileMenuOpen(false);
+    navigate(`/lessons/${topicId}`);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen((p) => !p);
 
   return (
     <header className="header">
       <div className="header__inner">
-        <div className="header__logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        <div
+          className="header__logo"
+          onClick={() => navigate('/')}
+          role="button"
+          tabIndex={0}
+        >
           <img className="header__logoImg" src="/logoimg.png" alt="Մաթեմատիկա" />
           <span className="header__logoText">Մաթեմատիկա</span>
         </div>
 
-        {/* Бургер-кнопка */}
-        <button className={`header__burger ${isMobileMenuOpen ? 'is-open' : ''}`} onClick={toggleMobileMenu} aria-label="Меню">
+        {/* ✅ Поиск между лого и бургером (мобилка) */}
+        <div className="header__search header__search--mobile" ref={searchRef}>
+          <div className="header__searchInput">
+            <svg
+              className="header__searchIcon"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+
+            <input
+              type="text"
+              placeholder="Որոնել թեմա..."
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setIsSearchOpen(true);
+              }}
+              onFocus={() => setIsSearchOpen(true)}
+            />
+          </div>
+
+          {isSearchOpen && filteredTopics.length > 0 && (
+            <div className="header__searchDropdown">
+              {filteredTopics.map((topic) => (
+                <button
+                  key={topic.id}
+                  className="header__searchItem"
+                  onClick={() => handleSelectTopic(topic.id)}
+                  type="button"
+                >
+                  <span className="header__searchItemTitle">{topic.title}</span>
+                  <span className="header__searchItemDesc">{topic.description}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <button
+          className={`header__burger ${isMobileMenuOpen ? 'is-open' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label="Меню"
+          type="button"
+        >
           <span className="header__burgerLine"></span>
           <span className="header__burgerLine"></span>
           <span className="header__burgerLine"></span>
         </button>
 
         <nav className={`header__nav ${isMobileMenuOpen ? 'is-open' : ''}`}>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/" onClick={closeMobileMenu}>
+          <NavLink
+            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             Գլխավոր
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/about" onClick={closeMobileMenu}>
+
+          <NavLink
+            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
+            to="/about"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             Մեր մասին
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/contact" onClick={closeMobileMenu}>
+
+          <NavLink
+            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
+            to="/contact"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             Կապ
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/lessons" onClick={closeMobileMenu}>
+
+          <NavLink
+            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
+            to="/lessons"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             Դասեր
           </NavLink>
 
-          <div className="header__search" ref={searchRef}>
+          {/* ✅ Поиск для десктопа справа (как было) */}
+          <div className="header__search header__search--desktop" ref={searchRef}>
             <div className="header__searchInput">
               <svg
                 className="header__searchIcon"
@@ -106,6 +180,7 @@ function Header() {
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
+
               <input
                 type="text"
                 placeholder="Որոնել թեմա..."
@@ -125,6 +200,7 @@ function Header() {
                     key={topic.id}
                     className="header__searchItem"
                     onClick={() => handleSelectTopic(topic.id)}
+                    type="button"
                   >
                     <span className="header__searchItemTitle">{topic.title}</span>
                     <span className="header__searchItemDesc">{topic.description}</span>

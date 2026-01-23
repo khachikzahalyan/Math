@@ -18,21 +18,14 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Отправка письма (здесь можно добавить реальную логику отправки)
     console.log('Form data:', formData);
-    
-    // Показать tooltip
     setShowTooltip(true);
-    
-    // Очистить форму
     setFormData({
       name: '',
       email: '',
       message: ''
     });
     
-    // Скрыть tooltip через 3 секунды
     setTimeout(() => {
       setShowTooltip(false);
     }, 3000);
@@ -47,7 +40,6 @@ function Contact() {
           Եթե ունեք հարցեր, առաջարկներ կամ պարզապես ցանկանում եք կապ հաստատել,
           կարող եք գրել մեզ՝ ստորև նշված տվյալներով։
         </p>
-
 
         <form className="contact__form animate-text animate-delay-4" onSubmit={handleSubmit}>
           <div className="form-group">
