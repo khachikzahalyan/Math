@@ -80,12 +80,6 @@
   transition: var(--transition);
 }
 
-.sidebar__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(99, 102, 241, 0.35);
-}
 
 .sidebar__linkText {
   line-height: 1.2;

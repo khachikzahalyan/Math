@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import MainLayout from './layouts/MainLayout/MainLayout';
 import LessonsLayout from './layouts/LessonsLayout/LessonsLayout';
 
@@ -13,7 +14,9 @@ import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -31,6 +34,7 @@ function App() {
         <Route path=":topicId" element={<LessonTopic />} />
       </Route>
     </Routes>
+    </>
   );
 }
 

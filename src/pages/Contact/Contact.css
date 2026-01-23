@@ -1,12 +1,146 @@
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #f5f7ff, #eef1ff);
+}
+
+.contact__card {
+  width: 100%;
+  max-width: 560px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px 32px;
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 6px 18px rgba(0, 0, 0, 0.05);
+}
+@keyframes fadeUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card {
+  opacity: 0;
+  animation: fadeUpSoft 700ms ease forwards;
+}
+
+.animate-title {
+  opacity: 0;
+  animation: fadeUpSoft 600ms ease forwards;
+  animation-delay: 120ms;
+}
+
+.animate-text {
+  opacity: 0;
+  animation: fadeUpSoft 600ms ease forwards;
+}
+
+.animate-delay-1 {
+  animation-delay: 220ms;
+}
+
+.animate-delay-2 {
+  animation-delay: 340ms;
+}
+
+.animate-delay-3 {
+  animation-delay: 460ms;
+}
+
+.animate-delay-4 {
+  animation-delay: 580ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-card,
+  .animate-title,
+  .animate-text {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 .contact__title {
-  font-size: 1.75rem;
+  font-size: 2rem;
   margin-bottom: 12px;
+  color: #1f2937;
 }
 
-.contact__text {
-  margin-bottom: 8px;
+.contact__subtitle {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
-.contact__note {
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.contact__row {
+  background: #f8f9ff;
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact__label {
+  font-size: 0.85rem;
   color: var(--text-secondary);
+}
+
+.contact__value {
+  font-size: 1rem;
+  color: #111827;
+  word-break: break-word;
+}
+
+.contact__footer {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* 📱 423px */
+@media (max-width: 423px) {
+  .contact {
+    padding: 16px;
+  }
+
+  .contact__card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .contact__title {
+    font-size: 1.6rem;
+  }
+
+  .contact__subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+
+  .contact__row {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .contact__value {
+    font-size: 0.95rem;
+  }
 }

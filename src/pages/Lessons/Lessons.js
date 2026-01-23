@@ -11,16 +11,21 @@ function Lessons() {
   return (
     <div className="lessons">
       <h1 className="lessons__title">Դասեր</h1>
-      <p className="lessons__subtitle">Ընտրեք թեմա ձախ մենյուից կամ բացեք ստորև գտնվող թեմաներից մեկը։</p>
+      <p className="lessons__subtitle">
+        Ընտրեք թեմա ձախ մենյուից կամ բացեք ստորև գտնվող թեմաներից մեկը։
+      </p>
 
       <div className="lessons__grid">
         {topics.map((t) => (
           <div className="lessons__card" key={t.id}>
             <h3 className="lessons__cardTitle">{t.title}</h3>
             <p className="lessons__cardText">{t.description}</p>
-            <Link className="lessons__cardLink" to={t.id}>
-              Բացել
-            </Link>
+
+            <div className="lessons__cardFooter">
+              <Link className="lessons__cardLink" to={t.id}>
+                Բացել
+              </Link>
+            </div>
           </div>
         ))}
       </div>

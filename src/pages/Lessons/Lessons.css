@@ -14,32 +14,57 @@
   gap: 16px;
 }
 
+/* Карточка как колонка: контент сверху, кнопка всегда снизу */
 .lessons__card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  padding: 16px;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 190px; /* можно подстроить */
 }
 
 .lessons__cardTitle {
-  margin-bottom: 8px;
+  margin: 0 0 8px 0;
 }
 
 .lessons__cardText {
   color: var(--text-secondary);
-  margin-bottom: 12px;
+  margin: 0;
+  line-height: 1.55;
+
+  /* занимает всё свободное место,
+     чтобы футер ушёл вниз */
+  flex: 1;
 }
 
+/* футер всегда внизу */
+.lessons__cardFooter {
+  margin-top: 14px;
+}
+
+/* Кнопка всегда в левом нижнем углу "зоны карточки" */
 .lessons__cardLink {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 8px 12px;
   border-radius: 10px;
   background: var(--primary);
-  color: white;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+
+  /* на всякий случай, если глобально подчёркивает ссылки */
+  border: 1px solid transparent;
 }
 
 .lessons__cardLink:hover {
   background: var(--primary-dark);
-  color: white;
+  color: #fff;
+  text-decoration: none;
 }

@@ -18,7 +18,6 @@ function Sidebar() {
                   className={({ isActive }) => (isActive ? 'sidebar__link is-active' : 'sidebar__link')}
                   to={t.id}
                 >
-                  <span className="sidebar__dot" aria-hidden="true" />
                   <span className="sidebar__linkText">{t.title}</span>
                 </NavLink>
               </li>

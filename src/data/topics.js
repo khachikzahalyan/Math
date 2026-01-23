@@ -423,6 +423,950 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
       { id: 'q4', type: 'input', question: '(-1, 4) կետի y կոորդինատը։', answer: '4' },
       { id: 'q5', type: 'input', question: 'Եթե կետը (x, y) = (2, 7), ապա x = ?', answer: '2' }
     ]
+  },
+ {
+    id: 'number-line',
+    title: 'Թվային ուղիղ',
+    description: 'Թվերի տեղադրումը ուղիղի վրա և համեմատությունը։',
+    text: `Թվային ուղիղը օգնում է տեսնել թվերի կարգը և հեռավորությունը։
+Ուղիղի վրա 0-ը կենտրոնում է, աջ կողմում՝ դրական թվեր, ձախ կողմում՝ բացասական թվեր։
+
+Հիշիր՝
+• Ավելի աջ գտնվող թիվը ավելի մեծ է։
+• Երկու թվերի միջև հեռավորությունը կոչվում է տարբերություն (հեռավորություն)։
+• 0-ից աջ՝ +, 0-ից ձախ՝ −։`,
+    examples: ['-3 < 0 < 5', 'Ավելի աջ = ավելի մեծ', 'Հեռավորություն(-2, 4) = 6'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Ո՞ր թիվն է մեծ՝ -2 թե 3։', answer: '3' },
+      { id: 'q2', type: 'input', question: 'Ո՞ր թիվն է փոքր՝ -7 թե -4։', answer: '-7' },
+      { id: 'q3', type: 'input', question: 'Գրեք մի թիվ, որը գտնվում է -1-ի և 1-ի միջև։', answer: '0' },
+      { id: 'q4', type: 'input', question: 'Ո՞ր թիվն է ավելի աջ՝ -5 թե -2։ (գրեք թիվը)', answer: '-2' },
+      { id: 'q5', type: 'input', question: 'Ո՞ր թիվն է մեծ՝ 0 թե -1։', answer: '0' }
+    ]
+  },
+  {
+    id: 'absolute-value',
+    title: 'Բացարձակ արժեք',
+    description: '|a| — թվի հեռավորությունը 0-ից։',
+    text: `Բացարձակ արժեքը (|a|) ցույց է տալիս՝ որքան հեռու է թիվը 0-ից։
+Այն միշտ ոչ բացասական է։
+
+Կանոններ՝
+• |5| = 5
+• |-5| = 5
+• |0| = 0
+
+Օգտակար է հեռավորության և «քանի միավոր» տեսակի խնդիրներում։`,
+    examples: ['| -8 | = 8', '| 3 | = 3', '| -2 | + | 1 | = 3'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Գտեք |-9|։', answer: '9' },
+      { id: 'q2', type: 'input', question: 'Գտեք |7|։', answer: '7' },
+      { id: 'q3', type: 'input', question: 'Գտեք |0|։', answer: '0' },
+      { id: 'q4', type: 'input', question: 'Ո՞րն է ճիշտ՝ |-4| = ? (գրեք թիվը)', answer: '4' },
+      { id: 'q5', type: 'input', question: 'Գտեք |-3| + |2|։', answer: '5' }
+    ]
+  },
+  {
+    id: 'order-of-operations',
+    title: 'Գործողությունների հերթականություն',
+    description: 'Փակագծեր, աստիճան, բազմապատկում/բաժանում, գումարում/հանում։',
+    text: `Երբ մի արտահայտության մեջ կան մի քանի գործողություններ, պետք է պահել հերթականությունը։
+
+Հերթականություն՝
+1) Փակագծեր
+2) Աստիճան (եթե կա)
+3) Բազմապատկում և բաժանում (ձախից աջ)
+4) Գումարում և հանում (ձախից աջ)
+
+Սա օգնում է միշտ նույն պատասխանին հասնել։`,
+    examples: ['2 + 3 × 4 = 14', '(2 + 3) × 4 = 20', '18 ÷ 3 × 2 = 12'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Հաշվեք՝ 2 + 3 × 4։', answer: '14' },
+      { id: 'q2', type: 'input', question: 'Հաշվեք՝ (2 + 3) × 4։', answer: '20' },
+      { id: 'q3', type: 'input', question: 'Հաշվեք՝ 18 ÷ 3 × 2։', answer: '12' },
+      { id: 'q4', type: 'input', question: 'Հաշվեք՝ 10 − 6 ÷ 2։', answer: '7' },
+      { id: 'q5', type: 'input', question: 'Հաշվեք՝ (8 − 3) + 2 × 5։', answer: '15' }
+    ]
+  },
+  {
+    id: 'factors-multiples',
+    title: 'Բաժանարարներ և բազմապատիկներ',
+    description: 'Բաժանարար՝ բաժանում է առանց մնացորդի։ Բազմապատիկ՝ a×k։',
+    text: `Եթե թիվը բաժանում ենք մեկ այլ թվի և մնացորդ չկա, ապա բաժանարարը ճիշտ է։
+
+Օրինակ՝ 12-ը բաժանվում է 3-ի (12÷3=4), ուրեմն 3-ը 12-ի բաժանարար է։
+Բազմապատիկ՝ 5-ի բազմապատիկներ են 5, 10, 15, 20... (5×1, 5×2...)։
+
+Սա կարևոր է կոտորակների, ՄԱՏ/ՓԱՏ-ի և խնդիրների լուծման համար։`,
+    examples: ['12-ի բաժանարար՝ 1,2,3,4,6,12', '5-ի բազմապատիկ՝ 5,10,15...', '15 բաժանվում է 3-ի և 5-ի'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Գրեք 12-ի մեկ բաժանարար։', answer: '3' },
+      { id: 'q2', type: 'input', question: 'Գրեք 7-ի մեկ բազմապատիկ։', answer: '14' },
+      { id: 'q3', type: 'input', question: 'Արդյո՞ք 18-ը բաժանվում է 6-ի (այո/ոչ)։', answer: 'այո' },
+      { id: 'q4', type: 'input', question: 'Արդյո՞ք 20-ը 3-ի բազմապատիկ է (այո/ոչ)։', answer: 'ոչ' },
+      { id: 'q5', type: 'input', question: 'Գրեք 4-ի 5-րդ բազմապատիկը։', answer: '20' }
+    ]
+  },
+  {
+    id: 'remainders',
+    title: 'Բաժանում մնացորդով',
+    description: 'a = b×q + r, որտեղ 0 ≤ r < b։',
+    text: `Երբ թիվը բաժանվում է և ամբողջ չի ստացվում, մենք ունենում ենք մնացորդ։
+
+Բանաձև՝ a = b×q + r
+որտեղ՝
+• a — բաժանելի
+• b — բաժանարար
+• q — քանորդ
+• r — մնացորդ (0 ≤ r < b)
+
+Օրինակ՝ 17 ÷ 5 = 3 մն. 2, քանի որ 17 = 5×3 + 2։`,
+    examples: ['17 ÷ 5 = 3 մն. 2', '29 ÷ 4 = 7 մն. 1', '10 ÷ 3 = 3 մն. 1'],
+    questions: [
+      { id: 'q1', type: 'input', question: '17 ÷ 5-ի մնացորդը։', answer: '2' },
+      { id: 'q2', type: 'input', question: '29 ÷ 4-ի քանորդը (միայն q)։', answer: '7' },
+      { id: 'q3', type: 'input', question: '10 ÷ 3-ի մնացորդը։', answer: '1' },
+      { id: 'q4', type: 'input', question: '23 = 6×3 + r. r = ? ', answer: '5' },
+      { id: 'q5', type: 'input', question: '19 ÷ 2-ի մնացորդը։', answer: '1' }
+    ]
+  },
+  {
+    id: 'fraction-add-sub',
+    title: 'Կոտորակների գումարում և հանում',
+    description: 'Նույն կամ տարբեր հայտարարներով կոտորակների գործողություններ։',
+    text: `Եթե կոտորակների հայտարարները նույնն են, ապա ավելացնում/հանում ենք միայն համարիչները։
+Օր՝ 3/7 + 2/7 = 5/7։
+
+Եթե հայտարարները տարբեր են, պետք է բերել ընդհանուր հայտարարի։
+Օր՝ 1/2 + 1/4 = 2/4 + 1/4 = 3/4։`,
+    examples: ['2/5 + 1/5 = 3/5', '3/4 − 1/4 = 2/4 = 1/2', '1/2 + 1/3 = 5/6'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Հաշվեք՝ 2/5 + 1/5։', answer: '3/5' },
+      { id: 'q2', type: 'input', question: 'Հաշվեք՝ 3/4 − 1/4։', answer: '1/2' },
+      { id: 'q3', type: 'input', question: 'Հաշվեք՝ 1/2 + 1/4։', answer: '3/4' },
+      { id: 'q4', type: 'input', question: 'Հաշվեք՝ 1/3 + 1/6։', answer: '1/2' },
+      { id: 'q5', type: 'input', question: 'Հաշվեք՝ 5/6 − 1/3։', answer: '1/2' }
+    ]
+  },
+  {
+    id: 'fraction-mul-div',
+    title: 'Կոտորակների բազմապատկում և բաժանում',
+    description: 'Բազմապատկում՝ a/b×c/d, բաժանում՝ բազմապատկել շրջվածով։',
+    text: `Կոտորակների բազմապատկում՝ (a/b)×(c/d) = (a×c)/(b×d)։
+Կոտորակների բաժանում՝ (a/b)÷(c/d) = (a/b)×(d/c)։
+
+Հաճախ հետո կրճատում ենք, որպեսզի պարզ ստանանք։`,
+    examples: ['2/3 × 3/5 = 2/5', '1/2 ÷ 1/4 = 2', '3/4 × 2 = 3/2'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Հաշվեք՝ 2/3 × 3/5։', answer: '2/5' },
+      { id: 'q2', type: 'input', question: 'Հաշվեք՝ 1/2 ÷ 1/4։', answer: '2' },
+      { id: 'q3', type: 'input', question: 'Հաշվեք՝ 3/4 × 2 (գրեք կոտորակով)։', answer: '3/2' },
+      { id: 'q4', type: 'input', question: 'Հաշվեք՝ 5/6 ÷ 5/12։', answer: '2' },
+      { id: 'q5', type: 'input', question: 'Հաշվեք՝ 2/5 × 10 (գրեք թիվը)։', answer: '4' }
+    ]
+  },
+  {
+    id: 'decimal-to-fraction',
+    title: 'Տասնորդականից կոտորակ',
+    description: '0.25 = 25/100 = 1/4։',
+    text: `Տասնորդականը կարող ենք գրել սովորական կոտորակով։
+Օր՝ 0.7 = 7/10, 0.05 = 5/100։
+
+Քայլեր՝
+1) Գրիր թիվը որպես ամբողջ թվի հարաբերություն 10-ի աստիճանին։
+2) Կրճատիր, եթե հնարավոր է։`,
+    examples: ['0.6 = 6/10 = 3/5', '0.125 = 125/1000 = 1/8', '2.5 = 5/2'],
+    questions: [
+      { id: 'q1', type: 'input', question: '0.6-ը գրեք կոտորակով (կրճատված)։', answer: '3/5' },
+      { id: 'q2', type: 'input', question: '0.25-ը գրեք կոտորակով։', answer: '1/4' },
+      { id: 'q3', type: 'input', question: '0.05-ը գրեք կոտորակով (կրճատված)։', answer: '1/20' },
+      { id: 'q4', type: 'input', question: '1.2-ը գրեք կոտորակով (կրճատված)։', answer: '6/5' },
+      { id: 'q5', type: 'input', question: '0.125-ը գրեք կոտորակով։', answer: '1/8' }
+    ]
+  },
+  {
+    id: 'fraction-to-decimal',
+    title: 'Կոտորակից տասնորդական',
+    description: 'Կոտորակը բաժանում ենք՝ համարիչը/հայտարարը։',
+    text: `Կոտորակը տասնորդական դարձնելու համար պարզապես բաժանում ենք համարիչը հայտարարին։
+Օր՝ 3/4 = 3÷4 = 0.75։
+
+Որոշ կոտորակներ տալիս են վերջավոր տասնորդական (հայտարար 2-ի և 5-ի աստիճաններից),
+իսկ որոշները՝ անվերջ կրկնվող։`,
+    examples: ['1/2 = 0.5', '3/4 = 0.75', '1/8 = 0.125'],
+    questions: [
+      { id: 'q1', type: 'input', question: '1/2-ը գրեք տասնորդականով։', answer: '0.5' },
+      { id: 'q2', type: 'input', question: '3/4-ը գրեք տասնորդականով։', answer: '0.75' },
+      { id: 'q3', type: 'input', question: '1/8-ը գրեք տասնորդականով։', answer: '0.125' },
+      { id: 'q4', type: 'input', question: '5/10-ը գրեք տասնորդականով։', answer: '0.5' },
+      { id: 'q5', type: 'input', question: '2/5-ը գրեք տասնորդականով։', answer: '0.4' }
+    ]
+  },
+  {
+    id: 'percent-change',
+    title: 'Տոկոսի փոփոխություն',
+    description: 'Աճ/նվազում տոկոսով։',
+    text: `Տոկոսով փոփոխությունը ցույց է տալիս, թե որքանով է փոխվել արժեքը։
+
+Բանաձև՝
+Տոկոս փոփոխություն = (նոր − հին) / հին × 100%
+
+Օր՝ 50-ից դարձավ 60 → (60−50)/50×100%=20% աճ։`,
+    examples: ['50→60 = +20%', '80→60 = -25%', '100→110 = +10%'],
+    questions: [
+      { id: 'q1', type: 'input', question: '50-ից դարձավ 60. Փոփոխությունը (%)։', answer: '20' },
+      { id: 'q2', type: 'input', question: '80-ից դարձավ 60. Նվազումը (%)։', answer: '25' },
+      { id: 'q3', type: 'input', question: '100-ից դարձավ 110. Աճը (%)։', answer: '10' },
+      { id: 'q4', type: 'input', question: '200-ից դարձավ 150. Նվազումը (%)։', answer: '25' },
+      { id: 'q5', type: 'input', question: '40-ից դարձավ 50. Աճը (%)։', answer: '25' }
+    ]
+  },
+  {
+    id: 'ratio-proportion',
+    title: 'Համեմատություն և համամասնություն',
+    description: 'a/b = c/d տեսքով հավասարություն։',
+    text: `Համամասնությունը երկու հարաբերությունների հավասարությունն է՝ a:b = c:d կամ a/b = c/d։
+
+Խաչաձև բազմապատկում՝ a×d = b×c։
+
+Օր՝ 2/3 = x/12 → 2×12 = 3×x → x = 8։`,
+    examples: ['2/3 = x/12 → x=8', '5/10 = 1/2', '3/4 = 6/8'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Լուծեք՝ 2/3 = x/12. x = ?', answer: '8' },
+      { id: 'q2', type: 'input', question: 'Լուծեք՝ 1/5 = x/20. x = ?', answer: '4' },
+      { id: 'q3', type: 'input', question: 'Լուծեք՝ 3/4 = x/16. x = ?', answer: '12' },
+      { id: 'q4', type: 'input', question: 'Լուծեք՝ 7/10 = x/100. x = ?', answer: '70' },
+      { id: 'q5', type: 'input', question: 'Լուծեք՝ 5/8 = x/40. x = ?', answer: '25' }
+    ]
+  },
+  {
+    id: 'units-conversion',
+    title: 'Միավորների փոխարկում',
+    description: 'սմ↔մ, գ↔կգ, րոպե↔ժամ։',
+    text: `Միավորների փոխարկման համար պետք է հիշել հիմնական հարաբերությունները՝
+• 1 մ = 100 սմ
+• 1 կգ = 1000 գ
+• 1 ժամ = 60 րոպե
+
+Փոխարկելիս կամ բազմապատկում ենք, կամ բաժանում՝ ըստ ուղղության։`,
+    examples: ['2 մ = 200 սմ', '1500 գ = 1.5 կգ', '120 րոպե = 2 ժամ'],
+    questions: [
+      { id: 'q1', type: 'input', question: '3 մ = քանի՞ սմ։', answer: '300' },
+      { id: 'q2', type: 'input', question: '250 սմ = քանի՞ մ։', answer: '2.5' },
+      { id: 'q3', type: 'input', question: '2000 գ = քանի՞ կգ։', answer: '2' },
+      { id: 'q4', type: 'input', question: '1.5 կգ = քանի՞ գ։', answer: '1500' },
+      { id: 'q5', type: 'input', question: '90 րոպե = քանի՞ ժամ։', answer: '1.5' }
+    ]
+  },
+  {
+    id: 'time-problems',
+    title: 'Ժամանակի խնդիրներ',
+    description: 'Ժամ/րոպե հաշվարկներ։',
+    text: `Ժամանակի խնդիրներում կարևոր է նույն միավորներով աշխատել։
+1 ժամ = 60 րոպե։
+
+Օրինակ՝ եթե ֆիլմը տևում է 1 ժամ 40 րոպե, ապա 100 րոպե է։`,
+    examples: ['1ժ 30ր = 90ր', '2ժ 15ր = 135ր', '75ր = 1.25ժ'],
+    questions: [
+      { id: 'q1', type: 'input', question: '1 ժամ 20 րոպե = քանի՞ րոպե։', answer: '80' },
+      { id: 'q2', type: 'input', question: '2 ժամ 10 րոպե = քանի՞ րոպե։', answer: '130' },
+      { id: 'q3', type: 'input', question: '150 րոպե = քանի՞ ժամ։', answer: '2.5' },
+      { id: 'q4', type: 'input', question: '45 րոպե = քանի՞ ժամ։', answer: '0.75' },
+      { id: 'q5', type: 'input', question: '3 ժամ = քանի՞ րոպե։', answer: '180' }
+    ]
+  },
+  {
+    id: 'money',
+    title: 'Գումարի խնդիրներ',
+    description: 'Գին, քանակ, ընդհանուր գումար։',
+    text: `Գումարի խնդիրներում հաճախ օգտագործվում է բանաձևը՝
+ընդհանուր = գին × քանակ։
+
+Եթե կա զեղչ, սկզբում գտնում ենք զեղչի չափը, հետո հանում ընդհանուրից։`,
+    examples: ['5×200 = 1000', '3 հատ × 150 դրամ', '10% զեղչ = ×0.9'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Եթե մեկ տոմսը 300 է, 4 տոմսը որքան է։', answer: '1200' },
+      { id: 'q2', type: 'input', question: 'Եթե մեկ մատիտը 50 է, 10 մատիտը որքան է։', answer: '500' },
+      { id: 'q3', type: 'input', question: '1000 դրամից 10% զեղչից հետո որքան կմնա։', answer: '900' },
+      { id: 'q4', type: 'input', question: 'Եթե ապրանքը 800 է, 2 հատը որքան է։', answer: '1600' },
+      { id: 'q5', type: 'input', question: 'Եթե 600-ի վրա ավելացնենք 200, կստացվի։', answer: '800' }
+    ]
+  },
+  {
+    id: 'angles',
+    title: 'Անկյուններ',
+    description: 'Սուր, ուղիղ, բութ անկյուններ։',
+    text: `Անկյունը չափվում է աստիճաններով (°)։
+Տեսակներ՝
+• Սուր՝ < 90°
+• Ուղիղ՝ = 90°
+• Բութ՝ > 90° և < 180°
+• Փռված՝ = 180°
+
+Եռանկյան անկյունների գումարը միշտ 180° է։`,
+    examples: ['45°՝ սուր', '90°՝ ուղիղ', '120°՝ բութ'],
+    questions: [
+      { id: 'q1', type: 'input', question: '90° անկյունը ի՞նչ տեսակ է։', answer: 'ուղիղ' },
+      { id: 'q2', type: 'input', question: '45° անկյունը ի՞նչ տեսակ է։', answer: 'սուր' },
+      { id: 'q3', type: 'input', question: '120° անկյունը ի՞նչ տեսակ է։', answer: 'բութ' },
+      { id: 'q4', type: 'input', question: 'Եռանկյան անկյունների գումարը։', answer: '180' },
+      { id: 'q5', type: 'input', question: '180° անկյունը ինչպե՞ս է կոչվում (գրեք մեկ բառ)։', answer: 'փռված' }
+    ]
+  },
+  {
+    id: 'triangle-area',
+    title: 'Եռանկյան մակերես',
+    description: 'S = (a × h) / 2։',
+    text: `Եռանկյան մակերեսը հաշվում ենք՝
+S = (հիմք × բարձրություն) / 2
+
+Օր՝ հիմքը 10 է, բարձրությունը 6 է → S = (10×6)/2 = 30։`,
+    examples: ['a=10, h=6 → S=30', 'a=8, h=5 → S=20', 'a=12, h=3 → S=18'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'a=10, h=6. Գտեք S։', answer: '30' },
+      { id: 'q2', type: 'input', question: 'a=8, h=5. Գտեք S։', answer: '20' },
+      { id: 'q3', type: 'input', question: 'a=12, h=3. Գտեք S։', answer: '18' },
+      { id: 'q4', type: 'input', question: 'a=6, h=4. Գտեք S։', answer: '12' },
+      { id: 'q5', type: 'input', question: 'Եթե S=15 և a=5, ապա h = ? ', answer: '6' }
+    ]
+  },
+  {
+    id: 'circle',
+    title: 'Շրջան (պարագիծ և մակերես)',
+    description: 'C = 2πr, S = πr² (π≈3.14)։',
+    text: `Շրջանի հիմնական բանաձևերը՝
+• Պարագիծ՝ C = 2πr
+• Մակերես՝ S = πr²
+որտեղ r-ը շառավիղն է, π≈3.14։
+
+Այս թեման օգնում է շրջանաձև առարկաների չափումների մեջ։`,
+    examples: ['r=1 → C≈6.28', 'r=2 → S≈12.56', 'r=3 → C≈18.84'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Եթե r=1, C≈ ? (π=3.14)', answer: '6.28' },
+      { id: 'q2', type: 'input', question: 'Եթե r=2, S≈ ? (π=3.14)', answer: '12.56' },
+      { id: 'q3', type: 'input', question: 'Եթե r=3, C≈ ? (π=3.14)', answer: '18.84' },
+      { id: 'q4', type: 'input', question: 'Եթե r=4, S≈ ? (π=3.14)', answer: '50.24' },
+      { id: 'q5', type: 'input', question: 'Բանաձև գրեք շրջանի պարագծի համար (օր. 2πr)։', answer: '2πr' }
+    ]
+  },
+  {
+    id: 'volume-rect',
+    title: 'Ուղղանկյուն պրիզմայի ծավալ',
+    description: 'V = a × b × h։',
+    text: `Ծավալը ցույց է տալիս՝ որքան տարածք է զբաղեցնում մարմինը։
+
+Ուղղանկյուն պրիզմայի ծավալը՝
+V = a × b × h
+որտեղ a, b՝ հիմքի կողմերն են, h՝ բարձրությունը։`,
+    examples: ['2×3×4 = 24', '5×2×1 = 10', '10×1×2 = 20'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'a=2, b=3, h=4. V = ?', answer: '24' },
+      { id: 'q2', type: 'input', question: 'a=5, b=2, h=1. V = ?', answer: '10' },
+      { id: 'q3', type: 'input', question: 'a=10, b=1, h=2. V = ?', answer: '20' },
+      { id: 'q4', type: 'input', question: 'a=3, b=3, h=3. V = ?', answer: '27' },
+      { id: 'q5', type: 'input', question: 'Եթե V=30, a=5, b=2, ապա h = ?', answer: '3' }
+    ]
+  },
+  {
+    id: 'speed-distance-time',
+    title: 'Արագություն, ճանապարհ, ժամանակ',
+    description: 's = v×t, v = s/t, t = s/v։',
+    text: `Արագության խնդիրներում օգտագործվում են 3 բանաձևեր՝
+• ճանապարհ՝ s = v × t
+• արագություն՝ v = s / t
+• ժամանակ՝ t = s / v
+
+Կարևոր է, որ միավորները համապատասխան լինեն (կմ/ժ, ժամ)։`,
+    examples: ['60կմ/ժ × 2ժ = 120կմ', '100կմ ÷ 4ժ = 25կմ/ժ', '90կմ ÷ 30կմ/ժ = 3ժ'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'v=60, t=2. s = ?', answer: '120' },
+      { id: 'q2', type: 'input', question: 's=100, t=4. v = ?', answer: '25' },
+      { id: 'q3', type: 'input', question: 's=90, v=30. t = ?', answer: '3' },
+      { id: 'q4', type: 'input', question: 'v=50, t=3. s = ?', answer: '150' },
+      { id: 'q5', type: 'input', question: 's=200, v=40. t = ?', answer: '5' }
+    ]
+  },
+  {
+    id: 'median-mode',
+    title: 'Մեդիան և մոդա',
+    description: 'Մեդիան՝ միջին անդամ, մոդան՝ ամենահաճախ կրկնվողը։',
+    text: `Տվյալների վերլուծության մեջ կան կարևոր չափումներ։
+
+• Մոդա — այն արժեքը, որը ամենաշատն է կրկնվում։
+• Մեդիան — դասավորված շարքում միջին արժեքը։
+Եթե անդամների քանակը զույգ է՝ մեդիան երկու միջինների միջինն է։`,
+    examples: ['1,2,2,3 → մոդա=2', '1,3,5 → մեդիան=3', '1,2,3,4 → մեդիան=2.5'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Գտեք մոդան՝ 1,2,2,3։', answer: '2' },
+      { id: 'q2', type: 'input', question: 'Գտեք մեդիան՝ 1,3,5։', answer: '3' },
+      { id: 'q3', type: 'input', question: 'Գտեք մեդիան՝ 1,2,3,4։', answer: '2.5' },
+      { id: 'q4', type: 'input', question: 'Գտեք մոդան՝ 5,5,5,2։', answer: '5' },
+      { id: 'q5', type: 'input', question: 'Գտեք մեդիան՝ 2,10,6 (նախ դասավորել)։', answer: '6' }
+    ]
+  },
+  {
+    id: 'probability-basic',
+    title: 'Հավանականություն (պարզ)',
+    description: 'P = նպաստավոր / ընդհանուր։',
+    text: `Հավանականությունը ցույց է տալիս, թե ինչքան հնարավոր է, որ իրադարձությունը տեղի ունենա։
+
+Բանաձև՝ P = (նպաստավոր ելքեր) / (ընդհանուր ելքեր)
+
+Օր՝ մետաղադրամ՝ 2 ելք, «գլուխ»՝ 1 ⇒ P=1/2։`,
+    examples: ['Մետաղադրամ՝ P(գլուխ)=1/2', 'Զառ՝ P(6)=1/6', 'Զառ՝ P(զույգ)=3/6=1/2'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Մետաղադրամ՝ P(գլուխ)=? (օր. 1/2)', answer: '1/2' },
+      { id: 'q2', type: 'input', question: 'Զառ՝ P(6)=? (օր. 1/6)', answer: '1/6' },
+      { id: 'q3', type: 'input', question: 'Զառ՝ P(զույգ թիվ)=? (օր. 1/2)', answer: '1/2' },
+      { id: 'q4', type: 'input', question: 'Զառ՝ P(թիվ>4)=? (օր. 1/3)', answer: '1/3' },
+      { id: 'q5', type: 'input', question: 'Զառ՝ P(թիվ<3)=? (օր. 1/3)', answer: '1/3' }
+    ]
+  },
+  {
+    id: 'linear-expression',
+    title: 'Արտահայտություններ և պարզեցում',
+    description: 'Միավորել նման անդամները։',
+    text: `Արտահայտությունում կարող են լինել նման անդամներ, օրինակ՝ 2x և 3x։
+Նման անդամները միավորում ենք՝ գումարելով գործակիցները։
+
+Օր՝ 2x + 3x = 5x
+Օր՝ 5a − 2a + a = 4a
+
+Սա օգտակար է հավասարումների լուծման մեջ։`,
+    examples: ['2x+3x=5x', '7y−y=6y', '4a+2b−a=3a+2b'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Պարզեցրեք՝ 2x + 3x։', answer: '5x' },
+      { id: 'q2', type: 'input', question: 'Պարզեցրեք՝ 7y − y։', answer: '6y' },
+      { id: 'q3', type: 'input', question: 'Պարզեցրեք՝ 5a − 2a + a։', answer: '4a' },
+      { id: 'q4', type: 'input', question: 'Պարզեցրեք՝ 3x + 2 + x։', answer: '4x+2' },
+      { id: 'q5', type: 'input', question: 'Պարզեցրեք՝ 10m − 3m − m։', answer: '6m' }
+    ]
+  },
+  {
+    id: 'solve-for-x-two-step',
+    title: 'Երկքայլ հավասարումներ',
+    description: 'x-ի մեկուսացում՝ +/− հետո ×/÷։',
+    text: `Երկքայլ հավասարումներում հաճախ անում ենք 2 քայլ՝
+1) Հանում/գումարում ենք, որ x-ով անդամը մնա
+2) Բաժանում/բազմապատկում ենք, որ x-ը միայնակ լինի
+
+Օր՝ 2x + 3 = 11 → 2x = 8 → x = 4։`,
+    examples: ['2x+3=11 → x=4', '3x−6=9 → x=5', '5x+10=0 → x=-2'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Լուծեք՝ 2x + 3 = 11։ x = ?', answer: '4' },
+      { id: 'q2', type: 'input', question: 'Լուծեք՝ 3x − 6 = 9։ x = ?', answer: '5' },
+      { id: 'q3', type: 'input', question: 'Լուծեք՝ 5x + 10 = 0։ x = ?', answer: '-2' },
+      { id: 'q4', type: 'input', question: 'Լուծեք՝ 4x − 8 = 0։ x = ?', answer: '2' },
+      { id: 'q5', type: 'input', question: 'Լուծեք՝ 6x + 12 = 30։ x = ?', answer: '3' }
+    ]
+  },
+  {
+    id: 'powers-rules',
+    title: 'Աստիճանի կանոններ',
+    description: 'a^m×a^n = a^(m+n), (a^m)^n = a^(mn)։',
+    text: `Աստիճանների կանոնները օգնում են արագ հաշվարկել։
+
+Կանոններ՝
+• a^m × a^n = a^(m+n)
+• a^m ÷ a^n = a^(m−n) (a≠0)
+• (a^m)^n = a^(m×n)
+
+Օր՝ 2^3×2^2 = 2^5 = 32։`,
+    examples: ['2^3×2^2=2^5', '10^6÷10^2=10^4', '(3^2)^3=3^6'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Պարզեցրեք՝ 2^3 × 2^2 (գրեք 2^?)', answer: '2^5' },
+      { id: 'q2', type: 'input', question: 'Պարզեցրեք՝ 10^6 ÷ 10^2 (գրեք 10^?)', answer: '10^4' },
+      { id: 'q3', type: 'input', question: 'Պարզեցրեք՝ (3^2)^3 (գրեք 3^?)', answer: '3^6' },
+      { id: 'q4', type: 'input', question: 'Պարզեցրեք՝ 5^7 ÷ 5^3 (գրեք 5^?)', answer: '5^4' },
+      { id: 'q5', type: 'input', question: 'Պարզեցրեք՝ 4^1 × 4^2 (գրեք 4^?)', answer: '4^3' }
+    ]
+  },
+    {
+    id: 'logic-propositions',
+    title: 'Ասույթ և ճշմարտային արժեք',
+    description: 'Ասույթը ունի միայն Ճիշտ կամ Սխալ արժեք։',
+    text: `Ասույթ (proposition) կոչվում է այն նախադասությունը, որի համար կարելի է միանշանակ ասել՝ ճիշտ է, թե սխալ։
+Օրինակ՝ «2-ը զույգ է»՝ ճիշտ ասույթ է։
+Բայց «Գեղեցիկ է»՝ ասույթ չէ, քանի որ գնահատական է ու միանշանակ ճշմարտային արժեք չունի։
+
+Ծրագրավորման մեջ ասույթները նույնն են, ինչ Boolean արտահայտությունները՝ true/false։`,
+    examples: ['«3+4=7» — ասույթ (ճիշտ)', '«x > 5» — ասույթ չէ առանց x-ի արժեքի', 'Boolean: (a > b) → true/false'],
+    questions: [
+      { id: 'q1', type: 'input', question: '«5-ը պարզ թիվ է» — ասույթ է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q2', type: 'input', question: '«Գիրքը հետաքրքիր է» — ասույթ է՞ (այո/ոչ)', answer: 'ոչ' },
+      { id: 'q3', type: 'input', question: '«2+2=5» ճշմարտային արժեքը (ճիշտ/սխալ)', answer: 'սխալ' },
+      { id: 'q4', type: 'input', question: '«7-ը զույգ է» ճշմարտային արժեքը (ճիշտ/սխալ)', answer: 'սխալ' },
+      { id: 'q5', type: 'input', question: '«10-ը բաժանվում է 5-ի» (ճիշտ/սխալ)', answer: 'ճիշտ' }
+    ]
+  },
+
+  {
+    id: 'logic-connectives',
+    title: 'Տրամաբանական կապեր',
+    description: '¬, ∧, ∨, →, ↔ կապերի իմաստը։',
+    text: `Հիմնական կապեր՝
+• ¬p — ժխտում (NOT)
+• p ∧ q — և (AND)
+• p ∨ q — կամ (OR, ներառական)
+• p → q — հետևում (IMPLICATION)
+• p ↔ q — համարժեքություն (EQUIVALENCE)
+
+Ծրագրավորման մեջ հաճախ օգտագործվում են !, &&, ||, => (իմաստով), == (որոշ դեպքերում)։`,
+    examples: ['!p', 'p&q', 'p|q', 'p->q, p<->q'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'p-ի ժխտումը գրեք սիմվոլով (!p կամ ¬p)', answer: '!p' },
+      { id: 'q2', type: 'input', question: 'AND-ի կարճ գրությունը (p&q)', answer: 'p&q' },
+      { id: 'q3', type: 'input', question: 'OR-ի կարճ գրությունը (p|q)', answer: 'p|q' },
+      { id: 'q4', type: 'input', question: 'Իմպլիկացիայի կարճ գրությունը (p->q)', answer: 'p->q' },
+      { id: 'q5', type: 'input', question: 'Համարժեքության կարճ գրությունը (p<->q)', answer: 'p<->q' }
+    ]
+  },
+
+  {
+    id: 'truth-tables-basic',
+    title: 'Ճշմարտության աղյուսակ',
+    description: 'Արտահայտության արժեքը՝ բոլոր դեպքերի համար։',
+    text: `Ճշմարտության աղյուսակով հաշվարկում ենք տրամաբանական արտահայտության արժեքը՝
+բոլոր հնարավոր true/false համակցությունների համար։
+
+Օր՝ p∧q true է միայն այն ժամանակ, երբ p=true և q=true։
+p∨q false է միայն այն ժամանակ, երբ երկուսն էլ false են։`,
+    examples: ['p&q true միայն TT', 'p|q false միայն FF', '!p փոխում է արժեքը'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Եթե p=true, ապա !p = ?', answer: 'false' },
+      { id: 'q2', type: 'input', question: 'Եթե p=true, q=false, ապա p&q = ?', answer: 'false' },
+      { id: 'q3', type: 'input', question: 'Եթե p=true, q=false, ապա p|q = ?', answer: 'true' },
+      { id: 'q4', type: 'input', question: 'Եթե p=false, q=false, ապա p|q = ?', answer: 'false' },
+      { id: 'q5', type: 'input', question: 'Եթե p=true, q=true, ապա p&q = ?', answer: 'true' }
+    ]
+  },
+
+  {
+    id: 'implication-equivalence',
+    title: 'Իմպլիկացիա և համարժեքություն',
+    description: 'p→q-ի հատուկ դեպքերը և p↔q-ի իմաստը։',
+    text: `Իմպլիկացիա p→q կեղծ է միայն մեկ դեպքում՝ երբ p=true և q=false։
+Մնացած բոլոր դեպքերում այն ճիշտ է։
+
+Համարժեքություն p↔q ճիշտ է, երբ p և q ունեն նույն արժեքը (TT կամ FF)։`,
+    examples: ['p->q կեղծ միայն (T,F)', 'p<->q ճիշտ երբ նույնն են', 'p->q ≡ !p | q'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'p=true, q=false, p->q = ? (true/false)', answer: 'false' },
+      { id: 'q2', type: 'input', question: 'p=false, q=false, p->q = ? (true/false)', answer: 'true' },
+      { id: 'q3', type: 'input', question: 'p=true, q=true, p<->q = ? (true/false)', answer: 'true' },
+      { id: 'q4', type: 'input', question: 'p=true, q=false, p<->q = ? (true/false)', answer: 'false' },
+      { id: 'q5', type: 'input', question: 'Գրեք համարժեք փոխարինումը՝ p->q ≡ ? (գրեք !p|q)', answer: '!p|q' }
+    ]
+  },
+
+  {
+    id: 'de-morgan',
+    title: 'Դե Մորգանի օրենքներ',
+    description: 'Ժխտումը տարածվում է AND/OR-ի վրա։',
+    text: `Դե Մորգանի օրենքներ՝
+• ¬(p ∧ q) ≡ (¬p ∨ ¬q)
+• ¬(p ∨ q) ≡ (¬p ∧ ¬q)
+
+Սա շատ կարևոր է՝ պայմանների «հակառակ»-ը ճիշտ կազմելու համար ծրագրավորման մեջ։`,
+    examples: ['!(p&q) == (!p|!q)', '!(p|q) == (!p&!q)', 'if(!(A&&B)) նույնն է if(!A || !B)'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Գրեք ¬(p∧q)-ի համարժեքը (օր. !p|!q)', answer: '!p|!q' },
+      { id: 'q2', type: 'input', question: 'Գրեք ¬(p∨q)-ի համարժեքը (օր. !p&!q)', answer: '!p&!q' },
+      { id: 'q3', type: 'input', question: 'Գրեք !(a&&b)-ի համարժեքը (օր. !a||!b)', answer: '!a||!b' },
+      { id: 'q4', type: 'input', question: 'Գրեք !(x||y)-ի համարժեքը (օր. !x&&!y)', answer: '!x&&!y' },
+      { id: 'q5', type: 'input', question: 'Ճիշտ է՞՝ !(p&q) == (!p|!q) (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'tautology-contradiction',
+    title: 'Տաուտոլոգիա և հակասություն',
+    description: 'Միշտ ճիշտ / միշտ սխալ արտահայտություններ։',
+    text: `Տաուտոլոգիա՝ արտահայտություն, որը բոլոր դեպքերում ճիշտ է։
+Հակասություն՝ արտահայտություն, որը բոլոր դեպքերում սխալ է։
+
+Օր՝ p ∨ ¬p — տաուտոլոգիա (միշտ true)
+p ∧ ¬p — հակասություն (միշտ false)։`,
+    examples: ['p|!p = tautology', 'p&!p = contradiction', 'Տաուտոլոգիան՝ «միշտ true»'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'p|!p — (tautology/contradiction)', answer: 'tautology' },
+      { id: 'q2', type: 'input', question: 'p&!p — (tautology/contradiction)', answer: 'contradiction' },
+      { id: 'q3', type: 'input', question: '(!p)->(!p) — (tautology/contradiction)', answer: 'tautology' },
+      { id: 'q4', type: 'input', question: 'p->p — (tautology/contradiction)', answer: 'tautology' },
+      { id: 'q5', type: 'input', question: 'p&!p արժեքը երբևէ true կլինի՞ (այո/ոչ)', answer: 'ոչ' }
+    ]
+  },
+
+  {
+    id: 'logical-equivalences',
+    title: 'Տրամաբանական համարժեքություններ',
+    description: 'Օգտակար փոխակերպումներ՝ պարզեցման համար։',
+    text: `Համարժեքություններ՝
+• p→q ≡ !p ∨ q
+• p↔q ≡ (p→q) ∧ (q→p)
+• p ∨ p ≡ p
+• p ∧ p ≡ p
+• p ∨ (p ∧ q) ≡ p (կլանում)
+• p ∧ (p ∨ q) ≡ p (կլանում)
+
+Սրանք օգնում են օպտիմիզացնել պայմաններ և Boolean արտահայտություններ։`,
+    examples: ['p->q == !p|q', 'absorption: p|(p&q)=p', 'idempotent: p|p=p'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Գրեք p->q-ի համարժեքը (օր. !p|q)', answer: '!p|q' },
+      { id: 'q2', type: 'input', question: 'Պարզեցրեք՝ p|p', answer: 'p' },
+      { id: 'q3', type: 'input', question: 'Պարզեցրեք՝ p&p', answer: 'p' },
+      { id: 'q4', type: 'input', question: 'Պարզեցրեք՝ p|(p&q)', answer: 'p' },
+      { id: 'q5', type: 'input', question: 'Պարզեցրեք՝ p&(p|q)', answer: 'p' }
+    ]
+  },
+
+  {
+    id: 'cnf-dnf',
+    title: 'CNF և DNF ձևեր',
+    description: 'Արտահայտությունների ստանդարտ ներկայացումներ։',
+    text: `DNF (Disjunctive Normal Form)՝ OR-երի գումար, որտեղ ներսում AND-եր են (մինտերմեր)։
+CNF (Conjunctive Normal Form)՝ AND-երի արտադրյալ, որտեղ ներսում OR-եր են (մաքստերմեր)։
+
+SAT խնդիրներում CNF-ը շատ հաճախ օգտագործվում է։`,
+    examples: ['DNF օրինակ: (p&q)|(!p&q)', 'CNF օրինակ: (p|q)&(!p|q)', 'CNF-ը՝ “AND of ORs”'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'DNF-ը ինչի՞ց է կազմված (գրեք ORofAND կամ ANDofOR)', answer: 'ORofAND' },
+      { id: 'q2', type: 'input', question: 'CNF-ը ինչի՞ց է կազմված (գրեք ANDofOR կամ ORofAND)', answer: 'ANDofOR' },
+      { id: 'q3', type: 'input', question: '(p&q)|(!p&q) սա DNF է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: '(p|q)&(!p|q) սա CNF է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'CNF-ի հարմար կիրառություն՝ SAT (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'satisfiable-unsat',
+    title: 'Բավարարելիություն (SAT) և UN-SAT',
+    description: 'Կա՞ արժեքավորում, որ արտահայտությունը true լինի։',
+    text: `Արտահայտությունը բավարարելի է (satisfiable), եթե գոյություն ունի արժեքավորում, որի դեպքում այն true է։
+UNSAT է, եթե բոլոր արժեքավորումներով false է։
+
+Օր՝ p & !p — UNSAT
+p | !p — satisfiable (և անգամ tautology)։`,
+    examples: ['p&!p → UNSAT', 'p|!p → SAT', '(p&q) satisfiable՝ p=true,q=true'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'p&!p — SAT/UNSAT', answer: 'unsat' },
+      { id: 'q2', type: 'input', question: 'p|!p — SAT/UNSAT', answer: 'sat' },
+      { id: 'q3', type: 'input', question: '(p&q)&(!p|q) — SAT/UNSAT', answer: 'sat' },
+      { id: 'q4', type: 'input', question: '(p)&(!p)&q — SAT/UNSAT', answer: 'unsat' },
+      { id: 'q5', type: 'input', question: 'SAT նշանակում է «կա արժեքավորում» (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'inference-rules',
+    title: 'Եզրակացության կանոններ',
+    description: 'Modus Ponens, Modus Tollens, Hypothetical Syllogism։',
+    text: `Հիմնական կանոններ՝
+• Modus Ponens: p, (p→q) ⟹ q
+• Modus Tollens: (p→q), ¬q ⟹ ¬p
+• Hypothetical Syllogism: (p→q), (q→r) ⟹ (p→r)
+
+Սրանք կիրառվում են ապացույցներում և նաև ծրագրային «եթե… ապա…» տրամաբանության վերլուծությունում։`,
+    examples: ['p և p->q ⇒ q', 'p->q և !q ⇒ !p', '(p->q)&(q->r) ⇒ (p->r)'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Կանոն՝ p, p->q ⟹ ? (գրեք q)', answer: 'q' },
+      { id: 'q2', type: 'input', question: 'Կանոն՝ p->q, !q ⟹ ? (գրեք !p)', answer: '!p' },
+      { id: 'q3', type: 'input', question: '(p->q),(q->r) ⟹ ? (գրեք p->r)', answer: 'p->r' },
+      { id: 'q4', type: 'input', question: 'Modus Ponens-ը ճիշտ է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'Modus Tollens-ը տալիս է (գրեք !p)', answer: '!p' }
+    ]
+  },
+
+  {
+    id: 'proof-contradiction',
+    title: 'Ապացույց հակասությամբ',
+    description: 'Ենթադրենք հակառակն է և ստանանք հակասություն։',
+    text: `Հակասությամբ ապացույցի մեթոդը՝
+1) Ենթադրում ենք հակառակ պնդումը։
+2) Քայլերով բերում ենք հակասության (օր. A և ¬A)։
+3) Ուրեմն սկզբնական պնդումը ճիշտ է։
+
+Ծրագրավորման մեջ սա օգնում է թեստերով և եզրային դեպքերով սխալ ենթադրությունները բացահայտել։`,
+    examples: ['Ենթադրել ¬P → ստանալ P&¬P → եզրակացնել P', 'UNSAT ստանալը հուշում է սխալ ենթադրություն', 'Debug mindset'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Հակասությամբ ապացույցում վերջում ստացվում է (գրեք p&!p)', answer: 'p&!p' },
+      { id: 'q2', type: 'input', question: 'Հակասությամբ ապացույցը սկսվում է հակառակ ենթադրությամբ (այո/ոչ)', answer: 'այո' },
+      { id: 'q3', type: 'input', question: 'Եթե ստացվեց հակասություն, ապա սկզբնական պնդումը (ճիշտ/սխալ)', answer: 'ճիշտ' },
+      { id: 'q4', type: 'input', question: 'Հակասությունը միշտ false է (true/false)', answer: 'false' },
+      { id: 'q5', type: 'input', question: 'Արտահայտություն p&!p SAT է՞ (այո/ոչ)', answer: 'ոչ' }
+    ]
+  },
+
+  {
+    id: 'predicate-logic-intro',
+    title: 'Նախադրյալներ (Predicates)',
+    description: 'P(x)՝ պնդում x-ի մասին։',
+    text: `Predicates՝ P(x) տեսքով արտահայտություններ, որոնց ճշմարտությունը կախված է x-ից։
+Օր՝ P(x): “x-ը զույգ է”։
+Առանց x-ի արժեքի՝ սա դեռ ամբողջական ասույթ չէ։
+
+Ծրագրավորման մեջ սա նման է ֆունկցիայի, որը վերադարձնում է true/false։`,
+    examples: ['P(x): x%2==0', 'Q(x): x>10', 'P(4)=true, P(5)=false'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'P(x): x զույգ է. P(6) = ? (true/false)', answer: 'true' },
+      { id: 'q2', type: 'input', question: 'P(x): x զույգ է. P(7) = ? (true/false)', answer: 'false' },
+      { id: 'q3', type: 'input', question: 'Q(x): x>10. Q(11)=? (true/false)', answer: 'true' },
+      { id: 'q4', type: 'input', question: 'Q(x): x>10. Q(10)=? (true/false)', answer: 'false' },
+      { id: 'q5', type: 'input', question: 'P(x) ասույթ է՞ առանց x-ի (այո/ոչ)', answer: 'ոչ' }
+    ]
+  },
+
+  {
+    id: 'quantifiers',
+    title: 'Քանակականներ ∀ և ∃',
+    description: '«բոլորի համար» և «գոյություն ունի»։',
+    text: `Քանակականներ՝
+• ∀x P(x) — բոլոր x-երի համար P(x) ճիշտ է։
+• ∃x P(x) — գոյություն ունի գոնե մեկ x, որ P(x) ճիշտ է։
+
+Ծրագրավորման մեջ՝
+∀ նման է “every()”, ∃ նման է “some()” գաղափարին։`,
+    examples: ['∀x x^2≥0 (իրականների համար)', '∃x x^2=4', 'every/some գաղափար'],
+    questions: [
+      { id: 'q1', type: 'input', question: '∀ նշանակում է (all/exist)', answer: 'all' },
+      { id: 'q2', type: 'input', question: '∃ նշանակում է (all/exist)', answer: 'exist' },
+      { id: 'q3', type: 'input', question: '∃x x^2=4 ճիշտ է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: '∀x x^2≥0 ճիշտ է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: '∀x x>0 ճիշտ է՞ (այո/ոչ)', answer: 'ոչ' }
+    ]
+  },
+
+  {
+    id: 'negation-quantifiers',
+    title: 'Քանակականների ժխտում',
+    description: '¬∀ = ∃¬ և ¬∃ = ∀¬։',
+    text: `Քանակականների ժխտման օրենքներ՝
+• ¬(∀x P(x)) ≡ ∃x ¬P(x)
+• ¬(∃x P(x)) ≡ ∀x ¬P(x)
+
+Սա շատ կարևոր է ճիշտ «ոչ բոլորն են…» և «չկա ոչ մի…» ձևակերպելու համար։`,
+    examples: ['not all → exists counterexample', 'not exists → for all not', 'Debug: գտնել հակաօրինակ'],
+    questions: [
+      { id: 'q1', type: 'input', question: '¬∀x P(x) համարժեք է (գրեք existsNot)', answer: 'existsNot' },
+      { id: 'q2', type: 'input', question: '¬∃x P(x) համարժեք է (գրեք allNot)', answer: 'allNot' },
+      { id: 'q3', type: 'input', question: '«Ոչ բոլոր թվերն են զույգ» = ∃x ¬P(x) (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: '«Չկա թիվ, որը մեծ է բոլորից» = ¬∃ (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: '¬∀ նշանակում է «կա հակաօրինակ» (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'set-logic',
+    title: 'Բազմությունների տրամաբանություն',
+    description: '∩, ∪, ⊆ և կապը ∧, ∨, →-ի հետ։',
+    text: `Բազմությունների գործողությունները կապ ունեն տրամաբանության հետ՝
+• A ∩ B — հատում (AND-ի նման)
+• A ∪ B — միավորում (OR-ի նման)
+• A ⊆ B — եթե x∈A ⇒ x∈B (իմպլիկացիայի նման)
+
+Սա շատ կիրառելի է տվյալների ֆիլտրացիայի և պայմանների կոմբինացիայի մեջ։`,
+    examples: ['A∩B ↔ (inA && inB)', 'A∪B ↔ (inA || inB)', 'A⊆B ↔ inA -> inB'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Հատումը նշվում է (գրեք ∩ կամ inter)', answer: '∩' },
+      { id: 'q2', type: 'input', question: 'Միավորումը նշվում է (գրեք ∪ կամ union)', answer: '∪' },
+      { id: 'q3', type: 'input', question: 'A⊆B նման է որ կապին (գրեք p->q)', answer: 'p->q' },
+      { id: 'q4', type: 'input', question: 'A∩B նման է (p&q կամ p|q)', answer: 'p&q' },
+      { id: 'q5', type: 'input', question: 'A∪B նման է (p&q կամ p|q)', answer: 'p|q' }
+    ]
+  },
+
+  {
+    id: 'relations-properties',
+    title: 'Հարաբերություններ՝ հատկություններ',
+    description: 'ռեֆլեքսիվ, սիմետրիկ, տրանսիտիվ։',
+    text: `Հարաբերություն R-ը բազմության վրա կարող է ունենալ հատկություններ՝
+• Ռեֆլեքսիվ: ∀a aRa
+• Սիմետրիկ: aRb ⇒ bRa
+• Տրանսիտիվ: aRb և bRc ⇒ aRc
+
+Այս գաղափարները շատ կարևոր են graph-երի, սոց. ցանցերի և տվյալների մոդելավորման մեջ։`,
+    examples: ['= հարաբերությունը՝ ռեֆլեքսիվ, սիմետրիկ, տրանսիտիվ', '<տրանսիտիվ, բայց ոչ սիմետրիկ', 'friendship ≈ սիմետրիկ (եթե փոխադարձ)'],
+    questions: [
+      { id: 'q1', type: 'input', question: '= հարաբերությունը տրանսիտիվ է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q2', type: 'input', question: '< հարաբերությունը սիմետրիկ է՞ (այո/ոչ)', answer: 'ոչ' },
+      { id: 'q3', type: 'input', question: '< հարաբերությունը տրանսիտիվ է՞ (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: 'Ռեֆլեքսիվ նշանակում է aRa (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'Սիմետրիկ նշանակում է aRb ⇒ bRa (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'boolean-algebra',
+    title: 'Boolean ալգեբրա',
+    description: '0/1 հաշվարկներ և պարզեցում։',
+    text: `Boolean ալգեբրան աշխատում է 0 և 1 արժեքներով։
+Օրինակ՝
+• 1 AND 0 = 0
+• 1 OR 0 = 1
+• NOT 1 = 0
+
+Սա հիմք է թվային սխեմաների, օպտիմիզացիայի և պայմանների պարզեցման համար։`,
+    examples: ['1&0=0', '1|0=1', '!1=0'],
+    questions: [
+      { id: 'q1', type: 'input', question: '1&0 = ?', answer: '0' },
+      { id: 'q2', type: 'input', question: '1|0 = ?', answer: '1' },
+      { id: 'q3', type: 'input', question: '!1 = ?', answer: '0' },
+      { id: 'q4', type: 'input', question: '!0 = ?', answer: '1' },
+      { id: 'q5', type: 'input', question: '0|0 = ?', answer: '0' }
+    ]
+  },
+
+  {
+    id: 'xor-xnor',
+    title: 'XOR և XNOR',
+    description: 'Բացառող «կամ» և դրա ժխտումը։',
+    text: `XOR (⊕)՝ true է, երբ արժեքները տարբեր են։
+XNOR՝ true է, երբ արժեքները նույնն են (համարժեքության նման)։
+
+Ծրագրավորման մեջ XOR-ը հաճախ օգտագործվում է “միայն մեկը” տրամաբանության համար։`,
+    examples: ['T⊕F = T', 'T⊕T = F', 'XNOR ≈ p<->q'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'true XOR true = ? (true/false)', answer: 'false' },
+      { id: 'q2', type: 'input', question: 'true XOR false = ? (true/false)', answer: 'true' },
+      { id: 'q3', type: 'input', question: 'false XOR false = ? (true/false)', answer: 'false' },
+      { id: 'q4', type: 'input', question: 'XNOR-ը նման է (p<->q կամ p->q)', answer: 'p<->q' },
+      { id: 'q5', type: 'input', question: 'XOR-ը «միայն մեկը true» գաղափարն է (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'karnaugh-map-intro',
+    title: 'Karnaugh քարտեզ (ներածություն)',
+    description: 'Boolean ֆունկցիայի պարզեցում՝ խմբավորումներով։',
+    text: `Karnaugh քարտեզը (K-map) Boolean արտահայտությունները պարզեցնելու տեսողական մեթոդ է։
+Սովորաբար օգտագործվում է 2-4 փոփոխականների դեպքում։
+Խմբավորում ենք 1-երը (2-ի աստիճանով խմբեր) և ստանում ավելի կարճ արտահայտություն։`,
+    examples: ['K-map → minimize', 'group 2,4,8...', 'օգտակար՝ condition optimize'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'K-map-ը ինչի՞ համար է (minimize/expand)', answer: 'minimize' },
+      { id: 'q2', type: 'input', question: 'Խմբերը պետք է լինեն 2-ի աստիճա՞ն (այո/ոչ)', answer: 'այո' },
+      { id: 'q3', type: 'input', question: 'K-map-ը առավել հարմար է քանի փոփոխականի դեպքում (2-4 կամ 10)', answer: '2-4' },
+      { id: 'q4', type: 'input', question: 'K-map-ը Boolean արտահայտություն է պարզեցնում (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'K-map-ը հիմնականում օգտագործվում է թվային սխեմաներում (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'graphs-logic',
+    title: 'Գրաֆներ և տրամաբանական մտածողություն',
+    description: 'Կապեր, ուղիներ, հասանելիություն՝ որպես ենթադրություններ։',
+    text: `Գրաֆում գագաթների կապերը հաճախ արտահայտվում են տրամաբանական պայմաններով։
+Օր՝ «կա ուղի A-ից B» պնդումը կախված է եզրերից։
+
+Տրանսիտիվությունը հենց գրաֆի “հասանելիության” գաղափարն է՝
+եթե A→B և B→C, ապա A→C (ուղի կա)։`,
+    examples: ['path(A,B)', 'A->B & B->C => A->C', 'reachability = transitive closure'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Եթե կա A->B և B->C, ապա կա A->C (այո/ոչ)', answer: 'այո' },
+      { id: 'q2', type: 'input', question: 'Reachability-ը նման է տրանսիտիվությանը (այո/ոչ)', answer: 'այո' },
+      { id: 'q3', type: 'input', question: 'Graph-ում եզրերը ներկայացնում են կապեր (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: 'Տրանսիտիվ փակումը կոչվում է (գրեք closure)', answer: 'closure' },
+      { id: 'q5', type: 'input', question: 'Ուղի ունենալը կարելի է դիտել որպես ասույթ (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'complexity-logic',
+    title: 'SAT և բարդության գաղափար',
+    description: 'SAT խնդիրների “դժվարության” ինտուիցիա։',
+    text: `SAT-ը հարց է՝ «կա՞ արժեքավորում, որ արտահայտությունը true լինի»։
+Պրակտիկայում SAT-ը հիմք է՝ պլանավորման, constraint solving-ի, ավտոմատ թեստավորման համար։
+Բարդության տեսանկյունից SAT-ը դասական “դժվար” խնդիրների օրինակ է։`,
+    examples: ['constraints -> CNF -> SAT', 'planning, scheduling', 'debug constraints'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'SAT-ը հարց է «կա արժեքավորում» (այո/ոչ)', answer: 'այո' },
+      { id: 'q2', type: 'input', question: 'SAT-ը կարող է օգտագործվել constraint solving-ում (այո/ոչ)', answer: 'այո' },
+      { id: 'q3', type: 'input', question: 'CNF-ը հաճախ է օգտագործվում SAT-ում (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: 'UNSAT նշանակում է «չկա արժեքավորում» (ayо/ոչ)', answer: 'ոչ' },
+      { id: 'q5', type: 'input', question: '“կա արժեքավորում” = SAT (sat/unsat)', answer: 'sat' }
+    ]
+  },
+
+  {
+    id: 'logic-in-programming',
+    title: 'Տրամաբանությունը ծրագրավորման մեջ',
+    description: 'if, while, filter, validation՝ որպես տրամաբանական արտահայտություններ։',
+    text: `Ծրագրավորման մեջ պայմանները հենց տրամաբանական արտահայտություններ են։
+Օր՝
+if (age >= 18 && hasId) ...
+filter(x => x > 0 || x === 0)
+
+Տրամաբանական պարզեցումը հաճախ դարձնում է կոդը ավելի պարզ ու քիչ սխալներով։`,
+    examples: ['!(A&&B) == (!A||!B)', 'validation rules', 'guards in code'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'AND-ը JS-ում (&& կամ ||)', answer: '&&' },
+      { id: 'q2', type: 'input', question: 'OR-ը JS-ում (&& կամ ||)', answer: '||' },
+      { id: 'q3', type: 'input', question: 'NOT-ը JS-ում (! կամ ~)', answer: '!' },
+      { id: 'q4', type: 'input', question: '!(A&&B) համարժեք է (!A||!B) (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'Ասույթները ծրագրավորման մեջ Boolean են (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'algorithmic-thinking',
+    title: 'Ալգորիթմական մտածողություն և պայմաններ',
+    description: 'Պայմանների կառուցում, եզրային դեպքեր, հակաօրինակներ։',
+    text: `Ալգորիթմական մտածողությունը հաճախ սկսվում է ճիշտ պայմաններ կազմելուց։
+• Սահմանել դեպքերը (case analysis)
+• Գտնել եզրային դեպքեր (edge cases)
+• Փորձել հակաօրինակներով (counterexample)
+
+Սա նույն տրամաբանությունն է, ինչ ¬∀ = ∃¬՝ գտնել մեկ սխալ դեպք։`,
+    examples: ['case split', 'edge cases', 'counterexample idea'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Edge case նշանակում է «եզրային դեպք» (այո/ոչ)', answer: 'այո' },
+      { id: 'q2', type: 'input', question: 'Counterexample նշանակում է հակաօրինակ (այո/ոչ)', answer: 'այո' },
+      { id: 'q3', type: 'input', question: '¬∀ գաղափարը նման է «գտնել հակաօրինակ» (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: 'Case analysis-ը նշանակում է դեպքերի բաժանում (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'Տրամաբանությունը օգնում է նվազեցնել bug-երը (այո/ոչ)', answer: 'այո' }
+    ]
+  },
+
+  {
+    id: 'formalization',
+    title: 'Պնդումների ֆորմալացում',
+    description: 'Բնական լեզվից՝ տրամաբանական ձև։',
+    text: `Ֆորմալացումը նշանակում է բնական լեզվով տրված պնդումը գրել սիմվոլիկ ձևով։
+Օր՝ «Եթե անձրև է, ապա փողոցը թաց է» → p->q
+«p և q» → p&q
+«p կամ q» → p|q
+
+Սա կարևոր է՝ որպեսզի համակարգչային ստուգումը հնարավոր լինի։`,
+    examples: ['if p then q → p->q', 'and → &', 'or → |'],
+    questions: [
+      { id: 'q1', type: 'input', question: '«եթե p, ապա q» գրեք (p->q)', answer: 'p->q' },
+      { id: 'q2', type: 'input', question: '«p և q» գրեք (p&q)', answer: 'p&q' },
+      { id: 'q3', type: 'input', question: '«p կամ q» գրեք (p|q)', answer: 'p|q' },
+      { id: 'q4', type: 'input', question: '«ոչ p» գրեք (!p)', answer: '!p' },
+      { id: 'q5', type: 'input', question: '«p միայն եթե q» (գրեք p->q կամ q->p) — p only if q', answer: 'p->q' }
+    ]
+  },
+
+  {
+    id: 'logic-course-project',
+    title: 'Վեբ կայքի նախագծում՝ ուսուցում և աջակցում',
+    description: 'Մոդուլներ՝ տեսություն, օրինակներ, թեստ, առաջադրանքներ։',
+    text: `«Մաթեմատիկական տրամաբանություն» դասընթացի համար կայքում կարող են լինել՝
+• Թեմաների կառուցվածք (modules)
+• Տեսություն + օրինակներ
+• Ինտերակտիվ թեստեր (truth table / simplification)
+• Առաջադրանքներ՝ ավտոմատ ստուգմամբ
+• Օգնություն՝ հուշումներ, սխալների բացատրություն
+
+Սա նպաստում է ալգորիթմական մտածողության զարգացմանը՝ քայլ առ քայլ ստուգմամբ։`,
+    examples: ['module: propositions', 'module: truth tables', 'module: CNF/SAT'],
+    questions: [
+      { id: 'q1', type: 'input', question: 'Կայքում պետք է լինեն թեստեր (այո/ոչ)', answer: 'այո' },
+      { id: 'q2', type: 'input', question: 'Truth table-ը կարելի է դարձնել ինտերակտիվ (այո/ոչ)', answer: 'այո' },
+      { id: 'q3', type: 'input', question: 'CNF-ը պետք է ներառել SAT թեմայի համար (այո/ոչ)', answer: 'այո' },
+      { id: 'q4', type: 'input', question: 'Օգնությունը կարող է լինել հուշումներով (այո/ոչ)', answer: 'այո' },
+      { id: 'q5', type: 'input', question: 'Պնդումները ստուգվում են true/false արժեքով (այո/ոչ)', answer: 'այո' }
+    ]
   }
 ];
 
