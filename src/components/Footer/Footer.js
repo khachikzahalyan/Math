@@ -1,5 +1,4 @@
 import './Footer.css';
-import { aboutInfo } from '../../shared/aboutInfo';
 
 function Footer() {
   return (

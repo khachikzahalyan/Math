@@ -1,7 +1,43 @@
 import './Contact.css';
-import { aboutInfo } from '../../shared/aboutInfo';
+import { useState } from 'react';
 
 function Contact() {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Отправка письма (здесь можно добавить реальную логику отправки)
+    console.log('Form data:', formData);
+    
+    // Показать tooltip
+    setShowTooltip(true);
+    
+    // Очистить форму
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+    
+    // Скрыть tooltip через 3 секунды
+    setTimeout(() => {
+      setShowTooltip(false);
+    }, 3000);
+  };
+
   return (
     <div className="contact">
       <div className="contact__card animate-card">
@@ -12,19 +48,59 @@ function Contact() {
           կարող եք գրել մեզ՝ ստորև նշված տվյալներով։
         </p>
 
-        <div className="contact__info">
-          <div className="contact__row animate-text animate-delay-2">
-            <span className="contact__label">📧 Էլ․ փոստ</span>
-            <span className="contact__value">{aboutInfo.contacts.email}</span>
+
+        <form className="contact__form animate-text animate-delay-4" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Անուն</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder="Ձեր անունը"
+            />
           </div>
 
-          <div className="contact__row animate-text animate-delay-3">
-            <span className="contact__label">ℹ️ Նշում</span>
-            <span className="contact__value">{aboutInfo.contacts.note}</span>
+          <div className="form-group">
+            <label htmlFor="email">Էլ․ փոստ</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Ձեր էլ․ փոստը"
+            />
           </div>
-        </div>
 
-        <p className="contact__footer animate-text animate-delay-4">
+          <div className="form-group">
+            <label htmlFor="message">Հաղորդագրություն</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              placeholder="Ձեր հարցը կամ հաղորդագրությունը"
+              rows="5"
+            ></textarea>
+          </div>
+
+          <button type="submit" className="contact__button">
+            Ուղարկել
+          </button>
+        </form>
+
+        {showTooltip && (
+          <div className="tooltip">
+            Ձեր նամակը հաջողությամբ ուղղարկվեց․․․
+          </div>
+        )}
+
+        <p className="contact__footer animate-text animate-delay-5">
           Մենք կփորձենք պատասխանել հնարավորինս արագ։
         </p>
       </div>

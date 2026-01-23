@@ -1,146 +1,190 @@
+/* ========== УБРАТЬ СКРОЛЛ СТРАНИЦЫ + 100% ВЫСОТА ========== */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden; /* убирает общий скролл страницы */
+}
+
+#root {
+  height: 100%;
+}
+
+/* ========== CONTACT PAGE ========== */
 .contact {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+
+  /* адаптивные отступы, чтобы не вылезало */
+  padding: clamp(12px, 2vw, 24px);
+  box-sizing: border-box;
+
   background: linear-gradient(135deg, #f5f7ff, #eef1ff);
 }
 
 .contact__card {
   width: 100%;
   max-width: 560px;
+
   background: #ffffff;
   border-radius: 24px;
-  padding: 28px 32px;
+
+  /* адаптивные паддинги */
+  padding: clamp(18px, 3vw, 28px) clamp(18px, 3vw, 32px);
+  box-sizing: border-box;
 
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.08),
     0 6px 18px rgba(0, 0, 0, 0.05);
 }
-@keyframes fadeUpSoft {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.animate-card {
-  opacity: 0;
-  animation: fadeUpSoft 700ms ease forwards;
-}
-
-.animate-title {
-  opacity: 0;
-  animation: fadeUpSoft 600ms ease forwards;
-  animation-delay: 120ms;
-}
-
-.animate-text {
-  opacity: 0;
-  animation: fadeUpSoft 600ms ease forwards;
-}
-
-.animate-delay-1 {
-  animation-delay: 220ms;
-}
-
-.animate-delay-2 {
-  animation-delay: 340ms;
-}
-
-.animate-delay-3 {
-  animation-delay: 460ms;
-}
-
-.animate-delay-4 {
-  animation-delay: 580ms;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-card,
-  .animate-title,
-  .animate-text {
-    opacity: 1;
-    animation: none;
-  }
-}
-
+/* ========== ТЕКСТЫ ========== */
 .contact__title {
-  font-size: 2rem;
-  margin-bottom: 12px;
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  margin: 0 0 12px;
   color: #1f2937;
 }
 
 .contact__subtitle {
   font-size: 1rem;
   color: #4b5563;
-  margin-bottom: 24px;
+  margin: 0 0 20px;
   line-height: 1.5;
 }
 
-.contact__info {
+/* ========== ФОРМА ========== */
+.contact__form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
-.contact__row {
-  background: #f8f9ff;
-  border-radius: 16px;
-  padding: 14px 18px;
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
-.contact__label {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #374151;
 }
 
-.contact__value {
-  font-size: 1rem;
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
   color: #111827;
-  word-break: break-word;
+  background: #ffffff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
 }
 
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* чтобы textarea не раздувала страницу и не создавался скролл */
+.form-group textarea {
+  resize: none;            /* важно: отключаем растягивание */
+  min-height: 120px;
+  max-height: 160px;
+  overflow: auto;          /* если текста много — скролл ТОЛЬКО внутри поля */
+}
+
+/* ========== КНОПКА ========== */
+.contact__button {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.contact__button:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+.contact__button:active {
+  transform: translateY(0);
+}
+
+/* ========== НИЖНИЙ ТЕКСТ ========== */
 .contact__footer {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: #6b7280;
   text-align: center;
+  margin-top: 16px;
 }
 
-/* 📱 423px */
-@media (max-width: 423px) {
-  .contact {
-    padding: 16px;
-  }
+/* ========== TOOLTIP ========== */
+.tooltip {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  z-index: 1000;
+}
 
+/* ========== АДАПТИВ 423px ========== */
+@media (max-width: 423px) {
   .contact__card {
-    padding: 20px;
     border-radius: 20px;
   }
 
-  .contact__title {
-    font-size: 1.6rem;
-  }
-
   .contact__subtitle {
+    margin-bottom: 16px;
     font-size: 0.95rem;
-    margin-bottom: 18px;
   }
 
-  .contact__row {
-    padding: 12px 14px;
-    border-radius: 14px;
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 
-  .contact__value {
+  .form-group textarea {
+    min-height: 110px;
+    max-height: 140px;
+  }
+
+  .contact__button {
+    padding: 12px 24px;
     font-size: 0.95rem;
+  }
+
+  .tooltip {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
   }
 }

@@ -7,6 +7,7 @@ function Header() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchRef = useRef(null);
 
   const filteredTopics = searchQuery.trim()
@@ -30,6 +31,36 @@ function Header() {
     setIsSearchOpen(false);
     navigate(`/lessons/${topicId}`);
   };
+  // Закрыть мобильное меню при клике вне него
+  useEffect(() => {
+    const handleClickOutsideMenu = (e) => {
+      if (isMobileMenuOpen && !e.target.closest('.header__nav') && !e.target.closest('.header__burger')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutsideMenu);
+    return () => document.removeEventListener('mousedown', handleClickOutsideMenu);
+  }, [isMobileMenuOpen]);
+
+  // Закрыть меню при изменении размера экрана
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="header__inner">
@@ -38,17 +69,24 @@ function Header() {
           <span className="header__logoText">Մաթեմատիկա</span>
         </div>
 
-        <nav className="header__nav">
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/">
+        {/* Бургер-кнопка */}
+        <button className={`header__burger ${isMobileMenuOpen ? 'is-open' : ''}`} onClick={toggleMobileMenu} aria-label="Меню">
+          <span className="header__burgerLine"></span>
+          <span className="header__burgerLine"></span>
+          <span className="header__burgerLine"></span>
+        </button>
+
+        <nav className={`header__nav ${isMobileMenuOpen ? 'is-open' : ''}`}>
+          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/" onClick={closeMobileMenu}>
             Գլխավոր
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/about">
+          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/about" onClick={closeMobileMenu}>
             Մեր մասին
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/contact">
+          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/contact" onClick={closeMobileMenu}>
             Կապ
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/lessons">
+          <NavLink className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')} to="/lessons" onClick={closeMobileMenu}>
             Դասեր
           </NavLink>
 

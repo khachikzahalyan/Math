@@ -34,13 +34,13 @@ function LessonTopic() {
   // ошибка на 3 секунды
   useEffect(() => {
     if (!error) return;
-
+    console.log(errorKey)
     const timer = setTimeout(() => {
       setError(false);
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [error]);
+  }, [error,errorKey]);
 
   // сброс при смене темы
   useEffect(() => {
