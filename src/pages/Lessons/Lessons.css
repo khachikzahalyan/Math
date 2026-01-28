@@ -14,7 +14,6 @@
   gap: 16px;
 }
 
-/* Карточка как колонка: контент сверху, кнопка всегда снизу */
 .lessons__card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -24,29 +23,31 @@
 
   display: flex;
   flex-direction: column;
-  min-height: 190px; /* можно подстроить */
+  min-height: 190px;
 }
 
 .lessons__cardTitle {
   margin: 0 0 8px 0;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .lessons__cardText {
   color: var(--text-secondary);
   margin: 0;
   line-height: 1.55;
-
-  /* занимает всё свободное место,
-     чтобы футер ушёл вниз */
   flex: 1;
+  
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* футер всегда внизу */
 .lessons__cardFooter {
   margin-top: 14px;
 }
 
-/* Кнопка всегда в левом нижнем углу "зоны карточки" */
 .lessons__cardLink {
   display: inline-flex;
   align-items: center;
@@ -59,7 +60,6 @@
   text-decoration: none;
   font-weight: 700;
 
-  /* на всякий случай, если глобально подчёркивает ссылки */
   border: 1px solid transparent;
 }
 
@@ -77,18 +77,41 @@
   .lessons__card {
     padding: 12px;
     min-height: 165px;
+    min-width: 0;
   }
 
   .lessons__cardTitle {
     font-size: 0.95rem;
     line-height: 1.2;
     margin-bottom: 6px;
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .lessons__cardText {
     font-size: 0.85rem;
     line-height: 1.35;
     margin: 0;
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    word-break: break-word;
+    overflow-wrap: break-word;
+    
+    min-width: 0;
   }
 
   .lessons__cardFooter {
@@ -102,10 +125,13 @@
   }
 }
 
-/* Очень маленькие экраны */
 @media (max-width: 360px) {
   .lessons__grid {
     grid-template-columns: 1fr;
+  }
+
+  .lessons__card {
+    min-width: 0;
   }
 
   .lessons__cardTitle {

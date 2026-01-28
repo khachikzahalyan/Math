@@ -33,6 +33,9 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Предотвращаем зум при focus на input на iOS */
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -54,6 +57,15 @@ button {
 input,
 textarea {
   font-family: inherit;
+  font-size: 16px;
+  /* Отключаем webkit-специфичные стили */
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  /* iOS - предотвращаем зум */
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 a {
@@ -67,6 +79,19 @@ a:hover {
 }
 body {
   position: relative;
+  /* Предотвращаем bounce scroll на iOS */
+  overflow-y: scroll;
+  overscroll-behavior-y: none;
+}
+
+/* iOS - когда клавиатура открыта */
+@supports (-webkit-touch-callout: none) {
+  /* Применяем фиксирование только когда явно установлена клавиатурная класс */
+  body.keyboard-open {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+  }
 }
 
 body::before {

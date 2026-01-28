@@ -1,17 +1,10 @@
-/* ========== УБРАТЬ СКРОЛЛ СТРАНИЦЫ + 100% ВЫСОТА ========== */
+/* ========== СБОРКА ВЫСОТЫ СТРАНИЦЫ ========== */
 html,
-body {
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
-  overflow: hidden; /* убирает общий скролл страницы */
-}
-
-#root {
-  height: 100%;
 }
 
 /* ========== CONTACT PAGE ========== */
@@ -19,6 +12,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Занимает минимум высоты экрана — не влияет на общий scroll */
+  min-height: 100vh;
 
   /* адаптивные отступы, чтобы не вылезало */
   padding: clamp(12px, 2vw, 24px);

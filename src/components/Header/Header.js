@@ -9,6 +9,8 @@ function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchRef = useRef(null);
+  const searchInputRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
 
   const filteredTopics = searchQuery.trim()
     ? topics.filter((topic) =>
@@ -50,11 +52,57 @@ function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const handleFocus = () => {
+      if (document.activeElement?.tagName === 'INPUT') {
+        document.documentElement.style.position = 'fixed';
+        document.documentElement.style.width = '100%';
+        document.documentElement.style.overflow = 'hidden';
+      }
+    };
+
+    const handleBlur = () => {
+      document.documentElement.style.position = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.overflow = '';
+    };
+
+    window.addEventListener('focusin', handleFocus);
+    window.addEventListener('focusout', handleBlur);
+
+    return () => {
+      window.removeEventListener('focusin', handleFocus);
+      window.removeEventListener('focusout', handleBlur);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleSelectTopic = (topicId) => {
     setSearchQuery('');
     setIsSearchOpen(false);
     setIsMobileMenuOpen(false);
     navigate(`/lessons/${topicId}`);
+  };
+
+  const handleSearchInputBlur = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsSearchOpen(false);
+    }, 100);
+  };
+
+  const handleSearchItemMouseDown = (e, topicId) => {
+    e.preventDefault();
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    handleSelectTopic(topicId);
   };
 
   const toggleMobileMenu = () => setIsMobileMenuOpen((p) => !p);
@@ -72,7 +120,6 @@ function Header() {
           <span className="header__logoText">Մաթեմատիկա</span>
         </div>
 
-        {/* ✅ Поиск между лого и бургером (мобилка) */}
         <div className="header__search header__search--mobile" ref={searchRef}>
           <div className="header__searchInput">
             <svg
@@ -91,6 +138,7 @@ function Header() {
             </svg>
 
             <input
+              ref={searchInputRef}
               type="text"
               placeholder="Որոնել թեմա..."
               value={searchQuery}
@@ -98,7 +146,16 @@ function Header() {
                 setSearchQuery(e.target.value);
                 setIsSearchOpen(true);
               }}
-              onFocus={() => setIsSearchOpen(true)}
+              onFocus={() => {
+                if (closeTimeoutRef.current) {
+                  clearTimeout(closeTimeoutRef.current);
+                }
+                setIsSearchOpen(true);
+              }}
+              onBlur={handleSearchInputBlur}
+              spellCheck="false"
+              autoComplete="off"
+              inputMode="search"
             />
           </div>
 
@@ -108,8 +165,15 @@ function Header() {
                 <button
                   key={topic.id}
                   className="header__searchItem"
-                  onClick={() => handleSelectTopic(topic.id)}
+                  onMouseDown={(e) => handleSearchItemMouseDown(e, topic.id)}
+                  onTouchEnd={(e) => handleSearchItemMouseDown(e, topic.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSearchItemMouseDown(e, topic.id);
+                  }}
                   type="button"
+                  role="option"
+                  aria-selected={false}
                 >
                   <span className="header__searchItemTitle">{topic.title}</span>
                   <span className="header__searchItemDesc">{topic.description}</span>
@@ -163,7 +227,6 @@ function Header() {
             Դասեր
           </NavLink>
 
-          {/* ✅ Поиск для десктопа справа (как было) */}
           <div className="header__search header__search--desktop" ref={searchRef}>
             <div className="header__searchInput">
               <svg
@@ -189,7 +252,16 @@ function Header() {
                   setSearchQuery(e.target.value);
                   setIsSearchOpen(true);
                 }}
-                onFocus={() => setIsSearchOpen(true)}
+                onFocus={() => {
+                  if (closeTimeoutRef.current) {
+                    clearTimeout(closeTimeoutRef.current);
+                  }
+                  setIsSearchOpen(true);
+                }}
+                onBlur={handleSearchInputBlur}
+                spellCheck="false"
+                autoComplete="off"
+                inputMode="search"
               />
             </div>
 
@@ -199,8 +271,15 @@ function Header() {
                   <button
                     key={topic.id}
                     className="header__searchItem"
-                    onClick={() => handleSelectTopic(topic.id)}
+                    onMouseDown={(e) => handleSearchItemMouseDown(e, topic.id)}
+                    onTouchEnd={(e) => handleSearchItemMouseDown(e, topic.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSearchItemMouseDown(e, topic.id);
+                    }}
                     type="button"
+                    role="option"
+                    aria-selected={false}
                   >
                     <span className="header__searchItemTitle">{topic.title}</span>
                     <span className="header__searchItemDesc">{topic.description}</span>

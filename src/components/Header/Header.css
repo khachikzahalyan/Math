@@ -90,6 +90,8 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  height: 40px;
 }
 
 .header__searchInput:focus-within {
@@ -106,9 +108,18 @@
   border: none;
   background: transparent;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
   width: 160px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  line-height: 1.4;
+  /* Отключаем автозум на iOS */
+  -webkit-font-smoothing: antialiased;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .header__searchInput input::placeholder {
@@ -128,6 +139,7 @@
   max-height: 320px;
   overflow-y: auto;
   z-index: 1001;
+  pointer-events: auto;
 }
 
 .header__searchItem {
@@ -142,10 +154,20 @@
   cursor: pointer;
   text-align: left;
   transition: background 0.15s;
+  
+  /* Важно для мобилки: активная зона */
+  min-height: 44px;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .header__searchItem:hover {
   background: var(--bg-alt);
+}
+
+.header__searchItem:active {
+  background: var(--bg-alt);
+  opacity: 0.8;
 }
 
 .header__searchItem:first-child {
@@ -281,28 +303,6 @@
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.1));
     border: 1px solid rgba(99, 102, 241, 0.3);
   }
-
-  .header__search {
-    margin-left: 0;
-    margin-top: 8px;
-  }
-
-  .header__searchInput {
-    padding: 12px 14px;
-  }
-
-  .header__searchInput input {
-    width: 100%;
-    font-size: 15px;
-  }
-
-  .header__searchDropdown {
-    min-width: 100%;
-    position: relative;
-    top: 8px;
-    box-shadow: none;
-    border: 1px solid var(--border);
-  }
 }
 
 /* ✅ Small mobile - 480px */
@@ -355,6 +355,58 @@
 
   .header__search--desktop {
     display: none;
+  }
+
+  .header__inner {
+    gap: 10px;
+  }
+
+  .header__search {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .header__searchInput input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .header__searchDropdown {
+    min-width: auto;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    top: auto;
+    bottom: auto;
+    max-height: 40vh;
+  }
+}
+
+/* ✅ Small mobile - 480px */
+@media (max-width: 480px) {
+  .header__searchInput {
+    height: 36px;
+    padding: 8px 10px;
+  }
+
+  .header__searchInput input {
+    font-size: 16px;
+  }
+
+  .header__searchDropdown {
+    left: 8px;
+    right: 8px;
+  }
+}
+
+/* 🍎 iOS iPad и выше - избегаем keyboard issues */
+@supports (-webkit-touch-callout: none) {
+  input {
+    font-size: 16px !important;
+  }
+
+  .header__searchInput input {
+    font-size: 16px !important
   }
 
   .header__inner {
