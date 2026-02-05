@@ -1,22 +1,7 @@
-/* ========== СБОРКА ВЫСОТЫ СТРАНИЦЫ ========== */
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* ========== CONTACT PAGE ========== */
 .contact {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Занимает минимум высоты экрана — не влияет на общий scroll */
-  min-height: 100vh;
-
-  /* адаптивные отступы, чтобы не вылезало */
   padding: clamp(12px, 2vw, 24px);
   box-sizing: border-box;
 
@@ -25,20 +10,15 @@ body,
 .contact__card {
   width: 100%;
   max-width: 560px;
-
   background: #ffffff;
   border-radius: 24px;
-
-  /* адаптивные паддинги */
   padding: clamp(18px, 3vw, 28px) clamp(18px, 3vw, 32px);
   box-sizing: border-box;
-
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.08),
     0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
-/* ========== ТЕКСТЫ ========== */
 .contact__title {
   font-size: clamp(1.5rem, 2.3vw, 2rem);
   margin: 0 0 12px;
@@ -52,7 +32,6 @@ body,
   line-height: 1.5;
 }
 
-/* ========== ФОРМА ========== */
 .contact__form {
   display: flex;
   flex-direction: column;
@@ -93,7 +72,6 @@ body,
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
-/* чтобы textarea не раздувала страницу и не создавался скролл */
 .form-group textarea {
   resize: none;            /* важно: отключаем растягивание */
   min-height: 120px;
@@ -101,7 +79,6 @@ body,
   overflow: auto;          /* если текста много — скролл ТОЛЬКО внутри поля */
 }
 
-/* ========== КНОПКА ========== */
 .contact__button {
   padding: 14px 28px;
   background: linear-gradient(135deg, #6366f1, #4f46e5);
@@ -125,7 +102,6 @@ body,
   transform: translateY(0);
 }
 
-/* ========== НИЖНИЙ ТЕКСТ ========== */
 .contact__footer {
   font-size: 0.9rem;
   color: #6b7280;
@@ -133,7 +109,6 @@ body,
   margin-top: 16px;
 }
 
-/* ========== TOOLTIP ========== */
 .tooltip {
   position: fixed;
   top: 20px;
@@ -148,7 +123,6 @@ body,
   z-index: 1000;
 }
 
-/* ========== АДАПТИВ 423px ========== */
 @media (max-width: 423px) {
   .contact__card {
     border-radius: 20px;

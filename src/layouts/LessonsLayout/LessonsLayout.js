@@ -8,6 +8,9 @@ function LessonsLayout() {
   const contentRef = useRef(null);
   const { pathname } = useLocation();
 
+  // Ստուգել թե արդյո՞ք մենք /lessons-ի վրա ենք (առանց topic ID-ի)
+  const isLessonsCategory = pathname === '/lessons';
+
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.scrollTo(0, 0);
@@ -18,8 +21,11 @@ function LessonsLayout() {
     <div className="lessonsLayout">
       <Header />
       <div className="lessonsLayout__body">
-        <Sidebar />
-        <main className="lessonsLayout__content" ref={contentRef}>
+        {!isLessonsCategory && <Sidebar />}
+        <main 
+          className={`lessonsLayout__content ${isLessonsCategory ? 'lessonsLayout__content--fullWidth' : ''}`}
+          ref={contentRef}
+        >
           <Outlet />
         </main>
       </div>

@@ -15,7 +15,6 @@ function About() {
 
         <div className="about__image">
           <img src="/about-reading.png" alt="Reading book" loading="lazy" />
-
         </div>
 
         <p className="about__text animate-text animate-delay-2">
@@ -50,7 +49,6 @@ function About() {
 
         <div className="about__image">
           <img src="/about-math.png" alt="Learning math" loading="lazy" />
-
         </div>
       </div>
     </div>

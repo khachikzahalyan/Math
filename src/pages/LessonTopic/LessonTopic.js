@@ -1,122 +1,224 @@
-// LessonTopic.jsx
 import { useMemo, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import topics from '../../data/topics';
 import Card from '../../components/Card/Card';
 import './LessonTopic.css';
 
-function normalize(value) {
-  return String(value ?? '')
-    .trim()
-    .replace(/\s+/g, '')
-    .toLowerCase();
-}
-
 function LessonTopic() {
   const { topicId } = useParams();
+  const navigate = useNavigate();
   const topic = useMemo(() => topics.find((t) => t.id === topicId), [topicId]);
 
-  const [answers, setAnswers] = useState({});
-  const [result, setResult] = useState(null);
+  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [showReview, setShowReview] = useState(false);
+  const [error, setError] = useState('');
 
-  const [error, setError] = useState(false);
-  const [errorKey, setErrorKey] = useState(0);
-
-  // показать ответ по одному вопросу
-  const [revealed, setRevealed] = useState({}); // { [questionId]: true/false }
-
-  // подсветка пустых
-  const [emptyIds, setEmptyIds] = useState([]);
-
-  // ✅ подсветка правильных/неправильных после проверки
-  const [checkedMap, setCheckedMap] = useState({}); // { [questionId]: true/false }
-
-  // ошибка на 3 секунды
   useEffect(() => {
-    if (!error) return;
-    console.log(errorKey)
-    const timer = setTimeout(() => {
-      setError(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [error,errorKey]);
-
-  // сброс при смене темы
-  useEffect(() => {
-    setAnswers({});
-    setResult(null);
-    setError(false);
-    setRevealed({});
-    setEmptyIds([]);
-    setCheckedMap({});
+    setCurrentQuestionIdx(0);
+    setSelectedOption(null);
+    setUserAnswers([]);
+    setScore(0);
+    setQuizCompleted(false);
+    setShowReview(false);
+    setError('');
   }, [topicId]);
 
   if (!topic) {
     return <Card title="Շուտով կլինի" text="Ապագայում այստեղ կհայտնվի նյութը" />;
   }
 
-  const onChangeAnswer = (questionId, value) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: value }));
+  const questions = topic.questions || [];
+  const currentQuestion = questions[currentQuestionIdx];
+  const progress = currentQuestionIdx + 1;
 
-    // если человек заполнил поле — убрать из пустых
-    setEmptyIds((prev) => prev.filter((id) => id !== questionId));
+  if (!currentQuestion || questions.length === 0) {
+    return <Card title="Շուտով կլինի" text="Հարցերը դեռ հասանելի չեն" />;
+  }
 
-    // если он начал менять — убираем подсветку “правильно/неправильно” для этого вопроса
-    setCheckedMap((prev) => {
-      if (!(questionId in prev)) return prev;
-      const copy = { ...prev };
-      delete copy[questionId];
-      return copy;
-    });
+  const handleSelectOption = (optionIdx) => {
+    setSelectedOption(optionIdx);
+    setError('');
   };
 
-  const toggleReveal = (questionId) => {
-    setRevealed((prev) => ({ ...prev, [questionId]: !prev[questionId] }));
-  };
-
-  const onCheck = () => {
-    // 1) найти пустые
-    const empty = topic.questions
-      .filter((q) => !normalize(answers[q.id]))
-      .map((q) => q.id);
-
-    if (empty.length > 0) {
-      setEmptyIds(empty);
-      setError(true);
-      setResult(null);
-      setErrorKey((k) => k + 1);
-
-      // скролл к первому пустому
-      const first = document.querySelector(`[data-qid="${empty[0]}"]`);
-      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
+  const handleSubmitAnswer = () => {
+    if (selectedOption === null) {
+      setError('Ընտրեք պատասխանը');
       return;
     }
 
-    // 2) считаем результат
-    setError(false);
-    setEmptyIds([]);
+    const correct = selectedOption === currentQuestion.correctOption;
 
-    const total = topic.questions.length;
-    let correct = 0;
-    const map = {};
+    const newAnswers = [...userAnswers];
+    newAnswers[currentQuestionIdx] = selectedOption;
+    setUserAnswers(newAnswers);
 
-    for (const q of topic.questions) {
-      const userAnswer = normalize(answers[q.id]);
-      const rightAnswer = normalize(q.answer);
-
-      const isCorrect = userAnswer === rightAnswer;
-      map[q.id] = isCorrect;
-
-      if (isCorrect) correct += 1;
+    if (correct) {
+      setScore((prev) => prev + 1);
     }
 
-    setCheckedMap(map);
-
-    const score = Math.round(10 + (correct / total) * 90);
-    setResult({ total, correct, score });
+    if (currentQuestionIdx < questions.length - 1) {
+      setCurrentQuestionIdx((prev) => prev + 1);
+      setSelectedOption(null);
+      setError('');
+    } else {
+      setQuizCompleted(true);
+    }
   };
+
+
+
+  const handleRetry = () => {
+    setCurrentQuestionIdx(0);
+    setSelectedOption(null);
+    setUserAnswers([]);
+    setScore(0);
+    setQuizCompleted(false);
+    setShowReview(false);
+    setError('');
+  };
+
+  const handleNextTopic = () => {
+    const currentIdx = topics.findIndex((t) => t.id === topicId);
+    if (currentIdx < topics.length - 1) {
+      const nextTopic = topics[currentIdx + 1];
+      navigate(`/lessons/${nextTopic.id}`);
+    } else {
+      // Последняя тема - переходим на страницу уроков
+      navigate('/lessons');
+    }
+  };
+
+  const isLastTopic = topics.findIndex((t) => t.id === topicId) === topics.length - 1;
+
+  // Экран с результатами - рецензия ответов
+  if (quizCompleted && showReview) {
+    const finalScore = Math.round((score / questions.length) * 100);
+    return (
+      <div className="topic">
+        <h1 className="topic__title">{topic.title}</h1>
+        
+        <section className="topic__section">
+          <h2 className="topic__sectionTitle">Իսկության աղյուսակներ</h2>
+          
+          {/* Все вопросы с рецензией */}
+          <div className="topic__review">
+            {questions.map((question, idx) => {
+              const userAnswer = userAnswers[idx];
+              const isCorrect = userAnswer === question.correctOption;
+              return (
+                <div key={idx} className="topic__reviewQuestion">
+                  <div className="topic__reviewQuestionHeader">
+                    <span className="topic__reviewQuestionNumber">Հարց {idx + 1}</span>
+                    <span className={`topic__reviewStatus ${isCorrect ? 'topic__reviewStatus--correct' : 'topic__reviewStatus--wrong'}`}>
+                      {isCorrect ? '✓ Ճիշտ' : '✗ Սխալ'}
+                    </span>
+                  </div>
+                  
+                  <div className="topic__reviewQuestionText">{question.question}</div>
+                  
+                  <div className="topic__reviewOptions">
+                    {question.options.map((option, optIdx) => {
+                      const isUserSelected = userAnswer === optIdx;
+                      const isCorrectOption = optIdx === question.correctOption;
+                      
+                      let className = 'topic__reviewOption';
+                      if (isCorrectOption) {
+                        className += ' topic__reviewOption--correct';
+                      } else if (isUserSelected && !isCorrect) {
+                        className += ' topic__reviewOption--wrong';
+                      }
+                      
+                      return (
+                        <div key={optIdx} className={className}>
+                          <div className="topic__reviewOptionContent">
+                            <span className="topic__reviewOptionText">{option}</span>
+                          </div>
+                          {isCorrectOption && <span className="topic__reviewOptionIcon">✓</span>}
+                          {isUserSelected && !isCorrect && <span className="topic__reviewOptionIcon">✗</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  
+                  {userAnswer === undefined && (
+                    <div className="topic__reviewEmpty">
+                      Պատասխան տրված չէ
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="topic__resultFinal">
+            <div className="topic__resultFinalTitle">Վիկտորինայի արդյունքներ</div>
+            <div className="topic__result">
+              <div className="topic__resultItem">
+                <span>Ճիշտ պատասխաններ՝</span>
+                <b>{score} / {questions.length}</b>
+              </div>
+              <div className="topic__resultItem">
+                <span>Վերջնական միավորը՝</span>
+                <b>{finalScore} / 100</b>
+              </div>
+            </div>
+
+            <div className="topic__resultActions">
+              <button className="topic__button topic__button--secondary" onClick={handleRetry}>
+                Նորից փորձել
+              </button>
+              <button className="topic__button topic__button--primary" onClick={handleNextTopic}>
+                {isLastTopic ? 'Անփոփում' : 'Հաջորդ թեմա'}
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  if (quizCompleted) {
+    const finalScore = Math.round((score / questions.length) * 100);
+    return (
+      <div className="topic">
+        <h1 className="topic__title">{topic.title}</h1>
+        
+        <section className="topic__section">
+          <h2 className="topic__sectionTitle">Վիկտորինայի արդյունքներ</h2>
+          
+          <div className="topic__result">
+            <div className="topic__resultItem">
+              <span>Ճիշտ պատասխաններ՝</span>
+              <b>{score} / {questions.length}</b>
+            </div>
+            <div className="topic__resultItem">
+              <span>Վերջնական միավորը՝</span>
+              <b>{finalScore} / 100</b>
+            </div>
+          </div>
+
+          <div className="topic__resultActions">
+            <button 
+              className="topic__button topic__button--primary" 
+              onClick={() => setShowReview(true)}
+            >
+              Պատասխանների ստուգում
+            </button>
+            <button className="topic__button topic__button--secondary" onClick={handleRetry}>
+              Նորից փորձել
+            </button>
+            <button className="topic__button topic__button--primary" onClick={handleNextTopic}>
+              {isLastTopic ? 'Անփոփում' : 'Հաջորդ թեմա'}
+            </button>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="topic">
@@ -131,86 +233,81 @@ function LessonTopic() {
       <section className="topic__section">
         <h2 className="topic__sectionTitle">Օրինակներ</h2>
         <ul className="topic__list">
-          {topic.examples.map((ex, idx) => (
-            <li key={idx} className="topic__listItem">
-              {ex}
-            </li>
-          ))}
+          {topic.examples && topic.examples.length > 0 ? (
+            topic.examples.map((ex, idx) => (
+              <li key={idx} className="topic__listItem">
+                {ex}
+              </li>
+            ))
+          ) : (
+            <li className="topic__listItem">Օրինակներ հասանելի չեն</li>
+          )}
         </ul>
       </section>
 
       <section className="topic__section">
         <h2 className="topic__sectionTitle">Առաջադրանքներ</h2>
 
-        <div className="topic__questions">
-          {topic.questions.map((q, idx) => {
-            const isRevealed = !!revealed[q.id];
-            const isEmpty = emptyIds.includes(q.id);
-
-            const isCorrect = checkedMap[q.id] === true;
-            const isWrong = checkedMap[q.id] === false;
-
-            return (
-              <div
-                key={q.id}
-                data-qid={q.id}
-                className={[
-                  'topic__question',
-                  isEmpty ? 'topic__question--empty' : '',
-                  isCorrect ? 'topic__question--correct' : '',
-                  isWrong ? 'topic__question--wrong' : ''
-                ].join(' ')}
-              >
-                <div className="topic__questionTitle">
-                  {idx + 1}. {q.question}
-                </div>
-
-                <input
-                  className="topic__input"
-                  value={answers[q.id] ?? ''}
-                  onChange={(e) => onChangeAnswer(q.id, e.target.value)}
-                  placeholder="Պատասխան"
-                />
-
-                <div className="topic__actionsRow">
-                  <button
-                    type="button"
-                    className="topic__hintBtn"
-                    onClick={() => toggleReveal(q.id)}
-                  >
-                    {isRevealed ? 'Թաքցնել պատասխանը' : 'Ցույց տալ պատասխանը'}
-                  </button>
-
-                  {isCorrect && <span className="topic__badge topic__badge--ok">✅ Ճիշտ</span>}
-                  {isWrong && <span className="topic__badge topic__badge--bad">❌ Սխալ</span>}
-                </div>
-
-                {isRevealed && (
-                  <div className="topic__rightAnswer">
-                    Ճիշտ պատասխան՝ <b>{q.answer}</b>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+        <div className="topic__progress">
+          <div className="topic__progressLabel">
+            Հարց {progress} / {questions.length}
+          </div>
+          <div className="topic__progressBar">
+            <div 
+              className="topic__progressFill" 
+              style={{ width: `${(progress / questions.length) * 100}%` }}
+            ></div>
+          </div>
         </div>
 
- 
-
-        <button className="topic__button" onClick={onCheck}>
-          Ստուգել
-        </button>
-
-        {result && (
-          <div className="topic__result">
-            <div>
-              Ճիշտ պատասխաններ՝ <b>{result.correct}</b> / <b>{result.total}</b>
-            </div>
-            <div>
-              Վերջնական արդյունք՝ <b>{result.score}</b> / 100
-            </div>
+        <div className="topic__questionCard">
+          <div className="topic__questionText">
+            {currentQuestion.question}
           </div>
-        )}
+
+          <div className="topic__options">
+            {currentQuestion.options && currentQuestion.options.length > 0 ? (
+              currentQuestion.options.map((option, idx) => (
+                <label 
+                  key={idx} 
+                  className={[
+                    'topic__option',
+                    selectedOption === idx ? 'topic__option--selected' : ''
+                  ].join(' ')}
+                >
+                  <input
+                    type="radio"
+                    name={`question-${currentQuestion.id}`}
+                    value={idx}
+                    checked={selectedOption === idx}
+                    onChange={() => handleSelectOption(idx)}
+                    disabled={false}
+                    className="topic__radio"
+                  />
+                  <span className="topic__optionLabel">{option}</span>
+                </label>
+              ))
+            ) : (
+              <p>Տարբերակներ հասանելի չեն</p>
+            )}
+          </div>
+
+
+          {error && (
+            <div className="topic__error">
+              {error}
+            </div>
+          )}
+        </div>
+
+        <div className="topic__actions">
+          <button 
+            className="topic__button topic__button--primary" 
+            onClick={handleSubmitAnswer}
+          >
+            Պատասխանել
+          </button>
+        </div>
       </section>
     </div>
   );

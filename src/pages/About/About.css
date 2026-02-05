@@ -1,11 +1,3 @@
-/* ✅ вернуть скролл */
-html,
-body {
-  height: auto !important;
-  overflow-y: auto !important;
-}
-
-
 .about {
   display: flex;
   justify-content: center;

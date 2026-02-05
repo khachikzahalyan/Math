@@ -51,6 +51,7 @@ const topics = [
   },
   {
     id: 'multiplication',
+    grade: 2,
     title: 'Բազմապատկում',
     description: 'Կրկնվող գումարում՝ մեկ գործողությամբ։',
     text: `Բազմապատկումը հանդիսանում է նույն թվի կրկնվող գումարում։ Օրինակ՝ 4 × 3 = 4 + 4 + 4 = 12։
@@ -70,15 +71,16 @@ const topics = [
 Օրինակներ՝ (-3) × (-4) = 12, (-5) × 2 = -10։`,
     examples: ['3 × 4 = 12', '6 × 7 = 42', '10 × 0 = 0'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է 6 × 7։', answer: '42' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է 9 × 5։', answer: '45' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է 12 × 3։', answer: '36' },
-      { id: 'q4', type: 'input', question: 'Որքա՞ն է 8 × 0։', answer: '0' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է 4 × 25։', answer: '100' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է 6 × 7։', options: ['40', '42', '45', '48'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է 9 × 5։', options: ['40', '42', '45', '50'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է 12 × 3։', options: ['30', '33', '36', '39'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'Որքա՞ն է 8 × 0։', options: ['0', '1', '8', '16'], correctOption: 0 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է 4 × 25։', options: ['75', '80', '100', '120'], correctOption: 2 }
     ]
   },
   {
     id: 'division',
+    grade: 2,
     title: 'Բաժանում',
     description: 'Բաժանումը հակադարձ է բազմապատկմանը։',
     text: `Բաժանումը բազմապատկման հակադարձ գործողությունն է։ Այն ցույց է տալիս, թե քանի՞ անգամ է մի թիվը տեղավորվում մյուսի մեջ։
@@ -99,15 +101,16 @@ const topics = [
 Նշանների կանոնները նույնն են, ինչ բազմապատկման՝ (+) ÷ (+) = (+), (−) ÷ (−) = (+), (+) ÷ (−) = (−)։`,
     examples: ['20 ÷ 5 = 4', '12 ÷ 3 = 4', '100 ÷ 10 = 10'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է 20 ÷ 5։', answer: '4' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է 81 ÷ 9։', answer: '9' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է 100 ÷ 4։', answer: '25' },
-      { id: 'q4', type: 'input', question: 'Որքա՞ն է 36 ÷ 6։', answer: '6' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է 12 ÷ 3։', answer: '4' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է 20 ÷ 5։', options: ['3', '4', '5', '6'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է 81 ÷ 9։', options: ['7', '8', '9', '10'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է 100 ÷ 4։', options: ['20', '23', '25', '28'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'Որքա՞ն է 36 ÷ 6։', options: ['5', '6', '7', '8'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է 12 ÷ 3։', options: ['3', '4', '5', '6'], correctOption: 1 }
     ]
   },
   {
     id: 'fractions',
+    grade: 3,
     title: 'Կոտորակներ',
     description: 'Կոտորակը գրվում է a/b տեսքով։',
     text: `Կոտորակը թույլ է տալիս մի ամբողջի մասը։ Գրվում է a/b տեսքով, որտեղ՝
@@ -128,15 +131,16 @@ const topics = [
 • Բաժանում՝ բաժանողի հայտարարն ու համարիչը շուրջում ենք և բազմապատկում։`,
     examples: ['1/2 — կես', '3/4 — երեք քառորդ', '5/10 = 1/2'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Գրեք «կես»-ը կոտորակով։', answer: '1/2' },
-      { id: 'q2', type: 'input', question: 'Կրճատեք 2/4 կոտորակը։', answer: '1/2' },
-      { id: 'q3', type: 'input', question: 'Ո՞ր կոտորակն է հավասար 0.25-ի (օր. 1/4)։', answer: '1/4' },
-      { id: 'q4', type: 'input', question: 'Կրճատեք 3/6 կոտորակը։', answer: '1/2' },
-      { id: 'q5', type: 'input', question: 'Ո՞ր կոտորակն է հավասար 0.5-ի (օր. 1/2)։', answer: '1/2' }
+      { id: 'q1', type: 'radio', question: 'Գրեք «կես»-ը կոտորակով։', options: ['1/3', '1/2', '2/3', '3/4'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Կրճատեք 2/4 կոտորակը։', options: ['1/4', '1/2', '2/5', '3/4'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Ո՞ր կոտորակն է հավասար 0.25-ի։', options: ['1/2', '1/4', '2/4', '3/4'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Կրճատեք 3/6 կոտորակը։', options: ['1/3', '1/2', '1/6', '2/3'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Ո՞ր կոտորակն է հավասար 0.5-ի։', options: ['1/4', '1/2', '2/4', '3/5'], correctOption: 1 }
     ]
   },
   {
     id: 'decimals',
+    grade: 3,
     title: 'Տասնորդականներ',
     description: 'Թվեր, որոնք ունեն տասնորդական մաս (գրեք կետով)։',
     text: `Տասնորդական կոտորակները կոտորակների այլ գրելաձև է։ Հայտարարը 10-ի աստիճան է (10, 100, 1000...)։
@@ -153,15 +157,16 @@ const topics = [
 Բաժանում՝ Բաժանարարը դարձնել ամբողջ թվի, կետը նույնքան անգամ տեղաշարժել երկու թվերում։`,
     examples: ['0.5 + 1.2 = 1.7', '3.0 − 0.75 = 2.25', '2.5 × 2 = 5'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է 0.5 + 1.2։', answer: '1.7' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է 3.0 − 0.75։', answer: '2.25' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է 2.5 × 2։', answer: '5' },
-      { id: 'q4', type: 'input', question: 'Որքա՞ն է 7.2 ÷ 3։', answer: '2.4' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է 1.1 + 2.2։', answer: '3.3' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է 0.5 + 1.2։', options: ['1.5', '1.7', '1.9', '2.0'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է 3.0 − 0.75։', options: ['2.0', '2.15', '2.25', '2.5'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է 2.5 × 2։', options: ['4.0', '4.5', '5.0', '5.5'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'Որքա՞ն է 7.2 ÷ 3։', options: ['2.0', '2.2', '2.4', '2.6'], correctOption: 2 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է 1.1 + 2.2։', options: ['3.0', '3.2', '3.3', '3.5'], correctOption: 2 }
     ]
   },
   {
     id: 'percentages',
+    grade: 4,
     title: 'Տոկոսներ',
     description: 'Տոկոսը հարյուրերորդ մասն է։',
     text: `Տոկոսը կոտորակ է, որի հայտարարը 100 է։ x% նշանակում է x/100։
@@ -178,15 +183,16 @@ const topics = [
 Պարզ օրինակներ՝ 50% = 1/2, 25% = 1/4, 10% = 1/10։`,
     examples: ['10% = 0.1', '50% = 1/2', '20% of 50 = 10'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է 20%-ը 50-ից։', answer: '10' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է 10%-ը 200-ից։', answer: '20' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է 25%-ը 80-ից։', answer: '20' },
-      { id: 'q4', type: 'input', question: '50% = ի՞նչ կոտորակ (օր. 1/2)։', answer: '1/2' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է 5%-ը 100-ից։', answer: '5' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է 20%-ը 50-ից։', options: ['5', '10', '15', '20'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է 10%-ը 200-ից։', options: ['10', '20', '30', '40'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է 25%-ը 80-ից։', options: ['15', '20', '25', '30'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: '50% = ի՞նչ կոտորակ։', options: ['1/3', '1/2', '2/3', '3/4'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է 5%-ը 100-ից։', options: ['3', '5', '8', '10'], correctOption: 1 }
     ]
   },
   {
     id: 'powers',
+    grade: 4,
     title: 'Աստիճան',
     description: 'Թվի բազմապատկում ինքն իրենով՝ մի քանի անգամ։',
     text: `Աստիճանը թվի կրճատ գրելաձևն է, երբ այն ինքն իրեն է բազմապատկվում որոշակի անգամ։
@@ -195,7 +201,7 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
 Օրինակներ՝
 • 2^3 = 2 × 2 × 2 = 8
 • 5^2 = 5 × 5 = 25
-• 10^4 = 10 000
+• 10^4 = 10 000
 
 Կանոնները՝
 • a^0 = 1 (յուրաքանչյուր թիվ զրոյական աստիճանով հավասար է 1)
@@ -207,15 +213,16 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
 Բացասական ցուցիչ՝ a^−1 = 1/a, a^−2 = 1/a^² և այլն։`,
     examples: ['2^3 = 8', '5^2 = 25', '10^0 = 1'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է 2^5։', answer: '32' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է 3^3։', answer: '27' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է 10^0։', answer: '1' },
-      { id: 'q4', type: 'input', question: 'Որքա՞ն է 5^2։', answer: '25' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է 4^3։', answer: '64' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է 2^5։', options: ['16', '32', '48', '64'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է 3^3։', options: ['9', '18', '27', '36'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է 10^0։', options: ['0', '1', '10', '100'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Որքա՞ն է 5^2։', options: ['10', '15', '20', '25'], correctOption: 3 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է 4^3։', options: ['32', '48', '54', '64'], correctOption: 3 }
     ]
   },
   {
     id: 'roots',
+    grade: 4,
     title: 'Քառակուսի արմատ',
     description: 'Թիվ, որի քառակուսին տալիս է տրված թիվը։',
     text: `Քառակուսի արմատը աստիճանման հակադարձ գործողությունն է։ Եթե a^2 = x, ապա a-ն x-ի քառակուսի արմատն է։
@@ -237,15 +244,16 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
 Նկատի՝ Բացասական թվից քառակուսի արմատ չկա իրական թվերում։`,
     examples: ['√9 = 3', '√16 = 4', '√81 = 9'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է √81։', answer: '9' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է √49։', answer: '7' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է √16։', answer: '4' },
-      { id: 'q4', type: 'input', question: 'Որքա՞ն է √100։', answer: '10' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է √1։', answer: '1' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է √81։', options: ['7', '8', '9', '10'], correctOption: 2 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է √49։', options: ['6', '7', '8', '9'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է √16։', options: ['2', '3', '4', '5'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'Որքա՞ն է √100։', options: ['8', '9', '10', '11'], correctOption: 2 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է √1։', options: ['0', '1', '2', '3'], correctOption: 1 }
     ]
   },
   {
     id: 'equations',
+    grade: 4,
     title: 'Պարզ հավասարումներ',
     description: 'Գտնել անհայտ x-ը։',
     text: `Հավասարումը մաթեմատիկական պնդում է, որը պարունակում է անհայտ մեծություն (օր. x)։ Մեր նպատակն է գտնել այն արժեքը/արժեքները, որտեղ հավասարումը ճիշտ է։
@@ -253,7 +261,7 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
 Լուծման հիմնական սկզբունքը՝
 1. Երկու կողմերում նույն թիվն ավելացնել/հանել — հավասարությունը չի խախտվում։
 2. Երկու կողմերում նույն թվով բազմապատկել/բաժանել — նույնպես։
-3. Անհայտը մեկուսացնել՝ մյուս կողմը թվեր, աջ կողմը ՝ անհայտ։
+3. Անհայտը մեկուսացնել՝ մյուս կողմը թվեր, աջ կողմը՝ անհայտ։
 
 Օրինակ՝
 • x + 5 = 12 → x = 12 − 5 = 7
@@ -263,15 +271,16 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
 Ստուգում՝ Գտած արդյունքը տեղադրեք հավասարման մեջ՝ երկու կողմերը պետք է հավասար լինեն։`,
     examples: ['x + 5 = 12 → x = 7', '3x = 15 → x = 5', 'x/4 = 3 → x = 12'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Լուծեք՝ x + 5 = 12։ x = ?', answer: '7' },
-      { id: 'q2', type: 'input', question: 'Լուծեք՝ 3x = 15։ x = ?', answer: '5' },
-      { id: 'q3', type: 'input', question: 'Լուծեք՝ x − 9 = 1։ x = ?', answer: '10' },
-      { id: 'q4', type: 'input', question: 'Լուծեք՝ x/4 = 3։ x = ?', answer: '12' },
-      { id: 'q5', type: 'input', question: 'Լուծեք՝ 2x + 1 = 9։ x = ?', answer: '4' }
+      { id: 'q1', type: 'radio', question: 'Լուծեք՝ x + 5 = 12։ x = ?', options: ['5', '7', '9', '12'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Լուծեք՝ 3x = 15։ x = ?', options: ['3', '5', '7', '9'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Լուծեք՝ x − 9 = 1։ x = ?', options: ['8', '9', '10', '11'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'Լուծեք՝ x/4 = 3։ x = ?', options: ['9', '12', '15', '16'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Լուծեք՝ 2x + 1 = 9։ x = ?', options: ['3', '4', '5', '6'], correctOption: 1 }
     ]
   },
   {
     id: 'inequalities',
+    grade: 5,
     title: 'Անհավասարություններ',
     description: 'Պարզ անհավասարությունների լուծում։',
     text: `Անհավասարությունը մաթեմատիկական պնդում է, որն արտահայտում է երկու արտահայտության հարաբերությունը՝ ավելի, փոքր, մեծ կամ հավասար, փոքր կամ հավասար։
@@ -291,1369 +300,1383 @@ a^n նշանակում՝ a բազմապատկել ինքն իրենով n անգ
 • −2x > 6 → x < −3 (նշանը շրջվեց)`,
     examples: ['x > 3', 'x ≤ 10', 'x − 2 > 5 → x > 7'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Եթե x − 2 > 5, ապա x > ? (գրեք թիվը)', answer: '7' },
-      { id: 'q2', type: 'input', question: 'x > 7 անհավասարությունը բավարարող ամենափոքր ամբողջ թիվը։', answer: '8' },
-      { id: 'q3', type: 'input', question: 'Եթե x + 3 ≤ 10, ապա x ≤ ? (գրեք թիվը)', answer: '7' },
-      { id: 'q4', type: 'input', question: 'x < 0 անհավասարությունը բավարարող թիվ գրեք՝ -1 կամ 1։', answer: '-1' },
-      { id: 'q5', type: 'input', question: 'Եթե 2x ≥ 12, ապա x ≥ ? (գրեք թիվը)', answer: '6' }
+      { id: 'q1', type: 'radio', question: 'Եթե x − 2 > 5, ապա x > ?', options: ['5', '7', '9', '10'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'x > 7 անհավասարությունը բավարարող թիվ:', options: ['6', '7', '8', '9'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Եթե x + 3 ≤ 10, ապա x ≤ ?', options: ['5', '7', '10', '13'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'x < 0 անհավասարությունը բավարարող թիվ:', options: ['-1', '0', '1', '2'], correctOption: 0 },
+      { id: 'q5', type: 'radio', question: 'Եթե 2x ≥ 12, ապա x ≥ ?', options: ['4', '6', '8', '10'], correctOption: 1 }
     ]
   },
   {
     id: 'primes',
+    grade: 3,
     title: 'Պարզ թվեր',
     description: 'Պարզ թիվը ունի ճիշտ երկու բաժանարար։',
     text: 'Պարզ թիվը բաժանվում է միայն 1-ի և ինքն իրենով։',
     examples: ['2, 3, 5, 7, 11 — պարզ են', '9 — բաղադրյալ է', '1-ը պարզ թիվ չէ'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Ո՞ր թիվն է պարզ՝ 9, 11, 15։', answer: '11' },
-      { id: 'q2', type: 'input', question: 'Քանի՞ բաժանարար ունի 7-ը։', answer: '2' },
-      { id: 'q3', type: 'input', question: '17-ը պարզ թիվ է՞ (գրեք այո/ոչ)։', answer: 'այո' },
-      { id: 'q4', type: 'input', question: '19-ը բաժանվում է 2-ի՞ (այո/ոչ)։', answer: 'ոչ' },
-      { id: 'q5', type: 'input', question: 'Ո՞ր թիվն է բաղադրյալ՝ 13 թե 21։', answer: '21' }
+      { id: 'q1', type: 'radio', question: 'Ո՞ր թիվն է պարզ։', options: ['9', '11', '15', '21'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Քանի՞ բաժանարար ունի 7-ը։', options: ['1', '2', '3', '4'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: '17-ը պարզ թիվ է։', options: ['Ոչ', 'Այո', 'Հնարավոր չէ ասել', 'Պայմանական'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: '19-ը բաժանվում է 2-ի։', options: ['Այո', 'Ոչ', 'Երբեմն', 'Բոլորին'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Ո՞ր թիվն է բաղադրյալ։', options: ['13', '17', '21', '23'], correctOption: 2 }
     ]
   },
   {
     id: 'gcd-lcm',
+    grade: 4,
     title: 'ՄԱՏ և ՓԱՏ',
     description: 'Մեծագույն ընդհանուր բաժանարար (ՄԱՏ) և փոքրագույն ընդհանուր բազմապատիկ (ՓԱՏ)։',
     text: 'ՄԱՏ-ը՝ ամենամեծ թիվն է, որը բաժանում է երկու թվերը։ ՓԱՏ-ը՝ ամենափոքր թիվն է, որը բազմապատիկ է երկու թվերին։',
     examples: ['ՄԱՏ(12, 18) = 6', 'ՓԱՏ(4, 6) = 12', 'ՄԱՏ(8, 12) = 4'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Գտեք ՄԱՏ(12, 18)։', answer: '6' },
-      { id: 'q2', type: 'input', question: 'Գտեք ՓԱՏ(4, 6)։', answer: '12' },
-      { id: 'q3', type: 'input', question: 'Գտեք ՄԱՏ(8, 12)։', answer: '4' },
-      { id: 'q4', type: 'input', question: 'Գտեք ՓԱՏ(3, 5)։', answer: '15' },
-      { id: 'q5', type: 'input', question: 'Գտեք ՄԱՏ(9, 15)։', answer: '3' }
+      { id: 'q1', type: 'radio', question: 'Գտեք ՄԱՏ(12, 18)։', options: ['2', '3', '6', '12'], correctOption: 2 },
+      { id: 'q2', type: 'radio', question: 'Գտեք ՓԱՏ(4, 6)։', options: ['8', '10', '12', '24'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Գտեք ՄԱՏ(8, 12)։', options: ['2', '4', '8', '12'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Գտեք ՓԱՏ(3, 5)։', options: ['8', '10', '15', '20'], correctOption: 2 },
+      { id: 'q5', type: 'radio', question: 'Գտեք ՄԱՏ(9, 15)։', options: ['1', '3', '5', '9'], correctOption: 1 }
     ]
   },
   {
     id: 'geometry',
+    grade: 4,
     title: 'Երկրաչափություն (մակերես և պարագիծ)',
     description: 'Ուղղանկյան մակերեսը և պարագիծը։',
     text: 'Ուղղանկյան մակերեսը՝ S = a × b, իսկ պարագիծը՝ P = 2(a + b)։',
     examples: ['a=5, b=3 → S=15', 'a=5, b=3 → P=16', 'a=10, b=2 → S=20'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Ուղղանկյան a=5, b=3. Գտեք մակերեսը։', answer: '15' },
-      { id: 'q2', type: 'input', question: 'Ուղղանկյան a=5, b=3. Գտեք պարագիծը։', answer: '16' },
-      { id: 'q3', type: 'input', question: 'Ուղղանկյան a=10, b=2. Գտեք մակերեսը։', answer: '20' },
-      { id: 'q4', type: 'input', question: 'Քառակուսի կողմը 6 է։ Գտեք պարագիծը։', answer: '24' },
-      { id: 'q5', type: 'input', question: 'Քառակուսի կողմը 6 է։ Գտեք մակերեսը։', answer: '36' }
+      { id: 'q1', type: 'radio', question: 'Ուղղանկյան a=5, b=3. Գտեք մակերեսը։', options: ['8', '12', '15', '16'], correctOption: 2 },
+      { id: 'q2', type: 'radio', question: 'Ուղղանկյան a=5, b=3. Գտեք պարագիծը։', options: ['15', '16', '30', '32'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Ուղղանկյան a=10, b=2. Գտեք մակերեսը։', options: ['12', '18', '20', '24'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'Քառակուսի կողմը 6 է։ Գտեք պարագիծը։', options: ['18', '24', '30', '36'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Քառակուսի կողմը 6 է։ Գտեք մակերեսը։', options: ['24', '30', '36', '42'], correctOption: 2 }
     ]
   },
   {
     id: 'integers',
+    grade: 4,
     title: 'Ամբողջ թվեր և նշան',
     description: 'Դրական և բացասական թվեր։',
     text: 'Բացասական թիվը փոքր է 0-ից։ Նշանի կանոնները կարևոր են գումարման/հանման ժամանակ։',
     examples: ['-3 < 0', '-2 + 5 = 3', '-7 + (-2) = -9'],
     questions: [
-      { id: 'q1', type: 'input', question: 'Որքա՞ն է -7 + (-2)։', answer: '-9' },
-      { id: 'q2', type: 'input', question: 'Որքա՞ն է -10 + 3։', answer: '-7' },
-      { id: 'q3', type: 'input', question: 'Որքա՞ն է 5 - 12։', answer: '-7' },
-      { id: 'q4', type: 'input', question: 'Որքա՞ն է -4 × 3։', answer: '-12' },
-      { id: 'q5', type: 'input', question: 'Որքա՞ն է -12 ÷ 4։', answer: '-3' }
+      { id: 'q1', type: 'radio', question: 'Որքա՞ն է -7 + (-2)։', options: ['-9', '-5', '5', '9'], correctOption: 0 },
+      { id: 'q2', type: 'radio', question: 'Որքա՞ն է -10 + 3։', options: ['-13', '-7', '7', '13'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Որքա՞ն է 5 - 12։', options: ['-7', '-5', '5', '7'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: 'Որքա՞ն է -4 × 3։', options: ['-12', '-7', '7', '12'], correctOption: 0 },
+      { id: 'q5', type: 'radio', question: 'Որքա՞ն է -12 ÷ 4։', options: ['-3', '-2', '2', '3'], correctOption: 0 }
     ]
   },
   {
-    id: 'rounding',
-    title: 'Կլորացում',
-    description: 'Կլորացնել թիվը մոտակա ամբողջին կամ տասնորդականին։',
-    text: 'Կլորացման կանոն. եթե հաջորդ թվանշանը 5 կամ ավելի է՝ կլորացնում ենք դեպի վեր, հակառակ դեպքում՝ դեպի վար։',
-    examples: ['3.6 → 4', '3.4 → 3', '15.5 → 16'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Կլորացրեք 3.6-ը մոտակա ամբողջին։', answer: '4' },
-      { id: 'q2', type: 'input', question: 'Կլորացրեք 3.4-ը մոտակա ամբողջին։', answer: '3' },
-      { id: 'q3', type: 'input', question: 'Կլորացրեք 15.5-ը մոտակա ամբողջին։', answer: '16' },
-      { id: 'q4', type: 'input', question: 'Կլորացրեք 9.49-ը մոտակա ամբողջին։', answer: '9' },
-      { id: 'q5', type: 'input', question: 'Կլորացրեք 9.50-ը մոտակա ամբողջին։', answer: '10' }
-    ]
-  },
-  {
-    id: 'average',
-    title: 'Միջին թվաբանական',
-    description: 'Թվերի գումարը բաժանած դրանց քանակին։',
-    text: 'Միջին թվաբանականը հաշվվում է՝ (a + b + ...)/n։',
-    examples: ['(2 + 4 + 6) / 3 = 4', '(10 + 20) / 2 = 15'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Գտեք 2, 4, 6 թվերի միջինը։', answer: '4' },
-      { id: 'q2', type: 'input', question: 'Գտեք 10 և 20 թվերի միջինը։', answer: '15' },
-      { id: 'q3', type: 'input', question: 'Գտեք 3, 3, 9 թվերի միջինը։', answer: '5' },
-      { id: 'q4', type: 'input', question: 'Գտեք 1, 2, 3, 4 թվերի միջինը։', answer: '2.5' },
-      { id: 'q5', type: 'input', question: 'Գտեք 8 և 12 թվերի միջինը։', answer: '10' }
-    ]
-  },
-  {
-    id: 'ratios',
-    title: 'Հարաբերություններ',
-    description: 'Թվերի հարաբերության պարզեցում և համեմատություն։',
-    text: 'a:b հարաբերությունը կարելի է պարզեցնել՝ բաժանելով a և b թվերը նրանց ՄԱՏ-ով։',
-    examples: ['12:18 = 2:3', '6:8 = 3:4'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Պարզեցրեք հարաբերությունը 12:18։ (օր. 2:3)', answer: '2:3' },
-      { id: 'q2', type: 'input', question: 'Պարզեցրեք հարաբերությունը 6:8։', answer: '3:4' },
-      { id: 'q3', type: 'input', question: 'Եթե a:b = 2:5 և a = 6, ապա b = ?', answer: '15' },
-      { id: 'q4', type: 'input', question: 'Լուծեք համեմատությունը՝ 2:3 = x:12. x = ?', answer: '8' },
-      { id: 'q5', type: 'input', question: 'Պարզեցրեք հարաբերությունը 9:15։', answer: '3:5' }
-    ]
-  },
-  {
-    id: 'sequences',
-    title: 'Թվային հաջորդականություններ',
-    description: 'Արիթմետիկ և երկրաչափական շարքեր (պարզ օրինակներով)։',
-    text: 'Արիթմետիկ հաջորդականությունում յուրաքանչյուր քայլում ավելացվում է նույն թիվը (դիֆերենցա)։',
-    examples: ['2, 5, 8, 11, ... (d = 3)', '2, 4, 8, 16, ... (×2)'],
-    questions: [
-      { id: 'q1', type: 'input', question: '2, 5, 8, 11, ... հաջորդականության 5-րդ անդամը։', answer: '14' },
-      { id: 'q2', type: 'input', question: '3, 6, 9, 12, ... հաջորդականության 6-րդ անդամը։', answer: '18' },
-      { id: 'q3', type: 'input', question: '2, 4, 8, 16, ... հաջորդականության 6-րդ անդամը։', answer: '64' },
-      { id: 'q4', type: 'input', question: '10, 7, 4, 1, ... հաջորդականության 5-րդ անդամը։', answer: '-2' },
-      { id: 'q5', type: 'input', question: '1, 3, 5, 7, ... հաջորդականության 10-րդ անդամը։', answer: '19' }
-    ]
-  },
-  {
-    id: 'coordinates',
-    title: 'Կոորդինատային հարթություն',
-    description: 'Կետերի (x, y) գրառում և կոորդինատների ընթերցում։',
-    text: 'Կետը գրվում է (x, y) տեսքով, որտեղ x-ը՝ հորիզոնական, y-ը՝ ուղղահայաց կոորդինատն է։',
-    examples: ['(3, -2)', '(0, 5)', '(-1, 4)'],
-    questions: [
-      { id: 'q1', type: 'input', question: '(3, -2) կետի x կոորդինատը։', answer: '3' },
-      { id: 'q2', type: 'input', question: '(3, -2) կետի y կոորդինատը։', answer: '-2' },
-      { id: 'q3', type: 'input', question: '(0, 5) կետի x կոորդինատը։', answer: '0' },
-      { id: 'q4', type: 'input', question: '(-1, 4) կետի y կոորդինատը։', answer: '4' },
-      { id: 'q5', type: 'input', question: 'Եթե կետը (x, y) = (2, 7), ապա x = ?', answer: '2' }
-    ]
-  },
- {
-    id: 'number-line',
-    title: 'Թվային ուղիղ',
-    description: 'Թվերի տեղադրումը ուղիղի վրա և համեմատությունը։',
-    text: `Թվային ուղիղը օգնում է տեսնել թվերի կարգը և հեռավորությունը։
-Ուղիղի վրա 0-ը կենտրոնում է, աջ կողմում՝ դրական թվեր, ձախ կողմում՝ բացասական թվեր։
-
-Հիշիր՝
-• Ավելի աջ գտնվող թիվը ավելի մեծ է։
-• Երկու թվերի միջև հեռավորությունը կոչվում է տարբերություն (հեռավորություն)։
-• 0-ից աջ՝ +, 0-ից ձախ՝ −։`,
-    examples: ['-3 < 0 < 5', 'Ավելի աջ = ավելի մեծ', 'Հեռավորություն(-2, 4) = 6'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Ո՞ր թիվն է մեծ՝ -2 թե 3։', answer: '3' },
-      { id: 'q2', type: 'input', question: 'Ո՞ր թիվն է փոքր՝ -7 թե -4։', answer: '-7' },
-      { id: 'q3', type: 'input', question: 'Գրեք մի թիվ, որը գտնվում է -1-ի և 1-ի միջև։', answer: '0' },
-      { id: 'q4', type: 'input', question: 'Ո՞ր թիվն է ավելի աջ՝ -5 թե -2։ (գրեք թիվը)', answer: '-2' },
-      { id: 'q5', type: 'input', question: 'Ո՞ր թիվն է մեծ՝ 0 թե -1։', answer: '0' }
-    ]
-  },
-  {
-    id: 'absolute-value',
-    title: 'Բացարձակ արժեք',
-    description: '|a| — թվի հեռավորությունը 0-ից։',
-    text: `Բացարձակ արժեքը (|a|) ցույց է տալիս՝ որքան հեռու է թիվը 0-ից։
-Այն միշտ ոչ բացասական է։
-
-Կանոններ՝
-• |5| = 5
-• |-5| = 5
-• |0| = 0
-
-Օգտակար է հեռավորության և «քանի միավոր» տեսակի խնդիրներում։`,
-    examples: ['| -8 | = 8', '| 3 | = 3', '| -2 | + | 1 | = 3'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Գտեք |-9|։', answer: '9' },
-      { id: 'q2', type: 'input', question: 'Գտեք |7|։', answer: '7' },
-      { id: 'q3', type: 'input', question: 'Գտեք |0|։', answer: '0' },
-      { id: 'q4', type: 'input', question: 'Ո՞րն է ճիշտ՝ |-4| = ? (գրեք թիվը)', answer: '4' },
-      { id: 'q5', type: 'input', question: 'Գտեք |-3| + |2|։', answer: '5' }
-    ]
-  },
-  {
-    id: 'order-of-operations',
-    title: 'Գործողությունների հերթականություն',
-    description: 'Փակագծեր, աստիճան, բազմապատկում/բաժանում, գումարում/հանում։',
-    text: `Երբ մի արտահայտության մեջ կան մի քանի գործողություններ, պետք է պահել հերթականությունը։
-
-Հերթականություն՝
-1) Փակագծեր
-2) Աստիճան (եթե կա)
-3) Բազմապատկում և բաժանում (ձախից աջ)
-4) Գումարում և հանում (ձախից աջ)
-
-Սա օգնում է միշտ նույն պատասխանին հասնել։`,
-    examples: ['2 + 3 × 4 = 14', '(2 + 3) × 4 = 20', '18 ÷ 3 × 2 = 12'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Հաշվեք՝ 2 + 3 × 4։', answer: '14' },
-      { id: 'q2', type: 'input', question: 'Հաշվեք՝ (2 + 3) × 4։', answer: '20' },
-      { id: 'q3', type: 'input', question: 'Հաշվեք՝ 18 ÷ 3 × 2։', answer: '12' },
-      { id: 'q4', type: 'input', question: 'Հաշվեք՝ 10 − 6 ÷ 2։', answer: '7' },
-      { id: 'q5', type: 'input', question: 'Հաշվեք՝ (8 − 3) + 2 × 5։', answer: '15' }
-    ]
-  },
-  {
-    id: 'factors-multiples',
-    title: 'Բաժանարարներ և բազմապատիկներ',
-    description: 'Բաժանարար՝ բաժանում է առանց մնացորդի։ Բազմապատիկ՝ a×k։',
-    text: `Եթե թիվը բաժանում ենք մեկ այլ թվի և մնացորդ չկա, ապա բաժանարարը ճիշտ է։
-
-Օրինակ՝ 12-ը բաժանվում է 3-ի (12÷3=4), ուրեմն 3-ը 12-ի բաժանարար է։
-Բազմապատիկ՝ 5-ի բազմապատիկներ են 5, 10, 15, 20... (5×1, 5×2...)։
-
-Սա կարևոր է կոտորակների, ՄԱՏ/ՓԱՏ-ի և խնդիրների լուծման համար։`,
-    examples: ['12-ի բաժանարար՝ 1,2,3,4,6,12', '5-ի բազմապատիկ՝ 5,10,15...', '15 բաժանվում է 3-ի և 5-ի'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Գրեք 12-ի մեկ բաժանարար։', answer: '3' },
-      { id: 'q2', type: 'input', question: 'Գրեք 7-ի մեկ բազմապատիկ։', answer: '14' },
-      { id: 'q3', type: 'input', question: 'Արդյո՞ք 18-ը բաժանվում է 6-ի (այո/ոչ)։', answer: 'այո' },
-      { id: 'q4', type: 'input', question: 'Արդյո՞ք 20-ը 3-ի բազմապատիկ է (այո/ոչ)։', answer: 'ոչ' },
-      { id: 'q5', type: 'input', question: 'Գրեք 4-ի 5-րդ բազմապատիկը։', answer: '20' }
-    ]
-  },
-  {
-    id: 'remainders',
-    title: 'Բաժանում մնացորդով',
-    description: 'a = b×q + r, որտեղ 0 ≤ r < b։',
-    text: `Երբ թիվը բաժանվում է և ամբողջ չի ստացվում, մենք ունենում ենք մնացորդ։
-
-Բանաձև՝ a = b×q + r
-որտեղ՝
-• a — բաժանելի
-• b — բաժանարար
-• q — քանորդ
-• r — մնացորդ (0 ≤ r < b)
-
-Օրինակ՝ 17 ÷ 5 = 3 մն. 2, քանի որ 17 = 5×3 + 2։`,
-    examples: ['17 ÷ 5 = 3 մն. 2', '29 ÷ 4 = 7 մն. 1', '10 ÷ 3 = 3 մն. 1'],
-    questions: [
-      { id: 'q1', type: 'input', question: '17 ÷ 5-ի մնացորդը։', answer: '2' },
-      { id: 'q2', type: 'input', question: '29 ÷ 4-ի քանորդը (միայն q)։', answer: '7' },
-      { id: 'q3', type: 'input', question: '10 ÷ 3-ի մնացորդը։', answer: '1' },
-      { id: 'q4', type: 'input', question: '23 = 6×3 + r. r = ? ', answer: '5' },
-      { id: 'q5', type: 'input', question: '19 ÷ 2-ի մնացորդը։', answer: '1' }
-    ]
-  },
-  {
-    id: 'fraction-add-sub',
-    title: 'Կոտորակների գումարում և հանում',
-    description: 'Նույն կամ տարբեր հայտարարներով կոտորակների գործողություններ։',
-    text: `Եթե կոտորակների հայտարարները նույնն են, ապա ավելացնում/հանում ենք միայն համարիչները։
-Օր՝ 3/7 + 2/7 = 5/7։
-
-Եթե հայտարարները տարբեր են, պետք է բերել ընդհանուր հայտարարի։
-Օր՝ 1/2 + 1/4 = 2/4 + 1/4 = 3/4։`,
-    examples: ['2/5 + 1/5 = 3/5', '3/4 − 1/4 = 2/4 = 1/2', '1/2 + 1/3 = 5/6'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Հաշվեք՝ 2/5 + 1/5։', answer: '3/5' },
-      { id: 'q2', type: 'input', question: 'Հաշվեք՝ 3/4 − 1/4։', answer: '1/2' },
-      { id: 'q3', type: 'input', question: 'Հաշվեք՝ 1/2 + 1/4։', answer: '3/4' },
-      { id: 'q4', type: 'input', question: 'Հաշվեք՝ 1/3 + 1/6։', answer: '1/2' },
-      { id: 'q5', type: 'input', question: 'Հաշվեք՝ 5/6 − 1/3։', answer: '1/2' }
-    ]
-  },
-  {
-    id: 'fraction-mul-div',
-    title: 'Կոտորակների բազմապատկում և բաժանում',
-    description: 'Բազմապատկում՝ a/b×c/d, բաժանում՝ բազմապատկել շրջվածով։',
-    text: `Կոտորակների բազմապատկում՝ (a/b)×(c/d) = (a×c)/(b×d)։
-Կոտորակների բաժանում՝ (a/b)÷(c/d) = (a/b)×(d/c)։
-
-Հաճախ հետո կրճատում ենք, որպեսզի պարզ ստանանք։`,
-    examples: ['2/3 × 3/5 = 2/5', '1/2 ÷ 1/4 = 2', '3/4 × 2 = 3/2'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Հաշվեք՝ 2/3 × 3/5։', answer: '2/5' },
-      { id: 'q2', type: 'input', question: 'Հաշվեք՝ 1/2 ÷ 1/4։', answer: '2' },
-      { id: 'q3', type: 'input', question: 'Հաշվեք՝ 3/4 × 2 (գրեք կոտորակով)։', answer: '3/2' },
-      { id: 'q4', type: 'input', question: 'Հաշվեք՝ 5/6 ÷ 5/12։', answer: '2' },
-      { id: 'q5', type: 'input', question: 'Հաշվեք՝ 2/5 × 10 (գրեք թիվը)։', answer: '4' }
-    ]
-  },
-  {
-    id: 'decimal-to-fraction',
-    title: 'Տասնորդականից կոտորակ',
-    description: '0.25 = 25/100 = 1/4։',
-    text: `Տասնորդականը կարող ենք գրել սովորական կոտորակով։
-Օր՝ 0.7 = 7/10, 0.05 = 5/100։
-
-Քայլեր՝
-1) Գրիր թիվը որպես ամբողջ թվի հարաբերություն 10-ի աստիճանին։
-2) Կրճատիր, եթե հնարավոր է։`,
-    examples: ['0.6 = 6/10 = 3/5', '0.125 = 125/1000 = 1/8', '2.5 = 5/2'],
-    questions: [
-      { id: 'q1', type: 'input', question: '0.6-ը գրեք կոտորակով (կրճատված)։', answer: '3/5' },
-      { id: 'q2', type: 'input', question: '0.25-ը գրեք կոտորակով։', answer: '1/4' },
-      { id: 'q3', type: 'input', question: '0.05-ը գրեք կոտորակով (կրճատված)։', answer: '1/20' },
-      { id: 'q4', type: 'input', question: '1.2-ը գրեք կոտորակով (կրճատված)։', answer: '6/5' },
-      { id: 'q5', type: 'input', question: '0.125-ը գրեք կոտորակով։', answer: '1/8' }
-    ]
-  },
-  {
-    id: 'fraction-to-decimal',
-    title: 'Կոտորակից տասնորդական',
-    description: 'Կոտորակը բաժանում ենք՝ համարիչը/հայտարարը։',
-    text: `Կոտորակը տասնորդական դարձնելու համար պարզապես բաժանում ենք համարիչը հայտարարին։
-Օր՝ 3/4 = 3÷4 = 0.75։
-
-Որոշ կոտորակներ տալիս են վերջավոր տասնորդական (հայտարար 2-ի և 5-ի աստիճաններից),
-իսկ որոշները՝ անվերջ կրկնվող։`,
-    examples: ['1/2 = 0.5', '3/4 = 0.75', '1/8 = 0.125'],
-    questions: [
-      { id: 'q1', type: 'input', question: '1/2-ը գրեք տասնորդականով։', answer: '0.5' },
-      { id: 'q2', type: 'input', question: '3/4-ը գրեք տասնորդականով։', answer: '0.75' },
-      { id: 'q3', type: 'input', question: '1/8-ը գրեք տասնորդականով։', answer: '0.125' },
-      { id: 'q4', type: 'input', question: '5/10-ը գրեք տասնորդականով։', answer: '0.5' },
-      { id: 'q5', type: 'input', question: '2/5-ը գրեք տասնորդականով։', answer: '0.4' }
-    ]
-  },
-  {
-    id: 'percent-change',
-    title: 'Տոկոսի փոփոխություն',
-    description: 'Աճ/նվազում տոկոսով։',
-    text: `Տոկոսով փոփոխությունը ցույց է տալիս, թե որքանով է փոխվել արժեքը։
-
-Բանաձև՝
-Տոկոս փոփոխություն = (նոր − հին) / հին × 100%
-
-Օր՝ 50-ից դարձավ 60 → (60−50)/50×100%=20% աճ։`,
-    examples: ['50→60 = +20%', '80→60 = -25%', '100→110 = +10%'],
-    questions: [
-      { id: 'q1', type: 'input', question: '50-ից դարձավ 60. Փոփոխությունը (%)։', answer: '20' },
-      { id: 'q2', type: 'input', question: '80-ից դարձավ 60. Նվազումը (%)։', answer: '25' },
-      { id: 'q3', type: 'input', question: '100-ից դարձավ 110. Աճը (%)։', answer: '10' },
-      { id: 'q4', type: 'input', question: '200-ից դարձավ 150. Նվազումը (%)։', answer: '25' },
-      { id: 'q5', type: 'input', question: '40-ից դարձավ 50. Աճը (%)։', answer: '25' }
-    ]
-  },
-  {
-    id: 'ratio-proportion',
-    title: 'Համեմատություն և համամասնություն',
-    description: 'a/b = c/d տեսքով հավասարություն։',
-    text: `Համամասնությունը երկու հարաբերությունների հավասարությունն է՝ a:b = c:d կամ a/b = c/d։
-
-Խաչաձև բազմապատկում՝ a×d = b×c։
-
-Օր՝ 2/3 = x/12 → 2×12 = 3×x → x = 8։`,
-    examples: ['2/3 = x/12 → x=8', '5/10 = 1/2', '3/4 = 6/8'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Լուծեք՝ 2/3 = x/12. x = ?', answer: '8' },
-      { id: 'q2', type: 'input', question: 'Լուծեք՝ 1/5 = x/20. x = ?', answer: '4' },
-      { id: 'q3', type: 'input', question: 'Լուծեք՝ 3/4 = x/16. x = ?', answer: '12' },
-      { id: 'q4', type: 'input', question: 'Լուծեք՝ 7/10 = x/100. x = ?', answer: '70' },
-      { id: 'q5', type: 'input', question: 'Լուծեք՝ 5/8 = x/40. x = ?', answer: '25' }
-    ]
-  },
-  {
-    id: 'units-conversion',
-    title: 'Միավորների փոխարկում',
-    description: 'սմ↔մ, գ↔կգ, րոպե↔ժամ։',
-    text: `Միավորների փոխարկման համար պետք է հիշել հիմնական հարաբերությունները՝
-• 1 մ = 100 սմ
-• 1 կգ = 1000 գ
-• 1 ժամ = 60 րոպե
-
-Փոխարկելիս կամ բազմապատկում ենք, կամ բաժանում՝ ըստ ուղղության։`,
-    examples: ['2 մ = 200 սմ', '1500 գ = 1.5 կգ', '120 րոպե = 2 ժամ'],
-    questions: [
-      { id: 'q1', type: 'input', question: '3 մ = քանի՞ սմ։', answer: '300' },
-      { id: 'q2', type: 'input', question: '250 սմ = քանի՞ մ։', answer: '2.5' },
-      { id: 'q3', type: 'input', question: '2000 գ = քանի՞ կգ։', answer: '2' },
-      { id: 'q4', type: 'input', question: '1.5 կգ = քանի՞ գ։', answer: '1500' },
-      { id: 'q5', type: 'input', question: '90 րոպե = քանի՞ ժամ։', answer: '1.5' }
-    ]
-  },
-  {
-    id: 'time-problems',
-    title: 'Ժամանակի խնդիրներ',
-    description: 'Ժամ/րոպե հաշվարկներ։',
-    text: `Ժամանակի խնդիրներում կարևոր է նույն միավորներով աշխատել։
-1 ժամ = 60 րոպե։
-
-Օրինակ՝ եթե ֆիլմը տևում է 1 ժամ 40 րոպե, ապա 100 րոպե է։`,
-    examples: ['1ժ 30ր = 90ր', '2ժ 15ր = 135ր', '75ր = 1.25ժ'],
-    questions: [
-      { id: 'q1', type: 'input', question: '1 ժամ 20 րոպե = քանի՞ րոպե։', answer: '80' },
-      { id: 'q2', type: 'input', question: '2 ժամ 10 րոպե = քանի՞ րոպե։', answer: '130' },
-      { id: 'q3', type: 'input', question: '150 րոպե = քանի՞ ժամ։', answer: '2.5' },
-      { id: 'q4', type: 'input', question: '45 րոպե = քանի՞ ժամ։', answer: '0.75' },
-      { id: 'q5', type: 'input', question: '3 ժամ = քանի՞ րոպե։', answer: '180' }
-    ]
-  },
-  {
-    id: 'money',
-    title: 'Գումարի խնդիրներ',
-    description: 'Գին, քանակ, ընդհանուր գումար։',
-    text: `Գումարի խնդիրներում հաճախ օգտագործվում է բանաձևը՝
-ընդհանուր = գին × քանակ։
-
-Եթե կա զեղչ, սկզբում գտնում ենք զեղչի չափը, հետո հանում ընդհանուրից։`,
-    examples: ['5×200 = 1000', '3 հատ × 150 դրամ', '10% զեղչ = ×0.9'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Եթե մեկ տոմսը 300 է, 4 տոմսը որքան է։', answer: '1200' },
-      { id: 'q2', type: 'input', question: 'Եթե մեկ մատիտը 50 է, 10 մատիտը որքան է։', answer: '500' },
-      { id: 'q3', type: 'input', question: '1000 դրամից 10% զեղչից հետո որքան կմնա։', answer: '900' },
-      { id: 'q4', type: 'input', question: 'Եթե ապրանքը 800 է, 2 հատը որքան է։', answer: '1600' },
-      { id: 'q5', type: 'input', question: 'Եթե 600-ի վրա ավելացնենք 200, կստացվի։', answer: '800' }
-    ]
-  },
-  {
-    id: 'angles',
-    title: 'Անկյուններ',
-    description: 'Սուր, ուղիղ, բութ անկյուններ։',
-    text: `Անկյունը չափվում է աստիճաններով (°)։
-Տեսակներ՝
-• Սուր՝ < 90°
-• Ուղիղ՝ = 90°
-• Բութ՝ > 90° և < 180°
-• Փռված՝ = 180°
-
-Եռանկյան անկյունների գումարը միշտ 180° է։`,
-    examples: ['45°՝ սուր', '90°՝ ուղիղ', '120°՝ բութ'],
-    questions: [
-      { id: 'q1', type: 'input', question: '90° անկյունը ի՞նչ տեսակ է։', answer: 'ուղիղ' },
-      { id: 'q2', type: 'input', question: '45° անկյունը ի՞նչ տեսակ է։', answer: 'սուր' },
-      { id: 'q3', type: 'input', question: '120° անկյունը ի՞նչ տեսակ է։', answer: 'բութ' },
-      { id: 'q4', type: 'input', question: 'Եռանկյան անկյունների գումարը։', answer: '180' },
-      { id: 'q5', type: 'input', question: '180° անկյունը ինչպե՞ս է կոչվում (գրեք մեկ բառ)։', answer: 'փռված' }
-    ]
-  },
-  {
-    id: 'triangle-area',
-    title: 'Եռանկյան մակերես',
-    description: 'S = (a × h) / 2։',
-    text: `Եռանկյան մակերեսը հաշվում ենք՝
-S = (հիմք × բարձրություն) / 2
-
-Օր՝ հիմքը 10 է, բարձրությունը 6 է → S = (10×6)/2 = 30։`,
-    examples: ['a=10, h=6 → S=30', 'a=8, h=5 → S=20', 'a=12, h=3 → S=18'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'a=10, h=6. Գտեք S։', answer: '30' },
-      { id: 'q2', type: 'input', question: 'a=8, h=5. Գտեք S։', answer: '20' },
-      { id: 'q3', type: 'input', question: 'a=12, h=3. Գտեք S։', answer: '18' },
-      { id: 'q4', type: 'input', question: 'a=6, h=4. Գտեք S։', answer: '12' },
-      { id: 'q5', type: 'input', question: 'Եթե S=15 և a=5, ապա h = ? ', answer: '6' }
-    ]
-  },
-  {
-    id: 'circle',
-    title: 'Շրջան (պարագիծ և մակերես)',
-    description: 'C = 2πr, S = πr² (π≈3.14)։',
-    text: `Շրջանի հիմնական բանաձևերը՝
-• Պարագիծ՝ C = 2πr
-• Մակերես՝ S = πr²
-որտեղ r-ը շառավիղն է, π≈3.14։
-
-Այս թեման օգնում է շրջանաձև առարկաների չափումների մեջ։`,
-    examples: ['r=1 → C≈6.28', 'r=2 → S≈12.56', 'r=3 → C≈18.84'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Եթե r=1, C≈ ? (π=3.14)', answer: '6.28' },
-      { id: 'q2', type: 'input', question: 'Եթե r=2, S≈ ? (π=3.14)', answer: '12.56' },
-      { id: 'q3', type: 'input', question: 'Եթե r=3, C≈ ? (π=3.14)', answer: '18.84' },
-      { id: 'q4', type: 'input', question: 'Եթե r=4, S≈ ? (π=3.14)', answer: '50.24' },
-      { id: 'q5', type: 'input', question: 'Բանաձև գրեք շրջանի պարագծի համար (օր. 2πr)։', answer: '2πr' }
-    ]
-  },
-  {
-    id: 'volume-rect',
-    title: 'Ուղղանկյուն պրիզմայի ծավալ',
-    description: 'V = a × b × h։',
-    text: `Ծավալը ցույց է տալիս՝ որքան տարածք է զբաղեցնում մարմինը։
-
-Ուղղանկյուն պրիզմայի ծավալը՝
-V = a × b × h
-որտեղ a, b՝ հիմքի կողմերն են, h՝ բարձրությունը։`,
-    examples: ['2×3×4 = 24', '5×2×1 = 10', '10×1×2 = 20'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'a=2, b=3, h=4. V = ?', answer: '24' },
-      { id: 'q2', type: 'input', question: 'a=5, b=2, h=1. V = ?', answer: '10' },
-      { id: 'q3', type: 'input', question: 'a=10, b=1, h=2. V = ?', answer: '20' },
-      { id: 'q4', type: 'input', question: 'a=3, b=3, h=3. V = ?', answer: '27' },
-      { id: 'q5', type: 'input', question: 'Եթե V=30, a=5, b=2, ապա h = ?', answer: '3' }
-    ]
-  },
-  {
-    id: 'speed-distance-time',
-    title: 'Արագություն, ճանապարհ, ժամանակ',
-    description: 's = v×t, v = s/t, t = s/v։',
-    text: `Արագության խնդիրներում օգտագործվում են 3 բանաձևեր՝
-• ճանապարհ՝ s = v × t
-• արագություն՝ v = s / t
-• ժամանակ՝ t = s / v
-
-Կարևոր է, որ միավորները համապատասխան լինեն (կմ/ժ, ժամ)։`,
-    examples: ['60կմ/ժ × 2ժ = 120կմ', '100կմ ÷ 4ժ = 25կմ/ժ', '90կմ ÷ 30կմ/ժ = 3ժ'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'v=60, t=2. s = ?', answer: '120' },
-      { id: 'q2', type: 'input', question: 's=100, t=4. v = ?', answer: '25' },
-      { id: 'q3', type: 'input', question: 's=90, v=30. t = ?', answer: '3' },
-      { id: 'q4', type: 'input', question: 'v=50, t=3. s = ?', answer: '150' },
-      { id: 'q5', type: 'input', question: 's=200, v=40. t = ?', answer: '5' }
-    ]
-  },
-  {
-    id: 'median-mode',
-    title: 'Մեդիան և մոդա',
-    description: 'Մեդիան՝ միջին անդամ, մոդան՝ ամենահաճախ կրկնվողը։',
-    text: `Տվյալների վերլուծության մեջ կան կարևոր չափումներ։
-
-• Մոդա — այն արժեքը, որը ամենաշատն է կրկնվում։
-• Մեդիան — դասավորված շարքում միջին արժեքը։
-Եթե անդամների քանակը զույգ է՝ մեդիան երկու միջինների միջինն է։`,
-    examples: ['1,2,2,3 → մոդա=2', '1,3,5 → մեդիան=3', '1,2,3,4 → մեդիան=2.5'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Գտեք մոդան՝ 1,2,2,3։', answer: '2' },
-      { id: 'q2', type: 'input', question: 'Գտեք մեդիան՝ 1,3,5։', answer: '3' },
-      { id: 'q3', type: 'input', question: 'Գտեք մեդիան՝ 1,2,3,4։', answer: '2.5' },
-      { id: 'q4', type: 'input', question: 'Գտեք մոդան՝ 5,5,5,2։', answer: '5' },
-      { id: 'q5', type: 'input', question: 'Գտեք մեդիան՝ 2,10,6 (նախ դասավորել)։', answer: '6' }
-    ]
-  },
-  {
-    id: 'probability-basic',
-    title: 'Հավանականություն (պարզ)',
-    description: 'P = նպաստավոր / ընդհանուր։',
-    text: `Հավանականությունը ցույց է տալիս, թե ինչքան հնարավոր է, որ իրադարձությունը տեղի ունենա։
-
-Բանաձև՝ P = (նպաստավոր ելքեր) / (ընդհանուր ելքեր)
-
-Օր՝ մետաղադրամ՝ 2 ելք, «գլուխ»՝ 1 ⇒ P=1/2։`,
-    examples: ['Մետաղադրամ՝ P(գլուխ)=1/2', 'Զառ՝ P(6)=1/6', 'Զառ՝ P(զույգ)=3/6=1/2'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Մետաղադրամ՝ P(գլուխ)=? (օր. 1/2)', answer: '1/2' },
-      { id: 'q2', type: 'input', question: 'Զառ՝ P(6)=? (օր. 1/6)', answer: '1/6' },
-      { id: 'q3', type: 'input', question: 'Զառ՝ P(զույգ թիվ)=? (օր. 1/2)', answer: '1/2' },
-      { id: 'q4', type: 'input', question: 'Զառ՝ P(թիվ>4)=? (օր. 1/3)', answer: '1/3' },
-      { id: 'q5', type: 'input', question: 'Զառ՝ P(թիվ<3)=? (օր. 1/3)', answer: '1/3' }
-    ]
-  },
-  {
-    id: 'linear-expression',
-    title: 'Արտահայտություններ և պարզեցում',
-    description: 'Միավորել նման անդամները։',
-    text: `Արտահայտությունում կարող են լինել նման անդամներ, օրինակ՝ 2x և 3x։
-Նման անդամները միավորում ենք՝ գումարելով գործակիցները։
-
-Օր՝ 2x + 3x = 5x
-Օր՝ 5a − 2a + a = 4a
-
-Սա օգտակար է հավասարումների լուծման մեջ։`,
-    examples: ['2x+3x=5x', '7y−y=6y', '4a+2b−a=3a+2b'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Պարզեցրեք՝ 2x + 3x։', answer: '5x' },
-      { id: 'q2', type: 'input', question: 'Պարզեցրեք՝ 7y − y։', answer: '6y' },
-      { id: 'q3', type: 'input', question: 'Պարզեցրեք՝ 5a − 2a + a։', answer: '4a' },
-      { id: 'q4', type: 'input', question: 'Պարզեցրեք՝ 3x + 2 + x։', answer: '4x+2' },
-      { id: 'q5', type: 'input', question: 'Պարզեցրեք՝ 10m − 3m − m։', answer: '6m' }
-    ]
-  },
-  {
-    id: 'solve-for-x-two-step',
-    title: 'Երկքայլ հավասարումներ',
-    description: 'x-ի մեկուսացում՝ +/− հետո ×/÷։',
-    text: `Երկքայլ հավասարումներում հաճախ անում ենք 2 քայլ՝
-1) Հանում/գումարում ենք, որ x-ով անդամը մնա
-2) Բաժանում/բազմապատկում ենք, որ x-ը միայնակ լինի
-
-Օր՝ 2x + 3 = 11 → 2x = 8 → x = 4։`,
-    examples: ['2x+3=11 → x=4', '3x−6=9 → x=5', '5x+10=0 → x=-2'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Լուծեք՝ 2x + 3 = 11։ x = ?', answer: '4' },
-      { id: 'q2', type: 'input', question: 'Լուծեք՝ 3x − 6 = 9։ x = ?', answer: '5' },
-      { id: 'q3', type: 'input', question: 'Լուծեք՝ 5x + 10 = 0։ x = ?', answer: '-2' },
-      { id: 'q4', type: 'input', question: 'Լուծեք՝ 4x − 8 = 0։ x = ?', answer: '2' },
-      { id: 'q5', type: 'input', question: 'Լուծեք՝ 6x + 12 = 30։ x = ?', answer: '3' }
-    ]
-  },
-  {
-    id: 'powers-rules',
-    title: 'Աստիճանի կանոններ',
-    description: 'a^m×a^n = a^(m+n), (a^m)^n = a^(mn)։',
-    text: `Աստիճանների կանոնները օգնում են արագ հաշվարկել։
-
-Կանոններ՝
-• a^m × a^n = a^(m+n)
-• a^m ÷ a^n = a^(m−n) (a≠0)
-• (a^m)^n = a^(m×n)
-
-Օր՝ 2^3×2^2 = 2^5 = 32։`,
-    examples: ['2^3×2^2=2^5', '10^6÷10^2=10^4', '(3^2)^3=3^6'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Պարզեցրեք՝ 2^3 × 2^2 (գրեք 2^?)', answer: '2^5' },
-      { id: 'q2', type: 'input', question: 'Պարզեցրեք՝ 10^6 ÷ 10^2 (գրեք 10^?)', answer: '10^4' },
-      { id: 'q3', type: 'input', question: 'Պարզեցրեք՝ (3^2)^3 (գրեք 3^?)', answer: '3^6' },
-      { id: 'q4', type: 'input', question: 'Պարզեցրեք՝ 5^7 ÷ 5^3 (գրեք 5^?)', answer: '5^4' },
-      { id: 'q5', type: 'input', question: 'Պարզեցրեք՝ 4^1 × 4^2 (գրեք 4^?)', answer: '4^3' }
-    ]
-  },
-    {
-    id: 'logic-propositions',
-    title: 'Ասույթ և ճշմարտային արժեք',
-    description: 'Ասույթը ունի միայն Ճիշտ կամ Սխալ արժեք։',
-    text: `Ասույթ (proposition) կոչվում է այն նախադասությունը, որի համար կարելի է միանշանակ ասել՝ ճիշտ է, թե սխալ։
-Օրինակ՝ «2-ը զույգ է»՝ ճիշտ ասույթ է։
-Բայց «Գեղեցիկ է»՝ ասույթ չէ, քանի որ գնահատական է ու միանշանակ ճշմարտային արժեք չունի։
-
-Ծրագրավորման մեջ ասույթները նույնն են, ինչ Boolean արտահայտությունները՝ true/false։`,
-    examples: ['«3+4=7» — ասույթ (ճիշտ)', '«x > 5» — ասույթ չէ առանց x-ի արժեքի', 'Boolean: (a > b) → true/false'],
-    questions: [
-      { id: 'q1', type: 'input', question: '«5-ը պարզ թիվ է» — ասույթ է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q2', type: 'input', question: '«Գիրքը հետաքրքիր է» — ասույթ է՞ (այո/ոչ)', answer: 'ոչ' },
-      { id: 'q3', type: 'input', question: '«2+2=5» ճշմարտային արժեքը (ճիշտ/սխալ)', answer: 'սխալ' },
-      { id: 'q4', type: 'input', question: '«7-ը զույգ է» ճշմարտային արժեքը (ճիշտ/սխալ)', answer: 'սխալ' },
-      { id: 'q5', type: 'input', question: '«10-ը բաժանվում է 5-ի» (ճիշտ/սխալ)', answer: 'ճիշտ' }
-    ]
-  },
-
-  {
-    id: 'logic-connectives',
-    title: 'Տրամաբանական կապեր',
-    description: '¬, ∧, ∨, →, ↔ կապերի իմաստը։',
-    text: `Հիմնական կապեր՝
-• ¬p — ժխտում (NOT)
-• p ∧ q — և (AND)
-• p ∨ q — կամ (OR, ներառական)
-• p → q — հետևում (IMPLICATION)
-• p ↔ q — համարժեքություն (EQUIVALENCE)
-
-Ծրագրավորման մեջ հաճախ օգտագործվում են !, &&, ||, => (իմաստով), == (որոշ դեպքերում)։`,
-    examples: ['!p', 'p&q', 'p|q', 'p->q, p<->q'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'p-ի ժխտումը գրեք սիմվոլով (!p կամ ¬p)', answer: '!p' },
-      { id: 'q2', type: 'input', question: 'AND-ի կարճ գրությունը (p&q)', answer: 'p&q' },
-      { id: 'q3', type: 'input', question: 'OR-ի կարճ գրությունը (p|q)', answer: 'p|q' },
-      { id: 'q4', type: 'input', question: 'Իմպլիկացիայի կարճ գրությունը (p->q)', answer: 'p->q' },
-      { id: 'q5', type: 'input', question: 'Համարժեքության կարճ գրությունը (p<->q)', answer: 'p<->q' }
-    ]
-  },
-
-  {
-    id: 'truth-tables-basic',
-    title: 'Ճշմարտության աղյուսակ',
-    description: 'Արտահայտության արժեքը՝ բոլոր դեպքերի համար։',
-    text: `Ճշմարտության աղյուսակով հաշվարկում ենք տրամաբանական արտահայտության արժեքը՝
-բոլոր հնարավոր true/false համակցությունների համար։
-
-Օր՝ p∧q true է միայն այն ժամանակ, երբ p=true և q=true։
-p∨q false է միայն այն ժամանակ, երբ երկուսն էլ false են։`,
-    examples: ['p&q true միայն TT', 'p|q false միայն FF', '!p փոխում է արժեքը'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Եթե p=true, ապա !p = ?', answer: 'false' },
-      { id: 'q2', type: 'input', question: 'Եթե p=true, q=false, ապա p&q = ?', answer: 'false' },
-      { id: 'q3', type: 'input', question: 'Եթե p=true, q=false, ապա p|q = ?', answer: 'true' },
-      { id: 'q4', type: 'input', question: 'Եթե p=false, q=false, ապա p|q = ?', answer: 'false' },
-      { id: 'q5', type: 'input', question: 'Եթե p=true, q=true, ապա p&q = ?', answer: 'true' }
-    ]
-  },
-
-  {
-    id: 'implication-equivalence',
-    title: 'Իմպլիկացիա և համարժեքություն',
-    description: 'p→q-ի հատուկ դեպքերը և p↔q-ի իմաստը։',
-    text: `Իմպլիկացիա p→q կեղծ է միայն մեկ դեպքում՝ երբ p=true և q=false։
-Մնացած բոլոր դեպքերում այն ճիշտ է։
-
-Համարժեքություն p↔q ճիշտ է, երբ p և q ունեն նույն արժեքը (TT կամ FF)։`,
-    examples: ['p->q կեղծ միայն (T,F)', 'p<->q ճիշտ երբ նույնն են', 'p->q ≡ !p | q'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'p=true, q=false, p->q = ? (true/false)', answer: 'false' },
-      { id: 'q2', type: 'input', question: 'p=false, q=false, p->q = ? (true/false)', answer: 'true' },
-      { id: 'q3', type: 'input', question: 'p=true, q=true, p<->q = ? (true/false)', answer: 'true' },
-      { id: 'q4', type: 'input', question: 'p=true, q=false, p<->q = ? (true/false)', answer: 'false' },
-      { id: 'q5', type: 'input', question: 'Գրեք համարժեք փոխարինումը՝ p->q ≡ ? (գրեք !p|q)', answer: '!p|q' }
-    ]
-  },
-
-  {
-    id: 'de-morgan',
-    title: 'Դե Մորգանի օրենքներ',
-    description: 'Ժխտումը տարածվում է AND/OR-ի վրա։',
-    text: `Դե Մորգանի օրենքներ՝
-• ¬(p ∧ q) ≡ (¬p ∨ ¬q)
-• ¬(p ∨ q) ≡ (¬p ∧ ¬q)
-
-Սա շատ կարևոր է՝ պայմանների «հակառակ»-ը ճիշտ կազմելու համար ծրագրավորման մեջ։`,
-    examples: ['!(p&q) == (!p|!q)', '!(p|q) == (!p&!q)', 'if(!(A&&B)) նույնն է if(!A || !B)'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Գրեք ¬(p∧q)-ի համարժեքը (օր. !p|!q)', answer: '!p|!q' },
-      { id: 'q2', type: 'input', question: 'Գրեք ¬(p∨q)-ի համարժեքը (օր. !p&!q)', answer: '!p&!q' },
-      { id: 'q3', type: 'input', question: 'Գրեք !(a&&b)-ի համարժեքը (օր. !a||!b)', answer: '!a||!b' },
-      { id: 'q4', type: 'input', question: 'Գրեք !(x||y)-ի համարժեքը (օր. !x&&!y)', answer: '!x&&!y' },
-      { id: 'q5', type: 'input', question: 'Ճիշտ է՞՝ !(p&q) == (!p|!q) (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'tautology-contradiction',
-    title: 'Տաուտոլոգիա և հակասություն',
-    description: 'Միշտ ճիշտ / միշտ սխալ արտահայտություններ։',
-    text: `Տաուտոլոգիա՝ արտահայտություն, որը բոլոր դեպքերում ճիշտ է։
-Հակասություն՝ արտահայտություն, որը բոլոր դեպքերում սխալ է։
-
-Օր՝ p ∨ ¬p — տաուտոլոգիա (միշտ true)
-p ∧ ¬p — հակասություն (միշտ false)։`,
-    examples: ['p|!p = tautology', 'p&!p = contradiction', 'Տաուտոլոգիան՝ «միշտ true»'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'p|!p — (tautology/contradiction)', answer: 'tautology' },
-      { id: 'q2', type: 'input', question: 'p&!p — (tautology/contradiction)', answer: 'contradiction' },
-      { id: 'q3', type: 'input', question: '(!p)->(!p) — (tautology/contradiction)', answer: 'tautology' },
-      { id: 'q4', type: 'input', question: 'p->p — (tautology/contradiction)', answer: 'tautology' },
-      { id: 'q5', type: 'input', question: 'p&!p արժեքը երբևէ true կլինի՞ (այո/ոչ)', answer: 'ոչ' }
-    ]
-  },
-
-  {
-    id: 'logical-equivalences',
-    title: 'Տրամաբանական համարժեքություններ',
-    description: 'Օգտակար փոխակերպումներ՝ պարզեցման համար։',
-    text: `Համարժեքություններ՝
-• p→q ≡ !p ∨ q
-• p↔q ≡ (p→q) ∧ (q→p)
-• p ∨ p ≡ p
-• p ∧ p ≡ p
-• p ∨ (p ∧ q) ≡ p (կլանում)
-• p ∧ (p ∨ q) ≡ p (կլանում)
-
-Սրանք օգնում են օպտիմիզացնել պայմաններ և Boolean արտահայտություններ։`,
-    examples: ['p->q == !p|q', 'absorption: p|(p&q)=p', 'idempotent: p|p=p'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Գրեք p->q-ի համարժեքը (օր. !p|q)', answer: '!p|q' },
-      { id: 'q2', type: 'input', question: 'Պարզեցրեք՝ p|p', answer: 'p' },
-      { id: 'q3', type: 'input', question: 'Պարզեցրեք՝ p&p', answer: 'p' },
-      { id: 'q4', type: 'input', question: 'Պարզեցրեք՝ p|(p&q)', answer: 'p' },
-      { id: 'q5', type: 'input', question: 'Պարզեցրեք՝ p&(p|q)', answer: 'p' }
-    ]
-  },
-
-  {
-    id: 'cnf-dnf',
-    title: 'CNF և DNF ձևեր',
-    description: 'Արտահայտությունների ստանդարտ ներկայացումներ։',
-    text: `DNF (Disjunctive Normal Form)՝ OR-երի գումար, որտեղ ներսում AND-եր են (մինտերմեր)։
-CNF (Conjunctive Normal Form)՝ AND-երի արտադրյալ, որտեղ ներսում OR-եր են (մաքստերմեր)։
-
-SAT խնդիրներում CNF-ը շատ հաճախ օգտագործվում է։`,
-    examples: ['DNF օրինակ: (p&q)|(!p&q)', 'CNF օրինակ: (p|q)&(!p|q)', 'CNF-ը՝ “AND of ORs”'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'DNF-ը ինչի՞ց է կազմված (գրեք ORofAND կամ ANDofOR)', answer: 'ORofAND' },
-      { id: 'q2', type: 'input', question: 'CNF-ը ինչի՞ց է կազմված (գրեք ANDofOR կամ ORofAND)', answer: 'ANDofOR' },
-      { id: 'q3', type: 'input', question: '(p&q)|(!p&q) սա DNF է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: '(p|q)&(!p|q) սա CNF է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'CNF-ի հարմար կիրառություն՝ SAT (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'satisfiable-unsat',
-    title: 'Բավարարելիություն (SAT) և UN-SAT',
-    description: 'Կա՞ արժեքավորում, որ արտահայտությունը true լինի։',
-    text: `Արտահայտությունը բավարարելի է (satisfiable), եթե գոյություն ունի արժեքավորում, որի դեպքում այն true է։
-UNSAT է, եթե բոլոր արժեքավորումներով false է։
-
-Օր՝ p & !p — UNSAT
-p | !p — satisfiable (և անգամ tautology)։`,
-    examples: ['p&!p → UNSAT', 'p|!p → SAT', '(p&q) satisfiable՝ p=true,q=true'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'p&!p — SAT/UNSAT', answer: 'unsat' },
-      { id: 'q2', type: 'input', question: 'p|!p — SAT/UNSAT', answer: 'sat' },
-      { id: 'q3', type: 'input', question: '(p&q)&(!p|q) — SAT/UNSAT', answer: 'sat' },
-      { id: 'q4', type: 'input', question: '(p)&(!p)&q — SAT/UNSAT', answer: 'unsat' },
-      { id: 'q5', type: 'input', question: 'SAT նշանակում է «կա արժեքավորում» (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'inference-rules',
-    title: 'Եզրակացության կանոններ',
-    description: 'Modus Ponens, Modus Tollens, Hypothetical Syllogism։',
-    text: `Հիմնական կանոններ՝
-• Modus Ponens: p, (p→q) ⟹ q
-• Modus Tollens: (p→q), ¬q ⟹ ¬p
-• Hypothetical Syllogism: (p→q), (q→r) ⟹ (p→r)
-
-Սրանք կիրառվում են ապացույցներում և նաև ծրագրային «եթե… ապա…» տրամաբանության վերլուծությունում։`,
-    examples: ['p և p->q ⇒ q', 'p->q և !q ⇒ !p', '(p->q)&(q->r) ⇒ (p->r)'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Կանոն՝ p, p->q ⟹ ? (գրեք q)', answer: 'q' },
-      { id: 'q2', type: 'input', question: 'Կանոն՝ p->q, !q ⟹ ? (գրեք !p)', answer: '!p' },
-      { id: 'q3', type: 'input', question: '(p->q),(q->r) ⟹ ? (գրեք p->r)', answer: 'p->r' },
-      { id: 'q4', type: 'input', question: 'Modus Ponens-ը ճիշտ է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'Modus Tollens-ը տալիս է (գրեք !p)', answer: '!p' }
-    ]
-  },
-
-  {
-    id: 'proof-contradiction',
-    title: 'Ապացույց հակասությամբ',
-    description: 'Ենթադրենք հակառակն է և ստանանք հակասություն։',
-    text: `Հակասությամբ ապացույցի մեթոդը՝
-1) Ենթադրում ենք հակառակ պնդումը։
-2) Քայլերով բերում ենք հակասության (օր. A և ¬A)։
-3) Ուրեմն սկզբնական պնդումը ճիշտ է։
-
-Ծրագրավորման մեջ սա օգնում է թեստերով և եզրային դեպքերով սխալ ենթադրությունները բացահայտել։`,
-    examples: ['Ենթադրել ¬P → ստանալ P&¬P → եզրակացնել P', 'UNSAT ստանալը հուշում է սխալ ենթադրություն', 'Debug mindset'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Հակասությամբ ապացույցում վերջում ստացվում է (գրեք p&!p)', answer: 'p&!p' },
-      { id: 'q2', type: 'input', question: 'Հակասությամբ ապացույցը սկսվում է հակառակ ենթադրությամբ (այո/ոչ)', answer: 'այո' },
-      { id: 'q3', type: 'input', question: 'Եթե ստացվեց հակասություն, ապա սկզբնական պնդումը (ճիշտ/սխալ)', answer: 'ճիշտ' },
-      { id: 'q4', type: 'input', question: 'Հակասությունը միշտ false է (true/false)', answer: 'false' },
-      { id: 'q5', type: 'input', question: 'Արտահայտություն p&!p SAT է՞ (այո/ոչ)', answer: 'ոչ' }
-    ]
-  },
-
-  {
-    id: 'predicate-logic-intro',
-    title: 'Նախադրյալներ (Predicates)',
-    description: 'P(x)՝ պնդում x-ի մասին։',
-    text: `Predicates՝ P(x) տեսքով արտահայտություններ, որոնց ճշմարտությունը կախված է x-ից։
-Օր՝ P(x): “x-ը զույգ է”։
-Առանց x-ի արժեքի՝ սա դեռ ամբողջական ասույթ չէ։
-
-Ծրագրավորման մեջ սա նման է ֆունկցիայի, որը վերադարձնում է true/false։`,
-    examples: ['P(x): x%2==0', 'Q(x): x>10', 'P(4)=true, P(5)=false'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'P(x): x զույգ է. P(6) = ? (true/false)', answer: 'true' },
-      { id: 'q2', type: 'input', question: 'P(x): x զույգ է. P(7) = ? (true/false)', answer: 'false' },
-      { id: 'q3', type: 'input', question: 'Q(x): x>10. Q(11)=? (true/false)', answer: 'true' },
-      { id: 'q4', type: 'input', question: 'Q(x): x>10. Q(10)=? (true/false)', answer: 'false' },
-      { id: 'q5', type: 'input', question: 'P(x) ասույթ է՞ առանց x-ի (այո/ոչ)', answer: 'ոչ' }
-    ]
-  },
-
-  {
-    id: 'quantifiers',
-    title: 'Քանակականներ ∀ և ∃',
-    description: '«բոլորի համար» և «գոյություն ունի»։',
-    text: `Քանակականներ՝
-• ∀x P(x) — բոլոր x-երի համար P(x) ճիշտ է։
-• ∃x P(x) — գոյություն ունի գոնե մեկ x, որ P(x) ճիշտ է։
-
-Ծրագրավորման մեջ՝
-∀ նման է “every()”, ∃ նման է “some()” գաղափարին։`,
-    examples: ['∀x x^2≥0 (իրականների համար)', '∃x x^2=4', 'every/some գաղափար'],
-    questions: [
-      { id: 'q1', type: 'input', question: '∀ նշանակում է (all/exist)', answer: 'all' },
-      { id: 'q2', type: 'input', question: '∃ նշանակում է (all/exist)', answer: 'exist' },
-      { id: 'q3', type: 'input', question: '∃x x^2=4 ճիշտ է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: '∀x x^2≥0 ճիշտ է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: '∀x x>0 ճիշտ է՞ (այո/ոչ)', answer: 'ոչ' }
-    ]
-  },
-
-  {
-    id: 'negation-quantifiers',
-    title: 'Քանակականների ժխտում',
-    description: '¬∀ = ∃¬ և ¬∃ = ∀¬։',
-    text: `Քանակականների ժխտման օրենքներ՝
-• ¬(∀x P(x)) ≡ ∃x ¬P(x)
-• ¬(∃x P(x)) ≡ ∀x ¬P(x)
-
-Սա շատ կարևոր է ճիշտ «ոչ բոլորն են…» և «չկա ոչ մի…» ձևակերպելու համար։`,
-    examples: ['not all → exists counterexample', 'not exists → for all not', 'Debug: գտնել հակաօրինակ'],
-    questions: [
-      { id: 'q1', type: 'input', question: '¬∀x P(x) համարժեք է (գրեք existsNot)', answer: 'existsNot' },
-      { id: 'q2', type: 'input', question: '¬∃x P(x) համարժեք է (գրեք allNot)', answer: 'allNot' },
-      { id: 'q3', type: 'input', question: '«Ոչ բոլոր թվերն են զույգ» = ∃x ¬P(x) (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: '«Չկա թիվ, որը մեծ է բոլորից» = ¬∃ (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: '¬∀ նշանակում է «կա հակաօրինակ» (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'set-logic',
-    title: 'Բազմությունների տրամաբանություն',
-    description: '∩, ∪, ⊆ և կապը ∧, ∨, →-ի հետ։',
-    text: `Բազմությունների գործողությունները կապ ունեն տրամաբանության հետ՝
-• A ∩ B — հատում (AND-ի նման)
-• A ∪ B — միավորում (OR-ի նման)
-• A ⊆ B — եթե x∈A ⇒ x∈B (իմպլիկացիայի նման)
-
-Սա շատ կիրառելի է տվյալների ֆիլտրացիայի և պայմանների կոմբինացիայի մեջ։`,
-    examples: ['A∩B ↔ (inA && inB)', 'A∪B ↔ (inA || inB)', 'A⊆B ↔ inA -> inB'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Հատումը նշվում է (գրեք ∩ կամ inter)', answer: '∩' },
-      { id: 'q2', type: 'input', question: 'Միավորումը նշվում է (գրեք ∪ կամ union)', answer: '∪' },
-      { id: 'q3', type: 'input', question: 'A⊆B նման է որ կապին (գրեք p->q)', answer: 'p->q' },
-      { id: 'q4', type: 'input', question: 'A∩B նման է (p&q կամ p|q)', answer: 'p&q' },
-      { id: 'q5', type: 'input', question: 'A∪B նման է (p&q կամ p|q)', answer: 'p|q' }
-    ]
-  },
-
-  {
-    id: 'relations-properties',
-    title: 'Հարաբերություններ՝ հատկություններ',
-    description: 'ռեֆլեքսիվ, սիմետրիկ, տրանսիտիվ։',
-    text: `Հարաբերություն R-ը բազմության վրա կարող է ունենալ հատկություններ՝
-• Ռեֆլեքսիվ: ∀a aRa
-• Սիմետրիկ: aRb ⇒ bRa
-• Տրանսիտիվ: aRb և bRc ⇒ aRc
-
-Այս գաղափարները շատ կարևոր են graph-երի, սոց. ցանցերի և տվյալների մոդելավորման մեջ։`,
-    examples: ['= հարաբերությունը՝ ռեֆլեքսիվ, սիմետրիկ, տրանսիտիվ', '<տրանսիտիվ, բայց ոչ սիմետրիկ', 'friendship ≈ սիմետրիկ (եթե փոխադարձ)'],
-    questions: [
-      { id: 'q1', type: 'input', question: '= հարաբերությունը տրանսիտիվ է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q2', type: 'input', question: '< հարաբերությունը սիմետրիկ է՞ (այո/ոչ)', answer: 'ոչ' },
-      { id: 'q3', type: 'input', question: '< հարաբերությունը տրանսիտիվ է՞ (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: 'Ռեֆլեքսիվ նշանակում է aRa (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'Սիմետրիկ նշանակում է aRb ⇒ bRa (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'boolean-algebra',
-    title: 'Boolean ալգեբրա',
-    description: '0/1 հաշվարկներ և պարզեցում։',
-    text: `Boolean ալգեբրան աշխատում է 0 և 1 արժեքներով։
-Օրինակ՝
-• 1 AND 0 = 0
-• 1 OR 0 = 1
-• NOT 1 = 0
-
-Սա հիմք է թվային սխեմաների, օպտիմիզացիայի և պայմանների պարզեցման համար։`,
-    examples: ['1&0=0', '1|0=1', '!1=0'],
-    questions: [
-      { id: 'q1', type: 'input', question: '1&0 = ?', answer: '0' },
-      { id: 'q2', type: 'input', question: '1|0 = ?', answer: '1' },
-      { id: 'q3', type: 'input', question: '!1 = ?', answer: '0' },
-      { id: 'q4', type: 'input', question: '!0 = ?', answer: '1' },
-      { id: 'q5', type: 'input', question: '0|0 = ?', answer: '0' }
-    ]
-  },
-
-  {
-    id: 'xor-xnor',
-    title: 'XOR և XNOR',
-    description: 'Բացառող «կամ» և դրա ժխտումը։',
-    text: `XOR (⊕)՝ true է, երբ արժեքները տարբեր են։
-XNOR՝ true է, երբ արժեքները նույնն են (համարժեքության նման)։
-
-Ծրագրավորման մեջ XOR-ը հաճախ օգտագործվում է “միայն մեկը” տրամաբանության համար։`,
-    examples: ['T⊕F = T', 'T⊕T = F', 'XNOR ≈ p<->q'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'true XOR true = ? (true/false)', answer: 'false' },
-      { id: 'q2', type: 'input', question: 'true XOR false = ? (true/false)', answer: 'true' },
-      { id: 'q3', type: 'input', question: 'false XOR false = ? (true/false)', answer: 'false' },
-      { id: 'q4', type: 'input', question: 'XNOR-ը նման է (p<->q կամ p->q)', answer: 'p<->q' },
-      { id: 'q5', type: 'input', question: 'XOR-ը «միայն մեկը true» գաղափարն է (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'karnaugh-map-intro',
-    title: 'Karnaugh քարտեզ (ներածություն)',
-    description: 'Boolean ֆունկցիայի պարզեցում՝ խմբավորումներով։',
-    text: `Karnaugh քարտեզը (K-map) Boolean արտահայտությունները պարզեցնելու տեսողական մեթոդ է։
-Սովորաբար օգտագործվում է 2-4 փոփոխականների դեպքում։
-Խմբավորում ենք 1-երը (2-ի աստիճանով խմբեր) և ստանում ավելի կարճ արտահայտություն։`,
-    examples: ['K-map → minimize', 'group 2,4,8...', 'օգտակար՝ condition optimize'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'K-map-ը ինչի՞ համար է (minimize/expand)', answer: 'minimize' },
-      { id: 'q2', type: 'input', question: 'Խմբերը պետք է լինեն 2-ի աստիճա՞ն (այո/ոչ)', answer: 'այո' },
-      { id: 'q3', type: 'input', question: 'K-map-ը առավել հարմար է քանի փոփոխականի դեպքում (2-4 կամ 10)', answer: '2-4' },
-      { id: 'q4', type: 'input', question: 'K-map-ը Boolean արտահայտություն է պարզեցնում (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'K-map-ը հիմնականում օգտագործվում է թվային սխեմաներում (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'graphs-logic',
-    title: 'Գրաֆներ և տրամաբանական մտածողություն',
-    description: 'Կապեր, ուղիներ, հասանելիություն՝ որպես ենթադրություններ։',
-    text: `Գրաֆում գագաթների կապերը հաճախ արտահայտվում են տրամաբանական պայմաններով։
-Օր՝ «կա ուղի A-ից B» պնդումը կախված է եզրերից։
-
-Տրանսիտիվությունը հենց գրաֆի “հասանելիության” գաղափարն է՝
-եթե A→B և B→C, ապա A→C (ուղի կա)։`,
-    examples: ['path(A,B)', 'A->B & B->C => A->C', 'reachability = transitive closure'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Եթե կա A->B և B->C, ապա կա A->C (այո/ոչ)', answer: 'այո' },
-      { id: 'q2', type: 'input', question: 'Reachability-ը նման է տրանսիտիվությանը (այո/ոչ)', answer: 'այո' },
-      { id: 'q3', type: 'input', question: 'Graph-ում եզրերը ներկայացնում են կապեր (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: 'Տրանսիտիվ փակումը կոչվում է (գրեք closure)', answer: 'closure' },
-      { id: 'q5', type: 'input', question: 'Ուղի ունենալը կարելի է դիտել որպես ասույթ (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'complexity-logic',
-    title: 'SAT և բարդության գաղափար',
-    description: 'SAT խնդիրների “դժվարության” ինտուիցիա։',
-    text: `SAT-ը հարց է՝ «կա՞ արժեքավորում, որ արտահայտությունը true լինի»։
-Պրակտիկայում SAT-ը հիմք է՝ պլանավորման, constraint solving-ի, ավտոմատ թեստավորման համար։
-Բարդության տեսանկյունից SAT-ը դասական “դժվար” խնդիրների օրինակ է։`,
-    examples: ['constraints -> CNF -> SAT', 'planning, scheduling', 'debug constraints'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'SAT-ը հարց է «կա արժեքավորում» (այո/ոչ)', answer: 'այո' },
-      { id: 'q2', type: 'input', question: 'SAT-ը կարող է օգտագործվել constraint solving-ում (այո/ոչ)', answer: 'այո' },
-      { id: 'q3', type: 'input', question: 'CNF-ը հաճախ է օգտագործվում SAT-ում (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: 'UNSAT նշանակում է «չկա արժեքավորում» (ayо/ոչ)', answer: 'ոչ' },
-      { id: 'q5', type: 'input', question: '“կա արժեքավորում” = SAT (sat/unsat)', answer: 'sat' }
-    ]
-  },
-
-  {
-    id: 'logic-in-programming',
-    title: 'Տրամաբանությունը ծրագրավորման մեջ',
-    description: 'if, while, filter, validation՝ որպես տրամաբանական արտահայտություններ։',
-    text: `Ծրագրավորման մեջ պայմանները հենց տրամաբանական արտահայտություններ են։
-Օր՝
-if (age >= 18 && hasId) ...
-filter(x => x > 0 || x === 0)
-
-Տրամաբանական պարզեցումը հաճախ դարձնում է կոդը ավելի պարզ ու քիչ սխալներով։`,
-    examples: ['!(A&&B) == (!A||!B)', 'validation rules', 'guards in code'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'AND-ը JS-ում (&& կամ ||)', answer: '&&' },
-      { id: 'q2', type: 'input', question: 'OR-ը JS-ում (&& կամ ||)', answer: '||' },
-      { id: 'q3', type: 'input', question: 'NOT-ը JS-ում (! կամ ~)', answer: '!' },
-      { id: 'q4', type: 'input', question: '!(A&&B) համարժեք է (!A||!B) (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'Ասույթները ծրագրավորման մեջ Boolean են (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'algorithmic-thinking',
-    title: 'Ալգորիթմական մտածողություն և պայմաններ',
-    description: 'Պայմանների կառուցում, եզրային դեպքեր, հակաօրինակներ։',
-    text: `Ալգորիթմական մտածողությունը հաճախ սկսվում է ճիշտ պայմաններ կազմելուց։
-• Սահմանել դեպքերը (case analysis)
-• Գտնել եզրային դեպքեր (edge cases)
-• Փորձել հակաօրինակներով (counterexample)
-
-Սա նույն տրամաբանությունն է, ինչ ¬∀ = ∃¬՝ գտնել մեկ սխալ դեպք։`,
-    examples: ['case split', 'edge cases', 'counterexample idea'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Edge case նշանակում է «եզրային դեպք» (այո/ոչ)', answer: 'այո' },
-      { id: 'q2', type: 'input', question: 'Counterexample նշանակում է հակաօրինակ (այո/ոչ)', answer: 'այո' },
-      { id: 'q3', type: 'input', question: '¬∀ գաղափարը նման է «գտնել հակաօրինակ» (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: 'Case analysis-ը նշանակում է դեպքերի բաժանում (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'Տրամաբանությունը օգնում է նվազեցնել bug-երը (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-
-  {
-    id: 'formalization',
-    title: 'Պնդումների ֆորմալացում',
-    description: 'Բնական լեզվից՝ տրամաբանական ձև։',
-    text: `Ֆորմալացումը նշանակում է բնական լեզվով տրված պնդումը գրել սիմվոլիկ ձևով։
-Օր՝ «Եթե անձրև է, ապա փողոցը թաց է» → p->q
-«p և q» → p&q
-«p կամ q» → p|q
-
-Սա կարևոր է՝ որպեսզի համակարգչային ստուգումը հնարավոր լինի։`,
-    examples: ['if p then q → p->q', 'and → &', 'or → |'],
-    questions: [
-      { id: 'q1', type: 'input', question: '«եթե p, ապա q» գրեք (p->q)', answer: 'p->q' },
-      { id: 'q2', type: 'input', question: '«p և q» գրեք (p&q)', answer: 'p&q' },
-      { id: 'q3', type: 'input', question: '«p կամ q» գրեք (p|q)', answer: 'p|q' },
-      { id: 'q4', type: 'input', question: '«ոչ p» գրեք (!p)', answer: '!p' },
-      { id: 'q5', type: 'input', question: '«p միայն եթե q» (գրեք p->q կամ q->p) — p only if q', answer: 'p->q' }
-    ]
-  },
-
-  {
-    id: 'logic-course-project',
-    title: 'Վեբ կայքի նախագծում՝ ուսուցում և աջակցում',
-    description: 'Մոդուլներ՝ տեսություն, օրինակներ, թեստ, առաջադրանքներ։',
-    text: `«Մաթեմատիկական տրամաբանություն» դասընթացի համար կայքում կարող են լինել՝
-• Թեմաների կառուցվածք (modules)
-• Տեսություն + օրինակներ
-• Ինտերակտիվ թեստեր (truth table / simplification)
-• Առաջադրանքներ՝ ավտոմատ ստուգմամբ
-• Օգնություն՝ հուշումներ, սխալների բացատրություն
-
-Սա նպաստում է ալգորիթմական մտածողության զարգացմանը՝ քայլ առ քայլ ստուգմամբ։`,
-    examples: ['module: propositions', 'module: truth tables', 'module: CNF/SAT'],
-    questions: [
-      { id: 'q1', type: 'input', question: 'Կայքում պետք է լինեն թեստեր (այո/ոչ)', answer: 'այո' },
-      { id: 'q2', type: 'input', question: 'Truth table-ը կարելի է դարձնել ինտերակտիվ (այո/ոչ)', answer: 'այո' },
-      { id: 'q3', type: 'input', question: 'CNF-ը պետք է ներառել SAT թեմայի համար (այո/ոչ)', answer: 'այո' },
-      { id: 'q4', type: 'input', question: 'Օգնությունը կարող է լինել հուշումներով (այո/ոչ)', answer: 'այո' },
-      { id: 'q5', type: 'input', question: 'Պնդումները ստուգվում են true/false արժեքով (այո/ոչ)', answer: 'այո' }
-    ]
-  },
-  {
-  id: 'demorgan-laws',
-  title: 'Օրենքներ Դե Մորգանի',
-  description: 'Ժխտման և տրամաբանական գործողությունների փոխհարաբերությունը։',
-  text: `
-Դե Մորգանի օրենքները հանդիսանում են տրամաբանական արտահայտությունների
+    id: 'demorgan-laws',
+    grade: 6,
+    title: 'Օրենքներ Դե Մորգանի',
+    description: 'Ժխտման և տրամաբանական գործողությունների փոխհարաբերությունը։',
+    text: `Դե Մորգանի օրենքները հանդիսանում են տրամաբանական արտահայտությունների
 վերափոխման հիմնարար օրենքներից մեկը։ Դրանք նկարագրում են, թե ինչպես է
 ժխտման (¬) գործողությունը փոխազդում «և» (∧) և «կամ» (∨) կապերի հետ։
 
-Օրենքները ձևակերպվում են հետևյալ կերպ.
+Օրենքները՝
+¬(A ∧ B) ≡ ¬A ∨ ¬B
+¬(A ∨ B) ≡ ¬A ∧ ¬B`,
+    examples: ['¬(A ∧ B) = ¬A ∨ ¬B', '¬(A ∨ B) = ¬A ∧ ¬B', 'ժխտումը փոխում է ∧ ↔ ∨'],
+    questions: [
+      { id: 'q1', type: 'radio', question: '¬(A∧B) ինչի է համարժեք։', options: ['A∨B', '¬A∨¬B', '¬A∧¬B', 'A∧B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '¬(A∨B) ինչի է համարժեք։', options: ['A∧B', '¬A∨¬B', '¬A∧¬B', 'A∨B'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Օրենքները վերաբերում են ժխտմանը։', options: ['Ոչ', 'Այո', 'Մասամբ', 'Հնարավոր չէ ասել'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Դե Մորգանը օգտագործվում է պարզեցման համար։', options: ['Ոչ', 'Այո', 'Կախված դեպքից', 'Հազվադեպ'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Օրենքները համարժեքություններ են։', options: ['Ոչ', 'Այո', 'Մասամբ', 'Պայմանական'], correctOption: 1 }
+    ]
+  },
+  {
+    id: 'tautology-contradiction-extended',
+    grade: 6,
+    title: 'Տավտոլոգիա և հակասություն',
+    description: 'Միշտ ճշմարիտ և միշտ կեղծ տրամաբանական արտահայտություններ։',
+    text: `Տավտոլոգիան տրամաբանական արտահայտություն է, որը ճշմարիտ է բոլոր հնարավոր
+արժեքավորումներում։ Օրինակ՝ A ∨ ¬A։
 
-¬(A ∧ B) ≡ ¬A ∨ ¬B  
-¬(A ∨ B) ≡ ¬A ∧ ¬B  
+Հակասությունը արտահայտություն է, որը կեղծ է բոլոր արժեքավորումներում։
+Օրինակ՝ A ∧ ¬A։`,
+    examples: ['A ∨ ¬A — տավտոլոգիա', 'A ∧ ¬A — հակասություն'],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A∨¬A ինչ է։', options: ['Հակասություն', 'Տավտոլոգիա', 'Նեփեքային', 'Պայմանական'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'A∧¬A ինչ է։', options: ['Տավտոլոգիա', 'Հակասություն', 'Նեփեքային', 'Ճիշտ'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Տավտոլոգիան միշտ ճշմարիտ է։', options: ['Ոչ', 'Այո', 'Երբեմն', 'Հազվադեպ'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Հակասությունը միշտ կեղծ է։', options: ['Ոչ', 'Այո', 'Կախված դեպքից', 'Հավանական'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Այս հասկացությունները կիրառվում են ապացույցներում։', options: ['Ոչ', 'Այո', 'Մասամբ', 'Հազվադեպ'], correctOption: 1 }
+    ]
+  },
+  {
+    id: 'logical-equivalence-extended',
+    grade: 6,
+    title: 'Տրամաբանական համարժեքություն',
+    description: 'Արտահայտությունների նույն արժեք ունենալու գաղափարը։',
+    text: `Երկու տրամաբանական արտահայտություններ համարվում են համարժեք,
+եթե նրանք ունեն նույն ճշմարտացիության արժեքը բոլոր հնարավոր արժեքավորումներում։
+Օրինակ՝ A → B ≡ ¬A ∨ B։`,
+    examples: ['A→B ≡ ¬A∨B', 'համարժեք արտահայտություններ'],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A→B համարժեք է։', options: ['A∧B', '¬A∨B', 'A∨B', '¬A∧B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Համարժեք արտահայտությունները նույն արժեք ունեն։', options: ['Ոչ', 'Այո', 'Մասամբ', 'Հազվադեպ'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Համարժեքությունը փոխարինելիություն է տալիս։', options: ['Ոչ', 'Այո', 'Կախված դեպքից', 'Հավանական'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Համարժեքությունը կիրառվում է պարզեցման մեջ։', options: ['Ոչ', 'Այո', 'Մասամբ', 'Հազվադեպ'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Համարժեքությունը կապ է արտահայտությունների միջև։', options: ['Ոչ', 'Այո', 'Մասամբ', 'Պայմանական'], correctOption: 1 }
+    ]
+  },
+    {
+    id: 'equivalences-identity-domination',
+    grade: 1,
+    title: 'Իդենտիթի և Դոմինացիա',
+    description: '0 և 1-ի հետ գործողությունները (∧, ∨)',
+    text: `Այս դասում սովորում ենք “չեզոք” (identity) և “գերիշխող” (domination) օրենքները։ Դրանք ամենաարագ օրենքներից են՝ արտահայտությունները պարզեցնելու համար։
 
-Այս օրենքները ցույց են տալիս, որ ամբողջ արտահայտության ժխտումը համարժեք է
-առանձին բաղադրիչների ժխտմանը՝ փոխելով տրամաբանական կապը։
+1) Իդենտիթի (չեզոք տարր) օրենքներ
+Չեզոք տարր նշանակում է՝ կա այնպիսի արժեք, որը գործողության մեջ չի փոխում արդյունքը։
 
-Դե Մորգանի օրենքները կարևոր դեր ունեն.
-• արտահայտությունների պարզեցման մեջ  
-• ապացույցների կառուցման ժամանակ  
-• տրամաբանական սխեմաների և մոդելների վերլուծության մեջ  
+OR-ի (∨) համար չեզոք է 0-ն.
+A ∨ 0 ≡ A
+Որովհետև “A կամ 0” նշանակում է՝ եթե A ճշմարիտ է՝ արդյունքը 1, իսկ եթե A կեղծ է՝ 0։ Այսինքն նույնը՝ ինչ A։
 
-Մաթեմատիկայում և տրամաբանության տեսությունում դրանք օգտագործվում են
-համարժեք արտահայտություններ ստանալու համար, ինչը թույլ է տալիս
-բարդ արտահայտությունները վերափոխել ավելի պարզ և ընթեռնելի տեսքի։
+AND-ի (∧) համար չեզոք է 1-ը.
+A ∧ 1 ≡ A
+Քանի որ “A և 1” ճիշտ կլինի միայն եթե A ճիշտ է։ Նույնն է՝ A։
 
-Օրինակ, բազմությունների տեսությունում Դե Մորգանի օրենքները արտահայտվում են
-միավորների և հատումների ժխտման միջոցով, ինչը ցույց է տալիս այս օրենքների
-ընդհանրական բնույթը։`,
-  examples: [
-    '¬(A ∧ B) = ¬A ∨ ¬B',
-    '¬(A ∨ B) = ¬A ∧ ¬B',
-    'ժխտումը փոխում է ∧ ↔ ∨'
-  ],
-  questions: [
-    { id: 'q1', type: 'input', question: '¬(A∧B) ինչի է համարժեք', answer: '¬A∨¬B' },
-    { id: 'q2', type: 'input', question: '¬(A∨B) ինչի է համարժեք', answer: '¬A∧¬B' },
-    { id: 'q3', type: 'input', question: 'Օրենքները վերաբերում են ժխտմանը (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Դե Մորգանը օգտագործվում է պարզեցման համար (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Օրենքները համարժեքություններ են (այո/ոչ)', answer: 'այո' }
-  ]
-},
+2) Դոմինացիա (գերիշխող տարր) օրենքներ
+Գերիշխող տարր նշանակում է՝ կա այնպիսի արժեք, որը “գլխավորում է” արդյունքը, անկախ A-ից։
 
-{
-  id: 'tautology-contradiction',
-  title: 'Տավտոլոգիա և հակասություն',
-  description: 'Միշտ ճշմարիտ և միշտ կեղծ տրամաբանական արտահայտություններ։',
-  text: `
-Տավտոլոգիան տրամաբանական արտահայտություն է, որը ճշմարիտ է բոլոր հնարավոր
-արժեքավորումներում։ Անկախ նրանից, թե ինչ արժեքներ են ընդունում
-փոփոխականները, արտահայտության արժեքը մնում է ճշմարիտ։
+OR-ի (∨) համար գերիշխող է 1-ը.
+A ∨ 1 ≡ 1
+Եթե գոնե մեկը 1 է, ապա “կամ”-ը միշտ 1 է։
 
-Օրինակ.
-A ∨ ¬A
+AND-ի (∧) համար գերիշխող է 0-ն.
+A ∧ 0 ≡ 0
+Եթե գոնե մեկը 0 է, ապա “և”-ը միշտ 0 է։
 
-Այս արտահայտությունը հայտնի է որպես բացառված երրորդի օրենք և հանդիսանում է
-դասական տրամաբանության հիմնասյուներից մեկը։
+3) Ինչու են կարևոր
+Այս 4 օրենքները օգտագործվում են ամեն քայլում՝
+- ավելորդ մասերը հանելու համար,
+- արագ պարզեցնելու համար,
+- արտահայտության արժեքը արագ հասկանալու համար։
 
-Հակասությունը հակառակն է տավտոլոգիայի։
-Այն արտահայտություն է, որը կեղծ է բոլոր արժեքավորումներում։
+Օրինակներ՝
+(A ∨ 0) ∧ 1 ≡ A ∧ 1 ≡ A
+(B ∧ 0) ∨ A ≡ 0 ∨ A ≡ A
 
-Օրինակ.
-A ∧ ¬A
+Հիշելու համար՝
+∨ -ի հետ 0-ը չեզոք է, 1-ը գերիշխող է,
+∧ -ի հետ 1-ը չեզոք է, 0-ը գերիշխող է։`,
+    examples: [
+      'A ∨ 0 ≡ A',
+      'A ∧ 1 ≡ A',
+      'A ∨ 1 ≡ 1',
+      'A ∧ 0 ≡ 0',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Ո՞րը ճիշտ է identity օրենքից (∨)։', options: ['A ∨ 1 ≡ A', 'A ∨ 0 ≡ A', 'A ∨ 0 ≡ 0', 'A ∨ A ≡ 0'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Ո՞րը ճիշտ է identity օրենքից (∧)։', options: ['A ∧ 0 ≡ A', 'A ∧ 1 ≡ A', 'A ∧ 1 ≡ 1', 'A ∧ A ≡ 0'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'A ∨ 1 ինչի՞ է հավասար։', options: ['A', '0', '1', '¬A'], correctOption: 2 },
+      { id: 'q4', type: 'radio', question: 'A ∧ 0 ինչի՞ է հավասար։', options: ['A', '0', '1', '¬A'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: '(A ∨ 0) ∧ 1 պարզեցվում է…', options: ['0', '1', 'A', '¬A'], correctOption: 2 },
+    ],
+  },
 
-Տավտոլոգիաներն ու հակասությունները կարևոր են ապացույցների տեսությունում,
-քանի որ.
-• տավտոլոգիաները հաճախ օգտագործվում են որպես ընդհանուր ճշմարտություններ  
-• հակասությունները ցույց են տալիս անհնարին վիճակներ  
+  {
+    id: 'equivalences-absorption',
+    grade: 1,
+    title: 'Կլանում',
+    description: 'A ∨ (A ∧ B) և A ∧ (A ∨ B)',
+    text: `Կլանման օրենքները օգնում են հասկանալ, որ երբ A-ն արդեն “կա” արտահայտության մեջ, ապա A-ի հետ կապված որոշ մասեր դառնում են ավելորդ։
 
-Դրանք թույլ են տալիս պարզ հասկանալ, արդյոք արտահայտությունը
-կարող է երբևէ իրական լինել, թե ոչ։`,
-  examples: [
-    'A ∨ ¬A — տավտոլոգիա',
-    'A ∧ ¬A — հակասություն'
-  ],
-  questions: [
-    { id: 'q1', type: 'input', question: 'A∨¬A ինչ է', answer: 'տավտոլոգիա' },
-    { id: 'q2', type: 'input', question: 'A∧¬A ինչ է', answer: 'հակասություն' },
-    { id: 'q3', type: 'input', question: 'Տավտոլոգիան միշտ ճշմարիտ է (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Հակասությունը միշտ կեղծ է (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Այս հասկացությունները կիրառվում են ապացույցներում (այո/ոչ)', answer: 'այո' }
-  ]
-},
+1) Կլանման օրենքներ
+A ∨ (A ∧ B) ≡ A
+Բացատրություն՝ եթե A-ն արդեն ճշմարիտ է, ապա ամբողջ արտահայտությունը ∨-ի պատճառով ճշմարիտ է, անկախ (A ∧ B)-ից։
+Եթե A-ն կեղծ է, ապա (A ∧ B) նույնպես կեղծ է, և արտահայտությունը դառնում է 0։ Այսինքն նորից՝ նույնը ինչ A։
 
-{
-  id: 'logical-equivalence',
-  title: 'Տրամաբանական համարժեքություն',
-  description: 'Արտահայտությունների նույն արժեք ունենալու գաղափարը։',
-  text: `
-Երկու տրամաբանական արտահայտություններ համարվում են համարժեք,
-եթե նրանք ունեն նույն ճշմարտացիության արժեքը բոլոր հնարավոր
-արժեքավորումներում։
+A ∧ (A ∨ B) ≡ A
+Բացատրություն՝ եթե A-ն կեղծ է, ապա ∧-ի պատճառով ամբողջը կեղծ է։
+Եթե A-ն ճշմարիտ է, ապա A ∨ B-ը հաստատ ճշմարիտ է (քանի որ A=1), և 1 ∧ 1 = 1։
+Կրկին՝ նույնը ինչ A։
 
-Սա նշանակում է, որ արտահայտությունները կարելի է փոխարինել միմյանցով
-առանց ճշմարտացիությունը փոխելու։
+2) Ինչու է սա ուժեղ օրենք
+Կլանումը հիանալի է երկար արտահայտություններում, երբ հանդիպում է նման կառուցվածք։
+Դու կարող ես ուղղակի հանել ավելորդ մասը։
 
-Օրինակ.
+Օրինակներ՝
+X ∨ (X ∧ Y) ≡ X
+P ∧ (P ∨ Q) ≡ P
+(A ∧ B) ∨ A ≡ A (կոմուտատիվությամբ ձևափոխում ենք և կիրառում)
+
+3) Հաճախակի սխալ
+Կլանման համար պետք է ճիշտ նույն A-ն հայտնվի և դրսում, և փակագծի ներսում։
+Եթե A-ն նույնը չէ, օրինակ՝ A ∨ (B ∧ C), դա արդեն կլանում չէ։`,
+    examples: [
+      'A ∨ (A ∧ B) ≡ A',
+      'A ∧ (A ∨ B) ≡ A',
+      '(A ∧ B) ∨ A ≡ A',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Կլանման օրենքներից ճիշտն է…', options: ['A ∨ (A ∧ B) ≡ A', 'A ∧ (B ∨ C) ≡ A', 'A ∨ B ≡ A ∧ B', '¬(A ∧ B) ≡ ¬A ∧ ¬B'], correctOption: 0 },
+      { id: 'q2', type: 'radio', question: 'A ∧ (A ∨ B) պարզեցվում է…', options: ['A', 'B', 'A ∨ B', 'A ∧ B'], correctOption: 0 },
+      { id: 'q3', type: 'radio', question: 'A ∨ (A ∧ B) պարզեցվում է…', options: ['A ∧ B', 'A', 'B', 'A ∨ B'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: '(A ∧ B) ∨ A կլանմամբ դառնում է…', options: ['A ∧ B', 'B', 'A', 'A ∨ B'], correctOption: 2 },
+      { id: 'q5', type: 'radio', question: 'Կլանումը հիմնականում հեռացնում է…', options: ['փակագծերը', 'ավելորդ մասը A-ի շուրջ', 'ժխտումը', 'իմպլիկացիան'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-double-negation',
+    grade: 1,
+    title: 'Կրկնակի ժխտում',
+    description: '¬¬A ≡ A',
+    text: `Կրկնակի ժխտումը ամենապարզ և շատ օգտագործվող օրենքներից է։
+
+Օրենք
+¬¬A ≡ A
+
+Ինչու
+Եթե A=1, ապա ¬A=0, իսկ ¬¬A=1։
+Եթե A=0, ապա ¬A=1, իսկ ¬¬A=0։
+Այսպիսով ¬¬A միշտ նույն արժեքն ունի, ինչ A։
+
+Որտեղ է օգտագործվում
+- Երբ պետք է պարզեցնել արտահայտություն
+- Երբ դե Մորգանի օրենքից հետո հայտնվում են կրկնակի ժխտումներ
+- Երբ բնական լեզվով մտքերը “ոչ թե սխալ չէ” տիպի դարձնում ենք ավելի պարզ (տրամաբանական իմաստով)
+
+Օրինակներ՝
+¬¬(A ∨ B) ≡ A ∨ B
+¬¬(A ∧ ¬B) ≡ A ∧ ¬B`,
+    examples: [
+      '¬¬A ≡ A',
+      '¬¬(A ∨ B) ≡ (A ∨ B)',
+      '¬¬(A ∧ ¬B) ≡ (A ∧ ¬B)',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Կրկնակի ժխտման օրենքը…', options: ['¬A ≡ A', '¬¬A ≡ A', '¬(A ∧ B) ≡ ¬A ∧ ¬B', 'A ∨ A ≡ 0'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Եթե A=1, ապա ¬¬A = ?', options: ['0', '1', 'A', '¬A'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Եթե A=0, ապա ¬¬A = ?', options: ['0', '1', 'A', '¬A'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: '¬¬(A ∨ B) հավասար է…', options: ['¬A ∨ ¬B', 'A ∨ B', 'A ∧ B', '¬(A ∨ B)'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Կրկնակի ժխտումը հիմնականում օգտագործվում է…', options: ['արտահայտություն բարդացնելու', 'արտահայտություն պարզեցնելու', 'նոր փոփոխական ստեղծելու', 'միայն աղյուսակ սարքելու'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-biconditional',
+    grade: 1,
+    title: 'Երկկողմանի կապ',
+    description: 'A ↔ B իմաստը և արժեքը',
+    text: `Երկկողմանի կապը (↔) կարդացվում է՝ “A եթե և միայն եթե B”։
+Այն ցույց է տալիս, որ A-ն և B-ն պետք է ունենան նույն արժեքը։
+
+Երբ է ճշմարիտ A ↔ B-ը
+A ↔ B ճշմարիտ է, երբ՝
+- A=1 և B=1
+- A=0 և B=0
+
+Եվ կեղծ է, երբ՝
+- A=1, B=0
+- A=0, B=1
+
+Այսինքն՝ “նույնն են” → 1, “տարբեր են” → 0։
+
+Կապը համարժեքության հետ
+Հաճախ ↔ օգտագործվում է ցույց տալու համար, որ երկու արտահայտություն համարժեք են։
+Եթե A ↔ B միշտ 1 է, ապա A և B համարժեք են։
+
+Օրինակային պատկերացում
+Սա նման է “տրամաբանական հավասարության”։ Երբ երկու կողմերը նույն արժեքն ունեն, կապը ճշմարիտ է։`,
+    examples: [
+      'A=1,B=1 ⇒ A ↔ B = 1',
+      'A=0,B=0 ⇒ A ↔ B = 1',
+      'A=1,B=0 ⇒ A ↔ B = 0',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Ե՞րբ է A ↔ B ճշմարիտ։', options: ['միայն երբ A=1', 'երբ A և B նույնն են', 'միայն երբ B=0', 'երբ A≠B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'A=0, B=0 դեպքում A ↔ B = ?', options: ['0', '1', 'A', 'B'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'A=1, B=0 դեպքում A ↔ B = ?', options: ['0', '1', 'A', '¬A'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: 'A ↔ B կեղծ է երբ…', options: ['A=B', 'A≠B', 'A=0 միշտ', 'B=1 միշտ'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Եթե A ↔ B միշտ 1 է, ապա…', options: ['A և B հակասական են', 'A և B համարժեք են', 'A միշտ 0 է', 'B միշտ 1 է'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'truth-tables-steps-compound',
+    grade: 1,
+    title: 'Բարդ արտահայտության աղյուսակ',
+    description: 'Սյունակներով հաշվարկ՝ քայլ առ քայլ',
+    text: `Իսկության աղյուսակները հատկապես պետք են, երբ արտահայտությունը բարդ է՝ ունի փակագծեր, ժխտումներ և մի քանի գործողություններ։
+
+Քայլերի ճիշտ կարգ
+Օրինակ՝ F = ¬A ∨ (A ∧ B)
+
+Քայլեր՝
+1) Գրիր A և B բոլոր հնարավոր արժեքները (4 տող)։
+2) Հաշվիր ¬A սյունակը։
+3) Հաշվիր A ∧ B սյունակը։
+4) Վերջում հաշվիր ¬A ∨ (A ∧ B) սյունակը։
+
+Ինչու է պետք միջանկյալ սյունակ
+Եթե անմիջապես փորձես հաշվարկել ամբողջ բանաձևը, շատ հեշտ է սխալվել։
+Միջանկյալ սյունակները դարձնում են պրոցեսը մեխանիկական ու հստակ։
+
+Սխալներից խուսափելու կանոններ
+- Ժխտումը (¬) հաշվում ենք հենց իր անդամի համար
+- Փակագծերը հաշվում ենք առաջինը
+- Պահպանում ենք կարգը՝ ¬ հետո ∧ հետո ∨ (եթե փակագծեր չկան)
+
+Վերջնական նպատակ
+Ստանալ F-ի արժեքը բոլոր դեպքերում՝ որպեսզի կարողանանք տեսնել՝ դա միշտ ճշմարիտ է, միշտ կեղծ, թե կախված է արժեքներից։`,
+    examples: [
+      'F = ¬A ∨ (A ∧ B)',
+      'Փակագծերը հաշվում ենք առաջինը',
+      'Կարգը՝ ¬, հետո ∧, հետո ∨',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '2 փոփոխականով աղյուսակը ունի…', options: ['2 տող', '4 տող', '6 տող', '8 տող'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Աղյուսակում ժխտումը (¬) հաշվում ենք…', options: ['վերջում', 'սկզբում իր անդամի համար', 'միայն երբ A=1', 'միայն երբ A=0'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'F = ¬A ∨ (A ∧ B) դեպքում միջանկյալ սյունակ կարող է լինել…', options: ['A+B', '¬A', 'A↔B', 'A-B'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Փակագծերը հաշվում ենք…', options: ['վերջում', 'առաջինը', 'երբ ժամանակ կա', 'պարտադիր չէ'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Առանց փակագծերի սովորական կարգը ճիշտ է…', options: ['∨ հետո ∧ հետո ¬', '¬ հետո ∧ հետո ∨', '∧ հետո ¬ հետո ∨', 'երբ ուզես'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'classification-tautology-contradiction',
+    grade: 1,
+    title: 'Տաուտոլոգիա, Հակասություն, Պատահականություն',
+    description: 'Արտահայտության տեսակը աղյուսակով',
+    text: `Երբ արդեն ունենք իսկության աղյուսակ, կարող ենք որոշել արտահայտության տեսակը։
+
+Տաուտոլոգիա
+Արտահայտությունը տաուտոլոգիա է, եթե վերջնական սյունակում բոլոր տողերում 1 է։
+Օրինակ՝ A ∨ ¬A։
+
+Հակասություն
+Արտահայտությունը հակասություն է, եթե բոլոր տողերում 0 է։
+Օրինակ՝ A ∧ ¬A։
+
+Պատահականություն (կախված արտահայտություն)
+Եթե վերջնական սյունակում կան և՛ 1-եր, և՛ 0-ներ, ապա արտահայտությունը կախված է փոփոխականների արժեքներից։
+Օրինակ՝ A ∧ B (երբեմն 1 է, երբեմն 0)։
+
+Ինչու է կարևոր
+Տաուտոլոգիաները “միշտ ճիշտ” օրենքներ են։
+Հակասությունները “միշտ սխալ” են։
+Կախված արտահայտությունները հանդիպում են իրական խնդիրներում։`,
+    examples: [
+      'A ∨ ¬A — միշտ 1',
+      'A ∧ ¬A — միշտ 0',
+      'A ∧ B — երբեմն 1, երբեմն 0',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Տաուտոլոգիան նշանակում է…', options: ['միշտ 0', 'միշտ 1', 'երբեմն 1', 'չի հաշվվում'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Հակասությունը նշանակում է…', options: ['միշտ 1', 'միշտ 0', 'երբեմն 1', 'երբեմն 0'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'A ∨ ¬A արտահայտությունը…', options: ['հակասություն է', 'տաուտոլոգիա է', 'կախված է', 'չի որոշվում'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'A ∧ ¬A արտահայտությունը…', options: ['կախված է', 'տաուտոլոգիա է', 'հակասություն է', 'երբեմն 1'], correctOption: 2 },
+      { id: 'q5', type: 'radio', question: 'Եթե վերջնական սյունակում կան և՛ 1, և՛ 0, ապա…', options: ['տաուտոլոգիա է', 'հակասություն է', 'կախված արտահայտություն է', 'միշտ 1'], correctOption: 2 },
+    ],
+  },
+
+  {
+    id: 'statements-to-formulas-complex',
+    grade: 1,
+    title: 'Բարդ ասույթի բանաձևավորում',
+    description: '«եթե», «և», «կամ», «ոչ»՝ մեկ նախադասության մեջ',
+    text: `Երբ նախադասությունը բարդ է, պետք է այն բաժանել փոքր մասերի և քայլերով գրել բանաձևը։
+
+Քայլ 1 — առանձնացնել պարզ ասույթները
+Օրինակ՝ «Եթե անձրև է և քամի կա, ապա ես տանը կմնամ»։
+Թող՝
+A — «անձրև է»
+B — «քամի կա»
+C — «ես տանը կմնամ»
+Ապա բանաձևը կլինի՝ (A ∧ B) → C
+
+Քայլ 2 — կապերի ընտրություն
+“և” → ∧
+“կամ” → ∨
+“ոչ” → ¬
+“եթե…, ապա…” → →
+“եթե և միայն եթե” → ↔
+
+Քայլ 3 — փակագծերի ճիշտ դերում
+Բարդ նախադասություններում փակագծերը պարտադիր են, որպեսզի ճիշտ հասկանանք կառուցվածքը։
+Օրինակ՝ «Եթե A կամ B, և ոչ C, ապա D»
+կարելի է գրել՝ ((A ∨ B) ∧ ¬C) → D
+
+Տիպիկ սխալներ
+- սխալ տեղադրել ¬-ը
+- մոռանալ փակագծերը
+- սխալ հասկանալ “կամ”-ը (դասականում ներառական է)`,
+    examples: [
+      '«Եթե A և B, ապա C» → (A ∧ B) → C',
+      '«A կամ B» → A ∨ B',
+      '«ոչ A» → ¬A',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '«Եթե A և B, ապա C» ճիշտ բանաձևն է…', options: ['A ∧ (B → C)', '(A ∧ B) → C', 'A → (B ∧ C)', '(A ∨ B) → C'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '«ոչ A» նշվում է…', options: ['A', '¬A', 'A ∧ A', 'A ∨ A'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: '«A կամ B» նշվում է…', options: ['A ∧ B', 'A ∨ B', 'A → B', 'A ↔ B'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Բարդ նախադասության առաջին քայլն է…', options: ['աղյուսակ կառուցել', 'առանձնացնել պարզ ասույթները', 'պարզեցնել օրենքներով', 'գրել պատասխանը'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Փակագծերը պետք են որպեսզի…', options: ['գեղեցիկ լինի', 'որոշեն գործողությունների ճիշտ կապը', 'փոխեն A-ի արժեքը', 'միայն երկար բանաձևերի համար'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-implication-transform',
+    grade: 1,
+    title: 'Իմպլիկացիայի ձևափոխում',
+    description: 'A → B-ի համարժեք ձևը',
+    text: `Իմպլիկացիան (A → B) կարելի է փոխարինել “∨, ¬” գործողություններով։ Սա օգտակար է աղյուսակներում և պարզեցման մեջ։
+
+Հիմնական համարժեքություն
 A → B ≡ ¬A ∨ B
 
-Այս համարժեքությունը լայնորեն օգտագործվում է ապացույցներում և
-տրամաբանական պարզեցումներում։
+Բացատրություն՝
+A → B կեղծ է միայն այն դեպքում, երբ A=1 և B=0։
+Այդ պահին ¬A ∨ B = 0 ∨ 0 = 0։
+Մնացած դեպքերում այն 1 է, հետևաբար համարժեք են։
 
-Համարժեքության գաղափարը կարևոր է, քանի որ այն թույլ է տալիս.
-• փոխակերպել բարդ արտահայտությունները  
-• ստանալ ավելի հարմար կամ ստանդարտ ձև  
-• համեմատել տարբեր տրամաբանական կառուցվածքներ  
+Ինչի համար է պետք
+- → նշանից ազատվելու համար
+- նորմալ ձևերի համար (ԴՆՁ/ԿՆՁ)
+- դե Մորգանի և այլ օրենքներով պարզեցնելու համար
 
-Մաթեմատիկական տրամաբանությունում համարժեքությունը
-հիմք է կազմում նորմալ ձևերի (օր.՝ CNF, DNF) ուսումնասիրության համար։`,
-  examples: [
-    'A→B ≡ ¬A∨B',
-    'համարժեք արտահայտություններ'
-  ],
-  questions: [
-    { id: 'q1', type: 'input', question: 'A→B համարժեք է (գրեք)', answer: '¬A∨B' },
-    { id: 'q2', type: 'input', question: 'Համարժեք արտահայտությունները նույն արժեք ունեն (այո/ոչ)', answer: 'այո' },
-    { id: 'q3', type: 'input', question: 'Համարժեքությունը փոխարինելիություն է տալիս (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Համարժեքությունը կիրառվում է պարզեցման մեջ (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Համարժեքությունը կապ է արտահայտությունների միջև (այո/ոչ)', answer: 'այո' }
-  ]
-},
-{
-  id: 'implication-theory',
-  title: 'Իմպլիկացիայի խորքային իմաստը',
-  description: 'Եթե…, ապա… կապի տրամաբանական վերլուծություն։',
-  text: `
-Իմպլիկացիան (A → B) տրամաբանական կապ է, որը նկարագրում է
-պայմանական կախվածություն երկու պնդումների միջև։
+Օրինակներ՝
+(A → B) ∧ A ≡ (¬A ∨ B) ∧ A
+¬(A → B) ≡ ¬(¬A ∨ B) ≡ A ∧ ¬B`,
+    examples: [
+      'A → B ≡ ¬A ∨ B',
+      '¬(A → B) ≡ A ∧ ¬B',
+      '(A → B) ∧ A ≡ (¬A ∨ B) ∧ A',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A → B-ի համարժեք ձևը…', options: ['A ∧ B', '¬A ∨ B', 'A ∨ ¬B', '¬A ∧ B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Ե՞րբ է A → B կեղծ։', options: ['A=0,B=0', 'A=0,B=1', 'A=1,B=0', 'A=1,B=1'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: '¬(A → B) համարժեք է…', options: ['¬A ∨ B', 'A ∧ ¬B', '¬A ∧ B', 'A ∨ B'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Եթե A=0,B=0, ապա ¬A ∨ B = ?', options: ['0', '1', 'A', 'B'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: '→-ից ազատվելու համար փոխարինում ենք…', options: ['∧-ով', '∨-ով', '¬A ∨ B-ով', 'A ∧ ¬B-ով'], correctOption: 2 },
+    ],
+  },
 
-Դասական տրամաբանության մեջ A → B արտահայտությունը կեղծ է
-միայն այն դեպքում, երբ A-ն ճշմարիտ է, իսկ B-ն՝ կեղծ։
-Բոլոր մյուս դեպքերում այն ճշմարիտ է։
+  {
+    id: 'equivalences-simplification-strategy',
+    grade: 1,
+    title: 'Պարզեցման ռազմավարություն',
+    description: 'Ինչ հերթականությամբ կիրառել օրենքները',
+    text: `Արտահայտություն պարզեցնելիս կարևոր է ճիշտ հերթականությունը, որպեսզի արագ հասնենք պարզ ձևի և չխճճվենք։
 
-Այս սահմանումը հաճախ հակասում է առօրյա լեզվի ինտուիցիային,
-սակայն այն անհրաժեշտ է տրամաբանության ֆորմալ խստության համար։
+Սկզբում՝ ամենահեշտ օրենքները
+- Identity / Domination
+- Idempotent
+- Double negation
+- Contradiction / Excluded middle
 
-Իմպլիկացիան համարժեք է հետևյալ արտահայտությանը.
+Հետո՝ ավելի կառուցվածքային օրենքները
+- Absorption
+- De Morgan
+- Distributive
+
+Փոքր խորհուրդներ
+- Եթե տեսնում ես A ∨ 1 կամ A ∧ 0, դրանք անմիջապես հանիր՝ արդյունքը արդեն պարզ է։
+- Եթե տեսնում ես A ∨ (A ∧ ինչ-որ բան) կամ A ∧ (A ∨ ինչ-որ բան), դա կլանման օրենք է։
+- Եթե տեսնում ես ¬( … ∧ … ) կամ ¬( … ∨ … ), կիրառիր դե Մորգան։
+- Երբեմն օգնում է կոմուտատիվ/ասոցիատիվ օրենքներով նույն անդամները մոտեցնել։
+
+Օրինակային քայլ
+(A ∧ 0) ∨ (A ∧ 1)
+A ∧ 0 ≡ 0
+A ∧ 1 ≡ A
+ստացվում է 0 ∨ A ≡ A։
+
+Նպատակն է՝ սովորել արագ տեսնել “ամենահզոր” պարզեցումները։`,
+    examples: [
+      '(A ∧ 0) ∨ (A ∧ 1) ≡ A',
+      'A ∨ (A ∧ B) ≡ A',
+      '¬¬A ≡ A',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A ∧ 0 պարզեցվում է…', options: ['A', '0', '1', '¬A'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'A ∨ 1 պարզեցվում է…', options: ['A', '0', '1', '¬A'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'A ∨ (A ∧ B) պարզեցվում է…', options: ['A', 'B', 'A ∧ B', 'A ∨ B'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: '¬¬A պարզեցվում է…', options: ['¬A', 'A', '0', '1'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Պարզեցման նպատակն է…', options: ['ավելացնել սյունակներ', 'ստանալ հնարավորինս պարզ համարժեք ձև', 'փոխել A-ի արժեքը', 'միայն աղյուսակ նկարել'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'application-choice-by-conditions',
+    grade: 1,
+    title: 'Պայմաններով ընտրություն',
+    description: 'Պայմանների հավաքում և ճիշտ տարբերակի գտնում',
+    text: `Տրամաբանական խնդիրներում հաճախ պետք է ընտրել ճիշտ տարբերակը՝ ըստ մի քանի պայմանների։ Ասույթների հաշվով սա արվում է շատ հստակ։
+
+Կոդավորում
+Ընտրում ենք փոփոխականներ՝
+A — “պայման 1 ճիշտ է”
+B — “պայման 2 ճիշտ է”
+C — “պայման 3 ճիշտ է”
+
+Պայմանների գրառում
+“Եթե A, ապա B” → A → B
+“A և B” → A ∧ B
+“ոչ C” → ¬C
+
+Համակարգ և լուծում
+Երբ բոլոր պայմանները գրված են, կարող ենք
+- պարզեցնել օրենքներով
+կամ
+- կառուցել աղյուսակ և ընտրել այն տողերը, որտեղ բոլոր պայմանները 1 են
+
+Ինչու է լավ
+- ոչ մի գուշակություն
+- ամեն ինչ ստուգվում է
+- սխալ տարբերակները դուրս են գալիս
+
+Սա հատկապես հարմար է, երբ կան շատ պայմաններ ու պետք է գտնել ճիշտ դեպքը։`,
+    examples: [
+      'A → B',
+      'A ∧ B',
+      '¬C',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '“Եթե A, ապա B” բանաձևը…', options: ['A ∧ B', 'A ∨ B', 'A → B', 'A ↔ B'], correctOption: 2 },
+      { id: 'q2', type: 'radio', question: '“A և B” բանաձևը…', options: ['A ∧ B', 'A ∨ B', 'A → B', '¬A'], correctOption: 0 },
+      { id: 'q3', type: 'radio', question: '“ոչ C” բանաձևը…', options: ['C', '¬C', 'C ∧ C', 'C ∨ C'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Ամենահստակ մեթոդներից մեկն է…', options: ['գուշակել', 'իսկության աղյուսակ կառուցել', 'միայն նկարել', 'միայն օրինակներ գրել'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Ճիշտ տողերը գտնելու համար փնտրում ենք…', options: ['0-ներ', '1-եր', 'միայն A=0', 'միայն B=1'], correctOption: 1 },
+    ],
+  },
+   {
+    id: 'equivalences-nand-nor-intro',
+    grade: 1,
+    title: 'ՆԵ և ԿԱՄ-ՈՉ գործողություններ',
+    description: 'NAND (↑) և NOR (↓) գաղափարը',
+    text: `Տրամաբանական հաշվարկներում երբեմն հանդիպում են նաև հատուկ գործողություններ՝ NAND և NOR։ Դրանք կառուցված են սովորական “և” (∧), “կամ” (∨), “ոչ” (¬) գործողություններից, բայց հաճախ օգտագործվում են պարզեցման, սխեմաների կամ թվային սարքերի մեջ։
+
+NAND (↑) կոչվում է “և-ոչ”։
+Սահմանում՝
+A ↑ B = ¬(A ∧ B)
+
+NOR (↓) կոչվում է “կամ-ոչ”։
+Սահմանում՝
+A ↓ B = ¬(A ∨ B)
+
+Ինչպես հասկանալ
+- NAND-ը ճշմարիտ է բոլոր դեպքերում, բացի այն դեպքից, երբ A=1 և B=1։
+- NOR-ը ճշմարիտ է միայն այն դեպքում, երբ A=0 և B=0։
+
+Ինչու են կարևոր
+1) Դրանք կապ ունեն Դե Մորգանի օրենքների հետ, որովհետև NAND/NOR արդեն իրենց մեջ ունեն ժխտում։
+2) Դրանք օգնում են շատ արագ հասկանալ որոշ բանաձևերի վարքագիծը, քանի որ “միշտ ժխտված” կառուցվածք են։
+3) Թվային տրամաբանությունում NAND և NOR-ը հաճախ կոչվում են “հիմնական դարպասներ”, որովհետև դրանցով կարելի է կառուցել շատ այլ գործողություններ։
+
+Կապը սովորական գործողությունների հետ
+- NAND-ը միշտ կարելի է վերագրել որպես ¬(A ∧ B)
+- NOR-ը միշտ կարելի է վերագրել որպես ¬(A ∨ B)
+
+Օրինակային հաշվարկ
+Եթե A=1, B=0
+A ∧ B = 0
+A ↑ B = ¬0 = 1
+A ∨ B = 1
+A ↓ B = ¬1 = 0`,
+    examples: [
+      'A ↑ B = ¬(A ∧ B)',
+      'A ↓ B = ¬(A ∨ B)',
+      'A=1,B=0 ⇒ A ↑ B = 1, A ↓ B = 0',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'NAND գործողությունը սահմանվում է որպես…', options: ['¬(A ∨ B)', '¬(A ∧ B)', 'A ∧ ¬B', '¬A ∧ ¬B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'NOR գործողությունը սահմանվում է որպես…', options: ['¬(A ∨ B)', '¬(A ∧ B)', 'A ∨ ¬B', '¬A ∨ ¬B'], correctOption: 0 },
+      { id: 'q3', type: 'radio', question: 'Ե՞րբ է A ↑ B կեղծ։', options: ['երբ A=0,B=0', 'երբ A=1,B=0', 'երբ A=0,B=1', 'երբ A=1,B=1'], correctOption: 3 },
+      { id: 'q4', type: 'radio', question: 'Ե՞րբ է A ↓ B ճշմարիտ։', options: ['միայն երբ A=0,B=0', 'միայն երբ A=1,B=1', 'երբ A≠B', 'երբ A=1,B=0'], correctOption: 0 },
+      { id: 'q5', type: 'radio', question: 'Եթե A=1,B=0, ապա A ↓ B = ?', options: ['1', '0', 'A', 'B'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-xor-intro',
+    grade: 1,
+    title: 'Բացառող կամ',
+    description: 'XOR գաղափար (միայն մեկը ճիշտ)',
+    text: `Բացառող կամը (XOR) օգտագործվում է, երբ “կամ”-ը նշանակում է ոչ թե ներառական, այլ “միայն մեկը”։
+
+Սովորական “կամ” (∨) ներառական է.
+A ∨ B ճշմարիտ է, եթե գոնե մեկը ճշմարիտ է (և նաև երբ երկուսն էլ ճշմարիտ են)։
+
+XOR-ը (հաճախ գրում են ⊕) ճշմարիտ է միայն այն դեպքում, երբ A և B տարբեր արժեքներ ունեն։
+Սա նշանակում է.
+- A=1,B=0 կամ A=0,B=1 => XOR = 1
+- A=0,B=0 կամ A=1,B=1 => XOR = 0
+
+Ինչու է պետք տարբերակել
+Բնական լեզվում “կամ”-ը երբեմն նշանակում է XOR, օրինակ՝ “կամ սուրճ, կամ թեյ” (կոնկրետ իրավիճակից կախված)։
+Տրամաբանության դասական հաշվարկում ∨-ը սովորաբար ներառական է, իսկ բացառող տարբերակի համար պետք է հատուկ նշում։
+
+Օգտակար համարժեք պատկերացում
+XOR-ը կարելի է հասկանալ որպես “տարբեր են”։
+Այս գաղափարը նաև կապ ունի ↔-ի հետ.
+- ↔ ասում է “նույն են”
+- XOR ասում է “տարբեր են”
+
+Օրինակային հաշվարկ
+Եթե A=1, B=1
+Սովորական A ∨ B = 1, բայց XOR(A,B) = 0, որովհետև երկուսն էլ նույնն են։
+Եթե A=0, B=1
+A ∨ B = 1 և XOR(A,B) = 1, որովհետև տարբեր են։`,
+    examples: [
+      'A ⊕ B = 1, եթե A≠B',
+      'A=1,B=1 ⇒ XOR = 0',
+      'A=0,B=1 ⇒ XOR = 1',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'XOR-ը ճշմարիտ է, եթե…', options: ['A=B', 'A≠B', 'A=1 միշտ', 'B=0 միշտ'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Եթե A=1,B=1, ապա XOR(A,B)=?', options: ['1', '0', 'A', '¬A'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Եթե A=0,B=1, ապա XOR(A,B)=?', options: ['1', '0', 'A', 'B'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: 'Սովորական A ∨ B-ը ճշմարիտ է, եթե…', options: ['միայն երբ A≠B', 'երբ գոնե մեկը 1 է', 'միայն երբ երկուսն էլ 1 են', 'երբ երկուսն էլ 0 են'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'XOR-ի իմաստը ավելի մոտ է…', options: ['“նույն են”', '“տարբեր են”', '“միշտ ճիշտ”', '“միշտ սխալ”'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'truth-tables-3-vars',
+    grade: 1,
+    title: '3 փոփոխականով աղյուսակ',
+    description: '8 տող և ճիշտ կոմբինացիաներ',
+    text: `Երբ արտահայտությունը ունի 3 փոփոխական (A, B, C), իսկության աղյուսակում կլինի 8 տող, որովհետև յուրաքանչյուր փոփոխական կարող է լինել 0 կամ 1, և ընդհանուր տարբերակների քանակը 2³=8 է։
+
+Ինչպես գրել բոլոր կոմբինացիաները
+Կարևոր է գրել այնպես, որ ոչ մի դեպք չկորցնենք և ոչ մի դեպք չկրկնենք։
+Մի հարմար ձև՝
+A-ն փոխվում է ամեն դանդաղ, C-ն՝ ամեն արագ։
+A B C
+0 0 0
+0 0 1
+0 1 0
+0 1 1
+1 0 0
+1 0 1
+1 1 0
+1 1 1
+
+Ինչու այս կարգը հարմար է
+- հեշտ է ստուգել, որ բոլոր տարբերակները կան
+- հեշտ է կառուցել հաջորդ սյունակները (օր.՝ A ∧ B, ¬C, (A ∧ B) ∨ ¬C)
+
+Միջանկյալ սյունակների գաղափար
+Բարդ բանաձևը հաշվարկելիս միշտ նպատակ է՝ բաժանել այն փոքր մասերի։
+Օրինակ՝ F = (A ∧ B) ∨ ¬C
+Առաջին հերթին հաշվում ենք A ∧ B, հետո ¬C, հետո վերջնական ∨։
+
+Վերջնական նպատակ
+3 փոփոխականով աղյուսակները հատկապես պետք են, երբ ուզում ենք տեսնել, թե արտահայտությունը որ դեպքերում է ճշմարիտ, կամ ստուգել՝ արդյոք դա կարող է լինել տաուտոլոգիա/հակասություն։`,
+    examples: [
+      '3 փոփոխական ⇒ 2³ = 8 տող',
+      'Կոմբինացիաներ՝ 000-ից մինչև 111',
+      'Միջանկյալ սյունակներ՝ A ∧ B, ¬C',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '3 փոփոխականով քանի՞ տող կա աղյուսակում։', options: ['4', '6', '8', '16'], correctOption: 2 },
+      { id: 'q2', type: 'radio', question: '2³ արժեքը հավասար է…', options: ['6', '8', '9', '12'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: '3 փոփոխականով ամենավերջին տողը սովորաբար…', options: ['0 0 0', '0 1 1', '1 0 1', '1 1 1'], correctOption: 3 },
+      { id: 'q4', type: 'radio', question: 'F=(A ∧ B) ∨ ¬C հաշվարկելիս ճիշտ հերթականությունն է…', options: ['նախ ∨, հետո ¬', 'նախ A ∧ B, հետո ¬C, հետո ∨', 'նախ ¬C, հետո ∧', 'կամայական է'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Միջանկյալ սյունակները պետք են որպեսզի…', options: ['ավելացնեն սխալների հավանականությունը', 'դարձնեն հաշվարկը հստակ և քայլ առ քայլ', 'փոխեն A-ի արժեքը', 'կրճատեն տողերի քանակը'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'truth-tables-find-when-true',
+    grade: 1,
+    title: 'Որ դեպքերում է արտահայտությունը ճիշտ',
+    description: 'Աղյուսակից լուծումների ընտրություն',
+    text: `Իսկության աղյուսակը կարելի է օգտագործել ոչ միայն դասակարգելու համար (տաուտոլոգիա/հակասություն), այլ նաև պարզելու՝ կոնկրետ որ տողերում է բանաձևը ճշմարիտ։
+
+Ինչ է նշանակում “որ դեպքերում”
+Եթե ունենք արտահայտություն F(A,B,...) և այն կախված է փոփոխականներից, ապա որոշ կոմբինացիաներում F=1 է, մյուսներում՝ F=0։
+“Լուծումները” հենց այն տողերն են, որտեղ F=1։
+
+Ինչպես գտնել լուծումները
+1) Կառուցել բոլոր կոմբինացիաները (բոլոր տողերը)։
+2) Հաշվել F-ի վերջնական սյունակը։
+3) Նշել այն տողերը, որտեղ F=1։
+4) Եթե պետք է, գրել որպես պայմանների հավաք՝ օրինակ՝ A=1,B=0 նշանակում է “A ճիշտ է, B կեղծ է”։
+
+Օգտակար դիտարկում
+Սա շատ լավ աշխատում է, երբ ունենք համակարգ՝ մի քանի պայման, օրինակ՝
+F1 և F2 և F3 բոլորը պետք է լինեն ճիշտ։
+Այդ դեպքում վերջնականում ընտրում ենք միայն այն տողերը, որտեղ բոլոր համապատասխան սյունակներում 1 է։
+
+Օրինակային գաղափար
+Եթե F = A ∧ B, ապա F=1 միայն այն տողում, որտեղ A=1 և B=1։
+Եթե F = A ∨ B, ապա F=0 միայն այն տողում, որտեղ A=0 և B=0։
+
+Այս դասի նպատակը՝ սովորել աղյուսակից “կարդալ” ճիշտ դեպքերը։`,
+    examples: [
+      'F=A ∧ B ⇒ ճիշտ միայն (1,1)',
+      'F=A ∨ B ⇒ սխալ միայն (0,0)',
+      'Լուծումները = տողերը, որտեղ F=1',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Լուծումներ կոչվում են այն տողերը, որտեղ…', options: ['F=0', 'F=1', 'A=0 միշտ', 'B=1 միշտ'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'F=A ∧ B դեպքում F=1 երբ…', options: ['A=0,B=0', 'A=1,B=0', 'A=0,B=1', 'A=1,B=1'], correctOption: 3 },
+      { id: 'q3', type: 'radio', question: 'F=A ∨ B դեպքում F=0 երբ…', options: ['A=1,B=1', 'A=0,B=0', 'A=1,B=0', 'A=0,B=1'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Եթե ունենք մի քանի պայման (F1, F2), ընտրում ենք տողերը որտեղ…', options: ['գոնե մեկը 1 է', 'երկուսն էլ 1 են', 'երկուսն էլ 0 են', 'կամայական է'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Աղյուսակը “կարդալ” նշանակում է…', options: ['միայն գրել տողերը', 'տեսնել, որ դեպքերում է արդյունքը 1 կամ 0', 'փոխել օրենքները', 'միայն հիշել բանաձևերը'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-normal-forms-intro',
+    grade: 1,
+    title: 'Նորմալ ձևերի գաղափարը',
+    description: 'ԴՆՁ և ԿՆՁ ինչ են և ինչու են պետք',
+    text: `Տրամաբանական բանաձևերի հետ աշխատելիս հաճախ նպատակ է՝ բերել դրանք “նորմալ ձևի”։ Նորմալ ձևը բանաձևի հատուկ կառուցվածք է, որը հարմար է համեմատելու, հաշվարկելու և ավտոմատ ստուգելու համար։
+
+ԴՆՁ (Դիսյունկցիայի նորմալ ձև)
+Սա այն կառուցվածքն է, որտեղ բանաձևը ներկայացվում է որպես “կամ”-ով միացված “և”-երի խմբեր։
+Ընդհանուր պատկեր՝
+(մի լիտերալների ∧ խումբ) ∨ (մի ուրիշ ∧ խումբ) ∨ ...
+
+ԿՆՁ (Կոնյունկցիայի նորմալ ձև)
+Սա հակառակն է՝ բանաձևը ներկայացվում է որպես “և”-ով միացված “կամ”-երի խմբեր։
+Ընդհանուր պատկեր՝
+(մի լիտերալների ∨ խումբ) ∧ (մի ուրիշ ∨ խումբ) ∧ ...
+
+Ինչ է “լիտերալ”
+Լիտերալ է A-ն կամ ¬A-ն։
+Այսինքն՝ փոփոխականը կարող է լինել կամ ժխտված, կամ ոչ ժխտված։
+
+Ինչու են նորմալ ձևերը կարևոր
+1) Դրանք թույլ են տալիս համեմատել բանաձևերը ավելի հեշտ։
+2) Դրանք կապ ունեն աղյուսակների հետ, որովհետև կարելի է ստանալ ԴՆՁ/ԿՆՁ հենց այն տողերից, որտեղ արդյունքը 1 կամ 0 է։
+3) Շատ ալգորիթմներ և համակարգեր պահանջում են ձևաչափված բանաձևեր։
+
+Ինչպես մոտենալ փոխակերպմանը
+- Ազատվել → և ↔ նշաններից (օր.՝ A→B ≡ ¬A ∨ B)
+- Ժխտումները մտցնել ներս (դե Մորգան) և անել կրկնակի ժխտում
+- Օգտագործել դիստրիբուտիվություն՝ որպեսզի ստանանք ճիշտ կառուցվածք
+
+Այս դասը գաղափարային է՝ հաջորդներում կսկսենք գործնական քայլերը։`,
+    examples: [
+      'ԴՆՁ՝ (A ∧ ¬B) ∨ (¬A ∧ B)',
+      'ԿՆՁ՝ (A ∨ B) ∧ (¬A ∨ C)',
+      'Լիտերալ՝ A կամ ¬A',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'ԴՆՁ-ը ընդհանուր պատկերով…', options: ['և-երով միացված կամերի խմբեր', 'կամերով միացված ևերի խմբեր', 'միայն ժխտումներից բաղկացած', 'միայն ↔-երից բաղկացած'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'ԿՆՁ-ը ընդհանուր պատկերով…', options: ['կամերով միացված ևերի խմբեր', 'և-երով միացված կամերի խմբեր', 'միայն 0 և 1', 'միայն ∧'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Լիտերալ է…', options: ['A', '¬A', 'A ∧ B', 'A ↔ B'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: 'Նորմալ ձևերի նպատակը հիմնականում…', options: ['գեղեցիկ գրել', 'համեմատել/ստուգել/ավտոմատացնել', 'փոխել ճշմարտության արժեքները', 'նվազեցնել փոփոխականների քանակը'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: '→-ից ազատվելու ճիշտ համարժեքությունն է…', options: ['A → B ≡ A ∧ B', 'A → B ≡ ¬A ∨ B', 'A → B ≡ A ∨ ¬B', 'A → B ≡ ¬A ∧ B'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-push-negations-inward',
+    grade: 1,
+    title: 'Ժխտումները ներս մտցնել',
+    description: 'Դե Մորգան + կրկնակի ժխտում',
+    text: `Շատ խնդիրներում պետք է հասնել այնպիսի վիճակի, որ ժխտումները (¬) դրվեն ոչ թե ամբողջ փակագծերի վրա, այլ անմիջապես փոփոխականների վրա։ Այս քայլը կարևոր է նորմալ ձևերին անցնելու, պարզեցնելու և ընդհանուր կարգավորելու համար։
+
+Գլխավոր կանոններ
+1) Դե Մորգանի օրենքներ
+¬(A ∧ B) ≡ ¬A ∨ ¬B
+¬(A ∨ B) ≡ ¬A ∧ ¬B
+
+2) Կրկնակի ժխտում
+¬¬A ≡ A
+
+Ինչ է նշանակում “ժխտումը ներս մտցնել”
+Եթե ունենք ¬( ... ), մենք փորձում ենք ժխտումը տարածել ներս՝ փոխելով ∧ և ∨։
+Այդպես վերջում ժխտումը նստում է կոնկրետ A-ի կամ B-ի վրա։
+
+Օրինակ 1
+¬(A ∨ B) → ¬A ∧ ¬B
+
+Օրինակ 2
+¬(A ∧ (B ∨ C))
+Սկզբում արտաքին կառուցվածքը ∧ է, ուրեմն դառնում է ∨։
+Ստացվում է
+¬A ∨ ¬(B ∨ C)
+Հետո երկրորդ փակագծի վրա կիրառվում է դե Մորգան՝
+¬(B ∨ C) = ¬B ∧ ¬C
+Վերջնական՝
+¬A ∨ (¬B ∧ ¬C)
+
+Օրինակ 3 (կրկնակի ժխտում)
+¬(¬A ∨ B)
+Ստացվում է
+¬¬A ∧ ¬B
+Այսինքն
+A ∧ ¬B
+
+Ինչու է կարևոր
+- Ստանում ենք “կոկիկ” բանաձև, որտեղ ¬-ը միայն փոփոխականների վրա է
+- Հետո ավելի հեշտ է բացել փակագծերը կամ ստանալ ԴՆՁ/ԿՆՁ
+- Ավելի քիչ սխալներ հաշվարկում կամ փոխակերպում անելիս
+
+Կանոն հիշելու համար
+Երբ ¬-ը մտնում է ներս, ∧ և ∨ փոխվում են տեղերով։`,
+    examples: [
+      '¬(A ∧ B) ≡ ¬A ∨ ¬B',
+      '¬(A ∨ B) ≡ ¬A ∧ ¬B',
+      '¬(¬A ∨ B) ≡ A ∧ ¬B',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '¬(A ∧ B) հավասար է…', options: ['¬A ∧ ¬B', '¬A ∨ ¬B', 'A ∧ B', 'A ∨ B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '¬(A ∨ B) հավասար է…', options: ['¬A ∨ ¬B', '¬A ∧ ¬B', 'A ∧ B', 'A ∨ B'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: '¬¬A պարզեցվում է…', options: ['¬A', 'A', '0', '1'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: '¬(¬A ∨ B) ճիշտ փոխակերպումն է…', options: ['¬A ∨ ¬B', 'A ∧ ¬B', '¬A ∧ B', 'A ∨ ¬B'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Ժխտումը ներս մտցնելիս ∧-ը դառնում է…', options: ['∧', '∨', '→', '↔'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-implication-chain',
+    grade: 1,
+    title: 'Եթե… ապա… կառուցվածքների շարքեր',
+    description: 'Շղթայական իմպլիկացիաներ',
+    text: `Բարդ տեքստերում հաճախ հանդիպում են մի քանի “եթե…, ապա…” կառուցվածքներ։ Դրանք պետք է ճիշտ կոդավորել, որպեսզի չխառնենք իմաստը։
+
+Պարզ իմպլիկացիա
+A → B նշանակում է՝ “եթե A, ապա B”։
+
+Շղթա՝ “եթե A, ապա եթե B, ապա C”
+Սա սովորաբար հասկանում ենք որպես
+A → (B → C)
+Այսինքն՝ A-ն պայման է, որից հետո գործում է երկրորդ “եթե… ապա…” մասը։
+
+Մյուս տարբերակ՝ “եթե A և B, ապա C”
+Սա այլ բան է՝
+(A ∧ B) → C
+
+Ինչու է սա կարևոր
+Երկու բանաձևերը հաճախ տարբեր արդյունքներ են տալիս, որովհետև մեկում A և B միասին են պահանջվում, իսկ մյուսում A-ն պարզապես արտաքին պայման է։
+
+Ինչպես տարբերել
+- Եթե տեքստում “եթե A, ապա (եթե B, ապա C)” կառուցվածք կա, ապա փակագծով գրում ենք A → (B → C)։
+- Եթե տեքստում “եթե A և B, ապա C” կա, ապա (A ∧ B) → C։
+- Եթե կա “եթե A, ապա B, և եթե B, ապա C”՝ սա արդեն երկու առանձին պայման է՝ (A → B) ∧ (B → C)։
+
+Օգտակար փոխակերպում
+Քանի որ A → B ≡ ¬A ∨ B, կարելի է շղթաները դարձնել ավելի “սովորական” գործողություններով՝ երբ պետք է աղյուսակ կամ նորմալ ձև։
+
+Օրինակ
+A → (B → C)
+Սա համարժեք է
+¬A ∨ (¬B ∨ C)
+Կամ՝ ¬A ∨ ¬B ∨ C`,
+    examples: [
+      'A → (B → C)',
+      '(A ∧ B) → C',
+      '(A → B) ∧ (B → C)',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '“եթե A և B, ապա C” ճիշտ բանաձևն է…', options: ['A → (B → C)', '(A ∧ B) → C', 'A ∧ (B → C)', 'A → (B ∧ C)'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '“եթե A, ապա եթե B, ապա C” ճիշտ է…', options: ['(A ∧ B) → C', 'A → (B → C)', '(A → B) → C', 'A ↔ (B → C)'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'A → B համարժեք է…', options: ['A ∧ B', '¬A ∨ B', 'A ∨ ¬B', '¬A ∧ B'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'A → (B → C) կարելի է գրել որպես…', options: ['¬A ∨ ¬B ∨ C', 'A ∧ B ∧ C', '¬A ∧ ¬B ∧ C', 'A ∨ B ∨ C'], correctOption: 0 },
+      { id: 'q5', type: 'radio', question: 'Եթե տեքստում կան երկու առանձին պայմաններ “A→B” և “B→C”, ապա գրում ենք…', options: ['(A → B) ∨ (B → C)', '(A → B) ∧ (B → C)', 'A → (B → C)', '(A ∧ B) → C'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'application-consistency-check',
+    grade: 1,
+    title: 'Պայմանների հակասության ստուգում',
+    description: 'Կա՞ լուծում, թե՞ հակասություն է',
+    text: `Երբ ունենք մի քանի պայման (բանաձևերի համակարգ), կարևոր հարց է՝ արդյոք հնարավոր է, որ դրանք բոլորը միասին լինեն ճշմարիտ։ Եթե չկա ոչ մի տող, որտեղ բոլոր պայմանները 1 են, ապա համակարգը հակասական է (ոչ իրագործելի)։
+
+Ինչ է նշանակում “հակասական պայմանների համակարգ”
+Օրինակ՝ եթե համակարգում միաժամանակ պահանջում ենք A և ¬A, ապա դա անհնար է։
+A ∧ ¬A միշտ 0 է, հետևաբար ոչ մի արժեքավորում չի բավարարում։
+
+Ինչպես ստուգել՝ կա՞ լուծում
+Մեթոդ 1՝ աղյուսակով
+1) Գրել բոլոր փոփոխականների կոմբինացիաները
+2) Հաշվել յուրաքանչյուր պայմանի սյունակը
+3) Վերջում հաշվել F = P1 ∧ P2 ∧ ... (բոլորը միասին)
+4) Եթե կա գոնե մեկ տող, որտեղ F=1, ուրեմն լուծում կա
+Եթե բոլոր տողերում F=0, ապա հակասություն է
+
+Մեթոդ 2՝ օրենքներով պարզեցում
+Երբեմն կարելի է արագ տեսնել՝
+- եթե հանդիպում է A ∧ ¬A, անմիջապես 0 է
+- եթե հանդիպում է A ∨ ¬A, դա միշտ 1 է և կարող է հեշտացնել
+
+Ինչու է սա կիրառական
+Իրական խնդիրներում սա համապատասխանում է “կարելի՞ է այս բոլոր պահանջները միաժամանակ կատարել” հարցին։
+Եթե ոչ, պետք է կամ փոխել պայմանները, կամ գտնել որ պայմանն է հակասություն ստեղծում։
+
+Օրինակային միտք
+Եթե ունենք (A → B) ∧ A ∧ ¬B
+Քանի որ A → B նշանակում է՝ A լինելու դեպքում B պետք է լինի, իսկ մենք տալիս ենք ¬B, այստեղ հակասություն կա։
+Սա կարելի է տեսնել և աղյուսակով, և պարզեցմամբ։`,
+    examples: [
+      'A ∧ ¬A — միշտ 0',
+      'Եթե չկա տող, որտեղ բոլոր պայմանները 1 են, լուծում չկա',
+      '(A → B) ∧ A ∧ ¬B — հակասական',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Համակարգը ունի լուծում, եթե…', options: ['բոլոր տողերում 0 է', 'կա գոնե մեկ տող, որտեղ բոլոր պայմանները 1 են', 'միայն A=0 դեպքում', 'երբ պայմանները շատ են'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'A ∧ ¬A արժեքը…', options: ['միշտ 1', 'միշտ 0', 'երբեմն 1', 'կախված է B-ից'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Եթե վերջնական F սյունակում բոլոր տողերում 0 է, ապա…', options: ['տաուտոլոգիա է', 'հակասություն է, լուծում չկա', 'միշտ կա լուծում', 'պետք է փոխել աղյուսակը'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: '(A → B) ∧ A ∧ ¬B ամենահավանականը…', options: ['տաուտոլոգիա է', 'համարժեք է 1-ի', 'հակասական է', 'չի որոշվում'], correctOption: 2 },
+      { id: 'q5', type: 'radio', question: 'Լուծում փնտրելիս համակարգի բոլոր պայմանները միացնում ենք սովորաբար…', options: ['∨-ով', '∧-ով', '↔-ով', 'ոչ մի բանով'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-common-mistakes',
+    grade: 1,
+    title: 'Հաճախակի սխալներ',
+    description: 'Ինչից խուսափել համարժեքություններում',
+    text: `Տրամաբանական համարժեքությունները սովորելիս շատ կարևոր է ճանաչել դասական սխալները։ Այս դասը օգնում է չշփոթել նման արտահայտությունները և հասկանալ՝ ինչու են սխալ։
+
+Սխալ 1՝ Դե Մորգանի սխալ կիրառում
+Ճիշտը՝
+¬(A ∧ B) ≡ ¬A ∨ ¬B
+¬(A ∨ B) ≡ ¬A ∧ ¬B
+Սխալը՝
+¬(A ∧ B) = ¬A ∧ ¬B (սա սխալ է)
+
+Սխալ 2՝ Իմպլիկացիան “և”-ի հետ շփոթել
+A → B չի նշանակում A ∧ B։
+A → B կեղծ է միայն A=1,B=0 դեպքում։
+A ∧ B կեղծ է շատ ավելի հաճախ (երբ A=0 կամ B=0)։
+
+Սխալ 3՝ “կամ”-ը միշտ բացառող համարել
+Դասական տրամաբանությունում ∨ ներառական է։
+Եթե ուզում ենք բացառող իմաստ, պետք է հատուկ նշենք (օր. ⊕) կամ տեքստով հստակենք։
+
+Սխալ 4՝ Հավասարություն և համարժեքություն շփոթել
+A ≡ B նշանակում է, որ բանաձևերը միշտ նույն արժեքն ունեն (բոլոր տողերում)։
+Եթե միայն մեկ արժեքավորման համար նույնն են, դա դեռ համարժեքություն չէ։
+
+Սխալ 5՝ Փակագծերի անուշադրություն
+(A ∧ B) ∨ C և A ∧ (B ∨ C) տարբեր բանաձևեր են։
+Փակագծերը կարող են ամբողջ իմաստը փոխել։
+
+Ինչ անել, որ սխալ չլինի
+- Եթե կասկածում ես, փոքր աղյուսակ սարքիր 2 փոփոխականով և ստուգիր
+- Կիրառիր օրենքները միայն ճիշտ ձևով
+- Միշտ հետևիր, թե ¬-ը ինչի վրա է ազդում (մի ամբողջ խմբի՞, թե՞ մեկ փոփոխականի)`,
+    examples: [
+      'Սխալ՝ ¬(A ∧ B)=¬A ∧ ¬B',
+      'Ճիշտ՝ ¬(A ∧ B)=¬A ∨ ¬B',
+      'A → B ≠ A ∧ B',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Դե Մորգանի ճիշտ օրենքն է…', options: ['¬(A ∧ B) ≡ ¬A ∧ ¬B', '¬(A ∧ B) ≡ ¬A ∨ ¬B', '¬(A ∨ B) ≡ ¬A ∨ ¬B', '¬(A ∨ B) ≡ A ∧ B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'A → B համարժեք է…', options: ['A ∧ B', '¬A ∨ B', 'A ∨ ¬B', '¬A ∧ ¬B'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Դասական ∨-ը նշանակում է…', options: ['բացառող կամ', 'ներառական կամ', 'միայն և', 'միայն ոչ'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Համարժեքություն A ≡ B նշանակում է, որ…', options: ['միայն մեկ տողի վրա նույնն են', 'բոլոր տողերում նույն արժեքն ունեն', 'A միշտ 1 է', 'B միշտ 0 է'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Փակագծերը սխալ դնելը կարող է…', options: ['ոչինչ չփոխել', 'փոխել ամբողջ իմաստը', 'միայն տողերի քանակը փոխել', 'միայն նշանները փոխել'], correctOption: 1 },
+    ],
+  },
+    {
+    id: 'truth-tables-for-negation',
+    grade: 1,
+    title: 'Ժխտման աղյուսակ',
+    description: 'Ինչպես է աշխատում ¬A և ¬(արտահայտություն)',
+    text: `Ժխտումը (¬) տրամաբանության ամենահիմնական գործողություններից է։ Այն փոխում է արժեքը՝ ճշմարիտը դարձնելով կեղծ, իսկ կեղծը դարձնելով ճշմարիտ։
+
+Ժխտման իմաստը
+Եթե A-ն ասույթ է, ապա ¬A նշանակում է “ոչ A”։
+- Եթե A=1, ապա ¬A=0
+- Եթե A=0, ապա ¬A=1
+
+Ինչու է ժխտումը կարևոր
+1) Այն հաճախ հանդիպում է բնական լեզվում՝ “ոչ”, “չի”, “սխալ է”, “ճիշտ չէ”։
+2) Այն անհրաժեշտ է Դե Մորգանի օրենքների համար, երբ ժխտումը դրվում է փակագծերի վրա։
+3) Այն օգնում է տարբեր պայմանների հակադարձ տարբերակը ստանալ։
+
+Ժխտումը բարդ արտահայտության վրա
+Երբ ժխտումը դրված է ամբողջ խմբի վրա, օրինակ՝ ¬(A ∨ B), այն չի նշանակում ¬A ∨ B կամ A ∧ ¬B։
+Այդպիսի դեպքերում պետք է կիրառել օրենքներ (Դե Մորգան) կամ ստուգել աղյուսակով։
+
+Աղյուսակ կազմելու գաղափար
+Եթե ունենք մեկ փոփոխական՝ A, ապա կա 2 տող։ Դրանց վրա հաշվարկում ենք ¬A։
+Եթե ունենք երկու փոփոխական՝ A,B, ապա կարող ենք հաշվարկել ¬(A ∧ B), ¬(A ∨ B), ¬(A → B) և այլն՝ միշտ քայլերով։
+
+Օգտակար խորհուրդներ
+- ¬ նշանը միշտ ազդում է իր անմիջական անդամի վրա։
+- Եթե ¬-ից հետո փակագիծ կա, դա նշանակում է ամբողջ խմբի ժխտում։
+- Եթե ուզում ես չսխալվել, նախ հաշվիր փակագծի ներսը, հետո միայն ժխտումը։`,
+    examples: [
+      'A=1 ⇒ ¬A=0',
+      'A=0 ⇒ ¬A=1',
+      '¬(A ∨ B) հաշվվում է՝ նախ (A ∨ B), հետո ¬',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Եթե A=1, ապա ¬A = ?', options: ['0', '1', 'A', 'չի որոշվում'], correctOption: 0 },
+      { id: 'q2', type: 'radio', question: 'Եթե A=0, ապա ¬A = ?', options: ['0', '1', 'A', '¬¬A'], correctOption: 0 },
+      { id: 'q3', type: 'radio', question: '¬ նշանը ազդում է…', options: ['ամբողջ տողի վրա', 'միայն իր անմիջական անդամի վրա', 'միշտ A-ի վրա', 'միայն B-ի վրա'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Եթե ¬-ից հետո փակագիծ կա, ապա ժխտվում է…', options: ['միայն առաջին փոփոխականը', 'ամբողջ փակագծի խումբը', 'միայն երկրորդ փոփոխականը', 'ոչինչ չի ժխտվում'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Ժխտումը կարևոր է, որովհետև…', options: ['միայն գեղեցիկ է', 'փոխում է արժեքները և օգտագործվում է պարզեցման մեջ', 'նվազեցնում է տողերի քանակը', 'փոխում է գործողությունների նշանները առանց կանոնների'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'truth-tables-for-and-or',
+    grade: 1,
+    title: '∧ և ∨ գործողությունների աղյուսակ',
+    description: 'Ինչպես են հաշվվում A ∧ B և A ∨ B',
+    text: `Երկու հիմնական գործողություններն են “և” (∧) և “կամ” (∨)։ Դրանք հիմք են բոլոր բարդ բանաձևերի համար։
+
+A ∧ B (և)
+A ∧ B ճշմարիտ է միայն այն դեպքում, երբ A=1 և B=1։
+Մնացած բոլոր դեպքերում կեղծ է։
+Սա կարելի է հասկանալ որպես “երկուսն էլ պետք է ճիշտ լինեն”։
+
+A ∨ B (կամ)
+A ∨ B ճշմարիտ է, երբ գոնե մեկը ճիշտ է։
+Կեղծ է միայն այն դեպքում, երբ A=0 և B=0։
+Սա կարելի է հասկանալ որպես “բավարար է գոնե մեկը”։
+
+Ինչու պետք է իմանալ աղյուսակը
+- Երբ հաշվարկում ենք բարդ արտահայտություններ՝ պետք է սյունակներով քայլենք։
+- Երբ ստուգում ենք համարժեքություններ՝ պետք է ճիշտ հաշվենք ∧ և ∨։
+- Երբ կարդում ենք բնական լեզուն՝ “և”, “կամ” բառերը պետք է ճիշտ փոխարկենք։
+
+Սովորական սխալ
+Մարդիկ երբեմն “կամ”-ը հասկանում են բացառող (միայն մեկը)։ Բայց դասական տրամաբանությունում ∨ ներառական է, այսինքն՝ եթե երկուսն էլ ճիշտ են, ապա A ∨ B նույնպես ճիշտ է։
+
+Հաշվարկի խորհուրդ
+Եթե տողում կա 0 ∧ ինչ-որ բան, արդյունքը 0 է։
+Եթե տողում կա 1 ∨ ինչ-որ բան, արդյունքը 1 է։
+Սրանք արագ հաշվելու հնարքներ են, որոնք գալիս են դոմինացիայի օրենքներից։`,
+    examples: [
+      'A ∧ B = 1 միայն (1,1) դեպքում',
+      'A ∨ B = 0 միայն (0,0) դեպքում',
+      'Եթե A=0,B=1 ⇒ A ∧ B = 0, A ∨ B = 1',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A ∧ B ճշմարիտ է երբ…', options: ['A=0,B=0', 'A=1,B=0', 'A=0,B=1', 'A=1,B=1'], correctOption: 3 },
+      { id: 'q2', type: 'radio', question: 'A ∨ B կեղծ է երբ…', options: ['A=1,B=1', 'A=0,B=0', 'A=1,B=0', 'A=0,B=1'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Եթե A=0,B=1, ապա A ∧ B = ?', options: ['0', '1', 'A', 'B'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: 'Եթե A=0,B=1, ապա A ∨ B = ?', options: ['0', '1', 'A', 'B'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Դասական տրամաբանությունում ∨-ը…', options: ['բացառող է', 'ներառական է', 'միշտ 0 է', 'միշտ 1 է'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'truth-tables-order-of-operations',
+    grade: 1,
+    title: 'Գործողությունների կարգը',
+    description: 'Ինչ հերթականությամբ հաշվենք ¬, ∧, ∨ և փակագծերը',
+    text: `Բարդ բանաձևեր հաշվարկելիս շատ սխալներ լինում են ոչ թե օրենքներից, այլ գործողությունների սխալ կարգից։
+
+Ընդհանուր կանոն
+1) Փակագծերը միշտ առաջինն են։
+2) Ժխտումը (¬) հաշվվում է իր անմիջական անդամի համար։
+3) Այնուհետև “և” (∧)։
+4) Վերջում “կամ” (∨)։
+
+Օրինակ 1
+A ∨ B ∧ C
+Առանց փակագծերի սա նշանակում է A ∨ (B ∧ C), որովհետև ∧-ը ավելի “ուժեղ” է, քան ∨-ը։
+
+Օրինակ 2
+¬A ∧ B
+Սա նշանակում է (¬A) ∧ B, ոչ թե ¬(A ∧ B)։
+Եթե ուզում ենք ժխտել ամբողջը, պետք է փակագիծ՝ ¬(A ∧ B)։
+
+Ինչու է պետք իմանալ
+- Տեսության մեջ ճիշտ ընթերցելու համար։
+- Աղյուսակ սարքելու ժամանակ ճիշտ միջանկյալ սյունակներ դնելու համար։
+- Բնական լեզվից բանաձև անելիս փակագծերը ճիշտ դնելու համար։
+
+Խորհուրդ
+Եթե փոքր-ինչ կասկած ունես, միշտ դարձրու բացահայտ՝ դիր փակագծեր, որ ինքդ էլ հստակ տեսնես, թե ինչն ինչի վրա է ազդում։`,
+    examples: [
+      'A ∨ B ∧ C = A ∨ (B ∧ C)',
+      '¬A ∧ B = (¬A) ∧ B',
+      '¬(A ∧ B) — ժխտում ամբողջ խմբի վրա',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Փակագծերը հաշվվում են…', options: ['վերջում', 'առաջինը', 'երբ ցանկանանք', 'միայն եթե A=1'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Առանց փակագծերի գործողությունների ճիշտ կարգն է…', options: ['∨ հետո ∧ հետո ¬', '¬ հետո ∧ հետո ∨', '∧ հետո ∨ հետո ¬', 'կամայական'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'A ∨ B ∧ C նշանակում է…', options: ['(A ∨ B) ∧ C', 'A ∨ (B ∧ C)', '(A ∧ B) ∨ C', '¬A ∨ (B ∧ C)'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: '¬A ∧ B նշանակում է…', options: ['¬(A ∧ B)', '(¬A) ∧ B', '¬(A ∨ B)', '(A ∧ B)'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Եթե ուզում ենք ժխտել ամբողջ A ∧ B-ը, պետք է գրել…', options: ['¬A ∧ B', 'A ∧ ¬B', '¬(A ∧ B)', '(¬A) ∧ (¬B)'], correctOption: 2 },
+    ],
+  },
+
+  {
+    id: 'equivalences-implication-to-or',
+    grade: 1,
+    title: 'A → B վերածել ∨-ի',
+    description: 'Ինչպես ազատվել իմպլիկացիայից և ինչ է ստացվում',
+    text: `Իմպլիկացիան (A → B) հաճախ պետք է փոխարինել ավելի պարզ գործողություններով՝ ¬ և ∨։ Սա շատ օգտակար է աղյուսակների, նորմալ ձևերի և պարզեցման համար։
+
+Հիմնական համարժեքություն
 A → B ≡ ¬A ∨ B
 
-Այս համարժեքությունը թույլ է տալիս ուսումնասիրել իմպլիկացիան
-որպես դիսյունկցիա, ինչը կարևոր է ապացույցների և
-տրամաբանական ձևափոխումների ժամանակ։
+Ինչու է սա ճիշտ
+A → B կեղծ է միայն այն ժամանակ, երբ A=1 և B=0։
+Այդ դեպքում ¬A ∨ B = 0 ∨ 0 = 0։
+Մնացած բոլոր դեպքերում ¬A ∨ B = 1, և հենց այդ պատճառով դրանք համարժեք են։
 
-Մաթեմատիկայում «եթե…, ապա…» ձևակերպումը
-հիմք է հանդիսանում թեորեմների, լեմմաների և սահմանումների համար։`,
-  examples: ['A→B ≡ ¬A∨B', 'true→false = false'],
-  questions: [
-    { id: 'q1', type: 'input', question: 'A→B կեղծ է երբ (գրեք)', answer: 'A=true,B=false' },
-    { id: 'q2', type: 'input', question: 'A→B համարժեք է ¬A∨B (այո/ոչ)', answer: 'այո' },
-    { id: 'q3', type: 'input', question: 'Իմպլիկացիան պայմանական կապ է (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Իմպլիկացիան օգտագործվում է թեորեմներում (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Իմպլիկացիան տրամաբանության հիմնական կապերից է (այո/ոչ)', answer: 'այո' }
-  ]
-},
+Ինչ օգուտ ունի
+- Աղյուսակում այլևս պետք չէ հատուկ կանոն հիշել “→”-ի համար, որովհետև մենք աշխատում ենք ¬ և ∨-ով։
+- Եթե բանաձևում շատ “→” կա, հեշտ է դրանք բոլորն էլ վերածել “∨”։
+- Հետո կարելի է կիրառել դե Մորգան, դիստրիբուտիվություն և այլն։
 
-{
-  id: 'biconditional-theory',
-  title: 'Երկկողմանի իմպլիկացիա',
-  description: 'Հավասարարժեք պայմանների տրամաբանություն։',
-  text: `
-Երկկողմանի իմպլիկացիան (A ↔ B) արտահայտում է այն գաղափարը,
-որ երկու պնդումներ ունեն նույն ճշմարտացիությունը։
+Կարևոր դիտարկում
+A → B-ը չի նշանակում A ∧ B և չի նշանակում A ↔ B։
+Դա “պայմանական կապ” է, և հենց դրա պատճառով էլ փոխակերպումը ¬A ∨ B է։
 
-Այն կարելի է կարդալ որպես «A միայն և միայն եթե B»։
-Ֆորմալ կերպով այն սահմանվում է այսպես.
+Օրինակ
+(A → B) ∧ A
+Վերածում ենք՝ (¬A ∨ B) ∧ A
+Հետո կարելի է պարզեցնել կամ աղյուսակով ստուգել։`,
+    examples: [
+      'A → B ≡ ¬A ∨ B',
+      'A=1,B=0 ⇒ ¬A ∨ B = 0',
+      '(A → B) ∧ A ≡ (¬A ∨ B) ∧ A',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A → B համարժեք է…', options: ['A ∧ B', '¬A ∨ B', 'A ∨ ¬B', '¬A ∧ B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Ե՞րբ է A → B կեղծ։', options: ['A=0,B=0', 'A=0,B=1', 'A=1,B=0', 'A=1,B=1'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: 'Եթե A=0,B=0, ապա ¬A ∨ B = ?', options: ['0', '1', 'A', 'B'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'A → B-ը չի հավասար…', options: ['¬A ∨ B', 'A ∧ B', 'ոչ մեկին', 'բոլորին'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: '→-ից ազատվելու հիմնական նպատակը…', options: ['ավելացնել փոփոխականներ', 'հեշտացնել աղյուսակ/պարզեցում', 'փոխել A-ի իմաստը', 'կրճատել տողերի քանակը'], correctOption: 1 },
+    ],
+  },
 
-A ↔ B ≡ (A → B) ∧ (B → A)
+  {
+    id: 'equivalences-biconditional-to-and-or',
+    grade: 1,
+    title: 'A ↔ B-ի բացում',
+    description: 'Ինչպես գրել ↔-ը ∧, ∨, ¬ միջոցով',
+    text: `Երկկողմանի կապը (A ↔ B) նշանակում է, որ A-ն և B-ն նույն արժեքն ունեն։ Շատ դեպքերում պետք է ↔-ը փոխարինել ∧, ∨, ¬ գործողություններով, որպեսզի կարողանանք աղյուսակով կամ նորմալ ձևերով աշխատել։
 
-Սա նշանակում է, որ երկու ուղղություններով էլ պետք է
-գործի իմպլիկացիան։
+Կարդացվում է
+“A եթե և միայն եթե B”
 
-Երկկողմանի իմպլիկացիան հաճախ օգտագործվում է
-մաթեմատիկական սահմանումներում, երբ անհրաժեշտ է
-ցույց տալ, որ որևէ հատկություն ոչ միայն բավարար է,
-այլ նաև անհրաժեշտ։
+Երբ է ճշմարիտ
+- A=1,B=1
+- A=0,B=0
 
-Այս կապը կարևոր է հավասարարժեք ձևակերպումներ
-ստանալու և մաթեմատիկական ճշգրիտ լեզու կառուցելու համար։`,
-  examples: ['A↔B ≡ (A→B)∧(B→A)'],
-  questions: [
-    { id: 'q1', type: 'input', question: 'A↔B ինչից է բաղկացած', answer: '(A→B)∧(B→A)' },
-    { id: 'q2', type: 'input', question: 'A↔B ճշմարիտ է երբ (գրեք)', answer: 'A=B' },
-    { id: 'q3', type: 'input', question: 'Օգտագործվում է սահմանումներում (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Երկկողմանի կապ է (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Կապում է երկու պնդում (այո/ոչ)', answer: 'այո' }
-  ]
-},
+Երբ է կեղծ
+- A=1,B=0
+- A=0,B=1
 
-{
-  id: 'quantifiers-theory',
-  title: 'Քվանտորների տեսություն',
-  description: 'Ընդհանուր և գոյաբանական պնդումներ։',
-  text: `
-Քվանտորները տրամաբանության մեջ օգտագործվում են
-պնդումները բազմությունների կամ տիրույթի վրա ընդհանրացնելու համար։
+Հայտնի ձևափոխում
+A ↔ B համարժեք է երկու իմպլիկացիաների միացությանը՝
+(A → B) ∧ (B → A)
 
-∃ քվանտորը նշանակում է «գոյություն ունի»,
-իսկ ∀ քվանտորը նշանակում է «բոլորի համար»։
+Եթե ուզում ենք միայն ¬ և ∨
+Փոխարինում ենք իմպլիկացիաները՝
+(A → B) ∧ (B → A) ≡ (¬A ∨ B) ∧ (¬B ∨ A)
 
-Օրինակ.
-∀x P(x) — P հատկությունը ճիշտ է բոլոր x-երի համար  
-∃x P(x) — կա գոնե մեկ x, որի համար P(x) ճիշտ է  
+Սա արդեն հարմար է աղյուսակ կառուցելու և հաջորդ քայլերով պարզեցնելու համար։
 
-Քվանտորների ժխտումը ունի հատուկ օրենքներ.
+Ինչու է սա պետք
+- Որ ↔ նշանը չխանգարի նորմալ ձևերին անցնելուն։
+- Որ ստուգենք համարժեքություն՝ պարզ տեսքով։
+- Որ սովորենք կառուցել բանաձևեր, երբ տեքստում կա “եթե և միայն եթե”։`,
+    examples: [
+      'A ↔ B ≡ (A → B) ∧ (B → A)',
+      'A ↔ B ≡ (¬A ∨ B) ∧ (¬B ∨ A)',
+      'A=B ⇒ A ↔ B = 1',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'A ↔ B համարժեք է…', options: ['(A → B) ∨ (B → A)', '(A → B) ∧ (B → A)', 'A ∧ B', '¬A ∨ ¬B'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '(A → B) ∧ (B → A) վերածելուց ստանում ենք…', options: ['(A ∧ B) ∨ (¬A ∧ ¬B)', '(¬A ∨ B) ∧ (¬B ∨ A)', '¬A ∨ ¬B', 'A ∨ B'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'A ↔ B ճշմարիտ է երբ…', options: ['A≠B', 'A=B', 'A=1 միշտ', 'B=0 միշտ'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Եթե A=1,B=0, ապա A ↔ B = ?', options: ['1', '0', 'A', 'B'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: '↔-ը բացելու նպատակը հիմնականում…', options: ['զարդարել բանաձևը', 'աշխատել պարզ նշաններով՝ ¬, ∧, ∨', 'փոխել ճշմարտության արժեքները', 'միայն կրճատել տողերը'], correctOption: 1 },
+    ],
+  },
 
-¬∀x P(x) ≡ ∃x ¬P(x)  
-¬∃x P(x) ≡ ∀x ¬P(x)
+  {
+    id: 'statements-to-formulas-keywords',
+    grade: 1,
+    title: 'Բառերը դեպի նշաններ',
+    description: '“և”, “կամ”, “ոչ”, “եթե…, ապա…” քարտեզ',
+    text: `Բնական լեզվից տրամաբանական բանաձև գրելիս ամենակարևոր քայլը ճիշտ “բառ → նշան” համապատասխանեցումն է։ Եթե սա սխալ է, ամբողջ բանաձևը սխալ կստացվի։
 
-Այս օրենքները կարևոր են ապացույցների կառուցման
-և հակաօրինակներ գտնելու համար։
+Հիմնական քարտեզ
+- “և”, “միաժամանակ”, “երկուսը միասին” → ∧
+- “կամ”, “գոնե մեկը” → ∨
+- “ոչ”, “չի”, “ճիշտ չէ” → ¬
+- “եթե…, ապա…” → →
+- “եթե և միայն եթե”, “հենց այն դեպքում, երբ” → ↔
 
-Քվանտորները լայնորեն կիրառվում են մաթեմատիկայում,
-վերլուծությունում և ալգեբրայում։`,
-  examples: ['∀x P(x)', '∃x P(x)', '¬∀ = ∃¬'],
-  questions: [
-    { id: 'q1', type: 'input', question: '∀ նշանակում է (գրեք)', answer: 'բոլորի համար' },
-    { id: 'q2', type: 'input', question: '∃ նշանակում է (գրեք)', answer: 'գոյություն ունի' },
-    { id: 'q3', type: 'input', question: '¬∀ համարժեք է ∃¬ (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Քվանտորները վերաբերում են փոփոխականներին (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Քվանտորները կիրառվում են ապացույցներում (այո/ոչ)', answer: 'այո' }
-  ]
-},
+Ինչպես աշխատել նախադասության հետ
+1) Առանձնացրու պարզ ասույթները և նրանց տուր տառեր։
+2) Գտիր կապող բառերը։
+3) Դիր փակագծեր, որպեսզի միտքը հստակ լինի։
+4) Ստուգիր՝ ժխտումը ճիշտ տեղում է, թե ոչ։
 
-{
-  id: 'proof-methods',
-  title: 'Ապացույցների հիմնական մեթոդներ',
-  description: 'Ուղիղ, հակասությամբ և հակադարձ ապացույցներ։',
-  text: `
-Մաթեմատիկական տրամաբանության մեջ ապացույցը
-կառուցվում է խիստ տրամաբանական քայլերով։
+Օրինակ
+“Եթե անձրև է, ապա փողոցը թաց է”
+A — “անձրև է”
+B — “փողոցը թաց է”
+Բանաձև՝ A → B
 
-Հիմնական մեթոդներն են.
-• Ուղիղ ապացույց  
-• Ապացույց հակասությամբ  
-• Հակադարձ ապացույց  
+Մեկ այլ օրինակ
+“Ես տանը կմնամ, եթե (անձրև է կամ ձյուն է) և ոչ քամի կա”
+A — “անձրև է”
+B — “ձյուն է”
+C — “քամի կա”
+D — “ես տանը կմնամ”
+Սա կարելի է գրել՝ ((A ∨ B) ∧ ¬C) → D կամ D ↔ ((A ∨ B) ∧ ¬C)՝ կախված տեքստից։
 
-Ուղիղ ապացույցում ենթադրությունները
-հերթական քայլերով բերում են եզրակացության։
+Սովորական սխալներ
+- “կամ”-ը վերցնել բացառող, երբ տեքստում դա չի ասվում
+- մոռանալ փակագծերը
+- ժխտումը դնել սխալ անդամի վրա
 
-Հակասությամբ ապացույցում ենթադրվում է
-պնդման ժխտումը և ստացվում է հակասություն։
+Եթե կասկածում ես, կարող ես փոքր աղյուսակով ստուգել՝ քո բանաձևը համապատասխանում է՞ մտքին։`,
+    examples: [
+      '“և” → ∧',
+      '“կամ” → ∨',
+      '“եթե…, ապա…” → →',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '“և” բառը համապատասխանում է…', options: ['∨', '∧', '¬', '→'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '“ոչ” բառը համապատասխանում է…', options: ['∨', '∧', '¬', '↔'], correctOption: 2 },
+      { id: 'q3', type: 'radio', question: '“եթե…, ապա…” համապատասխանում է…', options: ['→', '∧', '∨', '¬'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: '“եթե և միայն եթե” համապատասխանում է…', options: ['→', '↔', '∧', '∨'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Բանաձև գրելու ժամանակ ինչն է ամենակարևորը…', options: ['գրել առանց փակագծերի', 'ճիշտ քարտեզը և փակագծերը', 'միշտ օգտագործել ↔', 'միշտ անել XOR'], correctOption: 1 },
+    ],
+  },
 
-Հակադարձ ապացույցում ապացուցվում է
-հակադարձ պնդումը։
+  {
+    id: 'statements-to-formulas-brackets',
+    grade: 1,
+    title: 'Փակագծերի ճիշտ դերը',
+    description: 'Ինչպես չշփոթել տարբեր իմաստներ',
+    text: `Փակագծերը տրամաբանությունում նույնքան կարևոր են, որքան մաթեմատիկայում։ Դրանք ցույց են տալիս՝ որ հատվածն ինչի հետ է միավորվում, և ինչն ինչից առաջ պետք է հաշվվի կամ հասկացվի։
 
-Այս մեթոդները հիմք են հանդիսանում
-մաթեմատիկական մտածողության զարգացման համար։`,
-  examples: ['direct proof', 'contradiction', 'contrapositive'],
-  questions: [
-    { id: 'q1', type: 'input', question: 'Հակասությամբ ապացույցը սկսվում է (ենթադրությամբ/եզրակացությամբ)', answer: 'ենթադրությամբ' },
-    { id: 'q2', type: 'input', question: 'Ուղիղ ապացույցը քայլ առ քայլ է (այո/ոչ)', answer: 'այո' },
-    { id: 'q3', type: 'input', question: 'Հակադարձ ապացույցը կիրառելի է իմպլիկացիաների համար (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Ապացույցը պետք է լինի տրամաբանական (այո/ոչ)', answer: 'այո' },
-    { id: 'q5', type: 'input', question: 'Ապացույցը մաթեմատիկայի հիմքն է (այո/ոչ)', answer: 'այո' }
-  ]
-},
+Ինչու են փակագծերը փոխում իմաստը
+Օրինակ՝
+( A ∧ B ) ∨ C և A ∧ ( B ∨ C ) տարբեր բանաձևեր են։
+Առաջինում “A և B” միասին են, հետո “կամ C”։
+Երկրորդում “B կամ C” միասին են, հետո “և A”։
 
-{
-  id: 'consistency-completeness',
-  title: 'Համակարգերի ամբողջականություն և անճշտելիություն',
-  description: 'Տրամաբանական համակարգերի սահմանները։',
-  text: `
-Տրամաբանական համակարգը կոչվում է
-համահունչ (consistent), եթե նրանում
-հնարավոր չէ ապացուցել և պնդումը, և նրա ժխտումը։
+Արժեքների տարբերություն կարելի է տեսնել օրինակով
+Թող A=0, B=1, C=1
+( A ∧ B ) ∨ C = (0 ∧ 1) ∨ 1 = 0 ∨ 1 = 1
+A ∧ ( B ∨ C ) = 0 ∧ (1 ∨ 1) = 0 ∧ 1 = 0
+Ստացանք տարբեր արդյունքներ։ Սա նշանակում է՝ բանաձևերը նույնը չեն։
 
-Համակարգը ամբողջական (complete) է,
-եթե յուրաքանչյուր ճշմարիտ պնդում
-կարելի է ապացուցել այդ համակարգում։
+Ինչպես ճիշտ դնել փակագծերը
+1) Նախ կարդա նախադասությունը և գտիր հիմնական “կմախքը”։
+2) Եթե կա “և” ու “կամ” խառն, միշտ դարձրու բացահայտ՝ փակագծերով։
+3) Եթե կա “ոչ”, համոզվիր, թե ինչն է ժխտվում։
+4) Եթե կա “եթե…, ապա…”, սովորաբար “եթե”-ի մասը դրվում է փակագծում, երբ այն բարդ է։
 
-Գյոդելի անճշտելիության թեորեմները ցույց են տալիս,
-որ բավականաչափ հարուստ համակարգերում
-անհնար է ունենալ և՛ ամբողջականություն, և՛ համահունչություն։
+Խորհուրդներ
+- Ավելի լավ է ավելորդ փակագիծ դնել, քան թողնել անորոշ։
+- Եթե երկու տարբեր ընթերցում կա, ընտրիր այն, որը համապատասխանում է տեքստի իմաստին։
+- Եթե կասկածում ես, ստուգիր 2 փոփոխականով կամ 3 փոփոխականով փոքր աղյուսակով։`,
+    examples: [
+      '(A ∧ B) ∨ C',
+      'A ∧ (B ∨ C)',
+      'A=0,B=1,C=1 ⇒ արդյունքները տարբեր են',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: '(A ∧ B) ∨ C և A ∧ (B ∨ C)…', options: ['միշտ նույնն են', 'տարբեր բանաձևեր են', 'միշտ 1 են', 'միշտ 0 են'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Ո՞ր օրինակում արդյունքները կարող են տարբեր լինել։', options: ['(A ∧ B) ∨ C և A ∧ (B ∨ C)', 'A ∧ B և B ∧ A', 'A ∨ A և A', '¬¬A և A'], correctOption: 0 },
+      { id: 'q3', type: 'radio', question: 'Եթե կա “ոչ” և փակագիծ, ապա ժխտվում է…', options: ['միայն A-ն', 'ամբողջ փակագծի խումբը', 'միայն B-ն', 'ոչինչ'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Փակագծերը հիմնականում ցույց են տալիս…', options: ['տողերի քանակը', 'կապերի կառուցվածքը և հերթականությունը', 'միայն փոփոխականների անունները', 'միայն 0 և 1'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Ճիշտ մոտեցում է…', options: ['երբեք փակագծեր չդնել', 'դնել փակագծեր, եթե հնարավոր է սխալ հասկանալ', 'փակագծերը փոխարինել “,”-ով', 'միայն վերջում մտածել փակագծերի մասին'], correctOption: 1 },
+    ],
+  },
 
-Այս գաղափարները սահմանում են
-մաթեմատիկական ապացույցների հնարավորությունների սահմանները
-և մեծ ազդեցություն են ունեցել տրամաբանության զարգացման վրա։`,
-  examples: ['consistency', 'completeness', 'Gödel'],
-  questions: [
-    { id: 'q1', type: 'input', question: 'Համահունչ համակարգում կա հակասություն (այո/ոչ)', answer: 'ոչ' },
-    { id: 'q2', type: 'input', question: 'Ամբողջական համակարգում ամեն ճշմարիտ պնդում ապացուցելի է (այո/ոչ)', answer: 'այո' },
-    { id: 'q3', type: 'input', question: 'Գյոդելի թեորեմները սահմանափակում են համակարգերը (այո/ոչ)', answer: 'այո' },
-    { id: 'q4', type: 'input', question: 'Ամբողջականությունն ու համահունչությունը միշտ միասին են (այո/ոչ)', answer: 'ոչ' },
-    { id: 'q5', type: 'input', question: 'Այս թեման խորքային է տրամաբանության մեջ (այո/ոչ)', answer: 'այո' }
-  ]
-}
+  {
+    id: 'application-building-system',
+    grade: 1,
+    title: 'Պայմանների համակարգ կառուցել',
+    description: 'Մի քանի պայման՝ մեկ ընդհանուր բանաձև',
+    text: `Երբ խնդրում տրված է մի քանի պահանջ/պայման, մենք սովորաբար ուզում ենք ստանալ մի ընդհանուր բանաձև, որը կարտացոլի “բոլոր պայմանները միասին”։
+
+Ինչ է նշանակում “համակարգ”
+Օրինակ՝ ունենք պայմաններ P1, P2, P3։
+Եթե ուզում ենք, որ բոլորը միաժամանակ ճիշտ լինեն, գրում ենք
+F = P1 ∧ P2 ∧ P3
+
+Սա տրամաբանական է, որովհետև “և”-ը պահանջում է, որ ամեն անդամ ճիշտ լինի։
+
+Ինչպես կազմել քայլերով
+1) Կոդավորիր պարզ ասույթները A,B,C… (կարճ և հստակ)։
+2) Յուրաքանչյուր նախադասություն կամ պահանջ գրիր բանաձևով՝ P1, P2, ...
+3) Միացրու դրանք ընդհանուր բանաձևում՝ “և”-ով։
+4) Եթե պետք է “գոնե մեկը”, այդ հատվածում օգտագործիր “կամ”։
+5) Եթե պետք է “եթե..., ապա...”, օգտագործիր → և եթե պետք է, վերածիր ¬A ∨ B։
+
+Ինչ անել հետո
+- Եթե պետք է ստուգել, կա՞ լուծում, կարելի է աղյուսակով գտնել տող, որտեղ F=1։
+- Եթե պետք է պարզեցնել, օգտագործում ենք համարժեքությունների օրենքները։
+- Եթե պայմաններից մեկը հակասություն է ստեղծում, վերջնական F-ը կարող է դառնալ միշտ 0 (լուծում չկա)։
+
+Օրինակային գաղափար
+Եթե պահանջը ասում է “A ճիշտ է” և նաև “A ճիշտ չէ”, ապա համակարգը ունի A ∧ ¬A, որը միշտ 0 է։
+Այսպիսի հակասությունները պետք է որսալ արագ։`,
+    examples: [
+      'P1,P2,P3 բոլորը պետք են ⇒ F = P1 ∧ P2 ∧ P3',
+      'Հակասություն՝ A ∧ ¬A ⇒ լուծում չկա',
+      'Եթե պետք է “գոնե մեկը” ⇒ օգտագործում ենք ∨',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Եթե բոլոր պայմանները պետք է միասին ճիշտ լինեն, միացնում ենք…', options: ['∨-ով', '∧-ով', '¬-ով', '↔-ով'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: 'Եթե պետք է “գոնե մեկը”, օգտագործում ենք…', options: ['∧', '∨', '¬', '→'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Հակասություն ստեղծող զույգն է…', options: ['A և B', 'A և ¬A', 'A ∨ B', '¬¬A'], correctOption: 1 },
+      { id: 'q4', type: 'radio', question: 'Եթե F=P1 ∧ P2, ապա F=1 երբ…', options: ['գոնե մեկը 1 է', 'երկուսն էլ 1 են', 'երկուսն էլ 0 են', 'միշտ 1 է'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Պայմանները գրելու առաջին քայլը…', options: ['արդյունքը գրել', 'կոդավորել պարզ ասույթները', 'դիստրիբուտիվություն կիրառել', 'աղյուսակ նկարել առանց բանաձևի'], correctOption: 1 },
+    ],
+  },
+
+  {
+    id: 'equivalences-check-by-table',
+    grade: 1,
+    title: 'Համարժեքության ստուգում արագ աղյուսակով',
+    description: 'Ինչպես արագ տեսնել՝ A ≡ B է, թե ոչ',
+    text: `Երբ ունենք երկու արտահայտություն և ուզում ենք հասկանալ՝ արդյոք դրանք համարժեք են, ամենահստակ մեթոդը փոքր աղյուսակն է։
+
+Համարժեքության սահմանում
+Երկու բանաձև համարժեք են, եթե բոլոր հնարավոր արժեքավորումներում ունեն նույն արդյունքը։
+Այսինքն՝ վերջնական սյունակները պետք է ամբողջությամբ նույնը լինեն։
+
+Ինչպես անել արագ
+1) Եթե փոփոխականները 2-ն են (A,B), կունենանք 4 տող։
+2) Յուրաքանչյուր բանաձևի համար սարքիր առանձին սյունակ (կամ հաշվիր քայլերով)։
+3) Համեմատիր 4 արժեքները։
+Եթե բոլոր 4 տողերում նույնն է՝ համարժեք են։
+
+Ինչու է “արագ”
+Տրամաբանության շատ օրենքներ կարելի է ստուգել հենց 4 տողով։
+Օրինակ՝
+- ¬(A ∧ B) ≡ ¬A ∨ ¬B
+- A → B ≡ ¬A ∨ B
+- A ∨ A ≡ A
+
+Երբ աղյուսակն ամենակարևորն է
+- Երբ կասկածում ես, թե օրենքը ճիշտ հիշում ես, թե ոչ
+- Երբ երկու ձևափոխումներից հետո չես վստահ, որ նույն բանն է ստացվել
+- Երբ “կամ”-ի իմաստը տեքստում կարող է շփոթեցնել
+
+Խորհուրդ
+Եթե բանաձևերը շատ մեծ են, դու կարող ես ստուգել նաև 2-3 պատահական տող, բայց դա լիարժեք ապացույց չէ։
+Լիարժեք ստուգում է միայն ամբողջ աղյուսակը։`,
+    examples: [
+      '2 փոփոխական ⇒ 4 տող՝ արագ ստուգման համար',
+      'Համարժեք են, եթե բոլոր տողերում նույնն է',
+      'Կասկածի դեպքում՝ աղյուսակն ամենահստակն է',
+    ],
+    questions: [
+      { id: 'q1', type: 'radio', question: 'Երկու բանաձև համարժեք են, եթե…', options: ['միայն մեկ տողում նույնն են', 'բոլոր տողերում նույն արժեքն ունեն', 'միայն A=1 դեպքում նույնն են', 'միշտ տարբեր են'], correctOption: 1 },
+      { id: 'q2', type: 'radio', question: '2 փոփոխականով աղյուսակը ունի…', options: ['2 տող', '4 տող', '8 տող', '16 տող'], correctOption: 1 },
+      { id: 'q3', type: 'radio', question: 'Աղյուսակով ստուգումը լավ է, որովհետև…', options: ['գուշակելու կարիք չկա', 'միշտ ավելի երկար է', 'փոխում է օրենքները', 'քիչ է ցույց տալիս'], correctOption: 0 },
+      { id: 'q4', type: 'radio', question: 'Համարժեքության ստուգման ժամանակ համեմատում ենք…', options: ['միայն անունները', 'վերջնական արդյունքները բոլոր տողերում', 'միայն առաջին տողը', 'միայն վերջին տողը'], correctOption: 1 },
+      { id: 'q5', type: 'radio', question: 'Եթե 4 տողերից գոնե մեկում տարբեր է, ապա…', options: ['համարժեք են', 'համարժեք չեն', 'միշտ 1 է', 'միշտ 0 է'], correctOption: 1 },
+    ],
+  },
 ];
-
 export default topics;

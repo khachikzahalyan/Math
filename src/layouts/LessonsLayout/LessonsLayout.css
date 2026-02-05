@@ -1,19 +1,26 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;           /* скролл не у body */
+}
+
 .lessonsLayout__body {
   display: flex;
   height: 100vh;
   padding-top: var(--header-height);
-  overflow: hidden; /* prevent whole-page scroll; sidebar/content scroll independently */
+  overflow: hidden;
+}
+
+.lessonsLayout__sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  height: 100%;
+  overflow-y: auto;
+
 }
 
 .lessonsLayout__content {
-  flex: 1;
-  height: 100%;
   padding: 24px 16px;
   overflow-y: auto;
-}
-
-@media (max-width: 768px) {
-  .lessonsLayout__content {
-    padding: 16px;
-  }
+  flex-grow: 1; 
 }

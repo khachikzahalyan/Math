@@ -117,7 +117,7 @@ function Header() {
           tabIndex={0}
         >
           <img className="header__logoImg" src="/logoimg.png" alt="Մաթեմատիկա" />
-          <span className="header__logoText">Մաթեմատիկա</span>
+          <span className="header__logoText">Մաթեմատիկական տրամաբանություն</span>
         </div>
 
         <div className="header__search header__search--mobile" ref={searchRef}>
