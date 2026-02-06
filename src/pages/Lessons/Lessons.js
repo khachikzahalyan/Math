@@ -7,14 +7,14 @@ function Lessons() {
   const [selectedLevel, setSelectedLevel] = useState(null);
 
   const levels = useMemo(() => {
-    return [...new Set(topics.map(t => t.grade))]
+    return [...new Set(topics.map(t => t.level))]
       .filter((level) => Number.isFinite(level))
       .sort((a, b) => a - b);
   }, []);
 
   const filteredTopics = useMemo(() => {
     if (selectedLevel == null) return [];
-    return topics.filter(t => t.grade === selectedLevel);
+    return topics.filter(t => t.level === selectedLevel);
   }, [selectedLevel]);
 
   if (selectedLevel === null) {
