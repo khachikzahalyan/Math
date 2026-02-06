@@ -73,10 +73,10 @@
 }
 
 .form-group textarea {
-  resize: none;            /* важно: отключаем растягивание */
+  resize: none;
   min-height: 120px;
   max-height: 160px;
-  overflow: auto;          /* если текста много — скролл ТОЛЬКО внутри поля */
+  overflow: auto;
 }
 
 .contact__button {
@@ -111,8 +111,8 @@
 
 .tooltip {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: -6%;
+  right: -120%;
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   padding: 16px 24px;

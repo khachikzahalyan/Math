@@ -36,6 +36,12 @@ function Contact() {
       <div className="contact__card animate-card">
         <h1 className="contact__title animate-title">Կապ մեզ հետ</h1>
 
+        {showTooltip && (
+          <div className="tooltip">
+            Ձեր նամակը հաջողությամբ ուղղարկվեց․․․
+          </div>
+        )}
+        
         <p className="contact__subtitle animate-text animate-delay-1">
           Եթե ունեք հարցեր, առաջարկներ կամ պարզապես ցանկանում եք կապ հաստատել,
           կարող եք գրել մեզ՝ ստորև նշված տվյալներով։
@@ -86,11 +92,7 @@ function Contact() {
           </button>
         </form>
 
-        {showTooltip && (
-          <div className="tooltip">
-            Ձեր նամակը հաջողությամբ ուղղարկվեց․․․
-          </div>
-        )}
+
 
         <p className="contact__footer animate-text animate-delay-5">
           Մենք կփորձենք պատասխանել հնարավորինս արագ։

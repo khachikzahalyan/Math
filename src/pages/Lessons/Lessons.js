@@ -41,15 +41,15 @@ function Lessons() {
 
   return (
     <div className="lessons">
-      <button 
-        className="lessons__backBtn" 
+      <button
+        className="lessons__backBtn"
         onClick={() => setSelectedLevel(null)}
         type="button"
       >
         ← Վերադառնալ
       </button>
       <h1 className="lessons__title">Մակարդակ {selectedLevel}</h1>
-      <p className="lessons__subtitle">Ընտրեք թեմա ուսումնասիրելու համար։</p>
+      <p className="lessons__subtitle">Ընտրեք թեմа ուսումնասիրելու համար։</p>
       <div className="lessons__grid">
         {filteredTopics.map((t) => (
           <div className="lessons__card" key={t.id}>
@@ -63,7 +63,6 @@ function Lessons() {
           </div>
         ))}
       </div>
-
     </div>
   );
 }

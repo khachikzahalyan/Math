@@ -3,6 +3,9 @@
   max-width: 54%;
   margin: 0 auto;
   min-height: 100vh;
+  /* добавили паддинги чтобы на мобайле не прилипало к краям */
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
 
 .lessons__title {
@@ -48,10 +51,15 @@
   cursor: pointer;
   font-family: inherit;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  
+
   box-shadow: 0 10px 30px rgba(99, 102, 241, 0.35);
   position: relative;
   overflow: hidden;
+
+  /* важно для мобайла */
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .lessons__categoryBtn::before {
@@ -113,6 +121,10 @@
   cursor: pointer;
   font-family: inherit;
   transition: all 0.3s ease;
+
+  /* чтобы не ломалось */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .lessons__backBtn:hover {
@@ -139,6 +151,10 @@
   gap: 28px;
   max-width: 1000px;
   margin: 0 auto;
+
+  /* чтобы не было горизонтального скролла */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .lessons__card {
@@ -155,6 +171,10 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+
+  /* критично для мобайла */
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .lessons__card::before {
@@ -201,6 +221,8 @@
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
+
+  min-width: 0;
 }
 
 .lessons__cardFooter {
@@ -227,6 +249,10 @@
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+
+  /* чтобы на мобайле красиво смотрелось */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .lessons__cardLink:hover {
@@ -240,10 +266,42 @@
   text-decoration: none;
 }
 
+/* ✅ НОВОЕ: адаптив контейнера, чтобы не было 54% на мобайле */
+@media (max-width: 1024px) {
+  .lessons {
+    max-width: 86%;
+  }
+}
+
 @media (max-width: 768px) {
+  .lessons {
+    max-width: 100%;
+    padding: 18px 12px;
+  }
+
+  .lessons__categoriesContainer {
+    gap: 12px;
+    margin-bottom: 30px;
+    max-width: 100%;
+  }
+
+  .lessons__categoryBtn {
+    padding: 22px 14px;
+    border-radius: 16px;
+  }
+
+  .lessons__categoryNumber {
+    font-size: 2.4rem;
+  }
+
+  .lessons__categoryLabel {
+    font-size: 1rem;
+  }
+
   .lessons__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+    max-width: 100%;
   }
 
   .lessons__card {
@@ -297,9 +355,10 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 420px) {
   .lessons__grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .lessons__card {

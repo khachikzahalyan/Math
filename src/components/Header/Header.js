@@ -202,6 +202,14 @@ function Header() {
           >
             Գլխավոր
           </NavLink>
+          
+          <NavLink
+            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
+            to="/lessons"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Դասեր
+          </NavLink>
 
           <NavLink
             className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
@@ -219,13 +227,6 @@ function Header() {
             Կապ
           </NavLink>
 
-          <NavLink
-            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
-            to="/lessons"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Դասեր
-          </NavLink>
 
           <div className="header__search header__search--desktop" ref={searchRef}>
             <div className="header__searchInput">
