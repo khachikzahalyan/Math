@@ -25,7 +25,6 @@ body {
 
 .topic__section {
   margin-bottom: 28px;
-  width: 80%;
 }
 
 .topic__sectionTitle {
@@ -449,4 +448,59 @@ body {
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 16px;
+}
+@media (max-width: 520px) {
+  /* общий воздух по бокам */
+  .topic {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* карточки/блоки чуть компактнее */
+  .topic__questionCard,
+  .topic__result,
+  .topic__reviewQuestion {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  /* КЛЮЧЕВОЕ: действия (кнопки) в колонку */
+  .topic__actions,
+  .topic__resultActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .topic__button,
+  .topic__resultActions .topic__button {
+    width: 100%;
+    min-width: 0;          /* важно для узких экранов */
+    flex: none;            /* чтобы не пытались делить строку */
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    line-height: 1.2;
+
+    /* чтобы длинные армянские/русские строки красиво переносились */
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+
+  /* если где-то остались 2-3 кнопки рядом из-за других стилей */
+  .topic__button--primary,
+  .topic__button--secondary {
+    flex: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .topic__title {
+    font-size: 1.25rem;
+  }
+  .topic__button {
+    font-size: 0.92rem;
+    padding: 11px 12px;
+  }
 }
