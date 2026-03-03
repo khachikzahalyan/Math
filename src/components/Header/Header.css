@@ -72,9 +72,11 @@
   transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.header__link:hover {
-  color: var(--primary);
-  background: rgba(99, 102, 241, 0.08);
+@media (hover: hover) {
+  .header__link:hover {
+    color: var(--primary);
+    background: rgba(99, 102, 241, 0.08);
+  }
 }
 
 .header__link:active {
@@ -172,8 +174,10 @@
   user-select: none;
 }
 
-.header__searchItem:hover {
-  background: var(--bg-alt);
+@media (hover: hover) {
+  .header__searchItem:hover {
+    background: var(--bg-alt);
+  }
 }
 
 .header__searchItem:active {
@@ -222,13 +226,15 @@
   transition: all 0.3s ease;
 }
 
-.header__burger:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-}
+@media (hover: hover) {
+  .header__burger:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
 
-.header__burger:hover .header__burgerLine {
-  background: white;
+  .header__burger:hover .header__burgerLine {
+    background: white;
+  }
 }
 
 .header__burgerLine {

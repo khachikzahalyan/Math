@@ -70,8 +70,10 @@ a {
   transition: var(--transition);
 }
 
-a:hover {
-  color: var(--primary-dark);
+@media (hover: hover) {
+  a:hover {
+    color: var(--primary-dark);
+  }
 }
 body {
   position: relative;

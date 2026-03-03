@@ -18,11 +18,13 @@
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.home__content:hover {
-  box-shadow:
-    0 32px 64px rgba(0, 0, 0, 0.08),
-    0 8px 22px rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .home__content:hover {
+    box-shadow:
+      0 32px 64px rgba(0, 0, 0, 0.08),
+      0 8px 22px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
 }
 
 .home__title {
@@ -66,9 +68,11 @@
   color: #2563eb;
   flex-shrink: 0;
 }
-.home__feature:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+@media (hover: hover) {
+  .home__feature:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  }
 }
 
 .home__actions {
@@ -86,11 +90,13 @@
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.home__button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
-  color: #ffffff;
+@media (hover: hover) {
+  .home__button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+  }
 }
 
 @keyframes fadeUp {

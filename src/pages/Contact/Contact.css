@@ -92,10 +92,12 @@
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-.contact__button:hover {
-  filter: brightness(0.98);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+@media (hover: hover) {
+  .contact__button:hover {
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+  }
 }
 
 .contact__button:active {

@@ -84,11 +84,13 @@
   line-height: 1.2;
 }
 
-.sidebar__link:hover {
-  color: var(--text);
-  background: var(--bg-alt);
-  border-color: rgba(99, 102, 241, 0.25);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .sidebar__link:hover {
+    color: var(--text);
+    background: var(--bg-alt);
+    border-color: rgba(99, 102, 241, 0.25);
+    transform: translateY(-1px);
+  }
 }
 
 .sidebar__link.is-active {

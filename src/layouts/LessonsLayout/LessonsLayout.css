@@ -22,5 +22,6 @@ html.lessons-lock body {
 
 .lessonsLayout__content {
   padding: 24px 16px;
+  overflow-y: auto;
   flex-grow: 1; 
 }

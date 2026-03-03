@@ -145,9 +145,11 @@ body {
   user-select: none;
 }
 
-.topic__option:hover {
-  border-color: var(--primary);
-  background: rgba(99, 102, 241, 0.04);
+@media (hover: hover) {
+  .topic__option:hover {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.04);
+  }
 }
 
 .topic__option--selected {
@@ -240,9 +242,11 @@ body {
   cursor: pointer;
 }
 
-.topic__button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+@media (hover: hover) {
+  .topic__button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .topic__button:active {
@@ -267,10 +271,12 @@ body {
   cursor: pointer;
 }
 
-.topic__button--secondary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  background: linear-gradient(135deg, rgba(244, 67, 54, 0.9), rgba(211, 47, 47, 0.9));
+@media (hover: hover) {
+  .topic__button--secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.9), rgba(211, 47, 47, 0.9));
+  }
 }
 
 .topic__result {

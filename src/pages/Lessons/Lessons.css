@@ -72,14 +72,16 @@
   pointer-events: none;
 }
 
-.lessons__categoryBtn:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(99, 102, 241, 0.45);
-  border-color: rgba(255, 255, 255, 0.4);
-}
+@media (hover: hover) {
+  .lessons__categoryBtn:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(99, 102, 241, 0.45);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
 
-.lessons__categoryBtn:hover::before {
-  opacity: 1;
+  .lessons__categoryBtn:hover::before {
+    opacity: 1;
+  }
 }
 
 .lessons__categoryBtn:active {
@@ -118,11 +120,13 @@
   box-sizing: border-box;
 }
 
-.lessons__backBtn:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateX(-4px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+@media (hover: hover) {
+  .lessons__backBtn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  }
 }
 
 .lessons__backBtn:active {
@@ -176,14 +180,16 @@
   z-index: -1;
 }
 
-.lessons__card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.25);
-  border-color: var(--primary);
-}
+@media (hover: hover) {
+  .lessons__card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.25);
+    border-color: var(--primary);
+  }
 
-.lessons__card:hover .lessons__cardTitle {
-  color: var(--primary);
+  .lessons__card:hover .lessons__cardTitle {
+    color: var(--primary);
+  }
 }
 
 .lessons__cardTitle {
@@ -234,9 +240,11 @@
   box-sizing: border-box;
 }
 
-.lessons__cardLink:hover {
-  color: #fff;
-  text-decoration: none;
+@media (hover: hover) {
+  .lessons__cardLink:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
 @media (max-width: 1024px) {
