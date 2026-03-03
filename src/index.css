@@ -44,7 +44,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text);
-  line-height: 1.6;
 }
 
 button {
@@ -76,7 +75,7 @@ a:hover {
 }
 body {
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
   overscroll-behavior-y: none;
 }
 

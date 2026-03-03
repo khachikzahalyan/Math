@@ -1,7 +1,8 @@
-html, body {
+html.lessons-lock,
+html.lessons-lock body {
   height: 100%;
   margin: 0;
-  overflow: hidden;           /* скролл не у body */
+  overflow: hidden;
 }
 
 .lessonsLayout__body {
@@ -21,6 +22,5 @@ html, body {
 
 .lessonsLayout__content {
   padding: 24px 16px;
-  overflow-y: auto;
   flex-grow: 1; 
 }

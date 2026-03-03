@@ -8,8 +8,14 @@ function LessonsLayout() {
   const contentRef = useRef(null);
   const { pathname } = useLocation();
 
-  // Ստուգել թե արդյո՞ք մենք /lessons-ի վրա ենք (առանց topic ID-ի)
   const isLessonsCategory = pathname === '/lessons';
+
+  useEffect(() => {
+    document.documentElement.classList.add('lessons-lock');
+    return () => {
+      document.documentElement.classList.remove('lessons-lock');
+    };
+  }, []);
 
   useEffect(() => {
     if (contentRef.current) {

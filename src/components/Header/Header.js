@@ -55,16 +55,12 @@ function Header() {
   useEffect(() => {
     const handleFocus = () => {
       if (document.activeElement?.tagName === 'INPUT') {
-        document.documentElement.style.position = 'fixed';
-        document.documentElement.style.width = '100%';
-        document.documentElement.style.overflow = 'hidden';
+        document.body.classList.add('keyboard-open');
       }
     };
 
     const handleBlur = () => {
-      document.documentElement.style.position = '';
-      document.documentElement.style.width = '';
-      document.documentElement.style.overflow = '';
+      document.body.classList.remove('keyboard-open');
     };
 
     window.addEventListener('focusin', handleFocus);
@@ -73,6 +69,7 @@ function Header() {
     return () => {
       window.removeEventListener('focusin', handleFocus);
       window.removeEventListener('focusout', handleBlur);
+      document.body.classList.remove('keyboard-open');
     };
   }, []);
 

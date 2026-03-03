@@ -127,7 +127,6 @@
   padding: 0;
   margin: 0;
   font-family: inherit;
-  line-height: 1.4;
   /* Отключаем автозум на iOS */
   -webkit-font-smoothing: antialiased;
   -webkit-appearance: none;
