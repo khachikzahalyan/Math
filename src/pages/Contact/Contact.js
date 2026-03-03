@@ -50,15 +50,15 @@ function Contact() {
         <form className="contact__form animate-text animate-delay-4" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Անուն</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="Ձեր անունը"
-            />
+          <input
+            type="text"
+            required
+            placeholder="Ձեր անունը"
+            onInvalid={(e) =>
+              e.target.setCustomValidity('Խնդրում ենք լրացնել այս դաշտը')
+            }
+            onInput={(e) => e.target.setCustomValidity('')}
+          />
           </div>
 
           <div className="form-group">
@@ -70,6 +70,9 @@ function Contact() {
               value={formData.email}
               onChange={handleChange}
               required
+              onInvalid={(e) =>
+              e.target.setCustomValidity('Խնդրում ենք լրացնել այս դաշտը')
+            }
               placeholder="Ձեր էլ․ փոստը"
             />
           </div>
@@ -91,8 +94,6 @@ function Contact() {
             Ուղարկել
           </button>
         </form>
-
-
 
         <p className="contact__footer animate-text animate-delay-5">
           Մենք կփորձենք պատասխանել հնարավորինս արագ։
