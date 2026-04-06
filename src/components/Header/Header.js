@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
+import { Brain, Search, Home, BookOpen, Users, Mail } from 'lucide-react';
 import topics from '../../data/topics';
 import './Header.css';
 
@@ -8,6 +9,7 @@ function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const searchRef = useRef(null);
   const searchInputRef = useRef(null);
   const closeTimeoutRef = useRef(null);
@@ -17,6 +19,12 @@ function Header() {
         topic.title.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : [];
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -104,8 +112,64 @@ function Header() {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen((p) => !p);
 
+  const NAV_ITEMS = [
+    { to: '/', Icon: Home, label: 'Գլխավոր' },
+    { to: '/lessons', Icon: BookOpen, label: 'Դասեր' },
+    { to: '/about', Icon: Users, label: 'Մեր մասին' },
+    { to: '/contact', Icon: Mail, label: 'Կապ' },
+  ];
+
+  const searchInput = (
+    <div className="header__searchInput">
+      <Search size={16} className="header__searchIcon" strokeWidth={2.4} />
+      <input
+        ref={searchInputRef}
+        type="text"
+        placeholder="Որոնել թեմա..."
+        value={searchQuery}
+        onChange={(e) => {
+          setSearchQuery(e.target.value);
+          setIsSearchOpen(true);
+        }}
+        onFocus={() => {
+          if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+          }
+          setIsSearchOpen(true);
+        }}
+        onBlur={handleSearchInputBlur}
+        spellCheck="false"
+        autoComplete="off"
+        inputMode="search"
+      />
+    </div>
+  );
+
+  const searchDropdown = isSearchOpen && filteredTopics.length > 0 && (
+    <div className="header__searchDropdown">
+      {filteredTopics.map((topic) => (
+        <button
+          key={topic.id}
+          className="header__searchItem"
+          onMouseDown={(e) => handleSearchItemMouseDown(e, topic.id)}
+          onTouchEnd={(e) => handleSearchItemMouseDown(e, topic.id)}
+          onClick={(e) => {
+            e.preventDefault();
+            handleSearchItemMouseDown(e, topic.id);
+          }}
+          type="button"
+          role="option"
+          aria-selected={false}
+        >
+          <span className="header__searchItemTitle">{topic.title}</span>
+          <span className="header__searchItemDesc">{topic.description}</span>
+        </button>
+      ))}
+    </div>
+  );
+
   return (
-    <header className="header">
+    <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
       <div className="header__inner">
         <div
           className="header__logo"
@@ -113,178 +177,46 @@ function Header() {
           role="button"
           tabIndex={0}
         >
-          <img className="header__logoImg" src="/logoimg.png" alt="Մաթեմատիկա" />
+          <div className="header__logoMark">
+            <Brain size={20} strokeWidth={2.4} />
+          </div>
           <span className="header__logoText">Մաթեմատիկական տրամաբանություն</span>
         </div>
 
         <div className="header__search header__search--mobile" ref={searchRef}>
-          <div className="header__searchInput">
-            <svg
-              className="header__searchIcon"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-
-            <input
-              ref={searchInputRef}
-              type="text"
-              placeholder="Որոնել թեմա..."
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setIsSearchOpen(true);
-              }}
-              onFocus={() => {
-                if (closeTimeoutRef.current) {
-                  clearTimeout(closeTimeoutRef.current);
-                }
-                setIsSearchOpen(true);
-              }}
-              onBlur={handleSearchInputBlur}
-              spellCheck="false"
-              autoComplete="off"
-              inputMode="search"
-            />
-          </div>
-
-          {isSearchOpen && filteredTopics.length > 0 && (
-            <div className="header__searchDropdown">
-              {filteredTopics.map((topic) => (
-                <button
-                  key={topic.id}
-                  className="header__searchItem"
-                  onMouseDown={(e) => handleSearchItemMouseDown(e, topic.id)}
-                  onTouchEnd={(e) => handleSearchItemMouseDown(e, topic.id)}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleSearchItemMouseDown(e, topic.id);
-                  }}
-                  type="button"
-                  role="option"
-                  aria-selected={false}
-                >
-                  <span className="header__searchItemTitle">{topic.title}</span>
-                  <span className="header__searchItemDesc">{topic.description}</span>
-                </button>
-              ))}
-            </div>
-          )}
+          {searchInput}
+          {searchDropdown}
         </div>
 
         <button
           className={`header__burger ${isMobileMenuOpen ? 'is-open' : ''}`}
           onClick={toggleMobileMenu}
-          aria-label="Меню"
+          aria-label="Menu"
           type="button"
         >
-          <span className="header__burgerLine"></span>
-          <span className="header__burgerLine"></span>
-          <span className="header__burgerLine"></span>
+          <span className="header__burgerLine" />
+          <span className="header__burgerLine" />
+          <span className="header__burgerLine" />
         </button>
 
         <nav className={`header__nav ${isMobileMenuOpen ? 'is-open' : ''}`}>
-          <NavLink
-            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
-            to="/"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Գլխավոր
-          </NavLink>
-          
-          <NavLink
-            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
-            to="/lessons"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Դասեր
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
-            to="/about"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Մեր մասին
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) => (isActive ? 'header__link is-active' : 'header__link')}
-            to="/contact"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Կապ
-          </NavLink>
-
+          {NAV_ITEMS.map(({ to, Icon, label }) => (
+            <NavLink
+              key={to}
+              className={({ isActive }) =>
+                `header__link${isActive ? ' is-active' : ''}`
+              }
+              to={to}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Icon size={16} strokeWidth={2} className="header__linkIcon" />
+              {label}
+            </NavLink>
+          ))}
 
           <div className="header__search header__search--desktop" ref={searchRef}>
-            <div className="header__searchInput">
-              <svg
-                className="header__searchIcon"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
-
-              <input
-                type="text"
-                placeholder="Որոնել թեմա..."
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setIsSearchOpen(true);
-                }}
-                onFocus={() => {
-                  if (closeTimeoutRef.current) {
-                    clearTimeout(closeTimeoutRef.current);
-                  }
-                  setIsSearchOpen(true);
-                }}
-                onBlur={handleSearchInputBlur}
-                spellCheck="false"
-                autoComplete="off"
-                inputMode="search"
-              />
-            </div>
-
-            {isSearchOpen && filteredTopics.length > 0 && (
-              <div className="header__searchDropdown">
-                {filteredTopics.map((topic) => (
-                  <button
-                    key={topic.id}
-                    className="header__searchItem"
-                    onMouseDown={(e) => handleSearchItemMouseDown(e, topic.id)}
-                    onTouchEnd={(e) => handleSearchItemMouseDown(e, topic.id)}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleSearchItemMouseDown(e, topic.id);
-                    }}
-                    type="button"
-                    role="option"
-                    aria-selected={false}
-                  >
-                    <span className="header__searchItemTitle">{topic.title}</span>
-                    <span className="header__searchItemDesc">{topic.description}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+            {searchInput}
+            {searchDropdown}
           </div>
         </nav>
       </div>

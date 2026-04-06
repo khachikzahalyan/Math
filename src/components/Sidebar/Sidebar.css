@@ -1,5 +1,6 @@
 .sidebar {
-  max-width: 19%;
+  width: 280px;
+  max-width: 280px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -8,6 +9,7 @@
   background: var(--surface);
   border-right: 1px solid var(--border);
   box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
 }
 
 .sidebar__title {
@@ -64,6 +66,20 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.sidebar__group {
+  margin-bottom: 12px;
+}
+
+.sidebar__groupTitle {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 4px 8px;
+  margin-bottom: 6px;
 }
 
 .sidebar__link {

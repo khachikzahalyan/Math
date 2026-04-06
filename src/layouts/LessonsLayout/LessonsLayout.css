@@ -21,7 +21,13 @@ html.lessons-lock body {
 }
 
 .lessonsLayout__content {
-  padding: 24px 16px;
+  padding: 18px 14px 20px;
   overflow-y: auto;
-  flex-grow: 1; 
+  flex-grow: 1;
+}
+
+.lessonsLayout__content--fullWidth {
+  overflow-y: hidden;
+  padding-left: 0;
+  padding-right: 0;
 }
