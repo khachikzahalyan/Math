@@ -7,6 +7,9 @@
   padding: clamp(22px, 4vw, 34px) clamp(20px, 3vw, 36px);
   text-align: center;
   isolation: isolate;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
   background:
     linear-gradient(165deg, #fefcff 0%, #f3f0ff 38%, #e8f4ff 72%, #faf5ff 100%);
   border: 3px solid #1e1b4b;
@@ -103,12 +106,14 @@
 
 .quiz-cta-title {
   margin: 0;
-  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  font-size: clamp(1.35rem, 5vw, 2.35rem);
   font-weight: 900;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   color: #0f172a;
   text-shadow: 2px 2px 0 rgba(99, 102, 241, 0.15);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .quiz-cta-sub {
@@ -118,6 +123,7 @@
   line-height: 1.55;
   font-weight: 600;
   color: #475569;
+  overflow-wrap: anywhere;
 }
 
 .quiz-cta-actions {
@@ -571,6 +577,7 @@
 
 @media (max-width: 480px) {
   .quiz-cta-card {
+    padding: clamp(16px, 4vw, 22px) clamp(14px, 3.5vw, 20px);
     border-radius: 18px;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.85) inset,

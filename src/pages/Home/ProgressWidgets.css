@@ -27,6 +27,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+  min-width: 0;
 }
 
 .achievements__card {
@@ -34,6 +35,9 @@
   display: flex;
   gap: 14px;
   padding: 16px 18px;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
   border-radius: 18px;
   border: 1px solid rgba(226, 232, 240, 0.95);
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
@@ -131,7 +135,10 @@
 /* Daily challenge */
 .daily-challenge {
   margin-bottom: var(--home-space-lg, 32px);
-  padding: clamp(20px, 3vw, 28px);
+  padding: clamp(16px, 3vw, 28px);
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: clip;
   border-radius: 22px;
   border: 1px solid rgba(199, 210, 254, 0.55);
   background: linear-gradient(
@@ -176,6 +183,7 @@
   font-weight: 700;
   line-height: 1.5;
   color: #1e293b;
+  overflow-wrap: anywhere;
 }
 
 .daily-challenge__options {
@@ -255,6 +263,8 @@
 
 .daily-challenge__optText {
   line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .daily-challenge__feedback {
@@ -287,12 +297,12 @@
   line-height: 1.45;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .achievements__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .daily-challenge__options {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

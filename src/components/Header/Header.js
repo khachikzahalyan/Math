@@ -121,7 +121,9 @@ function Header() {
 
   const searchInput = (
     <div className="header__searchInput">
-      <Search size={16} className="header__searchIcon" strokeWidth={2.4} />
+      <span className="header__searchIconWrap" aria-hidden>
+        <Search size={17} className="header__searchIcon" strokeWidth={2.25} />
+      </span>
       <input
         ref={searchInputRef}
         type="text"

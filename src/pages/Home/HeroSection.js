@@ -53,7 +53,7 @@ function HeroSection() {
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08 }}
-          className="text-4xl font-black leading-tight tracking-tight text-slate-900 md:text-6xl"
+          className="max-w-full break-words text-balance text-[clamp(1.5rem,6.5vw,2.35rem)] font-black leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-6xl md:leading-tight"
         >
           Մաթեմատիկական ուսուցում՝
           <br />
@@ -66,7 +66,7 @@ function HeroSection() {
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.18 }}
-          className="mx-auto mt-5 max-w-2xl text-base text-slate-500 md:text-lg"
+          className="mx-auto mt-5 max-w-2xl break-words text-base text-slate-500 md:text-lg"
         >
           Սկսիր մեկ րոպեանոց թեստից, ստացիր քո մակարդակը և անցիր թեմաներով՝
           քայլ առ քայլ։
@@ -76,11 +76,11 @@ function HeroSection() {
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.28 }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-3"
+          className="mt-9 flex w-full min-w-0 flex-wrap items-center justify-center gap-3"
         >
           <Link
             to="/lessons"
-            className="rounded-full bg-gradient-to-r from-indigo-600 to-indigo-500 px-7 py-3.5 text-sm font-bold text-white shadow-[0_10px_28px_rgba(79,70,229,0.35)] transition hover:-translate-y-0.5 hover:from-violet-700 hover:to-indigo-700 hover:text-white hover:shadow-[0_14px_32px_rgba(76,29,149,0.4)]"
+            className="max-w-full rounded-full bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3.5 text-center text-sm font-bold text-white shadow-[0_10px_28px_rgba(79,70,229,0.35)] transition hover:-translate-y-0.5 hover:from-violet-700 hover:to-indigo-700 hover:text-white hover:shadow-[0_14px_32px_rgba(76,29,149,0.4)] sm:px-7"
           >
             Սկսել ուսուցումը
           </Link>
