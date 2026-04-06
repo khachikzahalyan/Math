@@ -1,70 +1,145 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
-function HeroSection({ onStartQuiz }) {
+const MATH_SYMBOLS = [
+  { char: '\u03C0', top: '12%', left: '7%', size: '2.4rem', delay: '0s', dur: '18s', anim: 'symbolFloat1' },
+  { char: '\u2211', top: '18%', left: '88%', size: '2rem', delay: '2s', dur: '22s', anim: 'symbolFloat2' },
+  { char: '\u221A', top: '72%', left: '9%', size: '2.2rem', delay: '1s', dur: '16s', anim: 'symbolFloat3' },
+  { char: '\u221E', top: '66%', left: '86%', size: '2.6rem', delay: '5s', dur: '20s', anim: 'symbolFloat1' },
+  { char: '\u0394', top: '6%', left: '48%', size: '1.6rem', delay: '3s', dur: '19s', anim: 'symbolFloat2' },
+  { char: '\u00B1', top: '82%', left: '56%', size: '1.8rem', delay: '4s', dur: '17s', anim: 'symbolFloat3' },
+  { char: '\u222B', top: '28%', left: '94%', size: '2.3rem', delay: '6s', dur: '21s', anim: 'symbolFloat1' },
+  { char: '\u2260', top: '52%', left: '3%', size: '1.7rem', delay: '7s', dur: '15s', anim: 'symbolFloat2' },
+  { char: '\u03C6', top: '5%', left: '74%', size: '1.9rem', delay: '1.5s', dur: '23s', anim: 'symbolFloat3' },
+  { char: '\u00F7', top: '86%', left: '26%', size: '1.5rem', delay: '3.5s', dur: '18s', anim: 'symbolFloat1' },
+  { char: '\u03BB', top: '40%', left: '96%', size: '1.8rem', delay: '8s', dur: '20s', anim: 'symbolFloat2' },
+  { char: '\u00D7', top: '58%', left: '16%', size: '1.4rem', delay: '2.5s', dur: '16s', anim: 'symbolFloat3' },
+];
+
+function CountUp({ target, suffix }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 1400;
+    const steps = 35;
+    const increment = target / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [inView, target]);
+
   return (
-    <section className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/80 px-6 py-14 shadow-[0_24px_70px_rgba(99,102,241,0.12)] backdrop-blur-xl md:px-10 md:py-20">
-      <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-indigo-200/60 blur-3xl" />
-      <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 rounded-full bg-sky-200/60 blur-3xl" />
+    <span ref={ref} className="stat__number">
+      {count}{suffix || ''}
+    </span>
+  );
+}
 
-      <div className="relative mx-auto max-w-3xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.45 }}
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700"
+function HeroSection() {
+  return (
+    <section className="hero-section">
+      <div className="hero-bg" />
+      <div className="hero-shimmer" />
+
+      {MATH_SYMBOLS.map((s, i) => (
+        <span
+          key={i}
+          className="math-symbol"
+          style={{
+            top: s.top,
+            left: s.left,
+            fontSize: s.size,
+            animationName: s.anim,
+            animationDuration: s.dur,
+            animationDelay: s.delay,
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite',
+          }}
         >
-          <Sparkles size={14} />
-          <span>EdTech հարթակ տրամաբանական մտածողության համար</span>
-        </motion.div>
+          {s.char}
+        </span>
+      ))}
 
+      <div className="hero-content">
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl font-black leading-tight tracking-tight text-slate-900 md:text-6xl"
         >
-          Ուսիր մաթեմատիկան
+          Մաթեմատիկական ուսուցում՝
           <br />
           <span className="bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">
-            պարզ և վստահ
+            պարզ և արդյունավետ
           </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.55, delay: 0.2 }}
-          className="mx-auto mt-4 max-w-2xl text-base text-slate-600 md:text-lg"
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.22 }}
+          className="mx-auto mt-5 max-w-2xl text-base text-slate-500 md:text-lg"
         >
           Սկսիր մեկ րոպեանոց թեստից, ստացիր քո մակարդակը և անցիր թեմաներով՝
           քայլ առ քայլ։
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.55, delay: 0.28 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.34 }}
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
           <Link
             to="/lessons"
-            className="rounded-full bg-gradient-to-r from-indigo-600 to-indigo-500 px-6 py-3 text-sm font-bold text-white shadow-[0_10px_28px_rgba(79,70,229,0.4)] transition hover:-translate-y-0.5 hover:from-violet-700 hover:to-indigo-700 hover:text-white hover:shadow-[0_14px_32px_rgba(76,29,149,0.42)]"
+            className="rounded-full bg-gradient-to-r from-indigo-600 to-indigo-500 px-7 py-3.5 text-sm font-bold text-white shadow-[0_10px_28px_rgba(79,70,229,0.35)] transition hover:-translate-y-0.5 hover:from-violet-700 hover:to-indigo-700 hover:text-white hover:shadow-[0_14px_32px_rgba(76,29,149,0.4)]"
           >
             Սկսել ուսուցումը
           </Link>
-          <button
-            type="button"
-            onClick={onStartQuiz}
-            className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700"
-          >
-            Թեստ 1 րոպեում
-          </button>
+        </motion.div>
+      </div>
+
+      <div className="hero-stats">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="stat"
+        >
+          <CountUp target={6} />
+          <span className="stat__label">Մակարդակ</span>
+        </motion.div>
+        <div className="stat__divider" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.62 }}
+          className="stat"
+        >
+          <CountUp target={52} />
+          <span className="stat__label">Թեմա</span>
+        </motion.div>
+        <div className="stat__divider" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.74 }}
+          className="stat"
+        >
+          <CountUp target={500} suffix="+" />
+          <span className="stat__label">Հարց</span>
         </motion.div>
       </div>
     </section>

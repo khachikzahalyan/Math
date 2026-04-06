@@ -1,13 +1,113 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { BookOpen, Lightbulb, GraduationCap, Trophy, RotateCcw, ArrowRight, CheckCircle2, XCircle, AlertCircle, CircleCheck, CircleX, AlertTriangle, Info } from 'lucide-react';
 import topics from '../../data/topics';
 import Card from '../../components/Card/Card';
+import parseTheoryText from '../../utils/parseTheoryText';
 import './LessonTopic.css';
+
+const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+const CALLOUT_ICONS = {
+  positive: CircleCheck,
+  negative: CircleX,
+  warning: AlertTriangle,
+  info: Info,
+};
+
+function renderInline(text) {
+  if (!text || !text.includes('**')) return text;
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+  );
+}
+
+function TheoryBlock({ block }) {
+  switch (block.type) {
+    case 'heading':
+      return <h3 className="theory__heading">{block.content}</h3>;
+
+    case 'paragraph':
+      return <p className="theory__paragraph">{renderInline(block.content)}</p>;
+
+    case 'bullets':
+      return (
+        <ul className="theory__bullets">
+          {block.items.map((item, i) => (
+            <li key={i} className="theory__bulletItem">
+              {renderInline(item)}
+            </li>
+          ))}
+        </ul>
+      );
+
+    case 'numbered':
+      return (
+        <ol className="theory__numbered">
+          {block.items.map((item, i) => (
+            <li key={i} className="theory__numberedItem">
+              <span className="theory__stepNum">{i + 1}</span>
+              <span>{renderInline(item)}</span>
+            </li>
+          ))}
+        </ol>
+      );
+
+    case 'callout': {
+      const variantClass = `theory__callout--${block.variant}`;
+      const CalloutIcon = CALLOUT_ICONS[block.variant] || Info;
+      return (
+        <div className={`theory__callout ${variantClass}`}>
+          <div className="theory__calloutHeader">
+            <span className={`theory__calloutIcon theory__calloutIcon--${block.variant}`}>
+              <CalloutIcon size={18} />
+            </span>
+            <span className="theory__calloutTitle">{block.title}</span>
+          </div>
+          {block.body && (
+            <div className="theory__calloutBody">
+              {block.body.type === 'bullets' && (
+                <ul className="theory__bullets">
+                  {block.body.items.map((item, i) => (
+                    <li key={i} className="theory__bulletItem">
+                      {renderInline(item)}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {block.body.type === 'numbered' && (
+                <ol className="theory__numbered">
+                  {block.body.items.map((item, i) => (
+                    <li key={i} className="theory__numberedItem">
+                      <span className="theory__stepNum">{i + 1}</span>
+                      <span>{renderInline(item)}</span>
+                    </li>
+                  ))}
+                </ol>
+              )}
+              {block.body.type === 'text' && (
+                <p className="theory__paragraph">{renderInline(block.body.content)}</p>
+              )}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    default:
+      return null;
+  }
+}
 
 function LessonTopic() {
   const { topicId } = useParams();
   const navigate = useNavigate();
   const topic = useMemo(() => topics.find((t) => t.id === topicId), [topicId]);
+  const theoryBlocks = useMemo(
+    () => (topic ? parseTheoryText(topic.text) : []),
+    [topic]
+  );
 
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -94,7 +194,6 @@ function LessonTopic() {
 
   const isLastTopic = topics.findIndex((t) => t.id === topicId) === topics.length - 1;
 
-  // Экран с результатами - рецензия ответов
   if (quizCompleted && showReview) {
     const finalScore = Math.round((score / questions.length) * 100);
     return (
@@ -102,9 +201,10 @@ function LessonTopic() {
         <h1 className="topic__title">{topic.title}</h1>
         
         <section className="topic__section">
-          <h2 className="topic__sectionTitle">Իսկության աղյուսակներ</h2>
-          
-          {/* Все вопросы с рецензией */}
+          <h2 className="topic__sectionTitle">
+            <CheckCircle2 size={20} className="topic__sectionIcon" />
+            Իսկության աղյուսակներ
+          </h2>
           <div className="topic__review">
             {questions.map((question, idx) => {
               const userAnswer = userAnswers[idx];
@@ -134,11 +234,14 @@ function LessonTopic() {
                       
                       return (
                         <div key={optIdx} className={className}>
+                          <span className={`topic__reviewLetter ${isCorrectOption ? 'topic__reviewLetter--correct' : ''} ${isUserSelected && !isCorrect ? 'topic__reviewLetter--wrong' : ''}`}>
+                            {LETTERS[optIdx]}
+                          </span>
                           <div className="topic__reviewOptionContent">
                             <span className="topic__reviewOptionText">{option}</span>
                           </div>
-                          {isCorrectOption && <span className="topic__reviewOptionIcon">✓</span>}
-                          {isUserSelected && !isCorrect && <span className="topic__reviewOptionIcon">✗</span>}
+                          {isCorrectOption && <CheckCircle2 size={18} className="topic__reviewIcon topic__reviewIcon--correct" />}
+                          {isUserSelected && !isCorrect && <XCircle size={18} className="topic__reviewIcon topic__reviewIcon--wrong" />}
                         </div>
                       );
                     })}
@@ -155,7 +258,10 @@ function LessonTopic() {
           </div>
 
           <div className="topic__resultFinal">
-            <div className="topic__resultFinalTitle">Վիկտորինայի արդյունքներ</div>
+            <div className="topic__resultFinalTitle">
+              <Trophy size={22} className="topic__sectionIcon" />
+              Վիկտորինայի արդյունքներ
+            </div>
             <div className="topic__result">
               <div className="topic__resultItem">
                 <span>Ճիշտ պատասխաններ՝</span>
@@ -169,10 +275,12 @@ function LessonTopic() {
 
             <div className="topic__resultActions">
               <button className="topic__button topic__button--secondary" onClick={handleRetry}>
+                <RotateCcw size={16} />
                 Նորից փորձել
               </button>
               <button className="topic__button topic__button--primary" onClick={handleNextTopic}>
                 {isLastTopic ? 'Անփոփում' : 'Հաջորդ թեմա'}
+                <ArrowRight size={16} />
               </button>
             </div>
           </div>
@@ -188,7 +296,10 @@ function LessonTopic() {
         <h1 className="topic__title">{topic.title}</h1>
         
         <section className="topic__section">
-          <h2 className="topic__sectionTitle">Վիկտորինայի արդյունքներ</h2>
+          <h2 className="topic__sectionTitle">
+            <Trophy size={20} className="topic__sectionIcon" />
+            Վիկտորինայի արդյունքներ
+          </h2>
           
           <div className="topic__result">
             <div className="topic__resultItem">
@@ -206,13 +317,16 @@ function LessonTopic() {
               className="topic__button topic__button--primary" 
               onClick={() => setShowReview(true)}
             >
+              <CheckCircle2 size={16} />
               Պատասխանների ստուգում
             </button>
             <button className="topic__button topic__button--secondary" onClick={handleRetry}>
+              <RotateCcw size={16} />
               Նորից փորձել
             </button>
             <button className="topic__button topic__button--primary" onClick={handleNextTopic}>
               {isLastTopic ? 'Անփոփում' : 'Հաջորդ թեմա'}
+              <ArrowRight size={16} />
             </button>
           </div>
         </section>
@@ -226,12 +340,22 @@ function LessonTopic() {
       <p className="topic__description">{topic.description}</p>
 
       <section className="topic__section">
-        <h2 className="topic__sectionTitle">Տեսություն</h2>
-        <p className="topic__text">{topic.text}</p>
+        <h2 className="topic__sectionTitle">
+            <BookOpen size={20} className="topic__sectionIcon" />
+            Տեսություն
+          </h2>
+        <div className="topic__theory">
+          {theoryBlocks.map((block, idx) => (
+            <TheoryBlock key={idx} block={block} />
+          ))}
+        </div>
       </section>
 
       <section className="topic__section">
-        <h2 className="topic__sectionTitle">Օրինակներ</h2>
+        <h2 className="topic__sectionTitle">
+            <Lightbulb size={20} className="topic__sectionIcon" />
+            Օրինակներ
+          </h2>
         <ul className="topic__list">
           {topic.examples && topic.examples.length > 0 ? (
             topic.examples.map((ex, idx) => (
@@ -246,7 +370,10 @@ function LessonTopic() {
       </section>
 
       <section className="topic__section">
-        <h2 className="topic__sectionTitle">Առաջադրանքներ</h2>
+        <h2 className="topic__sectionTitle">
+            <GraduationCap size={20} className="topic__sectionIcon" />
+            Առաջադրանքներ
+          </h2>
 
         <div className="topic__progress">
           <div className="topic__progressLabel">
@@ -268,24 +395,23 @@ function LessonTopic() {
           <div className="topic__options">
             {currentQuestion.options && currentQuestion.options.length > 0 ? (
               currentQuestion.options.map((option, idx) => (
-                <label 
-                  key={idx} 
+                <button
+                  key={idx}
+                  type="button"
                   className={[
                     'topic__option',
                     selectedOption === idx ? 'topic__option--selected' : ''
                   ].join(' ')}
+                  onClick={() => handleSelectOption(idx)}
                 >
-                  <input
-                    type="radio"
-                    name={`question-${currentQuestion.id}`}
-                    value={idx}
-                    checked={selectedOption === idx}
-                    onChange={() => handleSelectOption(idx)}
-                    disabled={false}
-                    className="topic__radio"
-                  />
+                  <span className={[
+                    'topic__optionLetter',
+                    selectedOption === idx ? 'topic__optionLetter--selected' : ''
+                  ].join(' ')}>
+                    {LETTERS[idx]}
+                  </span>
                   <span className="topic__optionLabel">{option}</span>
-                </label>
+                </button>
               ))
             ) : (
               <p>Տարբերակներ հասանելի չեն</p>
@@ -295,6 +421,7 @@ function LessonTopic() {
 
           {error && (
             <div className="topic__error">
+              <AlertCircle size={16} />
               {error}
             </div>
           )}

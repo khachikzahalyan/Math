@@ -1,47 +1,46 @@
 .sidebar {
-  width: 280px;
-  max-width: 280px;
+  width: 400px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(8px);
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow: 4px 0 24px rgba(15, 23, 42, 0.04);
 }
 
+/* ─── Title ─── */
 .sidebar__title {
   font-weight: 800;
-  letter-spacing: 0.2px;
-  color: var(--text);
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.10));
-  border: 1px solid rgba(99, 102, 241, 0.18);
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  color: #1e293b;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(99, 102, 241, 0.15);
 }
 
 .sidebar__empty {
-  color: var(--text-secondary);
-  padding: 0 8px;
+  color: #94a3b8;
+  padding: 12px 14px;
+  font-size: 0.88rem;
 }
 
-/* Independent scroll area for the nav list */
+/* ─── Scroll Area ─── */
 .sidebar__scroll {
   flex: 1;
   overflow-y: auto;
-  padding-right: 6px; /* room for scrollbar */
-}
-
-/* Scrollbar styling */
-.sidebar__scroll {
+  padding-right: 4px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(99, 102, 241, 0.55) rgba(0, 0, 0, 0);
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
 }
 
 .sidebar__scroll::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 .sidebar__scroll::-webkit-scrollbar-track {
@@ -49,79 +48,86 @@
 }
 
 .sidebar__scroll::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.25);
   border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
 }
 
 .sidebar__scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.55);
-  border: 2px solid transparent;
-  background-clip: padding-box;
+  background: rgba(99, 102, 241, 0.45);
 }
 
+/* ─── Level Groups ─── */
+.sidebar__group {
+  margin-bottom: 6px;
+}
+
+.sidebar__groupTitle {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  padding: 10px 14px 6px;
+}
+
+/* ─── Topic Links ─── */
 .sidebar__list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.sidebar__group {
-  margin-bottom: 12px;
-}
-
-.sidebar__groupTitle {
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748b;
-  padding: 4px 8px;
-  margin-bottom: 6px;
+  gap: 3px;
 }
 
 .sidebar__link {
   display: flex;
   align-items: center;
   gap: 10px;
-
-  padding: 12px 12px;
-  border-radius: 14px;
-  color: var(--text-secondary);
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: #64748b;
   background: transparent;
-  border: 1px solid transparent;
-  transition: var(--transition);
+  border: 1.5px solid transparent;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
-
 .sidebar__linkText {
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 @media (hover: hover) {
   .sidebar__link:hover {
-    color: var(--text);
-    background: var(--bg-alt);
-    border-color: rgba(99, 102, 241, 0.25);
-    transform: translateY(-1px);
+    color: #334155;
+    background: rgba(248, 250, 252, 0.9);
+    border-color: rgba(226, 232, 240, 0.8);
+    transform: translateX(3px);
   }
 }
 
 .sidebar__link.is-active {
-  color: var(--text);
-  background: rgba(99, 102, 241, 0.12);
-  border-color: rgba(99, 102, 241, 0.35);
+  color: #4f46e5;
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.25);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
 }
 
-.sidebar__link.is-active .sidebar__dot {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+.sidebar__link.is-active::before {
+  content: '';
+  width: 3px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+  flex-shrink: 0;
 }
 
+/* ─── Responsive ─── */
 @media (max-width: 900px) {
   .sidebar {
-    width: 220px;
+    width: 280px;
   }
 }
 
