@@ -1,6 +1,48 @@
+.mainLayout {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .mainLayout__content {
-  max-width: 1140px;
+  flex: 1;
+  width: 100%;
+  max-width: 70%;
   margin: 0 auto;
   margin-top: 62px;
   padding: 20px 14px calc(var(--footer-height) + 18px);
+}
+
+/* Contact: no site footer — less bottom padding */
+.mainLayout--noFooter .mainLayout__content {
+  padding-bottom: 24px;
+}
+
+/* ─── Tablet & mobile: full width, safe areas (notch / home indicator) ─── */
+@media (max-width: 900px) {
+  .mainLayout__content {
+    max-width: 100%;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-top: 18px;
+    padding-bottom: calc(var(--footer-height) + max(20px, env(safe-area-inset-bottom, 0px)));
+  }
+
+  .mainLayout--noFooter .mainLayout__content {
+    padding-bottom: max(24px, env(safe-area-inset-bottom, 16px));
+  }
+}
+
+@media (max-width: 480px) {
+  .mainLayout__content {
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+    padding-top: 14px;
+    padding-bottom: calc(var(--footer-height) + max(16px, env(safe-area-inset-bottom, 0px)));
+  }
+
+  .mainLayout--noFooter .mainLayout__content {
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 12px));
+  }
 }

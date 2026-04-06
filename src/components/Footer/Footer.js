@@ -10,7 +10,6 @@ function Footer() {
         </div>
         <div className="footer__links">
           <span>© {new Date().getFullYear()}</span>
-          <span>Built for students</span>
         </div>
       </div>
     </footer>

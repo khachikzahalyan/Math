@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import BackToTopFab from './components/BackToTopFab/BackToTopFab';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import MainLayout from './layouts/MainLayout/MainLayout';
 import LessonsLayout from './layouts/LessonsLayout/LessonsLayout';
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <BackToTopFab />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />

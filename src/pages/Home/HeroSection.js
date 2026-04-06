@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import StatCountUp from '../../components/StatCountUp/StatCountUp';
+import { getCourseStats } from '../../data/topicsUtils';
 
 const MATH_SYMBOLS = [
   { char: '\u03C0', top: '12%', left: '7%', size: '2.4rem', delay: '0s', dur: '18s', anim: 'symbolFloat1' },
@@ -17,43 +19,9 @@ const MATH_SYMBOLS = [
   { char: '\u00D7', top: '58%', left: '16%', size: '1.4rem', delay: '2.5s', dur: '16s', anim: 'symbolFloat3' },
 ];
 
-function CountUp({ target, suffix }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const reduceMotion = useReducedMotion();
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (reduceMotion) {
-      setCount(target);
-      return undefined;
-    }
-    const duration = 1400;
-    const steps = 35;
-    const increment = target / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-    return () => clearInterval(timer);
-  }, [inView, target, reduceMotion]);
-
-  return (
-    <span ref={ref} className="stat__number">
-      {count}{suffix || ''}
-    </span>
-  );
-}
-
 function HeroSection() {
   const reduceMotion = useReducedMotion();
+  const { levelCount, topicCount, questionCount } = useMemo(() => getCourseStats(), []);
 
   return (
     <section className="hero-section">
@@ -126,7 +94,7 @@ function HeroSection() {
           transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.42 }}
           className="stat"
         >
-          <CountUp target={6} />
+          <StatCountUp className="stat__number" target={levelCount} />
           <span className="stat__label">Մակարդակ</span>
         </motion.div>
         <div className="stat__divider" />
@@ -136,7 +104,7 @@ function HeroSection() {
           transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.52 }}
           className="stat"
         >
-          <CountUp target={52} />
+          <StatCountUp className="stat__number" target={topicCount} />
           <span className="stat__label">Թեմա</span>
         </motion.div>
         <div className="stat__divider" />
@@ -146,7 +114,7 @@ function HeroSection() {
           transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.62 }}
           className="stat"
         >
-          <CountUp target={500} suffix="+" />
+          <StatCountUp className="stat__number" target={questionCount} />
           <span className="stat__label">Հարց</span>
         </motion.div>
       </div>

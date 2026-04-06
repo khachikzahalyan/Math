@@ -1,0 +1,79 @@
+.backToTopFab {
+  position: fixed;
+  z-index: 1001;
+  left: max(16px, env(safe-area-inset-left, 0px));
+  bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.backToTopFab__glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(100, 116, 139, 0.1) 0%,
+    rgba(148, 163, 184, 0.05) 50%,
+    transparent 72%
+  );
+  filter: blur(5px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.backToTopFab__orbit {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.backToTopFab__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 55%, #cbd5e1 100%);
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.08),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: #64748b;
+  transition:
+    box-shadow 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.backToTopFab:hover .backToTopFab__inner {
+  color: #475569;
+  border-color: rgba(148, 163, 184, 0.75);
+  box-shadow:
+    0 6px 18px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.backToTopFab:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 3px;
+}
+
+.backToTopFab__icon {
+  display: block;
+  opacity: 0.92;
+}
+

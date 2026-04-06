@@ -1,7 +1,7 @@
 import topics from './topics';
 
-const MIN_LEVEL = 1;
-const MAX_LEVEL = 6;
+export const MIN_LEVEL = 1;
+export const MAX_LEVEL = 6;
 
 const isValidLevel = (level) =>
   Number.isFinite(level) && level >= MIN_LEVEL && level <= MAX_LEVEL;
@@ -33,3 +33,22 @@ export const getTopicsByLevel = () => {
 export const getLevels = () => {
   return Array.from({ length: MAX_LEVEL }, (_, idx) => idx + 1);
 };
+
+/** Aggregates for About / marketing stats (derived from topics data). */
+export function getCourseStats() {
+  const sorted = getSortedTopics();
+  const typeSet = new Set();
+  let questionCount = 0;
+  sorted.forEach((topic) => {
+    (topic.questions || []).forEach((q) => {
+      questionCount += 1;
+      if (q && q.type) typeSet.add(q.type);
+    });
+  });
+  return {
+    topicCount: sorted.length,
+    levelCount: MAX_LEVEL,
+    questionTypeCount: typeSet.size,
+    questionCount,
+  };
+}

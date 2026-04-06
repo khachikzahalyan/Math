@@ -35,6 +35,10 @@ body {
   min-height: 100%;
 }
 
+#root {
+  min-height: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
