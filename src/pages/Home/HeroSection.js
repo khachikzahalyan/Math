@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 const MATH_SYMBOLS = [
   { char: '\u03C0', top: '12%', left: '7%', size: '2.4rem', delay: '0s', dur: '18s', anim: 'symbolFloat1' },
@@ -20,10 +20,15 @@ const MATH_SYMBOLS = [
 function CountUp({ target, suffix }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
+  const reduceMotion = useReducedMotion();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
+    if (reduceMotion) {
+      setCount(target);
+      return undefined;
+    }
     const duration = 1400;
     const steps = 35;
     const increment = target / steps;
@@ -38,7 +43,7 @@ function CountUp({ target, suffix }) {
       }
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [inView, target]);
+  }, [inView, target, reduceMotion]);
 
   return (
     <span ref={ref} className="stat__number">
@@ -48,9 +53,12 @@ function CountUp({ target, suffix }) {
 }
 
 function HeroSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="hero-section">
       <div className="hero-bg" />
+      <div className="hero-grain" aria-hidden />
       <div className="hero-shimmer" />
 
       {MATH_SYMBOLS.map((s, i) => (
@@ -74,9 +82,9 @@ function HeroSection() {
 
       <div className="hero-content">
         <motion.h1
-          initial={{ opacity: 0, y: 22 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08 }}
           className="text-4xl font-black leading-tight tracking-tight text-slate-900 md:text-6xl"
         >
           Մաթեմատիկական ուսուցում՝
@@ -87,9 +95,9 @@ function HeroSection() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 22 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.22 }}
+          transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.18 }}
           className="mx-auto mt-5 max-w-2xl text-base text-slate-500 md:text-lg"
         >
           Սկսիր մեկ րոպեանոց թեստից, ստացիր քո մակարդակը և անցիր թեմաներով՝
@@ -97,9 +105,9 @@ function HeroSection() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.34 }}
+          transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.28 }}
           className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
           <Link
@@ -113,9 +121,9 @@ function HeroSection() {
 
       <div className="hero-stats">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.42 }}
           className="stat"
         >
           <CountUp target={6} />
@@ -123,9 +131,9 @@ function HeroSection() {
         </motion.div>
         <div className="stat__divider" />
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.62 }}
+          transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.52 }}
           className="stat"
         >
           <CountUp target={52} />
@@ -133,9 +141,9 @@ function HeroSection() {
         </motion.div>
         <div className="stat__divider" />
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.74 }}
+          transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.62 }}
           className="stat"
         >
           <CountUp target={500} suffix="+" />

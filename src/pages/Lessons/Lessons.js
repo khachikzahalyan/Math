@@ -6,6 +6,7 @@ import {
   ArrowLeft, ChevronRight,
 } from 'lucide-react';
 import { getTopicsByLevel } from '../../data/topicsUtils';
+import { recordLevelVisited } from '../../utils/progressStorage';
 import './Lessons.css';
 
 const LEVELS = [
@@ -56,7 +57,10 @@ function Lessons() {
                     duration: 0.55,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
-                  onClick={() => setSelectedLevel(level)}
+                  onClick={() => {
+                    recordLevelVisited(level);
+                    setSelectedLevel(level);
+                  }}
                   className="lessons-level-card group"
                   style={{
                     '--l-from': from,

@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Trophy, X, Zap } from 'lucide-react';
 import topics from '../../data/topics';
+import { recordQuestionAnswered } from '../../utils/progressStorage';
+import './CTASection.css';
 
 function CTASection({ externalStartCounter = 0 }) {
+  const reduceMotion = useReducedMotion();
   const QUIZ_SIZE = 10;
   const QUIZ_TIME = 60;
 
@@ -94,6 +97,14 @@ function CTASection({ externalStartCounter = 0 }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [externalStartCounter]);
 
+  useEffect(() => {
+    if (!currentQuestion) return;
+    const uid = currentQuestion.uid;
+    if (typeof answers[uid] === 'number') {
+      recordQuestionAnswered(uid);
+    }
+  }, [answers, currentQuestion]);
+
   const score = useMemo(() => {
     if (!isSubmitted) return 0;
     return questions.reduce((acc, q) => {
@@ -110,7 +121,7 @@ function CTASection({ externalStartCounter = 0 }) {
   const unansweredCount = Math.max(questions.length - answeredCount, 0);
 
   const timerClass =
-    timeLeft <= 10 ? 'text-red-600' : timeLeft <= 30 ? 'text-amber-500' : 'text-slate-700';
+    timeLeft <= 10 ? 'quiz-timer--danger' : timeLeft <= 30 ? 'quiz-timer--warn' : '';
 
   const formatTimer = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -119,60 +130,70 @@ function CTASection({ externalStartCounter = 0 }) {
   };
 
   return (
-    <section className="mx-auto max-w-6xl pb-8 pt-10 md:pb-14 md:pt-14">
+    <section className="home-cta quiz-cta mx-auto max-w-6xl pb-2 pt-2 md:pb-4 md:pt-4">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-[24px] border border-indigo-200 bg-gradient-to-br from-indigo-50 via-white to-sky-50 px-6 py-10 text-center shadow-[0_14px_36px_rgba(79,70,229,0.12)] md:px-10"
+        transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+        className="quiz-cta-card"
       >
-        <h2 className="text-3xl font-black text-slate-900 md:text-4xl">Թեստ 1 րոպեում</h2>
-        <p className="mx-auto mt-3 max-w-2xl text-slate-600">
-          Պատասխանիր մի քանի հարցի և անմիջապես հասկացիր՝ որտեղից սկսել, որ առաջընթացը լինի
-          արագ։
-        </p>
+        <div className="quiz-cta-card__inner">
+          <div className="quiz-cta-card__decor">
+            <Trophy className="quiz-cta-card__icon" size={26} strokeWidth={2.2} aria-hidden />
+            <div className="quiz-cta-badges">
+              <span className="quiz-cta-badge">60 վրկ</span>
+              <span className="quiz-cta-badge quiz-cta-badge--cyan">{QUIZ_SIZE} հարց</span>
+            </div>
+            <Zap className="quiz-cta-card__icon" size={26} strokeWidth={2.2} aria-hidden />
+          </div>
 
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={startQuiz}
-            className="rounded-full bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-[0_12px_28px_rgba(79,70,229,0.35)] transition hover:-translate-y-0.5 hover:bg-violet-700 hover:text-white hover:shadow-[0_14px_30px_rgba(67,56,202,0.42)]"
-          >
-            Անցնել փոքր թեստը
-          </button>
-          <Link
-            to="/lessons"
-            className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:text-indigo-700"
-          >
-            Դիտել բոլոր դասերը
-          </Link>
+          <h2 className="quiz-cta-title">Թեստ 1 րոպեում</h2>
+          <p className="quiz-cta-sub">
+            Պատասխանիր մի քանի հարցի և անմիջապես հասկացիր՝ որտեղից սկսել, որ առաջընթացը լինի
+            արագ։
+          </p>
+
+          <div className="quiz-cta-actions">
+            <button type="button" onClick={startQuiz} className="quiz-cta-btn quiz-cta-btn--primary">
+              Անցնել փոքր թեստը
+            </button>
+            <Link to="/lessons" className="quiz-cta-btn quiz-cta-btn--ghost">
+              Դիտել բոլոր դասերը
+            </Link>
+          </div>
         </div>
       </motion.div>
 
       {isOpen && (
-        <div className="fixed inset-0 z-[1100] flex items-center justify-center bg-slate-900/45 px-3 py-6">
-          <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+        <div className="quiz-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
+          <div className="quiz-modal">
+            <div className="quiz-modal__head">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Թեստ 1 րոպեում</h3>
+                <h3 id="quiz-modal-title" className="quiz-modal__title">
+                  Թեստ 1 րոպեում
+                </h3>
                 {!isSubmitted ? (
-                  <p className="text-sm text-slate-500">
+                  <p className="quiz-modal__meta">
                     Հարց {currentIndex + 1}/{questions.length}
                   </p>
                 ) : (
-                  <p className="text-sm text-slate-500">Արդյունք</p>
+                  <p className="quiz-modal__meta">Արդյունք</p>
                 )}
               </div>
-              <div className="flex items-center gap-3">
+              <div className="quiz-modal__right">
                 {!isSubmitted && (
-                  <span className={`text-sm font-bold ${timerClass}`}>{formatTimer(timeLeft)}</span>
+                  <span
+                    className={['quiz-timer', timerClass].filter(Boolean).join(' ')}
+                  >
+                    {formatTimer(timeLeft)}
+                  </span>
                 )}
                 <button
                   type="button"
                   onClick={closeQuiz}
-                  className="rounded-lg border border-slate-200 p-1.5 text-slate-500 hover:bg-slate-100"
-                  aria-label="Close quiz"
+                  className="quiz-modal__close"
+                  aria-label="Փակել"
                 >
                   <X size={18} />
                 </button>
@@ -180,16 +201,12 @@ function CTASection({ externalStartCounter = 0 }) {
             </div>
 
             {!isSubmitted && currentQuestion && (
-              <div className="space-y-4 px-4 py-4">
-                <div className="rounded-xl border border-indigo-100 bg-indigo-50/50 p-3 text-xs font-semibold text-indigo-700">
-                  {currentQuestion.topicTitle}
-                </div>
+              <div className="quiz-modal__body">
+                <div className="quiz-topic-pill">{currentQuestion.topicTitle}</div>
 
-                <h4 className="text-base font-semibold leading-snug text-slate-900">
-                  {currentQuestion.question}
-                </h4>
+                <h4 className="quiz-q">{currentQuestion.question}</h4>
 
-                <div className="space-y-2">
+                <div className="quiz-options">
                   {currentQuestion.options.map((option, optionIndex) => {
                     const isSelected = selected === optionIndex;
                     return (
@@ -202,11 +219,7 @@ function CTASection({ externalStartCounter = 0 }) {
                             [currentQuestion.uid]: optionIndex,
                           }))
                         }
-                        className={`w-full rounded-xl border px-3 py-2.5 text-left text-sm transition ${
-                          isSelected
-                            ? 'border-indigo-400 bg-indigo-50 text-indigo-900'
-                            : 'border-slate-200 bg-white text-slate-700 hover:border-indigo-300 hover:bg-indigo-50/50'
-                        }`}
+                        className={`quiz-option${isSelected ? ' quiz-option--selected' : ''}`}
                       >
                         {option}
                       </button>
@@ -214,23 +227,23 @@ function CTASection({ externalStartCounter = 0 }) {
                   })}
                 </div>
 
-                <div className="flex items-center justify-between gap-2 pt-2">
+                <div className="quiz-nav">
                   <button
                     type="button"
                     onClick={() => setCurrentIndex((v) => Math.max(v - 1, 0))}
                     disabled={currentIndex === 0}
-                    className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="quiz-nav__btn quiz-nav__btn--outline"
                   >
                     Նախորդը
                   </button>
 
-                  <div className="flex items-center gap-2">
+                  <div>
                     {currentIndex < questions.length - 1 ? (
                       <button
                         type="button"
                         onClick={() => setCurrentIndex((v) => Math.min(v + 1, questions.length - 1))}
                         disabled={typeof selected !== 'number'}
-                        className="rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
+                        className="quiz-nav__btn quiz-nav__btn--go"
                       >
                         Հաջորդը
                       </button>
@@ -239,7 +252,7 @@ function CTASection({ externalStartCounter = 0 }) {
                         type="button"
                         onClick={submitQuiz}
                         disabled={typeof selected !== 'number'}
-                        className="rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
+                        className="quiz-nav__btn quiz-nav__btn--go"
                       >
                         Ավարտել
                       </button>
@@ -250,66 +263,60 @@ function CTASection({ externalStartCounter = 0 }) {
             )}
 
             {isSubmitted && (
-              <div className="space-y-4 px-4 py-4">
-                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-center">
-                  <p className="text-sm text-slate-500">Ձեր արդյունքը</p>
-                  <p className="mt-1 text-3xl font-black text-slate-900">
+              <div className="quiz-result">
+                <div className="quiz-result__box">
+                  <p className="quiz-result__label">Ձեր արդյունքը</p>
+                  <p className="quiz-result__score">
                     {score} / {questions.length}
                   </p>
-                  <p className="mt-2 text-sm text-slate-600">
-                    Պատասխանված՝ <span className="font-semibold text-slate-900">{answeredCount}</span>,
-                    չպատասխանված՝ <span className="font-semibold text-rose-600">{unansweredCount}</span>
+                  <p className="quiz-result__detail">
+                    Պատասխանված՝ <strong>{answeredCount}</strong>, չպատասխանված՝{' '}
+                    <strong className="quiz-result__bad-count">{unansweredCount}</strong>
                   </p>
                   {unansweredCount > 0 && (
-                    <p className="mt-1 text-xs text-rose-600">
+                    <p className="quiz-result__warn">
                       Ժամանակի ավարտից հետո չպատասխանված հարցերը համարվում են սխալ/չպատասխանված։
                     </p>
                   )}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="quiz-result__actions">
                   <button
                     type="button"
                     onClick={() => setShowReview((v) => !v)}
-                    className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-indigo-300 hover:text-indigo-700"
+                    className="quiz-result__btn"
                   >
                     {showReview ? 'Թաքցնել ստուգումը' : 'Ստուգել ճիշտ պատասխանները'}
                   </button>
-                  <button
-                    type="button"
-                    onClick={startQuiz}
-                    className="rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
-                  >
+                  <button type="button" onClick={startQuiz} className="quiz-result__btn quiz-result__btn--primary">
                     Նոր թեստ
                   </button>
                 </div>
 
                 {showReview && (
-                  <div className="max-h-72 space-y-3 overflow-auto pr-1">
+                  <div className="quiz-review">
                     {questions.map((q, idx) => {
                       const userAnswer = answers[q.uid];
                       const isCorrect = userAnswer === q.correctOption;
                       return (
                         <div
                           key={q.uid}
-                          className={`rounded-xl border p-3 text-sm ${
-                            isCorrect
-                              ? 'border-emerald-200 bg-emerald-50'
-                              : 'border-rose-200 bg-rose-50'
+                          className={`quiz-review__item ${
+                            isCorrect ? 'quiz-review__item--ok' : 'quiz-review__item--bad'
                           }`}
                         >
-                          <p className="mb-1 font-semibold text-slate-900">
+                          <p className="quiz-review__q">
                             {idx + 1}. {q.question}
                           </p>
-                          <p className="text-slate-600">
+                          <p className="quiz-review__line">
                             Ձեր պատասխանը:{' '}
-                            <span className="font-medium">
+                            <span className="quiz-review__em">
                               {typeof userAnswer === 'number' ? q.options[userAnswer] : 'Չի պատասխանվել'}
                             </span>
                           </p>
-                          <p className="text-slate-600">
+                          <p className="quiz-review__line">
                             Ճիշտ պատասխանը:{' '}
-                            <span className="font-medium">{q.options[q.correctOption]}</span>
+                            <span className="quiz-review__em">{q.options[q.correctOption]}</span>
                           </p>
                         </div>
                       );

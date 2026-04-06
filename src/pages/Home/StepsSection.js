@@ -1,14 +1,16 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { BookOpen, Brain, PencilLine } from 'lucide-react';
 
 function StepsSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="steps-section">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
         className="steps-header"
       >
         <h2 className="steps-title">Ինչու է հարթակը աշխատում</h2>
@@ -19,10 +21,10 @@ function StepsSection() {
 
       <div className="steps-grid">
         <motion.article
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45, delay: 0 }}
+          transition={{ duration: 0.44, delay: 0, ease: [0.22, 1, 0.36, 1] }}
           className="step-card step-card--1"
         >
           <span className="step-number">01</span>
@@ -32,10 +34,10 @@ function StepsSection() {
         </motion.article>
 
         <motion.article
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45, delay: 0.1 }}
+          transition={{ duration: 0.44, delay: reduceMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="step-card step-card--2"
         >
           <span className="step-number">02</span>
@@ -45,10 +47,10 @@ function StepsSection() {
         </motion.article>
 
         <motion.article
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45, delay: 0.2 }}
+          transition={{ duration: 0.44, delay: reduceMotion ? 0 : 0.16, ease: [0.22, 1, 0.36, 1] }}
           className="step-card step-card--3"
         >
           <span className="step-number">03</span>

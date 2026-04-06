@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BookOpen, Lightbulb, GraduationCap, Trophy, RotateCcw, ArrowRight, CheckCircle2, XCircle, AlertCircle, CircleCheck, CircleX, AlertTriangle, Info } from 'lucide-react';
 import topics from '../../data/topics';
+import { recordQuestionAnswered } from '../../utils/progressStorage';
 import Card from '../../components/Card/Card';
 import parseTheoryText from '../../utils/parseTheoryText';
 import './LessonTopic.css';
@@ -155,6 +156,7 @@ function LessonTopic() {
     const newAnswers = [...userAnswers];
     newAnswers[currentQuestionIdx] = selectedOption;
     setUserAnswers(newAnswers);
+    recordQuestionAnswered(`${topic.id}-${currentQuestion.id}`);
 
     if (correct) {
       setScore((prev) => prev + 1);
