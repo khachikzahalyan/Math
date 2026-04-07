@@ -7,7 +7,7 @@ const BADGES = [
     id: 'q10',
     Icon: Award,
     title: '10 հարց պատասխանված',
-    description: 'Պատասխանիր տարբեր հարցերի՝ թեստերում կամ դասերում։',
+    description: 'Պատասխանեք տարբեր հարցերի՝ թեստերում կամ դասերում։',
     isUnlocked: (s) => s.answeredCount >= 10,
     progress: (s) => Math.min(100, Math.round((s.answeredCount / 10) * 100)),
     progressLabel: (s) => `${Math.min(s.answeredCount, 10)} / 10`,
@@ -16,7 +16,7 @@ const BADGES = [
     id: 'levels6',
     Icon: Layers,
     title: 'Բոլոր մակարդակները բացված',
-    description: 'Բացիր բոլոր 6 մակարդակները «Դասեր» էջում։',
+    description: 'Բացեք բոլոր 6 մակարդակները «Դասեր» էջում։',
     isUnlocked: (s) => s.hasAllLevels,
     progress: (s) => (s.hasAllLevels ? 100 : Math.round((s.visitedLevels.length / 6) * 100)),
     progressLabel: (s) => `${s.visitedLevels.length} / 6`,
@@ -39,7 +39,7 @@ function AchievementsSection() {
         Ձեր նվաճումները
       </h2>
       <p className="achievements__sub">
-        Պահվում են այս սարքում։ Շարունակիր սովորել՝ նոր նշաններ բացելու համար։
+        Տվյալները պահվում են այս սարքում։ Շարունակեք սովորել՝ նոր նշաններ բացելու համար։
       </p>
       <ul className="achievements__grid">
         {BADGES.map((b) => {

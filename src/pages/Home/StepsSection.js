@@ -13,7 +13,7 @@ function StepsSection() {
         transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
         className="steps-header"
       >
-        <h2 className="steps-title">Ինչու է հարթակը աշխատում</h2>
+        <h2 className="steps-title">Ինչպես է աշխատում հարթակը</h2>
         <p className="steps-subtitle">
           Երեք հիմնական բաղադրիչ՝ սովորելու ամբողջ ճանապարհը պարզ և վերահսկելի դարձնելու համար։
         </p>

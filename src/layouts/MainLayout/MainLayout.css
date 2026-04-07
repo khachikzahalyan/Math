@@ -14,7 +14,7 @@
   padding: 20px 14px calc(var(--footer-height) + 18px);
 }
 
-/* Contact: no site footer — less bottom padding */
+/* Գլխավոր / Մեր մասին չէ — ֆուտեր չկա, ավելի քիչ ներքին padding */
 .mainLayout--noFooter .mainLayout__content {
   padding-bottom: 24px;
 }

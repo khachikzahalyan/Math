@@ -32,7 +32,7 @@ const SECTIONS = [
   },
   {
     text: `Լոգիկան մաթեմատիկայի կորիզն է՝ ապացույց, հետևություն, կառուցված մտածողություն։
-Մենք ընտրել ենք տրամաբանական ուղին, որովհետև այն օգնում է հստակ ձևակերպել, ճիշտ վերջնարկել և վստահ լինել սեփական արդյունքներին։
+Մենք ընտրել ենք տրամաբանական ուղին, որովհետև այն օգնում է հստակ ձևակերպել, ճիշտ վերլուծել և վստահ լինել սեփական արդյունքներին։
 Յուրաքանչյուր քայլը կառուցված է այն նույն սկզբունքների վրա, որոնք կապում են թեմաները մեկ ամբողջական ուղու մեջ։`,
     visual: 'logic',
   },
@@ -47,23 +47,23 @@ const PILLARS = [
 const FAQ_ITEMS = [
   {
     id: 'progress',
-    q: 'Պահվում է արդյոք իմ առաջընթացը։',
-    a: 'Այո։ Ձեր պատասխանները և մակարդակների այցելումները պահվում են այս բրաուզերի localStorage-ում՝ նույն սարքում։ Տվյալները չեն ուղարկվում սերվեր և տեսանելի չեն այլ սարքերին։',
+    q: 'Արդյոք պահվում է իմ առաջընթացը։',
+    a: 'Այո։ Ձեր պատասխանները և մակարդակների այցելումները պահվում են այս դիտարկչի localStorage-ում՝ նույն սարքում։ Տվյալները չեն ուղարկվում սերվեր և տեսանելի չեն այլ սարքերին։',
   },
   {
     id: 'account',
-    q: 'Պետք է գրանցում կամ հաշիվ ստեղծել։',
+    q: 'Գրանցվելու կամ հաշիվ ստեղծելու կարիք կա՞',
     a: 'Ոչ։ Կարող եք օգտագործել հարթակը առանց գրանցման։',
   },
   {
     id: 'offline',
     q: 'Աշխատում է արդյոք առանց ինտերնետի։',
-    a: 'Էջերը պետք է առաջին անգամ բեռնվեն ինտերնետով։ Ամբողջական offline-ռեժիմ չի ապահովվում։ Պահված առաջընթացը հասանելի է միայն այս բրաուզերում, նույն սարքում։',
+    a: 'Էջերը պետք է առաջին անգամ բեռնվեն ինտերնետով։ Ամբողջական offline-ռեժիմ չի ապահովվում։ Պահված առաջընթացը հասանելի է միայն այս դիտարկչում, նույն սարքում։',
   },
   {
     id: 'clear',
     q: 'Ինչպես ջնջել պահված տվյալները։',
-    a: 'Բրաուզերի կարգավորումներից կարող եք մաքրել այս կայքի localStorage-ը կամ օգտագործել գաղտնի պատուհան՝ առանց պահման։',
+    a: 'Դիտարկչի կարգավորումներից կարող եք մաքրել այս կայքի localStorage-ը կամ օգտագործել գաղտնի պատուհան՝ առանց պահման։',
   },
 ];
 
@@ -166,19 +166,11 @@ function About() {
         </div>
         <div className="about-hero__grain" aria-hidden />
         <div className="about-hero__inner">
-          <motion.span
-            className="about-hero__eyebrow"
-            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.05 }}
-          >
-            Կայքի առաքելություն
-          </motion.span>
           <motion.h1
             className="about-hero__title"
             initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
+            transition={{ duration: 0.45, delay: 0.05 }}
           >
             Մեր մասին
           </motion.h1>
@@ -196,7 +188,7 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.22 }}
           >
-            Սովորիր հանգիստ, քայլ առ քայլ՝ նույն գաղափարներով, որոնք կառուցում են ամբողջ կուրսը։
+            Սովորեք հանգիստ, քայլ առ քայլ՝ նույն գաղափարներով, որոնք կառուցում են ամբողջ կուրսը։
           </motion.p>
           <div className="about-hero__pillars about-hero__pillars--tri" role="list">
             {PILLARS.map(({ Icon, label, targetId }, index) => (
@@ -242,16 +234,16 @@ function About() {
           Թվեր և փաստեր
         </h2>
         <p className="about-stats__sub">
-          Ակտուալ թվերը հաշվարկվում են ուսումնական նյութերից (topics)։
+          Թվերը հաշվարկվում են ուսումնական նյութերի հիման վրա։
         </p>
         <ul className="about-stats__grid">
           <li className="about-stats__card">
             <StatCountUp className="about-stats__num" target={stats.topicCount} />
-            <span className="about-stats__label">Թեմա</span>
+            <span className="about-stats__label">Թեմաներ</span>
           </li>
           <li className="about-stats__card">
             <StatCountUp className="about-stats__num" target={stats.levelCount} />
-            <span className="about-stats__label">Մակարդակ</span>
+            <span className="about-stats__label">Մակարդակներ</span>
           </li>
           <li className="about-stats__card">
             <StatCountUp className="about-stats__num" target={1} />

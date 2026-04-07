@@ -182,7 +182,7 @@ function Header() {
           <div className="header__logoMark">
             <Brain size={20} strokeWidth={2.4} />
           </div>
-          <span className="header__logoText">Մաթեմատիկական տրամաբանություն</span>
+            <span className="header__logoText">Լոգիկա և մաթեմատիկա</span>
         </div>
 
         <div className="header__search header__search--mobile" ref={searchRef}>

@@ -55,10 +55,9 @@ function HeroSection() {
           transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08 }}
           className="max-w-full break-words text-balance text-[clamp(1.5rem,6.5vw,2.35rem)] font-black leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-6xl md:leading-tight"
         >
-          Մաթեմատիկական ուսուցում՝
-          <br />
           <span className="bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">
-            պարզ և արդյունավետ
+
+          Ժամանակակից մաթեմատիկական կրթություն
           </span>
         </motion.h1>
 
@@ -68,8 +67,7 @@ function HeroSection() {
           transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.18 }}
           className="mx-auto mt-5 max-w-2xl break-words text-base text-slate-500 md:text-lg"
         >
-          Սկսիր մեկ րոպեանոց թեստից, ստացիր քո մակարդակը և անցիր թեմաներով՝
-          քայլ առ քայլ։
+          Կառուցված դասընթացներ, տեսական հիմք և կիրառական խնդիրներ՝ համակարգված ուսուցմամբ։
         </motion.p>
 
         <motion.div
@@ -95,7 +93,7 @@ function HeroSection() {
           className="stat"
         >
           <StatCountUp className="stat__number" target={levelCount} />
-          <span className="stat__label">Մակարդակ</span>
+          <span className="stat__label">Մակարդակներ</span>
         </motion.div>
         <div className="stat__divider" />
         <motion.div
@@ -105,7 +103,7 @@ function HeroSection() {
           className="stat"
         >
           <StatCountUp className="stat__number" target={topicCount} />
-          <span className="stat__label">Թեմա</span>
+          <span className="stat__label">Թեմաներ</span>
         </motion.div>
         <div className="stat__divider" />
         <motion.div
@@ -115,7 +113,7 @@ function HeroSection() {
           className="stat"
         >
           <StatCountUp className="stat__number" target={questionCount} />
-          <span className="stat__label">Հարց</span>
+          <span className="stat__label">Հարցեր</span>
         </motion.div>
       </div>
     </section>

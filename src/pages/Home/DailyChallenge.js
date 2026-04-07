@@ -85,7 +85,7 @@ function DailyChallenge() {
       )}
 
       <p className="daily-challenge__hint">
-        Ամեն օր նույն հարցը բոլորի համար՝ ըստ տեղական ամսաթվի։
+        Ամեն օր բոլորի համար նույն հարցն է՝ ըստ տեղական ամսաթվի։
       </p>
     </section>
   );

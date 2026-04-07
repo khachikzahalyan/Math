@@ -150,8 +150,8 @@ function CTASection({ externalStartCounter = 0 }) {
 
           <h2 className="quiz-cta-title">Թեստ 1 րոպեում</h2>
           <p className="quiz-cta-sub">
-            Պատասխանիր մի քանի հարցի և անմիջապես հասկացիր՝ որտեղից սկսել, որ առաջընթացը լինի
-            արագ։
+            Պատասխանեք մի քանի հարցի՝ տեսնելու համար, թե որտեղից սկսել, և առաջընթացը արագացնելու
+            համար։
           </p>
 
           <div className="quiz-cta-actions">
@@ -309,13 +309,13 @@ function CTASection({ externalStartCounter = 0 }) {
                             {idx + 1}. {q.question}
                           </p>
                           <p className="quiz-review__line">
-                            Ձեր պատասխանը:{' '}
+                            Ձեր պատասխանը՝{' '}
                             <span className="quiz-review__em">
                               {typeof userAnswer === 'number' ? q.options[userAnswer] : 'Չի պատասխանվել'}
                             </span>
                           </p>
                           <p className="quiz-review__line">
-                            Ճիշտ պատասխանը:{' '}
+                            Ճիշտ պատասխանը՝{' '}
                             <span className="quiz-review__em">{q.options[q.correctOption]}</span>
                           </p>
                         </div>

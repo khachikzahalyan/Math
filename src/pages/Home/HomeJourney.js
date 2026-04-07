@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { BookOpen, Brain, Library, ListTree, PencilLine, Sparkles } from 'lucide-react';
+import { getCourseStats } from '../../data/topicsUtils';
 
 const STEPS = [
   {
@@ -19,14 +21,17 @@ const STEPS = [
   },
 ];
 
-const FACTS = [
-  { Icon: Library, text: 'Ամբողջ կուրսը մեկ տեղում' },
-  { Icon: ListTree, text: 'Քայլ առ քայլ' },
-  { Icon: Sparkles, text: '6 մակարդակ · 52 թեմա' },
-];
-
 function HomeJourney() {
   const reduceMotion = useReducedMotion();
+  const { levelCount, topicCount } = useMemo(() => getCourseStats(), []);
+  const facts = useMemo(
+    () => [
+      { Icon: Library, text: 'Ամբողջ կուրսը մեկ տեղում' },
+      { Icon: ListTree, text: 'Քայլ առ քայլ' },
+      { Icon: Sparkles, text: `${levelCount} մակարդակ · ${topicCount} թեմա` },
+    ],
+    [levelCount, topicCount],
+  );
 
   return (
     <section
@@ -41,7 +46,7 @@ function HomeJourney() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
         <header className="home-journey__head">
-          <p className="home-journey__eyebrow">Ուսուցման ուղի</p>
+          <p className="home-journey__eyebrow">Ուսումնական ուղի</p>
           <h2 id="home-journey-heading" className="home-journey__title">
             Երեք քայլով՝ տեսությունից մինչև ստուգում
           </h2>
@@ -83,7 +88,7 @@ function HomeJourney() {
         </div>
 
         <ul className="home-journey__facts">
-          {FACTS.map(({ Icon, text }, i) => (
+          {facts.map(({ Icon, text }, i) => (
             <li key={text} className="home-journey__fact">
               {i > 0 ? <span className="home-journey__factSep" aria-hidden>·</span> : null}
               <Icon className="home-journey__factIcon" size={15} strokeWidth={2.2} aria-hidden />

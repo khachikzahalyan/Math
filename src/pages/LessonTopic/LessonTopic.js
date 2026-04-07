@@ -205,7 +205,7 @@ function LessonTopic() {
         <section className="topic__section">
           <h2 className="topic__sectionTitle">
             <CheckCircle2 size={20} className="topic__sectionIcon" />
-            Իսկության աղյուսակներ
+            Ճշմարտության աղյուսակներ
           </h2>
           <div className="topic__review">
             {questions.map((question, idx) => {
@@ -281,7 +281,7 @@ function LessonTopic() {
                 Նորից փորձել
               </button>
               <button className="topic__button topic__button--primary" onClick={handleNextTopic}>
-                {isLastTopic ? 'Անփոփում' : 'Հաջորդ թեմա'}
+                {isLastTopic ? 'Դասեր' : 'Հաջորդ թեմա'}
                 <ArrowRight size={16} />
               </button>
             </div>
@@ -327,7 +327,7 @@ function LessonTopic() {
               Նորից փորձել
             </button>
             <button className="topic__button topic__button--primary" onClick={handleNextTopic}>
-              {isLastTopic ? 'Անփոփում' : 'Հաջորդ թեմա'}
+              {isLastTopic ? 'Դասեր' : 'Հաջորդ թեմա'}
               <ArrowRight size={16} />
             </button>
           </div>

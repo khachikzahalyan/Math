@@ -5,7 +5,9 @@ import './MainLayout.css';
 
 function MainLayout() {
   const { pathname } = useLocation();
-  const hideFooter = pathname === '/contact';
+  /** Ֆուտեր միայն Գլխավոր և Մեր մասին էջերում */
+  const showFooter = pathname === '/' || pathname === '/about';
+  const hideFooter = !showFooter;
 
   return (
     <div className={`mainLayout${hideFooter ? ' mainLayout--noFooter' : ''}`}>
@@ -13,7 +15,7 @@ function MainLayout() {
       <main className="mainLayout__content">
         <Outlet />
       </main>
-      {!hideFooter && <Footer />}
+      {showFooter && <Footer />}
     </div>
   );
 }

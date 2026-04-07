@@ -138,10 +138,9 @@ function Contact() {
             <Mail className="contact-hero__markIcon" size={44} strokeWidth={1.75} />
             <Sparkles className="contact-hero__spark" size={22} strokeWidth={2} aria-hidden />
           </div>
-          <span className="contact-hero__eyebrow">Կապ</span>
-          <h1 className="contact-hero__title">Կապ մեզ հետ</h1>
+          <h1 className="contact-hero__title">Կապվեք մեզ հետ</h1>
           <p className="contact-hero__lead">
-            Հարցեր, առաջարկներ կամ մեկնաբանություններ՝ գրեք ներքևի ձևը լրացնելով։
+            Հարցեր, առաջարկներ կամ մեկնաբանությունների համար լրացրեք ներքևի ձևը։
           </p>
         </div>
       </motion.header>
@@ -284,7 +283,7 @@ function Contact() {
         </form>
 
         <p className="contact-footnote">
-          Այս ձևը ցուցադրական է․ հաղորդագրությունը չի պահվում սերվերում։ Մենք կփորձենք պատասխանել հնարավորինս արագ։
+          Այս ձևը ցուցադրական է․ հաղորդագրությունը սերվերում չի պահվում։
         </p>
       </motion.section>
     </div>
