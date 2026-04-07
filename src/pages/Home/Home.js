@@ -1,11 +1,13 @@
+import { lazy, Suspense } from 'react';
 import './Home.css';
 import './ProgressWidgets.css';
 import HeroSection from './HeroSection';
 import HomeJourney from './HomeJourney';
 import AchievementsSection from './AchievementsSection';
 import StepsSection from './StepsSection';
-import DailyChallenge from './DailyChallenge';
-import CTASection from './CTASection';
+
+const DailyChallenge = lazy(() => import('./DailyChallenge'));
+const CTASection = lazy(() => import('./CTASection'));
 
 function Home() {
   return (
@@ -14,8 +16,10 @@ function Home() {
       <HomeJourney />
       <AchievementsSection />
       <StepsSection />
-      <DailyChallenge />
-      <CTASection />
+      <Suspense fallback={null}>
+        <DailyChallenge />
+        <CTASection />
+      </Suspense>
     </div>
   );
 }

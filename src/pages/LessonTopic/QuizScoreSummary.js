@@ -1,7 +1,9 @@
+import { memo } from 'react';
+
 /**
  * Shared score row used after quiz completion and inside full review.
  */
-export default function QuizScoreSummary({ score, questionCount }) {
+function QuizScoreSummary({ score, questionCount }) {
   const finalScore = Math.round((score / questionCount) * 100);
   return (
     <div className="topic__result">
@@ -18,3 +20,5 @@ export default function QuizScoreSummary({ score, questionCount }) {
     </div>
   );
 }
+
+export default memo(QuizScoreSummary);

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   BookOpen,
@@ -24,7 +24,7 @@ function LessonTopic() {
   const topic = useMemo(() => topics.find((t) => t.id === topicId), [topicId]);
   const theoryBlocks = useMemo(
     () => (topic ? parseTheoryText(topic.text) : []),
-    [topic]
+    [topic],
   );
 
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
@@ -45,30 +45,28 @@ function LessonTopic() {
     setError('');
   }, [topicId]);
 
-  if (!topic) {
-    return <Card title="Շուտով կլինի" text="Ապագայում այստեղ կհայտնվի նյութը" />;
-  }
-
-  const questions = topic.questions || [];
+  const questions = topic?.questions || [];
   const currentQuestion = questions[currentQuestionIdx];
+  const isLastTopic = useMemo(
+    () =>
+      topic != null &&
+      topics.findIndex((t) => t.id === topicId) === topics.length - 1,
+    [topic, topicId],
+  );
 
-  if (!currentQuestion || questions.length === 0) {
-    return <Card title="Շուտով կլինի" text="Հարցերը դեռ հասանելի չեն" />;
-  }
-
-  const handleSelectOption = (optionIdx) => {
+  const handleSelectOption = useCallback((optionIdx) => {
     setSelectedOption(optionIdx);
     setError('');
-  };
+  }, []);
 
-  const handleSubmitAnswer = () => {
+  const handleSubmitAnswer = useCallback(() => {
     if (selectedOption === null) {
       setError('Ընտրեք պատասխանը');
       return;
     }
+    if (!topic || !currentQuestion) return;
 
     const correct = selectedOption === currentQuestion.correctOption;
-
     const newAnswers = [...userAnswers];
     newAnswers[currentQuestionIdx] = selectedOption;
     setUserAnswers(newAnswers);
@@ -85,9 +83,16 @@ function LessonTopic() {
     } else {
       setQuizCompleted(true);
     }
-  };
+  }, [
+    selectedOption,
+    currentQuestion,
+    currentQuestionIdx,
+    userAnswers,
+    topic,
+    questions.length,
+  ]);
 
-  const handleRetry = () => {
+  const handleRetry = useCallback(() => {
     setCurrentQuestionIdx(0);
     setSelectedOption(null);
     setUserAnswers([]);
@@ -95,9 +100,9 @@ function LessonTopic() {
     setQuizCompleted(false);
     setShowReview(false);
     setError('');
-  };
+  }, []);
 
-  const handleNextTopic = () => {
+  const handleNextTopic = useCallback(() => {
     const currentIdx = topics.findIndex((t) => t.id === topicId);
     if (currentIdx < topics.length - 1) {
       const nextTopic = topics[currentIdx + 1];
@@ -105,9 +110,17 @@ function LessonTopic() {
     } else {
       navigate('/lessons');
     }
-  };
+  }, [navigate, topicId]);
 
-  const isLastTopic = topics.findIndex((t) => t.id === topicId) === topics.length - 1;
+  const openReview = useCallback(() => setShowReview(true), []);
+
+  if (!topic) {
+    return <Card title="Շուտով կլինի" text="Ապագայում այստեղ կհայտնվի նյութը" />;
+  }
+
+  if (!currentQuestion || questions.length === 0) {
+    return <Card title="Շուտով կլինի" text="Հարցերը դեռ հասանելի չեն" />;
+  }
 
   if (quizCompleted && showReview) {
     return (
@@ -158,7 +171,7 @@ function LessonTopic() {
           <QuizScoreSummary score={score} questionCount={questions.length} />
 
           <div className="topic__resultActions">
-            <button type="button" className="topic__button topic__button--primary" onClick={() => setShowReview(true)}>
+            <button type="button" className="topic__button topic__button--primary" onClick={openReview}>
               <CheckCircle2 size={16} />
               Պատասխանների ստուգում
             </button>

@@ -1,9 +1,16 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Search, Home, BookOpen, Users, Mail } from 'lucide-react';
 import SiteLogoMark from '../SiteLogoMark/SiteLogoMark';
 import topics from '../../data/topics';
 import './Header.css';
+
+const NAV_ITEMS = [
+  { to: '/', Icon: Home, label: 'Գլխավոր' },
+  { to: '/lessons', Icon: BookOpen, label: 'Դասեր' },
+  { to: '/about', Icon: Users, label: 'Մեր մասին' },
+  { to: '/contact', Icon: Mail, label: 'Կապ' },
+];
 
 function Header() {
   const navigate = useNavigate();
@@ -11,27 +18,41 @@ function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const searchRef = useRef(null);
+  const searchRefMobile = useRef(null);
+  const searchRefDesktop = useRef(null);
   const searchInputRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
-  const filteredTopics = searchQuery.trim()
-    ? topics.filter((topic) =>
-        topic.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : [];
+  const filteredTopics = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    return topics.filter((topic) => topic.title.toLowerCase().includes(q));
+  }, [searchQuery]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 8);
+    let rafId = null;
+    const handleScroll = () => {
+      if (rafId != null) return;
+      rafId = window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 8);
+        rafId = null;
+      });
+    };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId != null) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setIsSearchOpen(false);
-      }
+      const t = e.target;
+      const insideMobile = searchRefMobile.current?.contains(t);
+      const insideDesktop = searchRefDesktop.current?.contains(t);
+      if (insideMobile || insideDesktop) return;
+      setIsSearchOpen(false);
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -39,10 +60,11 @@ function Header() {
 
   useEffect(() => {
     const handleClickOutsideMenu = (e) => {
+      const t = e.target;
       if (
         isMobileMenuOpen &&
-        !e.target.closest('.header__nav') &&
-        !e.target.closest('.header__burger')
+        !t.closest('.header__nav') &&
+        !t.closest('.header__burger')
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -90,35 +112,47 @@ function Header() {
     };
   }, []);
 
-  const handleSelectTopic = (topicId) => {
+  const handleSelectTopic = useCallback((topicId) => {
     setSearchQuery('');
     setIsSearchOpen(false);
     setIsMobileMenuOpen(false);
     navigate(`/lessons/${topicId}`);
-  };
+  }, [navigate]);
 
-  const handleSearchInputBlur = () => {
+  const handleSearchInputBlur = useCallback(() => {
     closeTimeoutRef.current = setTimeout(() => {
       setIsSearchOpen(false);
     }, 100);
-  };
+  }, []);
 
-  const handleSearchItemMouseDown = (e, topicId) => {
-    e.preventDefault();
+  const handleSearchItemMouseDown = useCallback(
+    (e, topicId) => {
+      e.preventDefault();
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+      handleSelectTopic(topicId);
+    },
+    [handleSelectTopic],
+  );
+
+  const toggleMobileMenu = useCallback(() => setIsMobileMenuOpen((p) => !p), []);
+
+  const closeMobileNav = useCallback(() => setIsMobileMenuOpen(false), []);
+
+  const handleSearchChange = useCallback((e) => {
+    setSearchQuery(e.target.value);
+    setIsSearchOpen(true);
+  }, []);
+
+  const handleSearchFocus = useCallback(() => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
     }
-    handleSelectTopic(topicId);
-  };
+    setIsSearchOpen(true);
+  }, []);
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen((p) => !p);
-
-  const NAV_ITEMS = [
-    { to: '/', Icon: Home, label: 'Գլխավոր' },
-    { to: '/lessons', Icon: BookOpen, label: 'Դասեր' },
-    { to: '/about', Icon: Users, label: 'Մեր մասին' },
-    { to: '/contact', Icon: Mail, label: 'Կապ' },
-  ];
+  const goHome = useCallback(() => navigate('/'), [navigate]);
 
   const searchInput = (
     <div className="header__searchInput">
@@ -130,16 +164,8 @@ function Header() {
         type="text"
         placeholder="Որոնել թեմա..."
         value={searchQuery}
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setIsSearchOpen(true);
-        }}
-        onFocus={() => {
-          if (closeTimeoutRef.current) {
-            clearTimeout(closeTimeoutRef.current);
-          }
-          setIsSearchOpen(true);
-        }}
+        onChange={handleSearchChange}
+        onFocus={handleSearchFocus}
         onBlur={handleSearchInputBlur}
         spellCheck="false"
         autoComplete="off"
@@ -176,17 +202,23 @@ function Header() {
       <div className="header__inner">
         <div
           className="header__logo"
-          onClick={() => navigate('/')}
+          onClick={goHome}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              goHome();
+            }
+          }}
           role="button"
           tabIndex={0}
         >
           <div className="header__logoMark" aria-hidden>
             <SiteLogoMark />
           </div>
-            <span className="header__logoText">Լոգիկա և մաթեմատիկա</span>
+          <span className="header__logoText">Լոգիկա և մաթեմատիկա</span>
         </div>
 
-        <div className="header__search header__search--mobile" ref={searchRef}>
+        <div className="header__search header__search--mobile" ref={searchRefMobile}>
           {searchInput}
           {searchDropdown}
         </div>
@@ -210,14 +242,14 @@ function Header() {
                 `header__link${isActive ? ' is-active' : ''}`
               }
               to={to}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileNav}
             >
               <Icon size={16} strokeWidth={2} className="header__linkIcon" />
               {label}
             </NavLink>
           ))}
 
-          <div className="header__search header__search--desktop" ref={searchRef}>
+          <div className="header__search header__search--desktop" ref={searchRefDesktop}>
             {searchInput}
             {searchDropdown}
           </div>

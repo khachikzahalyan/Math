@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import { OPTION_LETTERS } from './lessonTopicConstants';
 
 /**
  * Per-question breakdown after quiz (truth table style).
  */
-export default function QuizReviewSection({ questions, userAnswers }) {
+function QuizReviewSection({ questions, userAnswers }) {
   return (
     <div className="topic__review">
       {questions.map((question, idx) => {
@@ -65,3 +66,5 @@ export default function QuizReviewSection({ questions, userAnswers }) {
     </div>
   );
 }
+
+export default memo(QuizReviewSection);

@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { GraduationCap, AlertCircle } from 'lucide-react';
 import { OPTION_LETTERS } from './lessonTopicConstants';
 
 /**
  * In-progress quiz: progress bar, question, options, submit.
  */
-export default function TopicQuizActive({
+function TopicQuizActive({
   questions,
   currentQuestionIdx,
   currentQuestion,
@@ -81,3 +82,5 @@ export default function TopicQuizActive({
     </section>
   );
 }
+
+export default memo(TopicQuizActive);

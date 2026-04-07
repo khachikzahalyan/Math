@@ -6,16 +6,23 @@ export const MAX_LEVEL = 6;
 const isValidLevel = (level) =>
   Number.isFinite(level) && level >= MIN_LEVEL && level <= MAX_LEVEL;
 
+/** Cached for the lifetime of the app (`topics` is static). */
+let sortedTopicsCache = null;
 export const getSortedTopics = () => {
-  return [...topics]
+  if (sortedTopicsCache) return sortedTopicsCache;
+  sortedTopicsCache = [...topics]
     .filter((topic) => isValidLevel(topic.level))
     .sort((a, b) => {
       if (a.level !== b.level) return a.level - b.level;
       return (a.title || '').localeCompare(b.title || '', 'hy');
     });
+  return sortedTopicsCache;
 };
 
+/** Cached Map — avoids rebuilding on every Sidebar render. */
+let topicsByLevelCache = null;
 export const getTopicsByLevel = () => {
+  if (topicsByLevelCache) return topicsByLevelCache;
   const sorted = getSortedTopics();
   const map = new Map();
 
@@ -27,15 +34,17 @@ export const getTopicsByLevel = () => {
     map.get(topic.level).push(topic);
   });
 
-  return map;
+  topicsByLevelCache = map;
+  return topicsByLevelCache;
 };
 
-export const getLevels = () => {
-  return Array.from({ length: MAX_LEVEL }, (_, idx) => idx + 1);
-};
+const LEVELS_ROW = Array.from({ length: MAX_LEVEL }, (_, idx) => idx + 1);
+export const getLevels = () => LEVELS_ROW;
 
 /** Aggregates for About / marketing stats (derived from topics data). */
+let courseStatsCache = null;
 export function getCourseStats() {
+  if (courseStatsCache) return courseStatsCache;
   const sorted = getSortedTopics();
   const typeSet = new Set();
   let questionCount = 0;
@@ -45,10 +54,11 @@ export function getCourseStats() {
       if (q && q.type) typeSet.add(q.type);
     });
   });
-  return {
+  courseStatsCache = {
     topicCount: sorted.length,
     levelCount: MAX_LEVEL,
     questionTypeCount: typeSet.size,
     questionCount,
   };
+  return courseStatsCache;
 }

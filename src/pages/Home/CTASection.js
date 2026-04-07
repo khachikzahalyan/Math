@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Trophy, X, Zap } from 'lucide-react';
@@ -6,10 +6,20 @@ import topics from '../../data/topics';
 import { recordQuestionAnswered } from '../../utils/progressStorage';
 import './CTASection.css';
 
+const QUIZ_SIZE = 10;
+const QUIZ_TIME = 60;
+
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 function CTASection({ externalStartCounter = 0 }) {
   const reduceMotion = useReducedMotion();
-  const QUIZ_SIZE = 10;
-  const QUIZ_TIME = 60;
 
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -40,17 +50,12 @@ function CTASection({ externalStartCounter = 0 }) {
   const currentQuestion = questions[currentIndex];
   const selected = currentQuestion ? answers[currentQuestion.uid] : undefined;
 
-  const shuffle = (arr) => {
-    const copy = [...arr];
-    for (let i = copy.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-  };
+  const submitQuiz = useCallback(() => {
+    setIsSubmitted(true);
+  }, []);
 
-  const startQuiz = () => {
-    const picked = shuffle(allQuestions).slice(0, QUIZ_SIZE);
+  const startQuiz = useCallback(() => {
+    const picked = shuffleArray(allQuestions).slice(0, QUIZ_SIZE);
     setQuestions(picked);
     setCurrentIndex(0);
     setAnswers({});
@@ -58,15 +63,11 @@ function CTASection({ externalStartCounter = 0 }) {
     setIsSubmitted(false);
     setShowReview(false);
     setIsOpen(true);
-  };
+  }, [allQuestions]);
 
-  const closeQuiz = () => {
+  const closeQuiz = useCallback(() => {
     setIsOpen(false);
-  };
-
-  const submitQuiz = () => {
-    setIsSubmitted(true);
-  };
+  }, []);
 
   useEffect(() => {
     if (!isOpen || isSubmitted) return undefined;
@@ -88,14 +89,13 @@ function CTASection({ externalStartCounter = 0 }) {
     if (isOpen && !isSubmitted && timeLeft === 0) {
       submitQuiz();
     }
-  }, [isOpen, isSubmitted, timeLeft]);
+  }, [isOpen, isSubmitted, timeLeft, submitQuiz]);
 
   useEffect(() => {
     if (externalStartCounter > 0) {
       startQuiz();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [externalStartCounter]);
+  }, [externalStartCounter, startQuiz]);
 
   useEffect(() => {
     if (!currentQuestion) return;

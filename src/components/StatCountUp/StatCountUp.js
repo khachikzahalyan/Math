@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useInView, useReducedMotion } from 'framer-motion';
 
 /**
@@ -40,4 +40,4 @@ function StatCountUp({ target, suffix, className }) {
   );
 }
 
-export default StatCountUp;
+export default memo(StatCountUp);
