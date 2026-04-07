@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 
 import BackToTopFab from './components/BackToTopFab/BackToTopFab';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';

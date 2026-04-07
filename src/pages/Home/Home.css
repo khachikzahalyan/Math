@@ -14,9 +14,9 @@
   --home-text-muted: #64748b;
   --home-text-title: #0f172a;
   box-sizing: border-box;
-  width: 100%;
+  width: 98%;
   min-width: 0;
-  max-width: 100%;
+  max-width: 98%;
   overflow-x: clip;
 }
 

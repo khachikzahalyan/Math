@@ -10,7 +10,7 @@
   width: 100%;
   max-width: 70%;
   margin: 0 auto;
-  margin-top: 62px;
+  margin-top: var(--header-height, 72px);
   padding: 20px 14px calc(var(--footer-height) + 18px);
 }
 

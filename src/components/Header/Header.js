@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
-import { Brain, Search, Home, BookOpen, Users, Mail } from 'lucide-react';
+import { Search, Home, BookOpen, Users, Mail } from 'lucide-react';
+import SiteLogoMark from '../SiteLogoMark/SiteLogoMark';
 import topics from '../../data/topics';
 import './Header.css';
 
@@ -179,8 +180,8 @@ function Header() {
           role="button"
           tabIndex={0}
         >
-          <div className="header__logoMark">
-            <Brain size={20} strokeWidth={2.4} />
+          <div className="header__logoMark" aria-hidden>
+            <SiteLogoMark />
           </div>
             <span className="header__logoText">Լոգիկա և մաթեմատիկա</span>
         </div>

@@ -2,8 +2,27 @@
 .lessons-page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100%;
+  justify-content: flex-start;
+}
+
+.lessons-page__inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 67%;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .lessons-page > .lessons-page__inner {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
 

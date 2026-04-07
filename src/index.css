@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --font-brand-serif: "Noto Serif Armenian", Georgia, "Times New Roman", serif;
   --primary: #6366f1;
   --primary-dark: #4f46e5;
   --primary-light: #818cf8;

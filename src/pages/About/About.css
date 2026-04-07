@@ -3,7 +3,7 @@
 .about-page {
   /* --about-ring-phase, --about-float-phase: set in About.js */
   width: 100%;
-  max-width: 1100px;
+  max-width: 95%;
   margin: 0 auto;
   padding: 8px 8px 40px;
   box-sizing: border-box;

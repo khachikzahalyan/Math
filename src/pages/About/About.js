@@ -1,114 +1,16 @@
 import { useCallback, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  BookOpen,
-  Brain,
-  ChevronDown,
-  Compass,
-  Heart,
-  Lightbulb,
-  Scale,
-} from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import StatCountUp from '../../components/StatCountUp/StatCountUp';
 import { getCourseStats } from '../../data/topicsUtils';
+import AboutSectionVisuals from './AboutSectionVisuals';
+import { SECTIONS, PILLARS, FAQ_ITEMS } from './aboutContent';
 import './About.css';
 
 /** Must match `.about-visual__ring` animation duration in About.css (28s). */
 const ABOUT_RING_DURATION_MS = 28000;
 /** Shared phase for pillar icon float (8s loop in CSS). */
 const ABOUT_FLOAT_DURATION_MS = 8000;
-
-const SECTIONS = [
-  {
-    text: `Այս կայքը ստեղծվել է այն գաղափարի շուրջ, որ մաթեմատիկան պետք է լինի հասկանալի, հասանելի և հետաքրքիր յուրաքանչյուր մարդու համար։
-Մենք հավատում ենք, որ ճիշտ մոտեցման դեպքում նույնիսկ ամենաբարդ թեմաները կարող են դառնալ պարզ և ընկալելի։`,
-    visual: 'mission',
-  },
-  {
-    text: `Մաթեմատիկան միայն թվերի և բանաձևերի համախումբ չէ։
-Այն զարգացնում է տրամաբանական մտածողությունը, վերլուծական հմտությունները, խնդիրներ լուծելու կարողությունը և ինքնուրույն մտածելու ունակությունը։
-Այս հմտությունները կարևոր են ոչ միայն ուսման ընթացքում, այլ նաև առօրյա կյանքում և մասնագիտական գործունեության մեջ։`,
-    visual: 'skills',
-  },
-  {
-    text: `Լոգիկան մաթեմատիկայի կորիզն է՝ ապացույց, հետևություն, կառուցված մտածողություն։
-Մենք ընտրել ենք տրամաբանական ուղին, որովհետև այն օգնում է հստակ ձևակերպել, ճիշտ վերլուծել և վստահ լինել սեփական արդյունքներին։
-Յուրաքանչյուր քայլը կառուցված է այն նույն սկզբունքների վրա, որոնք կապում են թեմաները մեկ ամբողջական ուղու մեջ։`,
-    visual: 'logic',
-  },
-];
-
-const PILLARS = [
-  { Icon: Compass, label: 'Պարզ ուղի', targetId: 'about-mission' },
-  { Icon: Lightbulb, label: 'Տրամաբանություն', targetId: 'about-logic' },
-  { Icon: Heart, label: 'Համբերություն և առաջընթաց', targetId: 'about-stats' },
-];
-
-const FAQ_ITEMS = [
-  {
-    id: 'progress',
-    q: 'Արդյոք պահվում է իմ առաջընթացը։',
-    a: 'Այո։ Ձեր պատասխանները և մակարդակների այցելումները պահվում են այս դիտարկչի localStorage-ում՝ նույն սարքում։ Տվյալները չեն ուղարկվում սերվեր և տեսանելի չեն այլ սարքերին։',
-  },
-  {
-    id: 'account',
-    q: 'Գրանցվելու կամ հաշիվ ստեղծելու կարիք կա՞',
-    a: 'Ոչ։ Կարող եք օգտագործել հարթակը առանց գրանցման։',
-  },
-  {
-    id: 'offline',
-    q: 'Աշխատում է արդյոք առանց ինտերնետի։',
-    a: 'Էջերը պետք է առաջին անգամ բեռնվեն ինտերնետով։ Ամբողջական offline-ռեժիմ չի ապահովվում։ Պահված առաջընթացը հասանելի է միայն այս դիտարկչում, նույն սարքում։',
-  },
-  {
-    id: 'clear',
-    q: 'Ինչպես ջնջել պահված տվյալները։',
-    a: 'Դիտարկչի կարգավորումներից կարող եք մաքրել այս կայքի localStorage-ը կամ օգտագործել գաղտնի պատուհան՝ առանց պահման։',
-  },
-];
-
-function VisualMission() {
-  return (
-    <div className="about-visual about-visual--mission" aria-hidden>
-      <div className="about-visual__mesh" />
-      <div className="about-visual__card">
-        <BookOpen className="about-visual__icon" strokeWidth={1.75} />
-      </div>
-      <span className="about-visual__ring" />
-    </div>
-  );
-}
-
-function VisualSkills() {
-  return (
-    <div className="about-visual about-visual--skills" aria-hidden>
-      <div className="about-visual__mesh about-visual__mesh--violet" />
-      <div className="about-visual__card about-visual__card--brain">
-        <Brain className="about-visual__icon about-visual__icon--brain" strokeWidth={1.65} />
-      </div>
-      <span className="about-visual__ring about-visual__ring--violet" />
-    </div>
-  );
-}
-
-function VisualLogic() {
-  return (
-    <div className="about-visual about-visual--logic" aria-hidden>
-      <div className="about-visual__mesh about-visual__mesh--teal" />
-      <div className="about-visual__card about-visual__card--logic">
-        <Scale className="about-visual__icon about-visual__icon--logic" strokeWidth={1.65} />
-      </div>
-      <span className="about-visual__ring about-visual__ring--teal" />
-    </div>
-  );
-}
-
-function renderSectionVisual(visual) {
-  if (visual === 'mission') return <VisualMission />;
-  if (visual === 'skills') return <VisualSkills />;
-  if (visual === 'logic') return <VisualLogic />;
-  return null;
-}
 
 function About() {
   const reduceMotion = useReducedMotion();
@@ -266,7 +168,9 @@ function About() {
             <div className="about-block__textWrap">
               <p className="about-block__text">{s.text}</p>
             </div>
-            <div className="about-block__visualWrap">{renderSectionVisual(s.visual)}</div>
+            <div className="about-block__visualWrap">
+              <AboutSectionVisuals visual={s.visual} />
+            </div>
           </motion.section>
         ))}
       </div>
