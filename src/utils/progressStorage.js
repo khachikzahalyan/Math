@@ -1,3 +1,8 @@
+// Guest progress storage (localStorage).
+// Используется ТОЛЬКО для маркетинговых виджетов на главной странице
+// (CTASection, AchievementsSection, DailyChallenge), чтобы гости видели
+// какой-то прогресс без авторизации. Реальный учебный прогресс ученика
+// после теста хранится в Firestore через progressRepo.
 const STORAGE_KEY = 'math-platform-progress-v1';
 
 function defaultState() {

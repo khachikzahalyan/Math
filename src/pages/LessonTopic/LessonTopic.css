@@ -9,12 +9,53 @@
 /* Title & Description                                 */
 /* ═══════════════════════════════════════════════════ */
 .topic__title {
-  font-size: 1.65rem;
+  font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   color: #1e293b;
   letter-spacing: -0.4px;
   line-height: 1.25;
+}
+
+.topic__titleNum {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 3px 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.1));
+  color: #6366f1;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+/* Teacher edit button — neutral chip, doesn't alter title row layout */
+.topic__editBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.topic__editBtn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
 }
 
 .topic__description {

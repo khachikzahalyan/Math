@@ -7,11 +7,16 @@ import {
   RotateCcw,
   ArrowRight,
   CheckCircle2,
+  Pencil,
 } from 'lucide-react';
-import topics from '../../data/topics';
-import { recordQuestionAnswered } from '../../utils/progressStorage';
+import { getTopic, listTopics } from '../../data/topicsRepo';
+import { listQuestions } from '../../data/questionsRepo';
+import { saveAttempt } from '../../data/progressRepo';
+import { useAuth } from '../../auth/AuthContext';
 import Card from '../../components/Card/Card';
+import TopicEditor from '../../components/TopicEditor/TopicEditor';
 import parseTheoryText from '../../utils/parseTheoryText';
+import { buildTopicNumberMap } from '../../utils/topicNumber';
 import { TheoryBlock } from './TheoryBlock';
 import QuizScoreSummary from './QuizScoreSummary';
 import QuizReviewSection from './QuizReviewSection';
@@ -21,11 +26,14 @@ import './LessonTopic.css';
 function LessonTopic() {
   const { topicId } = useParams();
   const navigate = useNavigate();
-  const topic = useMemo(() => topics.find((t) => t.id === topicId), [topicId]);
-  const theoryBlocks = useMemo(
-    () => (topic ? parseTheoryText(topic.text) : []),
-    [topic],
-  );
+  const { user, isTeacher } = useAuth();
+  const [showEditor, setShowEditor] = useState(false);
+
+  const [topic, setTopic] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [topicLoading, setTopicLoading] = useState(true);
+  const [allTopicsIds, setAllTopicsIds] = useState([]);
+  const [allTopics, setAllTopics] = useState([]);
 
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -34,6 +42,41 @@ function LessonTopic() {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [error, setError] = useState('');
+  const [savedScore10, setSavedScore10] = useState(null);
+  const [saveError, setSaveError] = useState('');
+  const [startedAt, setStartedAt] = useState(() => Date.now());
+
+  useEffect(() => {
+    let cancel = false;
+    setTopicLoading(true);
+    (async () => {
+      try {
+        const [t, qs, all] = await Promise.all([
+          getTopic(topicId),
+          listQuestions(topicId),
+          listTopics(),
+        ]);
+        if (cancel) return;
+        setTopic(t);
+        setQuestions(qs);
+        setAllTopics(all);
+        setAllTopicsIds(all.map((x) => x.id));
+      } finally {
+        if (!cancel) setTopicLoading(false);
+      }
+    })();
+    return () => { cancel = true; };
+  }, [topicId]);
+
+  const theoryBlocks = useMemo(
+    () => (topic ? parseTheoryText(topic.text) : []),
+    [topic],
+  );
+
+  const topicNumber = useMemo(() => {
+    if (!topic || allTopics.length === 0) return '';
+    return buildTopicNumberMap(allTopics).get(topic.id) || '';
+  }, [topic, allTopics]);
 
   useEffect(() => {
     setCurrentQuestionIdx(0);
@@ -43,15 +86,18 @@ function LessonTopic() {
     setQuizCompleted(false);
     setShowReview(false);
     setError('');
+    setSavedScore10(null);
+    setSaveError('');
+    setStartedAt(Date.now());
   }, [topicId]);
 
-  const questions = topic?.questions || [];
   const currentQuestion = questions[currentQuestionIdx];
+
   const isLastTopic = useMemo(
     () =>
-      topic != null &&
-      topics.findIndex((t) => t.id === topicId) === topics.length - 1,
-    [topic, topicId],
+      allTopicsIds.length > 0 &&
+      allTopicsIds[allTopicsIds.length - 1] === topicId,
+    [allTopicsIds, topicId],
   );
 
   const handleSelectOption = useCallback((optionIdx) => {
@@ -70,7 +116,6 @@ function LessonTopic() {
     const newAnswers = [...userAnswers];
     newAnswers[currentQuestionIdx] = selectedOption;
     setUserAnswers(newAnswers);
-    recordQuestionAnswered(`${topic.id}-${currentQuestion.id}`);
 
     if (correct) {
       setScore((prev) => prev + 1);
@@ -82,6 +127,27 @@ function LessonTopic() {
       setError('');
     } else {
       setQuizCompleted(true);
+      if (user) {
+        const finalScore = score + (correct ? 1 : 0);
+        const answers = newAnswers.map((sel, i) => {
+          const qq = questions[i];
+          return {
+            questionId: qq.id,
+            selectedOption: sel,
+            correctOption: qq.correctOption,
+            isCorrect: sel === qq.correctOption,
+          };
+        });
+        saveAttempt(user.uid, {
+          topicId: topic.id,
+          totalQuestions: questions.length,
+          correctAnswers: finalScore,
+          answers,
+          startedAt,
+        })
+          .then(({ score10 }) => setSavedScore10(score10))
+          .catch(() => setSaveError('Արդյունքը չպահպանվեց։'));
+      }
     }
   }, [
     selectedOption,
@@ -89,7 +155,10 @@ function LessonTopic() {
     currentQuestionIdx,
     userAnswers,
     topic,
-    questions.length,
+    questions,
+    user,
+    score,
+    startedAt,
   ]);
 
   const handleRetry = useCallback(() => {
@@ -100,19 +169,25 @@ function LessonTopic() {
     setQuizCompleted(false);
     setShowReview(false);
     setError('');
+    setSavedScore10(null);
+    setSaveError('');
+    setStartedAt(Date.now());
   }, []);
 
   const handleNextTopic = useCallback(() => {
-    const currentIdx = topics.findIndex((t) => t.id === topicId);
-    if (currentIdx < topics.length - 1) {
-      const nextTopic = topics[currentIdx + 1];
-      navigate(`/lessons/${nextTopic.id}`);
+    const idx = allTopicsIds.indexOf(topicId);
+    if (idx >= 0 && idx < allTopicsIds.length - 1) {
+      navigate(`/lessons/${allTopicsIds[idx + 1]}`);
     } else {
       navigate('/lessons');
     }
-  }, [navigate, topicId]);
+  }, [navigate, topicId, allTopicsIds]);
 
   const openReview = useCallback(() => setShowReview(true), []);
+
+  if (topicLoading) {
+    return <Card title="Բեռնում..." text="" />;
+  }
 
   if (!topic) {
     return <Card title="Շուտով կլինի" text="Ապագայում այստեղ կհայտնվի նյութը" />;
@@ -125,7 +200,10 @@ function LessonTopic() {
   if (quizCompleted && showReview) {
     return (
       <div className="topic">
-        <h1 className="topic__title">{topic.title}</h1>
+        <h1 className="topic__title">
+          {topicNumber && <span className="topic__titleNum">{topicNumber}</span>}
+          {topic.title}
+        </h1>
 
         <section className="topic__section">
           <h2 className="topic__sectionTitle">
@@ -140,6 +218,19 @@ function LessonTopic() {
               Վիկտորինայի արդյունքներ
             </div>
             <QuizScoreSummary score={score} questionCount={questions.length} />
+            {savedScore10 !== null && (
+              <div style={{
+                textAlign: 'center', fontSize: 22, fontWeight: 800,
+                color: '#0f172a', marginTop: 12,
+              }}>
+                Գնահատական՝ {savedScore10}/10
+              </div>
+            )}
+            {saveError && (
+              <div style={{ textAlign: 'center', color: '#dc2626', marginTop: 8 }}>
+                {saveError}
+              </div>
+            )}
 
             <div className="topic__resultActions">
               <button type="button" className="topic__button topic__button--secondary" onClick={handleRetry}>
@@ -160,7 +251,10 @@ function LessonTopic() {
   if (quizCompleted) {
     return (
       <div className="topic">
-        <h1 className="topic__title">{topic.title}</h1>
+        <h1 className="topic__title">
+          {topicNumber && <span className="topic__titleNum">{topicNumber}</span>}
+          {topic.title}
+        </h1>
 
         <section className="topic__section">
           <h2 className="topic__sectionTitle">
@@ -169,6 +263,19 @@ function LessonTopic() {
           </h2>
 
           <QuizScoreSummary score={score} questionCount={questions.length} />
+          {savedScore10 !== null && (
+            <div style={{
+              textAlign: 'center', fontSize: 22, fontWeight: 800,
+              color: '#0f172a', marginTop: 12,
+            }}>
+              Գնահատական՝ {savedScore10}/10
+            </div>
+          )}
+          {saveError && (
+            <div style={{ textAlign: 'center', color: '#dc2626', marginTop: 8 }}>
+              {saveError}
+            </div>
+          )}
 
           <div className="topic__resultActions">
             <button type="button" className="topic__button topic__button--primary" onClick={openReview}>
@@ -191,7 +298,24 @@ function LessonTopic() {
 
   return (
     <div className="topic">
-      <h1 className="topic__title">{topic.title}</h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <h1 className="topic__title" style={{ margin: 0 }}>
+          {topicNumber && <span className="topic__titleNum">{topicNumber}</span>}
+          {topic.title}
+        </h1>
+        {isTeacher && (
+          <button
+            onClick={() => setShowEditor(true)}
+            type="button"
+            className="topic__editBtn"
+            aria-label="Խմբագրել"
+            title="Խմբագրել"
+          >
+            <Pencil size={14} />
+            <span>Խմբագրել</span>
+          </button>
+        )}
+      </div>
       <p className="topic__description">{topic.description}</p>
 
       <section className="topic__section">
@@ -233,6 +357,16 @@ function LessonTopic() {
         onSelectOption={handleSelectOption}
         onSubmitAnswer={handleSubmitAnswer}
       />
+
+      {showEditor && (
+        <TopicEditor
+          topic={topic}
+          onClose={() => {
+            setShowEditor(false);
+            window.location.reload();
+          }}
+        />
+      )}
     </div>
   );
 }

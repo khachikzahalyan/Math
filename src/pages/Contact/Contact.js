@@ -1,25 +1,55 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Loader2, Mail, MessageSquare, Send, Sparkles, User } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import {
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+  Mail,
+  MessageSquare,
+  Send,
+  Sparkles,
+  User,
+  X,
+} from 'lucide-react';
 import './Contact.css';
 
-const SEND_DELAY_MS = 900;
+const WEB3FORMS_ACCESS_KEY = '86691d0e-6b86-4ceb-8522-976f86b15e29';
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const SUCCESS_HOLD_MS = 2000;
+const TOAST_HOLD_MS = 4000;
 
 function Contact() {
   const reduceMotion = useReducedMotion();
-  const loadTimerRef = useRef(null);
   const successTimerRef = useRef(null);
+  const toastTimerRef = useRef(null);
   /** idle → loading (spinner) → success (check) → idle */
   const [submitPhase, setSubmitPhase] = useState('idle');
+  const [toast, setToast] = useState(null);
 
   useEffect(
     () => () => {
-      if (loadTimerRef.current) window.clearTimeout(loadTimerRef.current);
       if (successTimerRef.current) window.clearTimeout(successTimerRef.current);
+      if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
     },
     []
   );
+
+  const showToast = (message) => {
+    if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    setToast({ message });
+    toastTimerRef.current = window.setTimeout(() => {
+      toastTimerRef.current = null;
+      setToast(null);
+    }, TOAST_HOLD_MS);
+  };
+
+  const dismissToast = () => {
+    if (toastTimerRef.current) {
+      window.clearTimeout(toastTimerRef.current);
+      toastTimerRef.current = null;
+    }
+    setToast(null);
+  };
 
   /* Lock document scroll on desktop only — on phones/tablets allow scroll so the keyboard
      doesn’t trap content (iOS/Android). */
@@ -58,7 +88,7 @@ function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     const nameInput = form.elements.namedItem('name');
@@ -99,9 +129,32 @@ function Contact() {
     if (submitPhase !== 'idle') return;
 
     setSubmitPhase('loading');
-    if (loadTimerRef.current) window.clearTimeout(loadTimerRef.current);
-    loadTimerRef.current = window.setTimeout(() => {
-      loadTimerRef.current = null;
+
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name,
+          email,
+          message,
+          subject: `Նոր հաղորդագրություն՝ ${name}`,
+          from_name: name,
+          replyto: email,
+        }),
+      });
+
+      const data = await response.json();
+      console.log('[contact] Web3Forms response', data);
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || `Send failed (HTTP ${response.status})`);
+      }
+
       setFormData({ name: '', email: '', message: '' });
       setSubmitPhase('success');
       if (successTimerRef.current) window.clearTimeout(successTimerRef.current);
@@ -109,7 +162,11 @@ function Contact() {
         successTimerRef.current = null;
         setSubmitPhase('idle');
       }, SUCCESS_HOLD_MS);
-    }, SEND_DELAY_MS);
+    } catch (err) {
+      console.error('[contact] submit failed:', err);
+      setSubmitPhase('idle');
+      showToast('Չհաջողվեց ուղարկել հաղորդագրությունը։ Փորձեք կրկին։');
+    }
   };
 
   const fieldMotion = reduceMotion
@@ -283,9 +340,35 @@ function Contact() {
         </form>
 
         <p className="contact-footnote">
-          Այս ձևը ցուցադրական է․ հաղորդագրությունը սերվերում չի պահվում։
+          Մենք կպատասխանենք հնարավորինս արագ։
         </p>
       </motion.section>
+
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            key="contact-toast"
+            className="contact-toast"
+            role="alert"
+            aria-live="assertive"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <AlertCircle className="contact-toast__icon" size={18} strokeWidth={2.2} aria-hidden />
+            <span className="contact-toast__text">{toast.message}</span>
+            <button
+              type="button"
+              className="contact-toast__close"
+              onClick={dismissToast}
+              aria-label="Փակել"
+            >
+              <X size={16} strokeWidth={2.2} aria-hidden />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

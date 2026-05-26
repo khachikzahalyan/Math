@@ -191,6 +191,18 @@
   }
 }
 
+.lessons-topic-card__num {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(var(--l-shadow), 0.1);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
 /* ─── Topic List Cards ─── */
 .lessons-topic-card {
   display: flex;
@@ -238,6 +250,54 @@
 .lessons-topic-card__link {
   box-shadow: 0 6px 16px rgba(var(--l-shadow), 0.25);
   transition: all 0.3s ease;
+}
+
+/* Teacher controls — absolutely positioned so card layout matches student view */
+.lessons-topic-card__teacherActions {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+/* Reserve top-right space in card title so layout is identical for teacher & student */
+.lessons-topic-card > h3 {
+  padding-right: 76px;
+}
+
+.lessons-topic-card__iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+.lessons-topic-card__iconBtn:hover {
+  background: #fff;
+  color: #0f172a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+}
+
+.lessons-topic-card__iconBtn--danger {
+  color: #dc2626;
+  border-color: rgba(252, 165, 165, 0.6);
+}
+
+.lessons-topic-card__iconBtn--danger:hover {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fca5a5;
 }
 
 @media (hover: hover) {

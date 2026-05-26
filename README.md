@@ -68,3 +68,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Firebase Setup (one-time)
+
+1. Создайте `.env.local` в корне с переменными `REACT_APP_FIREBASE_*` (см. `.env.example`).
+2. Firebase Console → Authentication → Sign-in method → включить **Google**.
+3. Authentication → Settings → Authorized domains → убедиться что есть `localhost`.
+4. Firestore → Rules → вставить содержимое `firestore.rules` → Publish.
+5. `npm install` и `npm start`.
+6. Войти как учитель (`zahalyankhachik-2@aspu.am`), на `/lessons` нажать «Ներմուծել նախնական դասերը».
+
+## Роли
+
+- **Учитель** — хардкод email `zahalyankhachik-2@aspu.am`. CRUD тем/вопросов на `/lessons`, журнал `/grades`.
+- **Ученик** — любой другой Google email. Проходит тесты, оценки сохраняются в Firestore (10-балльная шкала).
+- **Гость** (без логина) — доступ только к `/`, `/about`, `/contact`, `/login`.
