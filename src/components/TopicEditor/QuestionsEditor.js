@@ -1,15 +1,23 @@
-import { useEffect, useState } from 'react';
-import { Plus } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { subscribeQuestions, deleteQuestion } from '../../data/questionsRepo';
 import { useModal } from '../Modal/ModalProvider';
 import QuestionForm from './QuestionForm';
 
-export default function QuestionsEditor({ topicId }) {
+export default function QuestionsEditor({ topicId, onSaved, onFinalSave }) {
   const modal = useModal();
   const [questions, setQuestions] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const autoOpenedRef = useRef(false);
 
-  useEffect(() => subscribeQuestions(topicId, setQuestions), [topicId]);
+  useEffect(() => {
+    return subscribeQuestions(topicId, (qs) => {
+      setQuestions(qs);
+      if (!autoOpenedRef.current) {
+        autoOpenedRef.current = true;
+        if (qs.length === 0) setEditingId('new');
+      }
+    });
+  }, [topicId]);
 
   const onDelete = async (qid) => {
     const ok = await modal.confirm({
@@ -28,6 +36,8 @@ export default function QuestionsEditor({ topicId }) {
         existing={editingId === 'new' ? null : questions.find((q) => q.id === editingId)}
         nextOrder={questions.length}
         onClose={() => setEditingId(null)}
+        onSaved={onSaved}
+        onFinalSave={onFinalSave}
       />
     );
   }
@@ -36,14 +46,6 @@ export default function QuestionsEditor({ topicId }) {
     <div className="questionsEditor">
       <div className="questionsEditor__head">
         <h3 className="questionsEditor__title">Հարցեր ({questions.length})</h3>
-        <button
-          onClick={() => setEditingId('new')}
-          type="button"
-          className="questionsEditor__add"
-        >
-          <Plus size={13} />
-          Ավելացնել
-        </button>
       </div>
 
       {questions.map((q, i) => (
@@ -86,12 +88,6 @@ export default function QuestionsEditor({ topicId }) {
           </div>
         </div>
       ))}
-
-      {questions.length === 0 && (
-        <p className="questionsEditor__empty">
-          Հարցեր դեռ չկան։ Ավելացրեք առաջինը։
-        </p>
-      )}
     </div>
   );
 }

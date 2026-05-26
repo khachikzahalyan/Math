@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { X, Compass, Layers, Zap, Target, Flame, Crown } from 'lucide-react';
 import { saveTopic } from '../../data/topicsRepo';
 import { useAuth } from '../../auth/AuthContext';
@@ -21,6 +21,9 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
   const { toast } = useModal();
   const isNew = !topic;
   const [tab, setTab] = useState('topic');
+  const [savedNew, setSavedNew] = useState(false);
+  const [newId, setNewId] = useState('');
+  const [savedAny, setSavedAny] = useState(false);
   const [form, setForm] = useState({
     level: topic?.level || 1,
     title: topic?.title || '',
@@ -31,30 +34,57 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
+  const handleClose = useCallback(() => {
+    if (savedAny) {
+      const opt = LEVEL_OPTIONS.find((o) => o.level === Number(form.level));
+      toast(isNew ? 'Թեման ստեղծվեց' : 'Փոփոխությունները պահպանվեցին', {
+        icon: opt?.Icon,
+        iconFrom: opt?.from,
+        iconTo: opt?.to,
+      });
+    }
+    onClose();
+  }, [savedAny, isNew, toast, onClose, form.level]);
+
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const onKey = (e) => { if (e.key === 'Escape') handleClose(); };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [handleClose]);
 
-  const onSave = async () => {
+  const saveTopicData = async () => {
+    if (!form.title.trim()) {
+      setError('Վերնագիրը պարտադիր է');
+      return null;
+    }
+    if (!form.text.trim()) {
+      setError('Տեսության տեքստը պարտադիր է');
+      return null;
+    }
+    const id = topic?.id || newId || `t${Date.now()}`;
+    await saveTopic(id, {
+      level: Number(form.level),
+      title: form.title.trim(),
+      description: form.description.trim(),
+      text: form.text,
+      examples: form.examples.split('\n').map((s) => s.trim()).filter(Boolean),
+      order: topic?.order ?? nextOrder,
+      ...(topic?.createdAt ? { createdAt: topic.createdAt } : {}),
+    }, user?.email || '');
+    setSavedAny(true);
+    if (isNew) {
+      setNewId(id);
+      setSavedNew(true);
+    }
+    return id;
+  };
+
+  const goToQuestions = async () => {
     setError('');
-    if (!form.title.trim()) return setError('Վերնագիրը պարտադիր է');
-    if (!form.text.trim()) return setError('Տեսության տեքստը պարտադիր է');
     setSaving(true);
     try {
-      const id = topic?.id || `t${Date.now()}`;
-      await saveTopic(id, {
-        level: Number(form.level),
-        title: form.title.trim(),
-        description: form.description.trim(),
-        text: form.text,
-        examples: form.examples.split('\n').map((s) => s.trim()).filter(Boolean),
-        order: topic?.order ?? nextOrder,
-        ...(topic?.createdAt ? { createdAt: topic.createdAt } : {}),
-      }, user?.email || '');
-      toast(isNew ? 'Թեման ստեղծվեց' : 'Փոփոխությունները պահպանվեցին');
-      onClose();
+      const id = await saveTopicData();
+      if (id) setTab('questions');
     } catch (e) {
       setError('Չհաջողվեց պահպանել։');
     } finally {
@@ -62,18 +92,18 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
     }
   };
 
-  const questionsTabEnabled = !isNew;
+  const questionsTabEnabled = !isNew || savedNew;
   const showTopicFooter = tab === 'topic';
-  const activeId = topic?.id;
+  const activeId = topic?.id || newId;
 
   return (
-    <div className="topicEditor__backdrop" onClick={onClose}>
+    <div className="topicEditor__backdrop" onClick={handleClose}>
       <div className="topicEditor" onClick={(e) => e.stopPropagation()}>
         <div className="topicEditor__head">
           <h2 className="topicEditor__title">
             {isNew ? 'Նոր թեմա' : `Խմբագրել՝ ${topic.title}`}
           </h2>
-          <button onClick={onClose} type="button" className="topicEditor__close" aria-label="Փակել">
+          <button onClick={handleClose} type="button" className="topicEditor__close" aria-label="Փակել">
             <X size={20} />
           </button>
         </div>
@@ -166,16 +196,20 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
         )}
 
         {tab === 'questions' && activeId && questionsTabEnabled && (
-          <QuestionsEditor topicId={activeId} />
+          <QuestionsEditor
+            topicId={activeId}
+            onSaved={() => setSavedAny(true)}
+            onFinalSave={handleClose}
+          />
         )}
 
         {showTopicFooter && (
           <div className="topicEditor__footer">
-            <button onClick={onClose} type="button" className="topicEditor__btn topicEditor__btn--ghost">
+            <button onClick={handleClose} type="button" className="topicEditor__btn topicEditor__btn--ghost">
               Չեղարկել
             </button>
-            <button onClick={onSave} type="button" disabled={saving} className="topicEditor__btn topicEditor__btn--primary">
-              {saving ? 'Պահպանվում է...' : 'Պահպանել'}
+            <button onClick={goToQuestions} type="button" disabled={saving} className="topicEditor__btn topicEditor__btn--primary">
+              {saving ? 'Պահպանվում է...' : 'Հարցեր'}
             </button>
           </div>
         )}

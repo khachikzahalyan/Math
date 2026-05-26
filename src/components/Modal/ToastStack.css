@@ -1,7 +1,7 @@
 .toastStack {
   position: fixed;
   z-index: 1100;
-  bottom: 24px;
+  top: 24px;
   right: 24px;
   display: flex;
   flex-direction: column;
@@ -96,7 +96,7 @@
   .toastStack {
     left: 16px;
     right: 16px;
-    bottom: 16px;
+    top: 16px;
   }
 
   .toast {

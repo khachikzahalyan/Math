@@ -57,7 +57,17 @@ export function ModalProvider({ children }) {
   const toast = useCallback((message, opts = {}) => {
     const id = ++toastIdRef.current;
     const duration = opts.duration ?? 2800;
-    setToasts((prev) => [...prev, { id, message, variant: opts.variant || 'success' }]);
+    setToasts((prev) => [
+      ...prev,
+      {
+        id,
+        message,
+        variant: opts.variant || 'success',
+        icon: opts.icon,
+        iconFrom: opts.iconFrom,
+        iconTo: opts.iconTo,
+      },
+    ]);
     const timer = setTimeout(() => dismissToast(id), duration);
     timersRef.current.set(id, timer);
     return id;

@@ -3,7 +3,7 @@ import { ArrowLeft, Plus, Trash2, Check } from 'lucide-react';
 import { saveQuestion, validateQuestion } from '../../data/questionsRepo';
 import { NO_AUTOFILL } from '../../utils/noAutofill';
 
-export default function QuestionForm({ topicId, existing, nextOrder, onClose }) {
+export default function QuestionForm({ topicId, existing, nextOrder, onClose, onSaved, onFinalSave }) {
   const isNew = !existing;
   const [form, setForm] = useState({
     id: existing?.id || `q${Date.now()}`,
@@ -46,7 +46,12 @@ export default function QuestionForm({ topicId, existing, nextOrder, onClose }) 
         correctOption: Number(form.correctOption),
         order: Number(form.order),
       });
-      onClose();
+      onSaved?.();
+      if (onFinalSave) {
+        onFinalSave();
+      } else {
+        onClose();
+      }
     } catch {
       setError('Չհաջողվեց պահպանել։');
     } finally {
