@@ -1,0 +1,40 @@
+.glassBg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glassBg__symbol {
+  position: absolute;
+  font-weight: 300;
+  user-select: none;
+  will-change: transform;
+  color: rgba(99, 102, 241, 0.11);
+}
+
+@keyframes symbolFloat1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(14px, -22px) rotate(8deg); }
+  50% { transform: translate(-6px, -36px) rotate(-4deg); }
+  75% { transform: translate(-18px, -14px) rotate(5deg); }
+}
+
+@keyframes symbolFloat2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-18px, -28px) rotate(-10deg); }
+  66% { transform: translate(12px, -14px) rotate(6deg); }
+}
+
+@keyframes symbolFloat3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(22px, -12px) rotate(5deg); }
+  40% { transform: translate(8px, -34px) rotate(-7deg); }
+  60% { transform: translate(-14px, -28px) rotate(3deg); }
+  80% { transform: translate(-10px, -6px) rotate(-4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glassBg__symbol { animation: none !important; }
+}

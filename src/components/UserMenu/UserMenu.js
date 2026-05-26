@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogIn, LogOut, BookOpen, ClipboardList } from 'lucide-react';
 import { useAuth } from '../../auth/AuthContext';
+import { getDefaultAvatar } from '../../utils/defaultAvatar';
 import './UserMenu.css';
 
 export default function UserMenu() {
@@ -31,14 +32,9 @@ export default function UserMenu() {
     );
   }
 
-  const displayName = user.displayName || user.email.split('@')[0];
-  const initials = displayName
-    .trim()
-    .split(/\s+/)
-    .map((p) => p[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
+  const roleLabel = isTeacher ? 'Ուսուցիչ' : 'Աշակերտ';
+  const fallbackAvatar = getDefaultAvatar(isTeacher);
+  const avatarSrc = user.photoURL || fallbackAvatar;
 
   const handleSignOut = async () => {
     setOpen(false);
@@ -55,45 +51,31 @@ export default function UserMenu() {
         aria-haspopup="menu"
         aria-expanded={open}
       >
-        {user.photoURL ? (
-          <img
-            src={user.photoURL}
-            alt=""
-            className="user-menu__avatar"
-            referrerPolicy="no-referrer"
-          />
-        ) : (
-          <span className="user-menu__avatar user-menu__avatar--initials">
-            {initials}
-          </span>
-        )}
-        <span className="user-menu__name">{displayName}</span>
+        <img
+          src={avatarSrc}
+          alt=""
+          className="user-menu__avatar"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.src = fallbackAvatar;
+          }}
+        />
+        <span className="user-menu__name">{roleLabel}</span>
       </button>
 
       {open && (
         <div className="user-menu__dropdown" role="menu">
           <div className="user-menu__profile">
-            {user.photoURL ? (
-              <img
-                src={user.photoURL}
-                alt=""
-                className="user-menu__profileAvatar"
-                referrerPolicy="no-referrer"
-              />
-            ) : (
-              <span className="user-menu__profileAvatar user-menu__avatar--initials">
-                {initials}
-              </span>
-            )}
+            <img
+              src={avatarSrc}
+              alt=""
+              className="user-menu__profileAvatar"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.src = fallbackAvatar;
+              }}
+            />
             <div className="user-menu__profileInfo">
-              <div className="user-menu__profileNameRow">
-                <span className="user-menu__profileName" title={displayName}>
-                  {displayName}
-                </span>
-                {isTeacher && (
-                  <span className="user-menu__badge">Ուսուցիչ</span>
-                )}
-              </div>
               <span className="user-menu__profileEmail" title={user.email}>
                 {user.email}
               </span>

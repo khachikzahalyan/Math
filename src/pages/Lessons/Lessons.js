@@ -10,6 +10,7 @@ import { seedTopicsFromStaticFile } from '../../utils/seedTopics';
 import { recordLevelVisited } from '../../utils/progressStorage';
 import { useAuth } from '../../auth/AuthContext';
 import TopicEditor from '../../components/TopicEditor/TopicEditor';
+import { useModal } from '../../components/Modal/ModalProvider';
 import './Lessons.css';
 
 const LEVELS = [
@@ -23,6 +24,7 @@ const LEVELS = [
 
 function Lessons() {
   const { user, isTeacher } = useAuth();
+  const modal = useModal();
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [topics, setTopics] = useState([]);
   const [loadError, setLoadError] = useState('');
@@ -35,11 +37,20 @@ function Lessons() {
   const closeEditor = () => setEditingTopic(null);
 
   const onDeleteTopic = async (t) => {
-    if (!window.confirm(`Ջնջե՞լ թեման «${t.title}»։ Բոլոր հարցերն ու աշակերտների փորձերը կկորչեն։`)) return;
+    const ok = await modal.confirm({
+      title: 'Ջնջե՞լ թեման',
+      message: `«${t.title}» — բոլոր հարցերն ու աշակերտների փորձերը կկորչեն։`,
+      confirmLabel: 'Ջնջել',
+    });
+    if (!ok) return;
     try {
       await deleteTopic(t.id);
     } catch {
-      alert('Ջնջումը չհաջողվեց։');
+      await modal.alert({
+        variant: 'danger',
+        title: 'Սխալ',
+        message: 'Ջնջումը չհաջողվեց։',
+      });
     }
   };
 

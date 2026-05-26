@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { ChevronDown, ChevronUp, GraduationCap, BookOpen, Percent } from 'lucide-react';
 import { listAllProgress } from '../../data/progressRepo';
 import { listTopics } from '../../data/topicsRepo';
+import { STUDENT_AVATAR } from '../../utils/defaultAvatar';
 import './Grades.css';
 
 function gradeTier(percent) {
@@ -89,8 +90,6 @@ export default function Grades() {
           {students.map((s) => {
             const isOpen = expanded === s.uid;
             const tier = gradeTier(s.percent);
-            const initials = (s.displayName || '?')
-              .split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
 
             return (
               <div key={s.uid} className="grades-card">
@@ -100,11 +99,15 @@ export default function Grades() {
                   onClick={() => setExpanded(isOpen ? null : s.uid)}
                 >
                   <div className="grades-cardUser">
-                    {s.photoURL ? (
-                      <img src={s.photoURL} alt="" className="grades-avatar" referrerPolicy="no-referrer" />
-                    ) : (
-                      <span className="grades-avatar grades-avatar--initials">{initials}</span>
-                    )}
+                    <img
+                      src={s.photoURL || STUDENT_AVATAR}
+                      alt=""
+                      className="grades-avatar"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.src = STUDENT_AVATAR;
+                      }}
+                    />
                     <div className="grades-userInfo">
                       <div className="grades-userName">{s.displayName}</div>
                       <div className="grades-userEmail">{s.email}</div>

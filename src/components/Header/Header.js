@@ -5,6 +5,7 @@ import SiteLogoMark from '../SiteLogoMark/SiteLogoMark';
 import UserMenu from '../UserMenu/UserMenu';
 import { useAuth } from '../../auth/AuthContext';
 import { subscribeTopics } from '../../data/topicsRepo';
+import { getDefaultAvatar } from '../../utils/defaultAvatar';
 import './Header.css';
 
 const NAV_ITEMS = [
@@ -57,16 +58,8 @@ function Header() {
       const t = e.target;
       const insideMobile = searchRefMobile.current?.contains(t);
       const insideDesktop = searchRefDesktop.current?.contains(t);
-      if (insideMobile || insideDesktop) return;
-      setIsSearchOpen(false);
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+      if (!insideMobile && !insideDesktop) setIsSearchOpen(false);
 
-  useEffect(() => {
-    const handleClickOutsideMenu = (e) => {
-      const t = e.target;
       if (
         isMobileMenuOpen &&
         !t.closest('.header__nav') &&
@@ -75,8 +68,8 @@ function Header() {
         setIsMobileMenuOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutsideMenu);
-    return () => document.removeEventListener('mousedown', handleClickOutsideMenu);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
@@ -152,10 +145,8 @@ function Header() {
     navigate('/');
   }, [signOut, navigate]);
 
-  const mobileInitials = user
-    ? (user.displayName || user.email || '?')
-        .trim().split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase()
-    : '';
+  const mobileFallbackAvatar = getDefaultAvatar(isTeacher);
+  const mobileAvatarSrc = user ? (user.photoURL || mobileFallbackAvatar) : mobileFallbackAvatar;
 
   const handleSearchChange = useCallback((e) => {
     setSearchQuery(e.target.value);
@@ -262,27 +253,19 @@ function Header() {
         <nav className={`header__nav ${isMobileMenuOpen ? 'is-open' : ''}`}>
           {user ? (
             <div className="header__mobileUser">
-              {user.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt=""
-                  className="header__mobileAvatar"
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <span className="header__mobileAvatar header__mobileAvatar--initials">
-                  {mobileInitials}
-                </span>
-              )}
+              <img
+                src={mobileAvatarSrc}
+                alt=""
+                className="header__mobileAvatar"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = mobileFallbackAvatar;
+                }}
+              />
               <div className="header__mobileUserInfo">
-                <div className="header__mobileUserNameRow">
-                  <span className="header__mobileUserName">
-                    {user.displayName || user.email.split('@')[0]}
-                  </span>
-                  {isTeacher && (
-                    <span className="header__mobileBadge">Ուսուցիչ</span>
-                  )}
-                </div>
+                <span className="header__mobileUserName">
+                  {isTeacher ? 'Ուսուցիչ' : 'Աշակերտ'}
+                </span>
                 <span className="header__mobileUserEmail">{user.email}</span>
               </div>
             </div>

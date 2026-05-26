@@ -12,7 +12,6 @@
   --warning: #f59e0b;
   --error: #ef4444;
   --bg: #f8fafc;
-  --bg-alt: #f1f5f9;
   --surface: rgba(255, 255, 255, 0.92);
   --text: #1f2937;
   --text-secondary: #6b7280;
@@ -101,10 +100,47 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
+  z-index: -2;
   background:
-    radial-gradient(circle at 12% 15%, rgba(99, 102, 241, 0.22), transparent 34%),
-    radial-gradient(circle at 88% 86%, rgba(236, 72, 153, 0.14), transparent 32%),
-    radial-gradient(circle at 55% 0%, rgba(129, 140, 248, 0.12), transparent 26%),
-    linear-gradient(180deg, #f8fafc 0%, #eff6ff 46%, #f8fafc 100%);
+    radial-gradient(ellipse 55% 45% at 12% 35%, rgba(165, 180, 252, 0.16) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 88% 22%, rgba(147, 197, 253, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 92%, rgba(196, 181, 253, 0.1) 0%, transparent 70%),
+    linear-gradient(
+      145deg,
+      rgba(238, 242, 255, 0.95) 0%,
+      rgba(224, 231, 255, 0.75) 28%,
+      rgba(219, 234, 254, 0.62) 48%,
+      rgba(237, 233, 254, 0.68) 68%,
+      rgba(245, 243, 255, 0.92) 100%
+    );
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   z-index: -1;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(129, 140, 248, 0.09) 0deg,
+    rgba(96, 165, 250, 0.07) 60deg,
+    rgba(167, 139, 250, 0.09) 120deg,
+    rgba(129, 140, 248, 0.05) 180deg,
+    rgba(56, 189, 248, 0.07) 240deg,
+    rgba(192, 132, 252, 0.07) 300deg,
+    rgba(129, 140, 248, 0.09) 360deg
+  );
+  animation: bodyGlassRotate 28s linear infinite;
+}
+
+@keyframes bodyGlassRotate {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none !important; }
 }

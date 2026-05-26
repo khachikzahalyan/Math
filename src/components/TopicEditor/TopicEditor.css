@@ -95,10 +95,44 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-.topicEditor__row {
+.topicEditor__levels {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.topicEditor__levelChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 7px 4px;
+  border-radius: 9px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: var(--lvl-to, #475569);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  min-width: 0;
+}
+
+.topicEditor__levelChip:hover {
+  border-color: var(--lvl-to, #cbd5e1);
+  transform: translateY(-1px);
+}
+
+.topicEditor__levelChip.is-active {
+  background: linear-gradient(135deg, var(--lvl-from), var(--lvl-to));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 14px -4px var(--lvl-to);
+}
+
+@media (max-width: 420px) {
+  .topicEditor__levels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .topicEditor__error {
@@ -213,32 +247,29 @@
   font-size: 13px;
 }
 
-/* ─── Question Form (вложенная модалка) ─── */
-.questionForm__backdrop {
-  position: fixed; inset: 0; z-index: 110;
-  background: rgba(15, 23, 42, 0.55);
-  display: flex; align-items: center; justify-content: center;
-  padding: 16px;
-  overflow-y: auto;
-}
-
+/* ─── Question Form (inline в области вопросов) ─── */
 .questionForm {
-  background: #fff;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 540px;
-  max-height: calc(100vh - 32px);
   display: flex; flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: hidden;
-  box-shadow: 0 24px 64px -16px rgba(15, 23, 42, 0.4);
 }
 
 .questionForm__head {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 18px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
   border-bottom: 1px solid #f1f5f9;
   flex-shrink: 0;
 }
+
+.questionForm__back {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 10px; border-radius: 8px;
+  background: #fff; color: #475569;
+  border: 1px solid #e2e8f0;
+  cursor: pointer; font-size: 12px; font-weight: 700;
+}
+.questionForm__back:hover { background: #f8fafc; color: #0f172a; }
 
 .questionForm__title { margin: 0; font-weight: 700; font-size: 15px; color: #0f172a; }
 
@@ -248,6 +279,14 @@
   overflow-y: auto;
   flex: 1 1 auto;
   min-height: 0;
+}
+
+.questionForm__footer {
+  display: flex; gap: 8px; justify-content: flex-end;
+  padding: 12px 18px;
+  border-top: 1px solid #f1f5f9;
+  background: #fff;
+  flex-shrink: 0;
 }
 
 .questionForm__label {
@@ -277,14 +316,11 @@
   white-space: nowrap; min-width: 72px;
   justify-content: center;
 }
-.questionForm__markBtn:hover { background: #f8fafc; }
-
 .questionForm__markBtn--correct {
   background: linear-gradient(135deg, #10b981, #059669);
   color: #fff;
   border-color: transparent;
 }
-.questionForm__markBtn--correct:hover { filter: brightness(1.05); }
 
 .questionForm__removeBtn {
   background: transparent; border: none;
@@ -302,6 +338,7 @@
   cursor: pointer; font-size: 12px; color: #475569;
   align-self: flex-start;
   font-weight: 600;
+  margin-top: 15px;
 }
 .questionForm__addOption:hover { background: #f8fafc; border-color: #64748b; }
 
@@ -312,22 +349,16 @@
 
 /* ─── Адаптация под мобильные ─── */
 @media (max-width: 640px) {
-  .topicEditor__backdrop,
-  .questionForm__backdrop {
+  .topicEditor__backdrop {
     padding: 0;
     align-items: stretch;
   }
 
-  .topicEditor,
-  .questionForm {
+  .topicEditor {
     max-width: 100%;
     max-height: 100vh;
     height: 100vh;
     border-radius: 0;
-  }
-
-  .topicEditor__row {
-    grid-template-columns: 1fr;
   }
 
   .topicEditor__head,
@@ -335,7 +366,8 @@
   .topicEditor__body,
   .questionsEditor,
   .questionForm__head,
-  .questionForm__body {
+  .questionForm__body,
+  .questionForm__footer {
     padding-left: 14px;
     padding-right: 14px;
   }

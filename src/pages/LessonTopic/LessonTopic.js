@@ -78,7 +78,7 @@ function LessonTopic() {
     return buildTopicNumberMap(allTopics).get(topic.id) || '';
   }, [topic, allTopics]);
 
-  useEffect(() => {
+  const resetQuiz = useCallback(() => {
     setCurrentQuestionIdx(0);
     setSelectedOption(null);
     setUserAnswers([]);
@@ -89,7 +89,9 @@ function LessonTopic() {
     setSavedScore10(null);
     setSaveError('');
     setStartedAt(Date.now());
-  }, [topicId]);
+  }, []);
+
+  useEffect(() => { resetQuiz(); }, [topicId, resetQuiz]);
 
   const currentQuestion = questions[currentQuestionIdx];
 
@@ -161,18 +163,7 @@ function LessonTopic() {
     startedAt,
   ]);
 
-  const handleRetry = useCallback(() => {
-    setCurrentQuestionIdx(0);
-    setSelectedOption(null);
-    setUserAnswers([]);
-    setScore(0);
-    setQuizCompleted(false);
-    setShowReview(false);
-    setError('');
-    setSavedScore10(null);
-    setSaveError('');
-    setStartedAt(Date.now());
-  }, []);
+  const handleRetry = resetQuiz;
 
   const handleNextTopic = useCallback(() => {
     const idx = allTopicsIds.indexOf(topicId);
@@ -193,11 +184,9 @@ function LessonTopic() {
     return <Card title="Շուտով կլինի" text="Ապագայում այստեղ կհայտնվի նյութը" />;
   }
 
-  if (!currentQuestion || questions.length === 0) {
-    return <Card title="Շուտով կլինի" text="Հարցերը դեռ հասանելի չեն" />;
-  }
+  const hasQuestions = questions.length > 0 && currentQuestion;
 
-  if (quizCompleted && showReview) {
+  if (hasQuestions && quizCompleted && showReview) {
     return (
       <div className="topic">
         <h1 className="topic__title">
@@ -248,7 +237,7 @@ function LessonTopic() {
     );
   }
 
-  if (quizCompleted) {
+  if (hasQuestions && quizCompleted) {
     return (
       <div className="topic">
         <h1 className="topic__title">
@@ -348,15 +337,25 @@ function LessonTopic() {
         </ul>
       </section>
 
-      <TopicQuizActive
-        questions={questions}
-        currentQuestionIdx={currentQuestionIdx}
-        currentQuestion={currentQuestion}
-        selectedOption={selectedOption}
-        error={error}
-        onSelectOption={handleSelectOption}
-        onSubmitAnswer={handleSubmitAnswer}
-      />
+      {hasQuestions ? (
+        <TopicQuizActive
+          questions={questions}
+          currentQuestionIdx={currentQuestionIdx}
+          currentQuestion={currentQuestion}
+          selectedOption={selectedOption}
+          error={error}
+          onSelectOption={handleSelectOption}
+          onSubmitAnswer={handleSubmitAnswer}
+        />
+      ) : (
+        <section className="topic__section">
+          <h2 className="topic__sectionTitle">
+            <Trophy size={20} className="topic__sectionIcon" />
+            Վիկտորինա
+          </h2>
+          <p className="topic__listItem">Հարցերը դեռ հասանելի չեն։</p>
+        </section>
+      )}
 
       {showEditor && (
         <TopicEditor

@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import BackToTopFab from './components/BackToTopFab/BackToTopFab';
+import GlassBg from './components/GlassBg/GlassBg';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import MainLayout from './layouts/MainLayout/MainLayout';
 import LessonsLayout from './layouts/LessonsLayout/LessonsLayout';
@@ -20,6 +21,7 @@ import RequireTeacher from './auth/RequireTeacher';
 function App() {
   return (
     <>
+      <GlassBg />
       <ScrollToTop />
       <BackToTopFab />
       <Routes>

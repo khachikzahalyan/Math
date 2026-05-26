@@ -12,14 +12,6 @@ html.lessons-lock body {
   overflow: hidden;
 }
 
-.lessonsLayout__sidebar {
-  width: 400px;
-  flex-shrink: 0;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-}
-
 .lessonsLayout__content {
   padding: 18px 14px 20px;
   overflow-y: auto;

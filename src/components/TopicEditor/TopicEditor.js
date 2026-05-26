@@ -1,16 +1,26 @@
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Compass, Layers, Zap, Target, Flame, Crown } from 'lucide-react';
 import { saveTopic } from '../../data/topicsRepo';
 import { useAuth } from '../../auth/AuthContext';
+import { useModal } from '../Modal/ModalProvider';
+import { NO_AUTOFILL } from '../../utils/noAutofill';
 import QuestionsEditor from './QuestionsEditor';
 import './TopicEditor.css';
 
+const LEVEL_OPTIONS = [
+  { level: 1, Icon: Compass, from: '#34d399', to: '#10b981' },
+  { level: 2, Icon: Layers, from: '#60a5fa', to: '#3b82f6' },
+  { level: 3, Icon: Zap, from: '#818cf8', to: '#6366f1' },
+  { level: 4, Icon: Target, from: '#a78bfa', to: '#8b5cf6' },
+  { level: 5, Icon: Flame, from: '#f472b6', to: '#ec4899' },
+  { level: 6, Icon: Crown, from: '#fbbf24', to: '#f59e0b' },
+];
+
 export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
   const { user } = useAuth();
+  const { toast } = useModal();
   const isNew = !topic;
   const [tab, setTab] = useState('topic');
-  const [savedNew, setSavedNew] = useState(false);
-  const [newId, setNewId] = useState('');
   const [form, setForm] = useState({
     level: topic?.level || 1,
     title: topic?.title || '',
@@ -43,13 +53,8 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
         order: topic?.order ?? nextOrder,
         ...(topic?.createdAt ? { createdAt: topic.createdAt } : {}),
       }, user?.email || '');
-      if (isNew) {
-        setNewId(id);
-        setSavedNew(true);
-        setTab('questions');
-      } else {
-        onClose();
-      }
+      toast(isNew ? 'Թեման ստեղծվեց' : 'Փոփոխությունները պահպանվեցին');
+      onClose();
     } catch (e) {
       setError('Չհաջողվեց պահպանել։');
     } finally {
@@ -57,9 +62,9 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
     }
   };
 
-  const questionsTabEnabled = !isNew || savedNew;
+  const questionsTabEnabled = !isNew;
   const showTopicFooter = tab === 'topic';
-  const activeId = topic?.id || newId;
+  const activeId = topic?.id;
 
   return (
     <div className="topicEditor__backdrop" onClick={onClose}>
@@ -94,15 +99,28 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
 
         {tab === 'topic' && (
           <div className="topicEditor__body">
-            <label className="topicEditor__label">
-              Մակարդակ (1-6)
-              <input
-                className="topicEditor__input"
-                type="number" min="1" max="6"
-                value={form.level}
-                onChange={(e) => setForm({ ...form, level: e.target.value })}
-              />
-            </label>
+            <div className="topicEditor__label">
+              Մակարդակ
+              <div className="topicEditor__levels" role="radiogroup" aria-label="Մակարդակ">
+                {LEVEL_OPTIONS.map(({ level, Icon, from, to }) => {
+                  const isActive = Number(form.level) === level;
+                  return (
+                    <button
+                      key={level}
+                      type="button"
+                      role="radio"
+                      aria-checked={isActive}
+                      onClick={() => setForm({ ...form, level })}
+                      className={`topicEditor__levelChip${isActive ? ' is-active' : ''}`}
+                      style={{ '--lvl-from': from, '--lvl-to': to }}
+                    >
+                      <Icon size={14} strokeWidth={2.4} />
+                      <span>{level}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             <label className="topicEditor__label">
               Վերնագիր
@@ -110,6 +128,7 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
                 className="topicEditor__input"
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
+                {...NO_AUTOFILL}
               />
             </label>
             <label className="topicEditor__label">
@@ -118,6 +137,7 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
                 className="topicEditor__input"
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
+                {...NO_AUTOFILL}
               />
             </label>
             <label className="topicEditor__label">
@@ -127,6 +147,7 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
                 rows={8}
                 value={form.text}
                 onChange={(e) => setForm({ ...form, text: e.target.value })}
+                {...NO_AUTOFILL}
               />
             </label>
             <label className="topicEditor__label">
@@ -136,6 +157,7 @@ export default function TopicEditor({ topic, onClose, nextOrder = 0 }) {
                 rows={3}
                 value={form.examples}
                 onChange={(e) => setForm({ ...form, examples: e.target.value })}
+                {...NO_AUTOFILL}
               />
             </label>
 

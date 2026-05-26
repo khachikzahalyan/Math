@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
   onAuthStateChanged,
   signInWithPopup,
@@ -13,26 +13,50 @@ const AuthCtx = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const reloadedUidRef = useRef(null);
 
   useEffect(() => {
-    return onAuthStateChanged(auth, async (u) => {
-      setUser(u);
-      setLoading(false);
-      if (u && !isTeacherEmail(u.email)) {
-        try {
-          await setDoc(
-            doc(db, 'progress', u.uid),
-            {
-              email: u.email,
-              displayName: u.displayName || '',
-              photoURL: u.photoURL || '',
-              lastActiveAt: serverTimestamp(),
-            },
-            { merge: true },
-          );
-        } catch (e) {
-          // Молча игнорируем — rules могут ещё не быть опубликованы
+    return onAuthStateChanged(auth, async (rawUser) => {
+      if (!rawUser) {
+        reloadedUidRef.current = null;
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+      if (reloadedUidRef.current !== rawUser.uid) {
+        try { await rawUser.reload(); } catch {}
+        reloadedUidRef.current = rawUser.uid;
+      }
+      const u = auth.currentUser || rawUser;
+      setUser((prev) => {
+        if (
+          prev &&
+          prev.uid === u.uid &&
+          prev.email === u.email &&
+          prev.displayName === u.displayName &&
+          prev.photoURL === u.photoURL
+        ) {
+          return prev;
         }
+        return {
+          uid: u.uid,
+          email: u.email,
+          displayName: u.displayName,
+          photoURL: u.photoURL,
+        };
+      });
+      setLoading(false);
+      if (!isTeacherEmail(u.email)) {
+        setDoc(
+          doc(db, 'progress', u.uid),
+          {
+            email: u.email,
+            displayName: u.displayName || '',
+            photoURL: u.photoURL || '',
+            lastActiveAt: serverTimestamp(),
+          },
+          { merge: true },
+        ).catch(() => {});
       }
     });
   }, []);

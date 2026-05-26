@@ -80,10 +80,6 @@
   font-size: 14px;
 }
 
-.grades-avatar--initials {
-  background: linear-gradient(135deg, #6366f1, #3b82f6);
-}
-
 .grades-userInfo {
   min-width: 0;
   flex: 1;

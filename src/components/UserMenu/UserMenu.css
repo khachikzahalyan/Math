@@ -70,11 +70,6 @@
   flex-shrink: 0;
 }
 
-.user-menu__avatar--initials {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
-}
-
 .user-menu__name {
   font-size: 0.95rem;
   font-weight: 600;
@@ -129,24 +124,6 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-}
-
-.user-menu__profileNameRow {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.user-menu__profileName {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  flex-shrink: 1;
 }
 
 .user-menu__profileEmail {

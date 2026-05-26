@@ -149,7 +149,6 @@ function Contact() {
       });
 
       const data = await response.json();
-      console.log('[contact] Web3Forms response', data);
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || `Send failed (HTTP ${response.status})`);

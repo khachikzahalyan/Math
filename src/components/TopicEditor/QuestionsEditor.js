@@ -1,18 +1,36 @@
 import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
 import { subscribeQuestions, deleteQuestion } from '../../data/questionsRepo';
+import { useModal } from '../Modal/ModalProvider';
 import QuestionForm from './QuestionForm';
 
 export default function QuestionsEditor({ topicId }) {
+  const modal = useModal();
   const [questions, setQuestions] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => subscribeQuestions(topicId, setQuestions), [topicId]);
 
   const onDelete = async (qid) => {
-    if (!window.confirm('Ջնջե՞լ այս հարցը։')) return;
+    const ok = await modal.confirm({
+      title: 'Ջնջե՞լ հարցը',
+      message: 'Այս գործողությունը հնարավոր չէ հետ բերել։',
+      confirmLabel: 'Ջնջել',
+    });
+    if (!ok) return;
     await deleteQuestion(topicId, qid);
   };
+
+  if (editingId !== null) {
+    return (
+      <QuestionForm
+        topicId={topicId}
+        existing={editingId === 'new' ? null : questions.find((q) => q.id === editingId)}
+        nextOrder={questions.length}
+        onClose={() => setEditingId(null)}
+      />
+    );
+  }
 
   return (
     <div className="questionsEditor">
@@ -73,15 +91,6 @@ export default function QuestionsEditor({ topicId }) {
         <p className="questionsEditor__empty">
           Հարցեր դեռ չկան։ Ավելացրեք առաջինը։
         </p>
-      )}
-
-      {editingId !== null && (
-        <QuestionForm
-          topicId={topicId}
-          existing={editingId === 'new' ? null : questions.find((q) => q.id === editingId)}
-          nextOrder={questions.length}
-          onClose={() => setEditingId(null)}
-        />
       )}
     </div>
   );

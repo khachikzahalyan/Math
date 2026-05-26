@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Teacher avatar">
+  <defs>
+    <linearGradient id="teacherBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="teacherShirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <clipPath id="teacherClip">
+      <circle cx="100" cy="100" r="100"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#teacherClip)">
+    <rect width="200" height="200" fill="url(#teacherBg)"/>
+
+    <!-- jacket / body -->
+    <path d="M28 210 Q28 150 100 145 Q172 150 172 210 Z" fill="url(#teacherShirt)"/>
+    <!-- collar -->
+    <path d="M82 150 L100 175 L118 150 L108 145 L100 158 L92 145 Z" fill="#ffffff"/>
+    <!-- tie -->
+    <path d="M96 158 L104 158 L106 172 L100 200 L94 172 Z" fill="#ef4444"/>
+
+    <!-- neck -->
+    <rect x="92" y="132" width="16" height="14" rx="4" fill="#f4d4b0"/>
+
+    <!-- head -->
+    <circle cx="100" cy="100" r="38" fill="#fce4c4"/>
+
+    <!-- hair (with subtle gray temples) -->
+    <path d="M62 92 Q60 60 100 58 Q140 60 138 92 Q130 80 118 80 Q108 72 92 80 Q74 84 62 92 Z" fill="#1f2937"/>
+    <path d="M62 92 Q68 85 74 88 L72 100 Q66 96 62 92 Z" fill="#9ca3af"/>
+    <path d="M138 92 Q132 85 126 88 L128 100 Q134 96 138 92 Z" fill="#9ca3af"/>
+
+    <!-- ears -->
+    <circle cx="62" cy="102" r="6" fill="#fce4c4"/>
+    <circle cx="138" cy="102" r="6" fill="#fce4c4"/>
+
+    <!-- glasses -->
+    <circle cx="86" cy="103" r="11" fill="#ffffff" fill-opacity="0.15" stroke="#1e1b4b" stroke-width="2.4"/>
+    <circle cx="114" cy="103" r="11" fill="#ffffff" fill-opacity="0.15" stroke="#1e1b4b" stroke-width="2.4"/>
+    <line x1="97" y1="103" x2="103" y2="103" stroke="#1e1b4b" stroke-width="2.4"/>
+    <line x1="75" y1="100" x2="68" y2="98" stroke="#1e1b4b" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="125" y1="100" x2="132" y2="98" stroke="#1e1b4b" stroke-width="2.4" stroke-linecap="round"/>
+
+    <!-- eyes -->
+    <circle cx="86" cy="103" r="2.4" fill="#1e1b4b"/>
+    <circle cx="114" cy="103" r="2.4" fill="#1e1b4b"/>
+
+    <!-- moustache hint -->
+    <path d="M88 122 Q100 118 112 122" stroke="#1f2937" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- smile -->
+    <path d="M90 128 Q100 134 110 128" stroke="#1e1b4b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+    <!-- chalk / book accent -->
+    <rect x="138" y="172" width="36" height="22" rx="3" fill="#ffffff"/>
+    <rect x="138" y="172" width="8" height="22" fill="#10b981"/>
+    <line x1="150" y1="178" x2="170" y2="178" stroke="#94a3b8" stroke-width="1.4"/>
+    <line x1="150" y1="183" x2="168" y2="183" stroke="#94a3b8" stroke-width="1.4"/>
+    <line x1="150" y1="188" x2="166" y2="188" stroke="#94a3b8" stroke-width="1.4"/>
+  </g>
+</svg>

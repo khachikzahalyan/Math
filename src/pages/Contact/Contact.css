@@ -102,16 +102,6 @@
   opacity: 0.9;
 }
 
-.contact-hero__eyebrow {
-  display: block;
-  margin: 0 0 4px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6366f1;
-}
-
 .contact-hero__title {
   margin: 0 0 6px;
   font-size: clamp(1.15rem, 3.2vw, 1.4rem);
@@ -408,11 +398,6 @@
     right: 8px;
     width: 20px;
     height: 20px;
-  }
-
-  .contact-hero__eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
   }
 
   .contact-shell {
