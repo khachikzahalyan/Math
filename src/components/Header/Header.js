@@ -146,7 +146,10 @@ function Header() {
   }, [signOut, navigate]);
 
   const mobileFallbackAvatar = getDefaultAvatar(isTeacher);
-  const mobileAvatarSrc = user ? (user.photoURL || mobileFallbackAvatar) : mobileFallbackAvatar;
+  const mobileIsGoogleDefaultPhoto = user?.photoURL?.includes('default-user');
+  const mobileAvatarSrc = user && user.photoURL && !mobileIsGoogleDefaultPhoto
+    ? user.photoURL
+    : mobileFallbackAvatar;
 
   const handleSearchChange = useCallback((e) => {
     setSearchQuery(e.target.value);

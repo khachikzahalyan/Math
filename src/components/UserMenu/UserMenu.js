@@ -20,7 +20,12 @@ export default function UserMenu() {
   }, []);
 
   if (loading) {
-    return <div className="user-menu__placeholder" aria-hidden />;
+    return (
+      <div className="user-menu__skeleton" aria-hidden>
+        <span className="user-menu__skeletonAvatar" />
+        <span className="user-menu__skeletonLine" />
+      </div>
+    );
   }
 
   if (!user) {
@@ -34,7 +39,8 @@ export default function UserMenu() {
 
   const roleLabel = isTeacher ? 'Ուսուցիչ' : 'Աշակերտ';
   const fallbackAvatar = getDefaultAvatar(isTeacher);
-  const avatarSrc = user.photoURL || fallbackAvatar;
+  const isGoogleDefaultPhoto = user.photoURL?.includes('default-user');
+  const avatarSrc = !user.photoURL || isGoogleDefaultPhoto ? fallbackAvatar : user.photoURL;
 
   const handleSignOut = async () => {
     setOpen(false);

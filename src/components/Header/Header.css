@@ -31,7 +31,7 @@
   height: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px 15px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,7 +41,7 @@
 @media (min-width: 1025px) {
   .header__inner {
     max-width: 68%;
-    padding: 0 30px 0;
+    padding: 0 30px;
   }
 }
 
@@ -124,7 +124,7 @@
 .header__logoText {
   font-family: var(--font-brand-serif);
   font-weight: 600;
-  font-size: clamp(1.05rem, 1.9vw, 1.2rem);
+  font-size: clamp(0.92rem, 1.5vw, 1.05rem);
   letter-spacing: 0.03em;
   color: #312e81;
   white-space: nowrap;
@@ -148,13 +148,13 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 10px 16px;
+  padding: 9px 14px;
   border-radius: 12px;
   color: #64748b;
   text-decoration: none;
   white-space: nowrap;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.88rem;
   letter-spacing: 0.1px;
   position: relative;
   transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
@@ -278,7 +278,7 @@
   border: none;
   background: transparent;
   outline: none;
-  font-size: 17px;
+  font-size: 14px;
   color: var(--text);
   width: 200px;
   min-width: 0;
@@ -463,12 +463,7 @@
 /* ─── Responsive: Tablet & mobile — один ряд, полная ширина, компактно ─── */
 @media (max-width: 1024px) {
   :root {
-    --header-height: 90px;
     --header-mobile-edge: 44px;
-  }
-
-  .header {
-    height: var(--header-height);
   }
 
   .header__logoText {
@@ -495,8 +490,8 @@
     max-width: 100%;
     width: 100%;
     height: 100%;
-    padding-top: max(4px, env(safe-area-inset-top, 0px));
-    padding-bottom: 15px;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: 0;
     padding-left: max(12px, env(safe-area-inset-left, 0px));
     padding-right: max(12px, env(safe-area-inset-right, 0px));
     box-sizing: border-box;
@@ -753,7 +748,6 @@
 /* ─── Responsive: Small Mobile ─── */
 @media (max-width: 480px) {
   :root {
-    --header-height: 90px;
     --header-mobile-edge: 42px;
   }
 

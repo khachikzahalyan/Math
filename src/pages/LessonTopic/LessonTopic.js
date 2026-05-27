@@ -177,7 +177,30 @@ function LessonTopic() {
   const openReview = useCallback(() => setShowReview(true), []);
 
   if (topicLoading) {
-    return <Card title="Բեռնում..." text="" />;
+    return (
+      <div className="topic" aria-hidden>
+        <div className="topic-skel__title" />
+        <div className="topic-skel__desc" />
+        <section className="topic__section">
+          <div className="topic-skel__sectionHead" />
+          <div className="topic-skel__theory">
+            <div className="topic-skel__line topic-skel__line--w90" />
+            <div className="topic-skel__line topic-skel__line--w95" />
+            <div className="topic-skel__line topic-skel__line--w75" />
+            <div className="topic-skel__line topic-skel__line--w90" />
+            <div className="topic-skel__line topic-skel__line--w60" />
+          </div>
+        </section>
+        <section className="topic__section">
+          <div className="topic-skel__sectionHead" />
+          <ul className="topic-skel__list">
+            <li />
+            <li />
+            <li />
+          </ul>
+        </section>
+      </div>
+    );
   }
 
   if (!topic) {

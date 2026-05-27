@@ -4,9 +4,61 @@
   align-items: center;
 }
 
-.user-menu__placeholder {
-  width: 110px;
+.user-menu__skeleton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 170px;
   height: 48px;
+  padding: 0 16px 0 6px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.user-menu__skeletonAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.12) 0%,
+    rgba(99, 102, 241, 0.22) 50%,
+    rgba(99, 102, 241, 0.12) 100%
+  );
+  background-size: 200% 100%;
+  animation: userMenuShimmer 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.user-menu__skeletonLine {
+  flex: 1;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(99, 102, 241, 0.2) 50%,
+    rgba(99, 102, 241, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: userMenuShimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes userMenuShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .user-menu__skeletonAvatar,
+  .user-menu__skeletonLine {
+    animation: none;
+  }
 }
 
 .user-menu__login {
@@ -20,7 +72,7 @@
   color: #fff;
   border-radius: 999px;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.2px;
   transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -47,8 +99,9 @@
   font: inherit;
   color: var(--text);
   transition: var(--transition);
-  max-width: 220px;
+  width: 170px;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .user-menu__trigger:hover {
@@ -58,9 +111,12 @@
 .user-menu__avatar {
   width: 36px;
   height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
-  background: var(--primary);
+  background: linear-gradient(135deg, #c4b5fd, #7c3aed);
   color: #fff;
   display: inline-flex;
   align-items: center;
@@ -68,15 +124,17 @@
   font-size: 0.85rem;
   font-weight: 700;
   flex-shrink: 0;
+  box-shadow: 0 0 0 1.5px rgba(99, 102, 241, 0.28);
 }
 
 .user-menu__name {
-  font-size: 0.95rem;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 140px;
 }
 
 /* ─── Dropdown ─── */

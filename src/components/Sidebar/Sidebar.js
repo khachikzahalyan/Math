@@ -36,7 +36,16 @@ function Sidebar() {
       <div className="sidebar__title">Թեմաներ</div>
 
       {loading ? (
-        <div className="sidebar__empty">Բեռնում...</div>
+        <div className="sidebar__skel" aria-hidden>
+          {[1, 2, 3].map((g) => (
+            <div key={g} className="sidebar__skelGroup">
+              <span className="sidebar__skelTitle" />
+              <span className="sidebar__skelItem" />
+              <span className="sidebar__skelItem" />
+              <span className="sidebar__skelItem" />
+            </div>
+          ))}
+        </div>
       ) : isEmpty ? (
         <div className="sidebar__empty">Դեռ թեմաներ չկան</div>
       ) : (
@@ -46,8 +55,11 @@ function Sidebar() {
             if (levelTopics.length === 0) return null;
 
             return (
-              <div key={level} className="sidebar__group">
-                <div className="sidebar__groupTitle">Մակարդակ {level}</div>
+              <div key={level} className="sidebar__group" data-level={level}>
+                <div className="sidebar__groupTitle">
+                  <span className="sidebar__groupBadge">{level}</span>
+                  Մակարդակ
+                </div>
                 <ul className="sidebar__list">
                   {levelTopics.map((t, i) => (
                     <li key={t.id}>

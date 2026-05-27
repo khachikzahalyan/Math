@@ -27,8 +27,8 @@ function Lessons() {
   const modal = useModal();
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [topics, setTopics] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const [loadError, setLoadError] = useState('');
-  const [empty, setEmpty] = useState(false);
   const [seeding, setSeeding] = useState(false);
   const [editingTopic, setEditingTopic] = useState(null);
 
@@ -59,10 +59,11 @@ function Lessons() {
     const unsub = subscribeTopics(
       (list) => {
         setTopics(list);
-        setEmpty(list.length === 0);
+        setLoaded(true);
       },
       (err) => {
         console.error('[lessons] subscribeTopics failed:', err?.code, err?.message, err);
+        setLoaded(true);
         const code = err?.code || 'unknown';
         let detail = 'Չհաջողվեց բեռնել թեմաները։';
         if (code === 'permission-denied') {
@@ -100,6 +101,32 @@ function Lessons() {
     }
   };
 
+  if (!loaded) {
+    return (
+      <div className="lessons-page">
+        <div className="lessons-page__inner">
+          <h1 className="mb-2 text-center text-3xl font-black leading-tight tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
+            Դասեր
+          </h1>
+          <p className="mx-auto mb-5 max-w-xl text-center text-sm text-slate-500 md:mb-6 md:text-base">
+            Ընտրեք մակարդակը սկսելու համար։
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-hidden>
+            {LEVELS.map(({ level }) => (
+              <div key={level} className="lessons-skel-card">
+                <span className="lessons-skel-card__strip" />
+                <span className="lessons-skel-card__icon" />
+                <span className="lessons-skel-card__num" />
+                <span className="lessons-skel-card__label" />
+                <span className="lessons-skel-card__count" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (loadError) {
     return (
       <div className="lessons-page">
@@ -113,7 +140,9 @@ function Lessons() {
     );
   }
 
-  if (empty && isTeacher) {
+  const isEmpty = topics.length === 0;
+
+  if (isEmpty && isTeacher) {
     return (
       <div className="lessons-page">
         <div className="lessons-page__inner" style={{ textAlign: 'center', padding: 40 }}>
@@ -141,7 +170,7 @@ function Lessons() {
     );
   }
 
-  if (empty && !isTeacher) {
+  if (isEmpty && !isTeacher) {
     return (
       <div className="lessons-page">
         <div className="lessons-page__inner" style={{ textAlign: 'center', padding: 40 }}>
@@ -159,7 +188,7 @@ function Lessons() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.07 }}
-            className="mb-3 text-center text-4xl font-black leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl"
+            className="mb-2 text-center text-3xl font-black leading-tight tracking-tight text-slate-900 md:text-4xl lg:text-5xl"
           >
             Դասեր
           </motion.h1>
@@ -168,31 +197,31 @@ function Lessons() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14 }}
-            className="mx-auto mb-8 max-w-xl text-center text-base text-slate-500 md:mb-10 md:text-lg"
+            className="mx-auto mb-4 max-w-xl text-center text-sm text-slate-500 md:mb-5 md:text-base"
           >
             Ընտրեք մակարդակը սկսելու համար։
           </motion.p>
 
           {isTeacher && (
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
               <button
                 onClick={openCreate}
                 type="button"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: '10px 18px', borderRadius: 12,
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  padding: '7px 14px', borderRadius: 10,
                   background: 'linear-gradient(135deg,#10b981,#059669)',
                   color: '#fff', border: 'none', cursor: 'pointer',
-                  fontWeight: 700,
+                  fontWeight: 700, fontSize: '0.85rem',
                 }}
               >
-                <Plus size={16} />
+                <Plus size={14} />
                 Ավելացնել թեմա
               </button>
             </div>
           )}
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {LEVELS.map(({ level, Icon, from, to, shadow, light }, idx) => {
               const topicsAtLevel = topicsByLevel.get(level) || [];
               return (
@@ -210,7 +239,7 @@ function Lessons() {
                 >
                   <div className="lessons-level-card__strip" />
                   <div className="lessons-level-card__icon">
-                    <Icon size={24} strokeWidth={2.2} />
+                    <Icon size={20} strokeWidth={2.2} />
                   </div>
                   <span className="lessons-level-card__number">{level}</span>
                   <span className="lessons-level-card__label">Մակարդակ</span>
@@ -282,33 +311,31 @@ function Lessons() {
           Այս մակարդակի համար թեմաներ դեռ չկան։
         </motion.p>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="lessons-topic-grid">
           {filteredTopics.map((t, idx) => (
             <motion.div
               key={t.id}
               initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.14 + idx * 0.05, duration: 0.45 }}
-              className="lessons-topic-card group"
+              className={`lessons-topic-card${isTeacher ? ' lessons-topic-card--teacher' : ''} group`}
               style={{ '--l-from': cfg.from, '--l-to': cfg.to, '--l-shadow': cfg.shadow }}
             >
-              <h3 className="mb-2 text-base font-bold text-slate-900">
-                <span
-                  className="lessons-topic-card__num"
-                  style={{ color: cfg.from }}
-                >
-                  {selectedLevel}.{idx + 1}
-                </span>
-                {t.title}
-              </h3>
-              <p className="flex-1 text-sm leading-relaxed text-slate-500">{t.description}</p>
-              <div className="mt-auto pt-4">
+              <span
+                className="lessons-topic-card__num"
+                style={{ color: cfg.from, background: `rgba(${cfg.shadow}, 0.12)` }}
+              >
+                {selectedLevel}.{idx + 1}
+              </span>
+              <h3 className="lessons-topic-card__title">{t.title}</h3>
+              <p className="lessons-topic-card__desc">{t.description}</p>
+              <div className="lessons-topic-card__footer">
                 <Link
-                  className="lessons-topic-card__link inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-bold text-white"
+                  className="lessons-topic-card__link"
                   style={{ background: `linear-gradient(135deg, ${cfg.from}, ${cfg.to})` }}
                   to={t.id}
                 >
                   Բացել
-                  <ChevronRight size={15} />
+                  <ChevronRight size={16} />
                 </Link>
               </div>
               {isTeacher && (

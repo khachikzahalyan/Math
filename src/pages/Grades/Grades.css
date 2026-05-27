@@ -1,19 +1,57 @@
 .grades-page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 28px 24px 40px;
+}
+
+.grades-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .grades-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   color: #0f172a;
-  margin: 0 0 8px;
+  margin: 0;
+  letter-spacing: -0.3px;
 }
 
-.grades-subtitle {
-  color: #64748b;
-  margin: 0 0 24px;
+.grades-headStats {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  border-radius: 999px;
+  flex-wrap: wrap;
+}
+
+.grades-headStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #475569;
+  font-weight: 500;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.grades-headStat strong {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.grades-headStatIcon {
+  color: #6366f1;
 }
 
 .grades-empty {
@@ -30,18 +68,45 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 24px;
 }
 
 .grades-card {
   background: #fff;
   border: 1px solid #e2e8f0;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
 }
 
-.grades-card:hover {
-  box-shadow: 0 6px 16px -8px rgba(15, 23, 42, 0.12);
+.grades-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 16px 0 0 16px;
+  pointer-events: none;
+}
+
+.grades-card--good::before {
+  background: linear-gradient(180deg, #10b981, #059669);
+}
+.grades-card--mid::before {
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+}
+.grades-card--low::before {
+  background: linear-gradient(180deg, #ef4444, #dc2626);
+}
+
+@media (hover: hover) {
+  .grades-card:hover {
+    box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.18);
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+  }
 }
 
 .grades-cardHead {
@@ -49,7 +114,7 @@
   grid-template-columns: minmax(220px, 1fr) minmax(0, 1.6fr) auto;
   align-items: center;
   gap: 20px;
-  padding: 16px 20px;
+  padding: 14px 18px 14px 22px;
   background: transparent;
   border: none;
   width: 100%;
@@ -63,7 +128,6 @@
   align-items: center;
   gap: 12px;
   min-width: 0;
-  flex: 1;
 }
 
 .grades-avatar {
@@ -72,12 +136,7 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
+  box-shadow: 0 0 0 1.5px rgba(99, 102, 241, 0.18);
 }
 
 .grades-userInfo {
@@ -92,123 +151,186 @@
   font-size: 15px;
   font-weight: 700;
   color: #0f172a;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .grades-userEmail {
   font-size: 12px;
   color: #94a3b8;
-  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Stats */
-.grades-stats {
-  display: flex;
-  gap: 10px;
-  align-items: stretch;
-  width: 100%;
-}
-
-.grades-stat {
+/* ─── Middle column (progress + ministats) ─── */
+.grades-cardMid {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 16px;
-  background: #f8fafc;
-  border-radius: 10px;
+  gap: 6px;
   min-width: 0;
-  flex: 1;
-  position: relative;
 }
 
-.grades-statIcon {
-  color: #94a3b8;
-  margin-bottom: 2px;
+.grades-progressRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
 }
 
-.grades-statLabel {
-  font-size: 10px;
+.grades-progressLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #64748b;
   font-weight: 600;
-  color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.4px;
+  font-size: 11px;
 }
 
-.grades-statValue {
-  font-size: 18px;
-  font-weight: 800;
+.grades-progressCount {
   color: #0f172a;
-  line-height: 1.2;
+  font-weight: 700;
+  font-size: 13px;
 }
 
-.grades-statTotal {
-  font-size: 12px;
-  font-weight: 600;
+.grades-progressCount strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.grades-progressTotal {
   color: #94a3b8;
-  margin-left: 1px;
+  font-weight: 600;
 }
 
-/* Grade tiers */
-.grades-stat--grade.grades-stat--good {
-  background: #ecfdf5;
-}
-.grades-stat--grade.grades-stat--good .grades-statValue,
-.grades-stat--grade.grades-stat--good .grades-statIcon,
-.grades-stat--grade.grades-stat--good .grades-statLabel {
-  color: #059669;
+.grades-progressBar {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-.grades-stat--grade.grades-stat--mid {
-  background: #fffbeb;
-}
-.grades-stat--grade.grades-stat--mid .grades-statValue,
-.grades-stat--grade.grades-stat--mid .grades-statIcon,
-.grades-stat--grade.grades-stat--mid .grades-statLabel {
-  color: #d97706;
+.grades-progressFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
 }
 
-.grades-stat--grade.grades-stat--low {
-  background: #fef2f2;
+.grades-progressFill--good {
+  background: linear-gradient(90deg, #34d399, #10b981);
 }
-.grades-stat--grade.grades-stat--low .grades-statValue,
-.grades-stat--grade.grades-stat--low .grades-statIcon,
-.grades-stat--grade.grades-stat--low .grades-statLabel {
-  color: #dc2626;
+.grades-progressFill--mid {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+.grades-progressFill--low {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+}
+
+.grades-miniStats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.grades-miniStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.grades-miniStat svg {
+  color: #94a3b8;
+}
+
+.grades-miniDot {
+  color: #cbd5e1;
+}
+
+/* ─── Right column (grade + toggle) ─── */
+.grades-cardRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grades-gradeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  height: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.grades-gradeChipIcon {
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.grades-gradeChipValue {
+  font-size: 14px;
+  letter-spacing: -0.2px;
+}
+
+.grades-gradeChip--good {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  color: #047857;
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.22);
+}
+
+.grades-gradeChip--mid {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  color: #b45309;
+  box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.24);
+}
+
+.grades-gradeChip--low {
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  color: #b91c1c;
+  box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.22);
 }
 
 .grades-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
   color: #94a3b8;
-  background: #f1f5f9;
+  background: #f8fafc;
   flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
 }
 
-/* Card expanded body */
+@media (hover: hover) {
+  .grades-cardHead:hover .grades-toggle {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+  }
+}
+
+/* ─── Card expanded body ─── */
 .grades-cardBody {
   border-top: 1px solid #f1f5f9;
-  padding: 4px 20px 16px;
+  padding: 8px 24px 18px;
   background: #fafbfc;
-}
-
-.grades-noAttempts {
-  color: #94a3b8;
-  text-align: center;
-  padding: 16px;
-  margin: 0;
-  font-size: 14px;
 }
 
 .grades-detailTable {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin-top: 12px;
+  margin-top: 8px;
   font-size: 13px;
 }
 
@@ -245,47 +367,287 @@
   color: #0f172a;
 }
 
-.grades-detailTable strong {
-  font-size: 15px;
+.grades-scorePill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
   font-weight: 800;
-  color: #3b82f6;
+  letter-spacing: 0.1px;
+}
+
+.grades-scorePill--good {
+  background: #ecfdf5;
+  color: #059669;
+}
+.grades-scorePill--mid {
+  background: #fffbeb;
+  color: #b45309;
+}
+.grades-scorePill--low {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ─── Inactive (Չի սկսել) section ─── */
+.grades-inactive {
+  margin-top: 8px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f8fafc, #fff);
+  border: 1px dashed #cbd5e1;
+}
+
+.grades-inactiveHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.grades-inactiveIcon {
+  color: #94a3b8;
+}
+
+.grades-inactiveTitle {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #64748b;
+}
+
+.grades-inactiveCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 2px 8px;
+  background: #e2e8f0;
+  color: #475569;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.grades-inactiveList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.grades-inactivePill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  min-width: 0;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+@media (hover: hover) {
+  .grades-inactivePill:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.grades-inactiveAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.grades-inactiveInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.grades-inactiveName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grades-inactiveEmail {
+  font-size: 10.5px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ─── Mobile ─── */
-@media (max-width: 720px) {
-  .grades-page { padding: 20px 14px; }
-  .grades-title { font-size: 24px; }
-
+@media (max-width: 860px) {
   .grades-cardHead {
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    padding: 14px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 14px 16px 14px 20px;
   }
 
-  .grades-stats {
-    grid-column: 1 / -1;
+  .grades-cardRight {
     justify-content: space-between;
-    gap: 6px;
   }
+}
 
-  .grades-stat {
-    flex: 1;
-    min-width: 0;
-    padding: 7px 6px;
+@media (max-width: 720px) {
+  .grades-page { padding: 18px 14px 32px; }
+  .grades-title { font-size: 22px; }
+
+  .grades-cardBody {
+    padding: 6px 16px 14px;
   }
-
-  .grades-toggle {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .grades-cardBody { padding: 4px 14px 14px; }
 
   .grades-detailTable {
     font-size: 12px;
   }
 
-  .grades-detailTable th, .grades-detailTable td {
+  .grades-detailTable th,
+  .grades-detailTable td {
     padding: 7px 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grades-card,
+  .grades-progressFill,
+  .grades-toggle,
+  .grades-inactivePill {
+    transition: none;
+  }
+}
+
+/* ─── Skeleton ─── */
+.grades-skel__titleBar,
+.grades-skel__subtitle,
+.grades-skel__avatar,
+.grades-skel__lineL,
+.grades-skel__lineS,
+.grades-skel__stat,
+.grades-skel__toggle {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.12) 0%,
+    rgba(148, 163, 184, 0.25) 50%,
+    rgba(148, 163, 184, 0.12) 100%
+  );
+  background-size: 200% 100%;
+  animation: gradesSkelShimmer 1.4s ease-in-out infinite;
+}
+
+.grades-skel__titleBar {
+  width: 180px;
+  height: 32px;
+  border-radius: 10px;
+  margin: 0 0 12px;
+}
+
+.grades-skel__subtitle {
+  width: 200px;
+  height: 14px;
+  border-radius: 7px;
+  margin: 0 0 24px;
+}
+
+.grades-skel__card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 1.6fr) auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.grades-skel__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.grades-skel__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.grades-skel__userText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.grades-skel__lineL {
+  width: 60%;
+  height: 14px;
+  border-radius: 7px;
+}
+
+.grades-skel__lineS {
+  width: 80%;
+  height: 11px;
+  border-radius: 6px;
+}
+
+.grades-skel__stats {
+  display: flex;
+  gap: 18px;
+}
+
+.grades-skel__stat {
+  width: 70px;
+  height: 38px;
+  border-radius: 10px;
+}
+
+.grades-skel__toggle {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+}
+
+@keyframes gradesSkelShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 720px) {
+  .grades-skel__card {
+    grid-template-columns: 1fr;
+  }
+  .grades-skel__stats {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grades-skel__titleBar,
+  .grades-skel__subtitle,
+  .grades-skel__avatar,
+  .grades-skel__lineL,
+  .grades-skel__lineS,
+  .grades-skel__stat,
+  .grades-skel__toggle {
+    animation: none;
   }
 }
