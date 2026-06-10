@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import BackToTopFab from './components/BackToTopFab/BackToTopFab';
 import GlassBg from './components/GlassBg/GlassBg';
+import Header from './components/Header/Header';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import MainLayout from './layouts/MainLayout/MainLayout';
 import LessonsLayout from './layouts/LessonsLayout/LessonsLayout';
@@ -19,17 +20,28 @@ import RequireAuth from './auth/RequireAuth';
 import RequireTeacher from './auth/RequireTeacher';
 
 function App() {
+  const { pathname } = useLocation();
+  const showHeader = pathname !== '/login';
+
   return (
     <>
       <GlassBg />
       <ScrollToTop />
       <BackToTopFab />
+      {showHeader && <Header />}
       <Routes>
-        <Route element={<MainLayout />}>
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          element={
+            <RequireAuth>
+              <MainLayout />
+            </RequireAuth>
+          }
+        >
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
@@ -45,7 +57,13 @@ function App() {
           <Route path=":topicId" element={<LessonTopic />} />
         </Route>
 
-        <Route element={<MainLayout />}>
+        <Route
+          element={
+            <RequireAuth>
+              <MainLayout />
+            </RequireAuth>
+          }
+        >
           <Route
             path="/grades"
             element={

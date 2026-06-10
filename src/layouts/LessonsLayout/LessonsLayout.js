@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import './LessonsLayout.css';
 
@@ -25,10 +24,9 @@ function LessonsLayout() {
 
   return (
     <div className="lessonsLayout">
-      <Header />
       <div className="lessonsLayout__body">
         {!isLessonsCategory && <Sidebar />}
-        <main 
+        <main
           className={`lessonsLayout__content ${isLessonsCategory ? 'lessonsLayout__content--fullWidth' : ''}`}
           ref={contentRef}
         >

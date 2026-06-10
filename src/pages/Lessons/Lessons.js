@@ -28,9 +28,16 @@ function Lessons() {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [topics, setTopics] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [showSkeleton, setShowSkeleton] = useState(false);
   const [loadError, setLoadError] = useState('');
   const [seeding, setSeeding] = useState(false);
   const [editingTopic, setEditingTopic] = useState(null);
+
+  useEffect(() => {
+    if (loaded) return undefined;
+    const timer = setTimeout(() => setShowSkeleton(true), 140);
+    return () => clearTimeout(timer);
+  }, [loaded]);
 
   const openCreate = () => setEditingTopic('new');
   const openEdit = (t) => setEditingTopic(t);
@@ -102,6 +109,9 @@ function Lessons() {
   };
 
   if (!loaded) {
+    if (!showSkeleton) {
+      return <div className="lessons-page" aria-hidden />;
+    }
     return (
       <div className="lessons-page">
         <div className="lessons-page__inner">
@@ -185,18 +195,18 @@ function Lessons() {
       <div className="lessons-page">
         <div className="lessons-page__inner">
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.07 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
             className="mb-2 text-center text-3xl font-black leading-tight tracking-tight text-slate-900 md:text-4xl lg:text-5xl"
           >
             Դասեր
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.14 }}
+            transition={{ duration: 0.35, delay: 0.04, ease: 'easeOut' }}
             className="mx-auto mb-4 max-w-xl text-center text-sm text-slate-500 md:mb-5 md:text-base"
           >
             Ընտրեք մակարդակը սկսելու համար։
@@ -227,9 +237,9 @@ function Lessons() {
               return (
                 <motion.button
                   key={level}
-                  initial={{ opacity: 0, y: 34 }}
+                  initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.22 + idx * 0.08, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ delay: 0.08 + idx * 0.04, duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
                   onClick={() => {
                     recordLevelVisited(level);
                     setSelectedLevel(level);
